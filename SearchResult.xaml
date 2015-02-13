@@ -1,0 +1,20 @@
+﻿<UserControl x:Class="NowMine.SearchResult"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d" 
+             d:DesignHeight="75" d:DesignWidth="360" MouseDoubleClick="UserControl_MouseDoubleClick">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="39*"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="lblTitle" Content=" " Margin="27,0,0,0" VerticalAlignment="Top" Grid.Column="1"/>
+        <Label x:Name="lblAuthor" Content=" " Margin="27,26,0,21" Grid.Column="1" HorizontalAlignment="Left" Width="254"/>
+        <Image x:Name ="imgMain" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="101"/>
+        <Border BorderBrush="Black" BorderThickness="1" Height="75" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="360"/>
+
+
+    </Grid>
+</UserControl>
