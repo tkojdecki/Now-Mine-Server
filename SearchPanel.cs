@@ -9,12 +9,12 @@ namespace NowMine
     class SearchPanel
     {
         //List<SearchResult> resultsList;
-
+        YouTubeProvider youtubeProvider = new YouTubeProvider();
 
         public List<SearchResult> getSearchList(String searchWord)
         {
             List<SearchResult> list;
-            List<YouTubeInfo> infoList = YouTubeProvider.LoadVideosKey(searchWord);
+            List<YouTubeInfo> infoList = youtubeProvider.LoadVideosKey(searchWord);
             //this.resultsList = infoToResults(infoList);
             list = infoToResults(infoList);
             return list;

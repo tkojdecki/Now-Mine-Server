@@ -5,26 +5,38 @@ using System.Text;
 using System.Diagnostics;
 using System.Net;
 using System.Xml.Linq;
+using Google.Apis.YouTube.v3;
+using Google.Apis.YouTube.v3.Data;
+using Google.Apis.Auth.OAuth2;
+using Google.Apis.Services;
+using Google.Apis.Upload;
+using Google.Apis.Util.Store;
+
 
 namespace NowMine
 {
 
-    /// Uses XLINQ to create a List<see cref="YouTubeInfo">YouTubeInfo</see> using an Rss feed.
-    /// 
-    /// The following links are useful information regarding how the YouTube API works 
-    /// 
-    /// Example url
-    ///
-    /// http://gdata.youtube.com/feeds/api/videos?q=football+-soccer&alt=rss&orderby=published&start-index=11&max-results=10&v=1
-    ///
-    ///
-    /// API Notes
-    /// http://code.google.com/apis/youtube/2.0/developers_guide_protocol_api_query_parameters.html
-    /// </summary>
     public class YouTubeProvider
     {
         #region Data
         private const string SEARCH = "http://gdata.youtube.com/feeds/api/videos?q={0}&alt=rss&&max-results=20&v=1";
+        YouTubeService youtubeService = new YouTubeService(new BaseClientService.Initializer()
+        {
+            ApiKey = "AIzaSyC5zI6qk0KkTtePHp5yh23fcPgSLnio2V4",
+            ApplicationName = "Play Mine!"
+        });
+        #endregion
+
+        #region Connecting
+        public void connectToYoutube()
+        {
+            youtubeService = new YouTubeService(new BaseClientService.Initializer()
+            {
+                ApiKey = "AIzaSyC5zI6qk0KkTtePHp5yh23fcPgSLnio2V4",
+                ApplicationName = "Play Mine!"
+            });
+        }
+
         #endregion
 
         #region Load Videos From Feed
@@ -32,30 +44,44 @@ namespace NowMine
         /// Returns a List<see cref="YouTubeInfo">YouTubeInfo</see> which represent
         /// the YouTube videos that matched the keyWord input parameter
         /// </summary>
-        public static List<YouTubeInfo> LoadVideosKey(string keyWord)
+        public List<YouTubeInfo> LoadVideosKey(string keyWord)
         {
-            try
-            {
-                var xraw = XElement.Load(string.Format(SEARCH, keyWord));                
-                var xroot = XElement.Parse(xraw.ToString());
-                //Console.Out.WriteLine("xroot: " + xroot);
-                var links = (from item in xroot.Element("channel").Descendants("item")
-                             select new YouTubeInfo
-                             {
-                                 LinkUrl = item.Element("link").Value,
-                                 EmbedUrl = GetEmbedUrlFromLink(item.Element("link").Value),
-                                 ThumbNailUrl = GetThumbNailUrlFromLink(item),
-                                 Title = item.Element("title").Value,
-                                 Author = item.Element("author").Value                                 
-                             }).Take(20);
+            var searchListRequest = youtubeService.Search.List("snippet");
+            searchListRequest.Q = keyWord; // Replace with your search term.
+            searchListRequest.MaxResults = 20;
 
-                return links.ToList<YouTubeInfo>();
-            }
-            catch (Exception e)
+            // Call the search.list method to retrieve results matching the specified query term.
+            var searchListResponse = searchListRequest.Execute();
+
+            List<string> videos = new List<string>();
+            List<string> channels = new List<string>();
+            List<string> playlists = new List<string>();
+
+            List<YouTubeInfo> resultInfo = new List<YouTubeInfo>();
+
+            foreach (var searchResult in searchListResponse.Items)
             {
-                Trace.WriteLine(e.Message, "ERROR");
+                YouTubeInfo result = new YouTubeInfo();
+                switch (searchResult.Id.Kind)
+                {
+                    case "youtube#video":
+                        videos.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.VideoId));
+                        result.Title = searchResult.Snippet.Title;
+                        break;
+
+                    case "youtube#channel":
+                        channels.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.ChannelId));
+                        result.ChannelName = searchResult.Snippet.Title;
+                        break;
+
+                    case "youtube#playlist":
+                        playlists.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.PlaylistId));
+                        result.Title = searchResult.Snippet.Title;
+                        break;
+                }
+                resultInfo.Add(result);
             }
-            return null;
+            return resultInfo;
         }
 
 
@@ -73,47 +99,14 @@ namespace NowMine
         /// </summary>
         private static string GetEmbedUrlFromLink(string link)
         {
-            try
-            {
-                string embedUrl = link.Substring(0, link.IndexOf("&")).Replace("watch?v=", "embed/");
-                return embedUrl;
-            }
-            catch
-            {
-                return link;
-            }
+            return "asdf";
         }
 
 
         private static string GetThumbNailUrlFromLink(XElement element)
         {
-
-            XElement group = null;
-            XElement thumbnail = null;
-            string thumbnailUrl = @"../Images/logo.png";
-
-            foreach (XElement desc in element.Descendants())
-            {
-                if (desc.Name.LocalName == "group")
-                {
-                    group = desc;
-                    break;
-                }
-            }
-
-            if (group != null)
-            {
-                foreach (XElement desc in group.Descendants())
-                {
-                    if (desc.Name.LocalName == "thumbnail")
-                    {
-                        thumbnailUrl = desc.Attribute("url").Value.ToString();
-                        break;
-                    }
-                }
-            }
-
-            return thumbnailUrl;
+            return "asdf";
+         
         }
 
         #endregion
