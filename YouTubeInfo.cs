@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+using Google.Apis.YouTube.v3.Data;
 namespace NowMine
 {
     /// <summary>
@@ -12,11 +12,12 @@ namespace NowMine
     {
         #region Data
         public string LinkUrl { get; set; }
-        public string EmbedUrl { get; set; }
-        public string ThumbNailUrl { get; set; }
+        //public string EmbedUrl { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
         public string ChannelName { get; set; }
+        public Thumbnail thumbnail { get; set; }
+
         #endregion
     }
 }

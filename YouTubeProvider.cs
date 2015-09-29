@@ -67,16 +67,21 @@ namespace NowMine
                     case "youtube#video":
                         videos.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.VideoId));
                         result.Title = searchResult.Snippet.Title;
+                        result.ChannelName = searchResult.Snippet.ChannelTitle;
+                        result.LinkUrl = "http://www.youtube.com/watch?v=" + searchResult.Id.VideoId;
+                        result.thumbnail = searchResult.Snippet.Thumbnails.Default__;
                         break;
 
                     case "youtube#channel":
                         channels.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.ChannelId));
                         result.ChannelName = searchResult.Snippet.Title;
+                        continue;
                         break;
 
                     case "youtube#playlist":
                         playlists.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.PlaylistId));
                         result.Title = searchResult.Snippet.Title;
+                        continue;
                         break;
                 }
                 resultInfo.Add(result);

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Google.Apis.YouTube.v3.Data;
 
 namespace NowMine
 {
@@ -33,7 +34,7 @@ namespace NowMine
             InitializeComponent();
             lblTitle.Content = info.Title;
             lblAuthor.Content = info.Author;
-            setImage = info.ThumbNailUrl;
+            setImage = info.thumbnail.Url;
         }
 
         public YouTubeInfo Info
@@ -44,7 +45,7 @@ namespace NowMine
                 info = value;
                 setTitle = info.Title;
                 setAuthor = info.Author;
-                setImage = info.ThumbNailUrl;
+                setImage = info.thumbnail.Url;
             }
         }
 
