@@ -122,13 +122,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="QueuePanel.cs" />
     <Compile Include="SearchPanel.cs" />
-    <Compile Include="SearchResult.xaml.cs">
-      <DependentUpon>SearchResult.xaml</DependentUpon>
+    <Compile Include="MusicPiece.xaml.cs">
+      <DependentUpon>MusicPiece.xaml</DependentUpon>
     </Compile>
     <Compile Include="YouTubeInfo.cs" />
     <Compile Include="YouTubeProvider.cs" />
-    <Page Include="SearchResult.xaml">
+    <Page Include="MusicPiece.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

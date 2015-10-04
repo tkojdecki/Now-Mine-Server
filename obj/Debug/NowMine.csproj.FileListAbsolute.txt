@@ -151,12 +151,12 @@ E:\now-mine\bin\Debug\System.Net.Http.Extensions.xml
 E:\now-mine\bin\Debug\System.Net.Http.Primitives.xml
 E:\now-mine\bin\Debug\Zlib.Portable.xml
 E:\now-mine\obj\Debug\NowMine.csprojResolveAssemblyReference.cache
-E:\now-mine\obj\Debug\SearchResult.baml
 E:\now-mine\obj\Debug\MainWindow.baml
-E:\now-mine\obj\Debug\SearchResult.g.cs
 E:\now-mine\obj\Debug\MainWindow.g.cs
 E:\now-mine\obj\Debug\App.g.cs
 E:\now-mine\obj\Debug\NowMine_MarkupCompile.cache
 E:\now-mine\obj\Debug\NowMine.g.resources
 E:\now-mine\obj\Debug\NowMine.Properties.Resources.resources
 E:\now-mine\obj\Debug\NowMine.csproj.GenerateResource.Cache
+E:\now-mine\obj\Debug\MusicPiece.baml
+E:\now-mine\obj\Debug\MusicPiece.g.cs

@@ -59,28 +59,28 @@ namespace NowMine
 
             List<YouTubeInfo> resultInfo = new List<YouTubeInfo>();
 
-            foreach (var searchResult in searchListResponse.Items)
+            foreach (var MusicPiece in searchListResponse.Items)
             {
                 YouTubeInfo result = new YouTubeInfo();
-                switch (searchResult.Id.Kind)
+                switch (MusicPiece.Id.Kind)
                 {
                     case "youtube#video":
-                        videos.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.VideoId));
-                        result.Title = searchResult.Snippet.Title;
-                        result.ChannelName = searchResult.Snippet.ChannelTitle;
-                        result.LinkUrl = "http://www.youtube.com/watch?v=" + searchResult.Id.VideoId;
-                        result.thumbnail = searchResult.Snippet.Thumbnails.Default__;
+                        videos.Add(String.Format("{0} ({1})", MusicPiece.Snippet.Title, MusicPiece.Id.VideoId));
+                        result.Title = MusicPiece.Snippet.Title;
+                        result.ChannelName = MusicPiece.Snippet.ChannelTitle;
+                        result.LinkUrl = "http://www.youtube.com/embed/" + MusicPiece.Id.VideoId;
+                        result.thumbnail = MusicPiece.Snippet.Thumbnails.Default__;
                         break;
 
                     case "youtube#channel":
-                        channels.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.ChannelId));
-                        result.ChannelName = searchResult.Snippet.Title;
+                        channels.Add(String.Format("{0} ({1})", MusicPiece.Snippet.Title, MusicPiece.Id.ChannelId));
+                        result.ChannelName = MusicPiece.Snippet.Title;
                         continue;
                         break;
 
                     case "youtube#playlist":
-                        playlists.Add(String.Format("{0} ({1})", searchResult.Snippet.Title, searchResult.Id.PlaylistId));
-                        result.Title = searchResult.Snippet.Title;
+                        playlists.Add(String.Format("{0} ({1})", MusicPiece.Snippet.Title, MusicPiece.Id.PlaylistId));
+                        result.Title = MusicPiece.Snippet.Title;
                         continue;
                         break;
                 }

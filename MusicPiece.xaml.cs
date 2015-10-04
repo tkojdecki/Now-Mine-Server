@@ -19,16 +19,16 @@ namespace NowMine
     /// <summary>
     /// Interaction logic for ListObject.xaml
     /// </summary>
-    public partial class SearchResult : UserControl
+    public partial class MusicPiece : UserControl
     {
         
         private YouTubeInfo info = null;
-        public SearchResult()
+        public MusicPiece()
         {
             InitializeComponent();
         }
 
-        public SearchResult(YouTubeInfo inf)
+        public MusicPiece(YouTubeInfo inf)
         {
             this.info = inf;
             InitializeComponent();
@@ -47,6 +47,17 @@ namespace NowMine
                 setAuthor = info.Author;
                 setImage = info.thumbnail.Url;
             }
+        }
+
+        public MusicPiece copy()
+        {
+            MusicPiece musicPiece = new MusicPiece();
+            musicPiece.info = this.info;
+            musicPiece.lblTitle.Content = info.Title;
+            musicPiece.lblAuthor.Content = info.Author;
+            musicPiece.setImage = info.thumbnail.Url;
+            musicPiece.InitializeComponent();
+            return musicPiece;
         }
 
         private string setTitle
@@ -72,11 +83,6 @@ namespace NowMine
                 BitmapImage bmp = new BitmapImage(new Uri(value, UriKind.RelativeOrAbsolute));
                 imgMain.Source = bmp;
             }
-        }
-
-        private void UserControl_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            MainWindow.queue.Add(this.info);
         }
     }
 }

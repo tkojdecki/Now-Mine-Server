@@ -8,12 +8,12 @@ namespace NowMine
 {
     class SearchPanel
     {
-        //List<SearchResult> resultsList;
+        //List<MusicPiece> resultsList;
         YouTubeProvider youtubeProvider = new YouTubeProvider();
 
-        public List<SearchResult> getSearchList(String searchWord)
+        public List<MusicPiece> getSearchList(String searchWord)
         {
-            List<SearchResult> list;
+            List<MusicPiece> list;
             List<YouTubeInfo> infoList = youtubeProvider.LoadVideosKey(searchWord);
             //this.resultsList = infoToResults(infoList);
             list = infoToResults(infoList);
@@ -21,18 +21,18 @@ namespace NowMine
             //PopulateSearchBoard(this.resultsList);
         }
 
-        private List<SearchResult> infoToResults(List<YouTubeInfo> infoList)
+        private List<MusicPiece> infoToResults(List<YouTubeInfo> infoList)
         {
-            List<SearchResult> list = new List<SearchResult>();
+            List<MusicPiece> list = new List<MusicPiece>();
             foreach (YouTubeInfo info in infoList)
             {
-                SearchResult result = new SearchResult(info);
+                MusicPiece result = new MusicPiece(info);
                 list.Add(result);
             }
             return list;
         }
 
-        //private void PopulateSearchBoard(List<SearchResult> results)
+        //private void PopulateSearchBoard(List<MusicPiece> results)
         //{
         //    MainWindow.searchBoard.Children.Clear();
         //    for (int i = 0; i < infos.Count; i++)

@@ -20,63 +20,89 @@ namespace NowMine
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static List<YouTubeInfo> queue = null;
+        SearchPanel searchPanel = null;
+        QueuePanel queuePanel = null;
+
+
         public MainWindow()
         {
-            queue = new List<YouTubeInfo>();
+            queuePanel = new QueuePanel();
+            searchPanel = new SearchPanel();
             InitializeComponent();
-            //List<YouTubeInfo> infos = YouTubeProvider.LoadVideosKey("Łona");
-            //for (int i = 0; i < infos.Count; i++)
-                //Console.WriteLine(infos[i].EmbedUrl);
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
-            List<SearchResult> list;
-            SearchPanel searchPanel = new SearchPanel();
+            List<MusicPiece> list;
             list = searchPanel.getSearchList(txtSearch.Text);
             populateSearchBoard(list);
         }
-        /*
-        private void txtSearchBar_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                if (txtSearchBar.Text != string.Empty)
-                {
-                    List<YouTubeInfo> infos = YouTubeProvider.LoadVideosKey(txtSearchBar.Text);
-                    PopulateSearchList(infos);
-                }
-                else
-                {
-                    MessageBox.Show("you need to enter a search word", "Error",
-                        MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-            }
-        }
-        */
-       private void populateSearchBoard(List<SearchResult> results)
+
+       private void populateSearchBoard(List<MusicPiece> results)
         {
             searchBoard.Children.Clear();
-            for (int i = 0; i < results.Count; i++)
+            foreach (MusicPiece result in results)
             {
-                //int angleMutiplier = i % 2 == 0 ? 1 : -1;
-                //control.RenderTransform = new RotateTransform { Angle = GetRandom(30, angleMutiplier) };
-                //control.SetValue(Canvas.LeftProperty, GetRandomDist(dragCanvas.ActualWidth - 150.0));
-                //control.SetValue(Canvas.TopProperty, GetRandomDist(dragCanvas.ActualHeight - 150.0));
-                //control.SelectedEvent += control_SelectedEvent;
-                searchBoard.Children.Add(results[i]);
+                result.MouseDoubleClick += SearchResult_MouseDoubleClick;
+                searchBoard.Children.Add(result);
             }
         }
-        /*
-        private void Border_MouseEnter(object sender, MouseEventArgs e)
+
+        private void SearchResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //Console.Out.Write("asdf");
-            //border.Visibility = Visibility.Hidden;
-            if (searchExpander.IsExpanded == false)
-                searchExpander.IsExpanded = true;
-            else
-                searchExpander.IsExpanded = false;
-        }*/
+            var musicPiece = (MusicPiece)sender;
+            if (webPlayer.Source == null)
+            {
+                //webPlayer.Source = new Uri(musicPiece.Info.LinkUrl);
+                webPlayer.NavigateToString("< !doctype html > " +
+        "<html><head><title></title></head><body>" +
+        "<iframe height=\"383\" src=\"http://www.youtube.com/embed/9bZkp7q19f0\" width=\"680\"></iframe>" +
+        "</body></html>");
+            }
+            var queueMusicPiece = musicPiece.copy();
+            queuePanel.addToQueue(queueMusicPiece);
+            populateQueueBoard();
+        }
+
+        private void populateQueueBoard()
+        {
+            queueBoard.Children.Clear();
+            List<MusicPiece> queue = queuePanel.queue;
+            foreach (MusicPiece result in queue)
+            {
+                result.MouseDoubleClick += Queue_DoubleClick;
+                queueBoard.Children.Add(result);
+            }
+        }
+
+        private void Queue_DoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var musicPiece = (MusicPiece)sender;
+            webPlayer.Source = new Uri(musicPiece.Info.LinkUrl);
+            queuePanel.deleteFromQueue(musicPiece);
+            populateQueueBoard();
+        }
+
+
+
+
+        /*
+private void txtSearchBar_KeyDown(object sender, KeyEventArgs e)
+{
+    if (e.Key == Key.Enter)
+    {
+        if (txtSearchBar.Text != string.Empty)
+        {
+            List<YouTubeInfo> infos = YouTubeProvider.LoadVideosKey(txtSearchBar.Text);
+            PopulateSearchList(infos);
+        }
+        else
+        {
+            MessageBox.Show("you need to enter a search word", "Error",
+                MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+    }
+}
+*/
     }
 }
