@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Awesomium;
+using Awesomium.Windows.Controls;
 
 namespace NowMine
 {
@@ -51,13 +53,10 @@ namespace NowMine
         private void SearchResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             var musicPiece = (MusicPiece)sender;
-            if (webPlayer.Source == null)
+            
+            if (webPlayer.Source == new Uri("about:blank"))
             {
-                //webPlayer.Source = new Uri(musicPiece.Info.LinkUrl);
-                webPlayer.NavigateToString("< !doctype html > " +
-        "<html><head><title></title></head><body>" +
-        "<iframe height=\"383\" src=\"http://www.youtube.com/embed/9bZkp7q19f0\" width=\"680\"></iframe>" +
-        "</body></html>");
+                webPlayer.Source = new Uri(musicPiece.Info.LinkUrl);
             }
             var queueMusicPiece = musicPiece.copy();
             queuePanel.addToQueue(queueMusicPiece);
