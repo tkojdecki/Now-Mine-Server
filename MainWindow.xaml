@@ -5,13 +5,8 @@
         Title="MainWindow" Height="567.006" Width="1300.344">
     <Grid>
         <WrapPanel x:Name="searchButtons">
-            <TextBox x:Name="txtSearch" Text="Search" VerticalAlignment="Top" Width="120"/>
+            <TextBox x:Name="txtSearch" Text="Search" VerticalAlignment="Top" Width="120" KeyDown="txtSearch_KeyDown"/>
             <Button x:Name="searchButton" Content="Szukaj!" Width="75" Click="searchButton_Click"/>
-
-
-            
-
-
         </WrapPanel>
         <ScrollViewer Margin="0,30,932,0">
             <StackPanel x:Name="searchBoard" Height="506" VerticalAlignment="Top" Width="360"/>

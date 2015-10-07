@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace NowMine
 {
@@ -10,6 +12,44 @@ namespace NowMine
     {
         //List<MusicPiece> resultsList;
         YouTubeProvider youtubeProvider = new YouTubeProvider();
+        StackPanel stackPanel;
+        TextBox textBox;
+        QueuePanel queuePanel;
+
+        public SearchPanel(StackPanel stackPanel, TextBox textBox, QueuePanel queuePanel)
+        {
+            this.stackPanel = stackPanel;
+            this.textBox = textBox;
+            this.queuePanel = queuePanel;
+        }
+
+        public void search()
+        {
+            if (textBox.Text == "")
+            {
+                return;
+            }
+            List<MusicPiece> list;
+            list = getSearchList(textBox.Text);
+            populateSearchBoard(list);
+        }
+
+        private void populateSearchBoard(List<MusicPiece> results)
+        {
+            stackPanel.Children.Clear();
+            foreach (MusicPiece result in results)
+            {
+                result.MouseDoubleClick += SearchResult_MouseDoubleClick;
+                stackPanel.Children.Add(result);
+            }
+        }
+
+        private void SearchResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var musicPiece = (MusicPiece)sender;
+            var queueMusicPiece = musicPiece.copy();
+            queuePanel.addToQueue(queueMusicPiece);
+        }
 
         public List<MusicPiece> getSearchList(String searchWord)
         {
