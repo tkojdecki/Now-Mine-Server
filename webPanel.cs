@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Awesomium;
 using Awesomium.Windows.Controls;
-
+using Awesomium.Core;
 
 namespace NowMine
 {

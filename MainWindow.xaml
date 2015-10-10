@@ -7,11 +7,12 @@
         <WrapPanel x:Name="searchButtons">
             <TextBox x:Name="txtSearch" Text="Search" VerticalAlignment="Top" Width="120" KeyDown="txtSearch_KeyDown"/>
             <Button x:Name="searchButton" Content="Szukaj!" Width="75" Click="searchButton_Click"/>
+            <Button x:Name="button" Content="Button" Width="75" Click="button_Click"/>
         </WrapPanel>
         <ScrollViewer Margin="0,30,932,0">
             <StackPanel x:Name="searchBoard" Height="506" VerticalAlignment="Top" Width="360"/>
         </ScrollViewer>
-        <awe:WebControl x:Name="webPlayer" Margin="360,30,360,0"/>
+        <awe:WebControl x:Name="webPlayer" Margin="360,30,360,0" DocumentReady="webPlayer_DocumentReady" Source="E:\now-mine\YoutubeWrapper.html"/>
         <StackPanel x:Name="queueBoard" Margin="932,30,0,10"/>
     </Grid>
 </Window>

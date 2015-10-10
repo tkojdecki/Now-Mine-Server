@@ -64,3 +64,4 @@ E:\now-mine\bin\x86\Debug\pdf_js.pak
 E:\now-mine\obj\x86\Debug\NowMine.exe
 E:\now-mine\obj\x86\Debug\NowMine.pdb
 E:\now-mine\obj\x86\Debug\NowMine.csprojResolveAssemblyReference.cache
+E:\now-mine\obj\x86\Debug\NowMine_Content.g.cs
