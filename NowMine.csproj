@@ -155,6 +155,7 @@
     <Compile Include="MusicPiece.xaml.cs">
       <DependentUpon>MusicPiece.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Server.cs" />
     <Compile Include="WebPanel.cs" />
     <Compile Include="YouTubeInfo.cs" />
     <Compile Include="YouTubeProvider.cs" />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -26,13 +26,20 @@ namespace NowMine
         SearchPanel searchPanel;
         QueuePanel queuePanel;
         WebPanel webPanel;
+        Thread serverThread;
+        Server server;
 
         public MainWindow()
         {
             InitializeComponent();
-            webPanel = new WebPanel(webPlayer);
+            webPanel = new WebPanel(webPlayer, queuePanel);
             queuePanel = new QueuePanel(queueBoard, webPanel);
             searchPanel = new SearchPanel(searchBoard, txtSearch, queuePanel);
+            webPanel.reinitialize(webPlayer, queuePanel);
+            //Thread serverThread = new Thread(new ThreadStart(Server.ServerInit));
+            server = new Server();
+            serverThread = new Thread(() => server.ServerInit(queuePanel));
+            serverThread.Start();
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
@@ -50,30 +57,25 @@ namespace NowMine
 
         private void webPlayer_DocumentReady(object sender, DocumentReadyEventArgs e)
         {
-            BindMethods(webPlayer);
-            webPlayer.ExecuteJavascript("myMethod('chujufsto')");
+            webPanel.BindMethods();
         }
 
-        private void BindMethods (IWebView _webView)
+        private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
         {
-            JSValue result = webPlayer.CreateGlobalJavascriptObject("app");
-            if (result.IsObject)
-            {
-                JSObject appObject = result;
-                appObject.Bind("sayHello", sayHello);
-            }
+            TextBox txtBox = sender as TextBox;
+            txtBox.Text = "";
         }
 
-        private JSValue sayHello(object sender, JavascriptMethodEventArgs e)
+        private void Window_Closed(object sender, EventArgs e)
         {
-            return "Hello!";
+            //serverThread.Abort();
         }
 
-        private void button_Click(object sender, RoutedEventArgs e)
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            webPlayer.ExecuteJavascript("myMethod('chujufsto')");
-
-
+            //serverThread.Suspend();
+            serverThread.Abort();
+            this.Close();
         }
     }
 }

@@ -51,6 +51,8 @@ namespace NowMine
             searchListRequest.MaxResults = 20;
 
             // Call the search.list method to retrieve results matching the specified query term.
+
+            //TRY!!! - przy braku neta się sypie
             var searchListResponse = searchListRequest.Execute();
 
             List<string> videos = new List<string>();
@@ -68,6 +70,7 @@ namespace NowMine
                         videos.Add(String.Format("{0} ({1})", MusicPiece.Snippet.Title, MusicPiece.Id.VideoId));
                         result.Title = MusicPiece.Snippet.Title;
                         result.ChannelName = MusicPiece.Snippet.ChannelTitle;
+                        result.Id = MusicPiece.Id.VideoId;
                         result.LinkUrl = "http://www.youtube.com/embed/" + MusicPiece.Id.VideoId;
                         result.thumbnail = MusicPiece.Snippet.Thumbnails.Default__;
                         break;

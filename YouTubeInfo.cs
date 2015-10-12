@@ -12,6 +12,7 @@ namespace NowMine
     {
         #region Data
         public string LinkUrl { get; set; }
+        public string Id { get; set; }
         //public string EmbedUrl { get; set; }
         public string Title { get; set; }
         public string Author { get; set; }
