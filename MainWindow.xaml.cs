@@ -30,9 +30,10 @@ namespace NowMine
         public MainWindow()
         {
             InitializeComponent();
-            webPanel = new WebPanel(webPlayer);
+            webPanel = new WebPanel(webPlayer, queuePanel);
             queuePanel = new QueuePanel(queueBoard, webPanel);
             searchPanel = new SearchPanel(searchBoard, txtSearch, queuePanel);
+            webPanel.reinitialize(webPlayer, queuePanel);
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
@@ -50,30 +51,7 @@ namespace NowMine
 
         private void webPlayer_DocumentReady(object sender, DocumentReadyEventArgs e)
         {
-            BindMethods(webPlayer);
-            webPlayer.ExecuteJavascript("myMethod('chujufsto')");
-        }
-
-        private void BindMethods (IWebView _webView)
-        {
-            JSValue result = webPlayer.CreateGlobalJavascriptObject("app");
-            if (result.IsObject)
-            {
-                JSObject appObject = result;
-                appObject.Bind("sayHello", sayHello);
-            }
-        }
-
-        private JSValue sayHello(object sender, JavascriptMethodEventArgs e)
-        {
-            return "Hello!";
-        }
-
-        private void button_Click(object sender, RoutedEventArgs e)
-        {
-            webPlayer.ExecuteJavascript("myMethod('chujufsto')");
-
-
+            webPanel.BindMethods();
         }
     }
 }

@@ -25,13 +25,13 @@ namespace NowMine
         {
             if (queue.Count == 0)
             {
-                webPanel.playNow(new Uri(musicPiece.Info.LinkUrl));
+                webPanel.playNow(musicPiece.Info.Id);
             }
             queue.Add(musicPiece);
             populateQueueBoard();
         }
 
-        private void populateQueueBoard()
+        public void populateQueueBoard()
         {
             stackPanel.Children.Clear();
             foreach (MusicPiece result in queue)
@@ -45,7 +45,7 @@ namespace NowMine
         private void Queue_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             var musicPiece = (MusicPiece)sender;
-            webPanel.playNow(new Uri(musicPiece.Info.LinkUrl));
+            //webPanel.playNow(new Uri(musicPiece.Info.LinkUrl));
             deleteFromQueue(musicPiece);
             populateQueueBoard();
         }
@@ -53,6 +53,17 @@ namespace NowMine
         public void deleteFromQueue(MusicPiece musicPiece)
         {
             queue.Remove(musicPiece);
+        }
+
+        public MusicPiece getNextVideo()
+        {
+            deleteFromQueue(nowPlaying());
+            return nowPlaying();
+        }
+
+        private MusicPiece nowPlaying()
+        {
+            return queue.ElementAt(0);
         }
     }
 }
