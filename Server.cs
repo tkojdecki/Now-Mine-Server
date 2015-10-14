@@ -13,7 +13,7 @@ namespace NowMine
         {
             try
             {
-                IPAddress ipAd = IPAddress.Parse("192.168.1.2");
+                IPAddress ipAd = IPAddress.Parse("192.168.0.35");
                 // use local m/c IP address, and 
 
                 // use the same in the client

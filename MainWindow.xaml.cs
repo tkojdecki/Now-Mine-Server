@@ -34,6 +34,7 @@ namespace NowMine
             queuePanel = new QueuePanel(queueBoard, webPanel);
             searchPanel = new SearchPanel(searchBoard, txtSearch, queuePanel);
             webPanel.reinitialize(webPlayer, queuePanel);
+            //Server.ServerInit();
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
