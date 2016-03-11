@@ -11,7 +11,7 @@
         <ScrollViewer Margin="0,30,932,0">
             <StackPanel x:Name="searchBoard" Height="506" VerticalAlignment="Top" Width="360"/>
         </ScrollViewer>
-        <awe:WebControl x:Name="webPlayer" Margin="360,30,360,0" DocumentReady="webPlayer_DocumentReady" Source="D:\now-mine\YoutubeWrapper.html"/>
+        <awe:WebControl x:Name="webPlayer" Margin="360,30,360,0" DocumentReady="webPlayer_DocumentReady" Source="E:\now-mine\YoutubeWrapper.html"/>
         <StackPanel x:Name="queueBoard" Margin="932,30,0,10"/>
     </Grid>
 </Window>

@@ -182,3 +182,35 @@
 [1019/182142:INFO:(0)] Running Awesomium 1.7.5.1
 [1019/182224:INFO:(0)] WebCore is now online.
 [1019/182224:INFO:(0)] Running Awesomium 1.7.5.1
+[0223/200325:INFO:(0)] WebCore is now online.
+[0223/200325:INFO:(0)] Running Awesomium 1.7.5.1
+[0223/200333:WARNING:Awesomium.NET(0)] System.TimeoutException: The operation has timed out. The child process or the I/O thread, are busy. Please try to create the object again.
+   w Awesomium.Windows.Controls.WebControl.CreateGlobalJavascriptObject(String name)
+   w Awesomium.Core.JavascriptHelper.Register()
+[0223/200451:INFO:(0)] WebCore is now online.
+[0223/200451:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/003041:INFO:(0)] WebCore is now online.
+[0224/003041:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/003355:INFO:(0)] WebCore is now online.
+[0224/003355:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/003725:INFO:(0)] WebCore is now online.
+[0224/003725:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/003807:INFO:(0)] WebCore is now online.
+[0224/003807:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/013413:INFO:(0)] WebCore is now online.
+[0224/013413:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/013530:INFO:(0)] WebCore is now online.
+[0224/013530:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/013601:INFO:(0)] WebCore is now online.
+[0224/013601:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/013625:INFO:(0)] WebCore is now online.
+[0224/013625:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/023228:INFO:(0)] WebCore is now online.
+[0224/023228:INFO:(0)] Running Awesomium 1.7.5.1
+[0224/023624:INFO:(0)] WebCore is now online.
+[0224/023624:INFO:(0)] Running Awesomium 1.7.5.1
+[0309/153558:INFO:(0)] WebCore is now online.
+[0309/153558:INFO:(0)] Running Awesomium 1.7.5.1
+[0309/153605:WARNING:Awesomium.NET(0)] System.TimeoutException: The operation has timed out. The child process or the I/O thread, are busy. Please try to create the object again.
+   w Awesomium.Windows.Controls.WebControl.CreateGlobalJavascriptObject(String name)
+   w Awesomium.Core.JavascriptHelper.Register()

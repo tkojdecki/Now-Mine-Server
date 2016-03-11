@@ -45,7 +45,7 @@ namespace NowMine
         private void Queue_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             var musicPiece = (MusicPiece)sender;
-            //webPanel.playNow(new Uri(musicPiece.Info.LinkUrl));
+            webPanel.playNow(musicPiece.Info.Id);
             deleteFromQueue(musicPiece);
             populateQueueBoard();
         }
