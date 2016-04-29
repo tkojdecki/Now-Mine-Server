@@ -214,3 +214,44 @@
 [0309/153605:WARNING:Awesomium.NET(0)] System.TimeoutException: The operation has timed out. The child process or the I/O thread, are busy. Please try to create the object again.
    w Awesomium.Windows.Controls.WebControl.CreateGlobalJavascriptObject(String name)
    w Awesomium.Core.JavascriptHelper.Register()
+[0406/114624:INFO:(0)] WebCore is now online.
+[0406/114624:INFO:(0)] Running Awesomium 1.7.5.1
+[0406/145259:INFO:(0)] WebCore is now online.
+[0406/145259:INFO:(0)] Running Awesomium 1.7.5.1
+[0406/155410:INFO:(0)] WebCore is now online.
+[0406/155410:INFO:(0)] Running Awesomium 1.7.5.1
+[0406/164459:INFO:(0)] WebCore is now online.
+[0406/164459:INFO:(0)] Running Awesomium 1.7.5.1
+[0406/164505:WARNING:Awesomium.NET(0)] System.TimeoutException: The operation has timed out. The child process or the I/O thread, are busy. Please try to create the object again.
+   w Awesomium.Windows.Controls.WebControl.CreateGlobalJavascriptObject(String name)
+   w Awesomium.Core.JavascriptHelper.Register()
+[0424/202018:INFO:(0)] WebCore is now online.
+[0424/202018:INFO:(0)] Running Awesomium 1.7.5.1
+[0424/202140:INFO:(0)] WebCore is now online.
+[0424/202140:INFO:(0)] Running Awesomium 1.7.5.1
+[0424/202234:INFO:(0)] WebCore is now online.
+[0424/202234:INFO:(0)] Running Awesomium 1.7.5.1
+[0424/202255:INFO:(0)] WebCore is now online.
+[0424/202255:INFO:(0)] Running Awesomium 1.7.5.1
+[0424/202428:INFO:(0)] WebCore is now online.
+[0424/202428:INFO:(0)] Running Awesomium 1.7.5.1
+[0424/202518:INFO:(0)] WebCore is now online.
+[0424/202518:INFO:(0)] Running Awesomium 1.7.5.1
+[0424/202557:INFO:(0)] WebCore is now online.
+[0424/202557:INFO:(0)] Running Awesomium 1.7.5.1
+[0424/203333:INFO:(0)] WebCore is now online.
+[0424/203333:INFO:(0)] Running Awesomium 1.7.5.1
+[0424/204635:INFO:(0)] WebCore is now online.
+[0424/204635:INFO:(0)] Running Awesomium 1.7.5.1
+[0425/020621:INFO:(0)] WebCore is now online.
+[0425/020621:INFO:(0)] Running Awesomium 1.7.5.1
+[0425/020755:INFO:(0)] WebCore is now online.
+[0425/020755:INFO:(0)] Running Awesomium 1.7.5.1
+[0425/021602:INFO:(0)] WebCore is now online.
+[0425/021602:INFO:(0)] Running Awesomium 1.7.5.1
+[0425/021935:INFO:(0)] WebCore is now online.
+[0425/021935:INFO:(0)] Running Awesomium 1.7.5.1
+[0425/022118:INFO:(0)] WebCore is now online.
+[0425/022118:INFO:(0)] Running Awesomium 1.7.5.1
+[0425/022510:INFO:(0)] WebCore is now online.
+[0425/022510:INFO:(0)] Running Awesomium 1.7.5.1

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -34,7 +34,8 @@ namespace NowMine
             queuePanel = new QueuePanel(queueBoard, webPanel);
             searchPanel = new SearchPanel(searchBoard, txtSearch, queuePanel);
             webPanel.reinitialize(webPlayer, queuePanel);
-            //Server.ServerInit();
+            Thread serverThread = new Thread(new ThreadStart(Server.ServerInit));
+            serverThread.Start();
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
