@@ -10,8 +10,10 @@ namespace NowMine
 {
     class Server
     {
-        public static void ServerInit()
+        QueuePanel queuePanel;
+        public void ServerInit(QueuePanel queuePanel)
         {
+            this.queuePanel = queuePanel;
             try
             {
                 IPAddress ipAd = IPAddress.Parse("192.168.0.19");
@@ -56,7 +58,8 @@ namespace NowMine
                             break;
 
                         case "Play Next":
-                            Console.WriteLine("doszło plej nekst");
+                            queuePanel.getNextVideo();
+                            Console.WriteLine("Playing Next!");
                             break;
 
                         default:

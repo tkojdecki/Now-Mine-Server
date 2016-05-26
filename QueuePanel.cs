@@ -61,6 +61,14 @@ namespace NowMine
             return nowPlaying();
         }
 
+        public bool playNext()
+        {
+            MusicPiece nextVideo = getNextVideo();
+            webPanel.playNow(nextVideo.Info.Id);
+            deleteFromQueue(nowPlaying());
+            return true;
+        }
+
         private MusicPiece nowPlaying()
         {
             return queue.ElementAt(0);

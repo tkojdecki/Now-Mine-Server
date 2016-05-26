@@ -26,6 +26,8 @@ namespace NowMine
         SearchPanel searchPanel;
         QueuePanel queuePanel;
         WebPanel webPanel;
+        Thread serverThread;
+        Server server;
 
         public MainWindow()
         {
@@ -34,7 +36,9 @@ namespace NowMine
             queuePanel = new QueuePanel(queueBoard, webPanel);
             searchPanel = new SearchPanel(searchBoard, txtSearch, queuePanel);
             webPanel.reinitialize(webPlayer, queuePanel);
-            Thread serverThread = new Thread(new ThreadStart(Server.ServerInit));
+            //Thread serverThread = new Thread(new ThreadStart(Server.ServerInit));
+            server = new Server();
+            serverThread = new Thread(() => server.ServerInit(queuePanel));
             serverThread.Start();
         }
 
@@ -54,6 +58,24 @@ namespace NowMine
         private void webPlayer_DocumentReady(object sender, DocumentReadyEventArgs e)
         {
             webPanel.BindMethods();
+        }
+
+        private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox txtBox = sender as TextBox;
+            txtBox.Text = "";
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            //serverThread.Abort();
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            //serverThread.Suspend();
+            serverThread.Abort();
+            this.Close();
         }
     }
 }
