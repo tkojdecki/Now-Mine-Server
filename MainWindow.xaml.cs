@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Awesomium;
 using Awesomium.Windows.Controls;
 using Awesomium.Core;
+using Awesomium.Core.Data;
 
 namespace NowMine
 {
@@ -36,9 +37,10 @@ namespace NowMine
             queuePanel = new QueuePanel(queueBoard, webPanel);
             searchPanel = new SearchPanel(searchBoard, txtSearch, queuePanel);
             webPanel.reinitialize(webPlayer, queuePanel);
-            //Thread serverThread = new Thread(new ThreadStart(Server.ServerInit));
+            
             server = new Server();
             serverThread = new Thread(() => server.ServerInit(queuePanel));
+            serverThread.IsBackground = true;
             serverThread.Start();
         }
 
@@ -64,18 +66,6 @@ namespace NowMine
         {
             TextBox txtBox = sender as TextBox;
             txtBox.Text = "";
-        }
-
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            //serverThread.Abort();
-        }
-
-        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            //serverThread.Suspend();
-            serverThread.Abort();
-            this.Close();
         }
     }
 }

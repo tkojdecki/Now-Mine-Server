@@ -11,6 +11,7 @@ namespace NowMine
     class QueuePanel
     {
         public List<MusicPiece> queue { get; }
+        public List<MusicPiece> history { get; }
         StackPanel stackPanel;
         WebPanel webPanel;
 
@@ -45,27 +46,46 @@ namespace NowMine
         private void Queue_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             var musicPiece = (MusicPiece)sender;
-            webPanel.playNow(musicPiece.Info.Id);
             deleteFromQueue(musicPiece);
+            musicPiece.nowPlayingVisual();
+            queue.Insert(0, musicPiece);
+            webPanel.playNow(musicPiece.Info.Id);
             populateQueueBoard();
         }
 
         public void deleteFromQueue(MusicPiece musicPiece)
         {
-            queue.Remove(musicPiece);
+            if (queue.Contains(musicPiece))
+            {
+                queue.Remove(musicPiece);
+            }
+        }
+
+        public void toHistory(MusicPiece musicPiece)
+        {
+            deleteFromQueue(musicPiece);
+            musicPiece.historyVisual();
+            history.Add(musicPiece);
         }
 
         public MusicPiece getNextVideo()
         {
-            deleteFromQueue(nowPlaying());
-            return nowPlaying();
+            //deleteFromQueue(nowPlaying());
+            //return nowPlaying();
+            if (queue.Count > 2)
+            {
+                return queue.ElementAt(1);
+            }
+            return null;
         }
 
         public bool playNext()
         {
             MusicPiece nextVideo = getNextVideo();
+            nextVideo.nowPlayingVisual();
+            toHistory(nowPlaying());
             webPanel.playNow(nextVideo.Info.Id);
-            deleteFromQueue(nowPlaying());
+            //deleteFromQueue(nowPlaying());
             return true;
         }
 
