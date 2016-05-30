@@ -119,16 +119,15 @@ D:\now-mine\bin\x86\Debug\awesomium_process
 D:\now-mine\bin\x86\Debug\inspector.pak
 D:\now-mine\bin\x86\Debug\xinput9_1_0.dll
 D:\now-mine\bin\x86\Debug\pdf_js.pak
+D:\now-mine\obj\x86\Debug\NowMine.csprojResolveAssemblyReference.cache
 D:\now-mine\obj\x86\Debug\MusicPiece.baml
 D:\now-mine\obj\x86\Debug\MainWindow.baml
 D:\now-mine\obj\x86\Debug\MusicPiece.g.cs
 D:\now-mine\obj\x86\Debug\MainWindow.g.cs
 D:\now-mine\obj\x86\Debug\App.g.cs
-D:\now-mine\obj\x86\Debug\NowMine_Content.g.cs
 D:\now-mine\obj\x86\Debug\NowMine_MarkupCompile.cache
 D:\now-mine\obj\x86\Debug\NowMine.g.resources
 D:\now-mine\obj\x86\Debug\NowMine.Properties.Resources.resources
 D:\now-mine\obj\x86\Debug\NowMine.csproj.GenerateResource.Cache
 D:\now-mine\obj\x86\Debug\NowMine.exe
 D:\now-mine\obj\x86\Debug\NowMine.pdb
-D:\now-mine\obj\x86\Debug\NowMine.csprojResolveAssemblyReference.cache

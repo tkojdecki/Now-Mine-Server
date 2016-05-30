@@ -56,8 +56,8 @@ namespace NowMine
             var searchListResponse = searchListRequest.Execute();
 
             List<string> videos = new List<string>();
-            List<string> channels = new List<string>();
-            List<string> playlists = new List<string>();
+            //List<string> channels = new List<string>();
+            //List<string> playlists = new List<string>();
 
             List<YouTubeInfo> resultInfo = new List<YouTubeInfo>();
 
@@ -73,21 +73,20 @@ namespace NowMine
                         result.Id = MusicPiece.Id.VideoId;
                         result.LinkUrl = "http://www.youtube.com/embed/" + MusicPiece.Id.VideoId;
                         result.thumbnail = MusicPiece.Snippet.Thumbnails.Default__;
+                        resultInfo.Add(result);
                         break;
 
                     case "youtube#channel":
-                        channels.Add(String.Format("{0} ({1})", MusicPiece.Snippet.Title, MusicPiece.Id.ChannelId));
-                        result.ChannelName = MusicPiece.Snippet.Title;
-                        continue;
+                        //channels.Add(String.Format("{0} ({1})", MusicPiece.Snippet.Title, MusicPiece.Id.ChannelId));
+                        //result.ChannelName = MusicPiece.Snippet.Title;
                         break;
 
                     case "youtube#playlist":
-                        playlists.Add(String.Format("{0} ({1})", MusicPiece.Snippet.Title, MusicPiece.Id.PlaylistId));
-                        result.Title = MusicPiece.Snippet.Title;
-                        continue;
+                        //playlists.Add(String.Format("{0} ({1})", MusicPiece.Snippet.Title, MusicPiece.Id.PlaylistId));
+                        //result.Title = MusicPiece.Snippet.Title;
                         break;
                 }
-                resultInfo.Add(result);
+                //resultInfo.Add(result);
             }
             return resultInfo;
         }
@@ -114,7 +113,6 @@ namespace NowMine
         private static string GetThumbNailUrlFromLink(XElement element)
         {
             return "asdf";
-         
         }
 
         #endregion

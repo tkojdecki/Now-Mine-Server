@@ -84,5 +84,19 @@ namespace NowMine
                 imgMain.Source = bmp;
             }
         }
+
+        internal void nowPlayingVisual()
+        {
+            SolidColorBrush greenBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            this.border.BorderBrush = greenBrush;
+        }
+
+        internal void historyVisual()
+        {
+            SolidColorBrush greyBrush = new SolidColorBrush(Color.FromRgb(111, 111, 111));
+            this.border.BorderBrush = greyBrush;
+            this.lblTitle.BorderBrush = greyBrush;
+            this.lblAuthor.BorderBrush = greyBrush;
+        }
     }
 }
