@@ -20,12 +20,14 @@ namespace NowMine
             this.stackPanel = stackPanel;
             this.webPanel = webPanel;
             queue = new List<MusicPiece>();
+            history = new List<MusicPiece>();
         }
 
         public void addToQueue(MusicPiece musicPiece)
         {
             if (queue.Count == 0)
             {
+                musicPiece.nowPlayingVisual();
                 webPanel.playNow(musicPiece.Info.Id);
             }
             queue.Add(musicPiece);
@@ -48,6 +50,7 @@ namespace NowMine
             var musicPiece = (MusicPiece)sender;
             deleteFromQueue(musicPiece);
             musicPiece.nowPlayingVisual();
+            toHistory(nowPlaying());
             queue.Insert(0, musicPiece);
             webPanel.playNow(musicPiece.Info.Id);
             populateQueueBoard();
@@ -89,7 +92,7 @@ namespace NowMine
             return true;
         }
 
-        private MusicPiece nowPlaying()
+        public MusicPiece nowPlaying()
         {
             return queue.ElementAt(0);
         }

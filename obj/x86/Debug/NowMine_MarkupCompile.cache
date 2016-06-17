@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-D:\now-mine\obj\x86\Debug\
+E:\now-mine\obj\x86\Debug\
 NowMine
 none
 false
 DEBUG;TRACE
-D:\now-mine\App.xaml
+E:\now-mine\App.xaml
 21118144987
 
 122126359698
-83374622002
+83-410286163
 MusicPiece.xaml;MainWindow.xaml;
 
 False

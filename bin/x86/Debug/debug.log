@@ -336,3 +336,67 @@
 [0529/172618:INFO:(0)] Running Awesomium 1.7.5.1
 [0530/183617:INFO:(0)] WebCore is now online.
 [0530/183617:INFO:(0)] Running Awesomium 1.7.5.1
+[0530/204537:INFO:(0)] WebCore is now online.
+[0530/204537:INFO:(0)] Running Awesomium 1.7.5.1
+[0530/220252:INFO:(0)] WebCore is now online.
+[0530/220252:INFO:(0)] Running Awesomium 1.7.5.1
+[0530/235611:INFO:(0)] WebCore is now online.
+[0530/235611:INFO:(0)] Running Awesomium 1.7.5.1
+[0530/235817:INFO:(0)] WebCore is now online.
+[0530/235817:INFO:(0)] Running Awesomium 1.7.5.1
+[0531/000137:INFO:(0)] WebCore is now online.
+[0531/000137:INFO:(0)] Running Awesomium 1.7.5.1
+[0531/000300:INFO:(0)] WebCore is now online.
+[0531/000300:INFO:(0)] Running Awesomium 1.7.5.1
+[0531/000517:INFO:(0)] WebCore is now online.
+[0531/000517:INFO:(0)] Running Awesomium 1.7.5.1
+[0531/000603:INFO:(0)] WebCore is now online.
+[0531/000603:INFO:(0)] Running Awesomium 1.7.5.1
+[0531/001041:INFO:(0)] WebCore is now online.
+[0531/001041:INFO:(0)] Running Awesomium 1.7.5.1
+[0615/155055:INFO:(0)] WebCore is now online.
+[0615/155055:INFO:(0)] Running Awesomium 1.7.5.1
+[0615/163547:INFO:(0)] WebCore is now online.
+[0615/163547:INFO:(0)] Running Awesomium 1.7.5.1
+[0615/170511:INFO:(0)] WebCore is now online.
+[0615/170511:INFO:(0)] Running Awesomium 1.7.5.1
+[0615/175537:INFO:(0)] WebCore is now online.
+[0615/175537:INFO:(0)] Running Awesomium 1.7.5.1
+[0615/183226:INFO:(0)] WebCore is now online.
+[0615/183226:INFO:(0)] Running Awesomium 1.7.5.1
+[0615/221702:INFO:(0)] WebCore is now online.
+[0615/221702:INFO:(0)] Running Awesomium 1.7.5.1
+[0616/031159:INFO:(0)] WebCore is now online.
+[0616/031159:INFO:(0)] Running Awesomium 1.7.5.1
+[0616/032025:INFO:(0)] WebCore is now online.
+[0616/032025:INFO:(0)] Running Awesomium 1.7.5.1
+[0617/011633:INFO:(0)] WebCore is now online.
+[0617/011633:INFO:(0)] Running Awesomium 1.7.5.1
+[0617/011646:WARNING:Awesomium.NET(0)] System.TimeoutException: The operation has timed out. The child process or the I/O thread, are busy. Please try to create the object again.
+   w Awesomium.Windows.Controls.WebControl.CreateGlobalJavascriptObject(String name)
+   w NowMine.WebPanel.BindMethods() w E:\now-mine\WebPanel.cs:wiersz 51
+   w NowMine.MainWindow.webPlayer_DocumentReady(Object sender, DocumentReadyEventArgs e) w E:\now-mine\MainWindow.xaml.cs:wiersz 67
+   w Awesomium.Windows.Controls.WebControl.ocgeu7jphv42JT7PQl(Object , Object , Object )
+   w Awesomium.Windows.Controls.WebControl.OnDocumentReady(DocumentReadyEventArgs e)
+   w Awesomium.Windows.Controls.WebControl.Awesomium.Core.IWebViewListener.OnDocumentReady(DocumentReadyEventArgs e)
+   w Awesomium.Core.WebViewListener.FireEvent(IWebViewListener view, IWebViewEventArgs e)
+   w Awesomium.Core.WebViewListener.TJmZwameepITyxprP0P(Object , Object )
+   w Awesomium.Core.WebViewListener.NbncNLtLXf(IntPtr  , Uri  )
+   w Awesomium.Core.NativeMethods.WebCore_Update(HandleRef jarg1)
+   w Awesomium.Core.WebCore.UpdateThunk()
+[0617/011756:INFO:(0)] WebCore is now online.
+[0617/011756:INFO:(0)] Running Awesomium 1.7.5.1
+[0617/012126:INFO:(0)] WebCore is now online.
+[0617/012126:INFO:(0)] Running Awesomium 1.7.5.1
+[0617/012845:INFO:(0)] WebCore is now online.
+[0617/012845:INFO:(0)] Running Awesomium 1.7.5.1
+[0617/015057:INFO:(0)] WebCore is now online.
+[0617/015057:INFO:(0)] Running Awesomium 1.7.5.1
+[0617/020711:INFO:(0)] WebCore is now online.
+[0617/020711:INFO:(0)] Running Awesomium 1.7.5.1
+[0617/020742:INFO:(0)] WebCore is now online.
+[0617/020742:INFO:(0)] Running Awesomium 1.7.5.1
+[0617/021342:INFO:(0)] WebCore is now online.
+[0617/021342:INFO:(0)] Running Awesomium 1.7.5.1
+[0617/021446:INFO:(0)] WebCore is now online.
+[0617/021446:INFO:(0)] Running Awesomium 1.7.5.1

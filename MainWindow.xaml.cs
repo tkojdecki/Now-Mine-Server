@@ -28,6 +28,7 @@ namespace NowMine
         QueuePanel queuePanel;
         WebPanel webPanel;
         Thread serverThread;
+        Thread udpThread;
         Server server;
 
         public MainWindow()
@@ -42,6 +43,10 @@ namespace NowMine
             serverThread = new Thread(() => server.ServerInit(queuePanel));
             serverThread.IsBackground = true;
             serverThread.Start();
+
+            udpThread = new Thread(server.udpListener);
+            udpThread.IsBackground = true;
+            udpThread.Start();
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)

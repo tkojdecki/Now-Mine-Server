@@ -59,6 +59,8 @@ namespace NowMine
         private JSValue getNextVideo(object obj, JavascriptMethodEventArgs jsMethodArgs)
         {
             MusicPiece nextVideo = queuePanel.getNextVideo();
+            nextVideo.nowPlayingVisual();
+            queuePanel.toHistory(queuePanel.nowPlaying());
             playNow(nextVideo.Info.Id);
             queuePanel.populateQueueBoard();
             return null;
