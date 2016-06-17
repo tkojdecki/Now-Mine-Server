@@ -11,19 +11,28 @@ namespace NowMine
     class Server
     {
         QueuePanel queuePanel;
+        UdpClient udp;
+        const int TCP_PORT = 4444;
+        IPAddress tcpIp = null;
         public void ServerInit(QueuePanel queuePanel)
         {
             this.queuePanel = queuePanel;
+            
             try
             {
-                IPAddress ipAd = IPAddress.Parse("192.168.0.19");
-                // use local m/c IP address, and 
-
-                // use the same in the client
-
+                string hostName = Dns.GetHostName();
+                IPAddress[] IpA = Dns.GetHostAddresses(hostName);
+                for (int i = 0; i < IpA.Length; i++)
+                {
+                    //Console.WriteLine("IP Address {0}: {1} ", i, IpA[i].ToString());
+                    if (IpA[i].AddressFamily == AddressFamily.InterNetwork)
+                    {
+                        tcpIp = IpA[i];
+                    }
+                }
 
                 /* Initializes the Listener */
-                TcpListener myList = new TcpListener(ipAd, 4444);
+                TcpListener myList = new TcpListener(tcpIp, TCP_PORT);
 
                 /* Start Listeneting at the specified port */
                 myList.Start();
@@ -83,38 +92,39 @@ namespace NowMine
             {
                 Console.WriteLine("Error..... " + e.StackTrace);
             }
-            //Console.WriteLine("Server Init!\n");
-            //Socket serverSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.IP);
-            //Socket internalSocket;
-            //byte[] recBuffer = new byte[256];
-
-            //serverSocket.Bind(new IPEndPoint(IPAddress.Parse("192.168.0.19"), 4444));
-            //serverSocket.Listen(1);
-
-            //internalSocket = serverSocket.Accept();
-            //internalSocket.Receive(recBuffer);
-            //string message = ASCIIEncoding.ASCII.GetString(recBuffer);
-            //Console.WriteLine("Recived: " + ASCIIEncoding.ASCII.GetString(recBuffer));
-            //int bslash = message.IndexOf('\\');
-            //if (bslash > 0)
-            //    message = message.Substring(0, bslash);
-
-            //switch (message)
-            //{
-            //    case "Play Next":
-            //        Console.WriteLine("Playing Next Song!");
-            //        break;
-
-            //    case "1":
-            //        Console.WriteLine("kurwa 1");
-            //        break;
-
-            //    default:
-            //        Console.WriteLine("Can't interpret right");
-            //        break;
-            //}
-            //Console.Read();
         }
 
+        public void udpListener()
+        {
+            int PORT_NUMBER = 1234;
+
+            Console.WriteLine("Starting UDP Listener");
+            if (udp == null)
+                udp = new UdpClient(PORT_NUMBER);
+            IAsyncResult ar_ = udp.BeginReceive(Receive, new object());
+        }
+
+        private void Receive(IAsyncResult ar)
+        {
+            IPEndPoint ip = new IPEndPoint(IPAddress.Any, 1234);
+            byte[] bytes = udp.EndReceive(ar, ref ip);
+            string message = Encoding.ASCII.GetString(bytes);
+            Console.WriteLine("From {0} received: {1} ", ip.Address.ToString(), message);
+
+            message = tcpIp.ToString() + ":" + TCP_PORT;
+            Console.WriteLine("Sending {0}", message);
+            Send(message);
+            udpListener();
+        }
+
+        public void Send(string message)
+        {
+            UdpClient client = new UdpClient();
+            IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
+            byte[] bytes = Encoding.ASCII.GetBytes(message);
+            client.Send(bytes, bytes.Length, ip);
+            client.Close();
+            Console.WriteLine("Sent: {0} ", message);
+        }
     }
 }
