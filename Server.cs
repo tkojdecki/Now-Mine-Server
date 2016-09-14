@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using System.IO;
 
 namespace NowMine
 {
@@ -110,21 +111,59 @@ namespace NowMine
             byte[] bytes = udp.EndReceive(ar, ref ip);
             string message = Encoding.ASCII.GetString(bytes);
             Console.WriteLine("From {0} received: {1} ", ip.Address.ToString(), message);
-
-            message = tcpIp.ToString() + ":" + TCP_PORT;
-            Console.WriteLine("Sending {0}", message);
-            Send(message);
-            udpListener();
+            if (message.Equals("NowMine!"))
+            {
+                Console.WriteLine("Connecting to: {0}", ip.Address.ToString());
+                //UDPSend(tcpIp.ToString());
+                TCPConnect(ip);
+                //Console.WriteLine("Connecting to: {0}", ip.Address.ToString());
+            }
         }
 
-        public void Send(string message)
+        private void TCPConnect(IPEndPoint ip)
         {
-            UdpClient client = new UdpClient();
-            IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
-            byte[] bytes = Encoding.ASCII.GetBytes(message);
-            client.Send(bytes, bytes.Length, ip);
-            client.Close();
-            Console.WriteLine("Sent: {0} ", message);
+            try
+            {
+                TcpClient tcpclnt = new TcpClient();
+                Console.WriteLine("Connecting.....");
+
+                tcpclnt.Connect(ip.Address.ToString(), 4444);
+                // use the ipaddress as in the server program
+
+                Console.WriteLine("Connected");
+
+                String str = "DAWAJ KURWO";
+                Stream stm = tcpclnt.GetStream();
+
+                ASCIIEncoding asen = new ASCIIEncoding();
+                byte[] ba = asen.GetBytes(str);
+                Console.WriteLine("Transmitting.....");
+
+                stm.Write(ba, 0, ba.Length);
+
+                //byte[] bb = new byte[100];
+                //int k = stm.Read(bb, 0, 100);
+
+                //for (int i = 0; i < k; i++)
+                //    Console.Write(Convert.ToChar(bb[i]));
+
+                tcpclnt.Close();
+            }
+
+            catch (Exception ee)
+            {
+                Console.WriteLine("Error..... " + ee.StackTrace);
+            }
         }
+
+        //public void UDPSend(string message)
+        //{
+        //    UdpClient client = new UdpClient();
+        //    IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
+        //    byte[] bytes = Encoding.ASCII.GetBytes(message);
+        //    client.Send(bytes, bytes.Length, ip);
+        //    client.Close();
+        //    Console.WriteLine("Sent: {0} ", message);
+        //}
     }
 }
