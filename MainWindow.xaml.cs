@@ -72,5 +72,10 @@ namespace NowMine
             TextBox txtBox = sender as TextBox;
             txtBox.Text = "";
         }
+
+        private void playNextButton_Click(object sender, RoutedEventArgs e)
+        {
+            queuePanel.playNext();
+        }
     }
 }

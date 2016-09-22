@@ -75,7 +75,7 @@ namespace NowMine
         {
             //deleteFromQueue(nowPlaying());
             //return nowPlaying();
-            if (queue.Count > 2)
+            if (queue.Count >= 2)
             {
                 return queue.ElementAt(1);
             }
@@ -85,11 +85,17 @@ namespace NowMine
         public bool playNext()
         {
             MusicPiece nextVideo = getNextVideo();
-            nextVideo.nowPlayingVisual();
-            toHistory(nowPlaying());
-            webPanel.playNow(nextVideo.Info.Id);
-            //deleteFromQueue(nowPlaying());
-            return true;
+            if (nextVideo != null)
+            {
+                nextVideo.nowPlayingVisual();
+                toHistory(nowPlaying());
+                webPanel.playNow(nextVideo.Info.Id);
+                //deleteFromQueue(nowPlaying());
+                populateQueueBoard();
+                return true;
+            }
+            else
+                return false;            
         }
 
         public MusicPiece nowPlaying()

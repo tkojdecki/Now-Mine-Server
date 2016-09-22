@@ -13,6 +13,7 @@
         <WrapPanel x:Name="searchButtons" Grid.Column="0">
             <TextBox x:Name="txtSearch" Text="Search" VerticalAlignment="Top" Width="120" KeyDown="txtSearch_KeyDown" HorizontalAlignment="Center" GotFocus="txtSearch_GotFocus"/>
             <Button x:Name="searchButton" Content="Szukaj!" Width="75" Click="searchButton_Click" FontSize="15" HorizontalAlignment="Right"/>
+            <Button x:Name="playNextButton" Content="Next!" Width="75" HorizontalAlignment="Center" FontSize="15" Click="playNextButton_Click"/>
         </WrapPanel>
         <ScrollViewer Grid.Column="0" Margin="0,30,0,0">
             <StackPanel x:Name="searchBoard" />

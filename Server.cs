@@ -6,6 +6,8 @@ using System.Net;
 using System.Net.Sockets;
 using System.Threading;
 using System.IO;
+using System.Windows;
+using Newtonsoft.Json;
 
 namespace NowMine
 {
@@ -48,30 +50,39 @@ namespace NowMine
                     Socket s = myList.AcceptSocket();
                     Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
 
-                    byte[] b = new byte[100];
+                    byte[] b = new byte[512];
                     int k = s.Receive(b);
 
                     char cc = ' ';
-                    string test = null;
+                    string recived = null;
                     Console.WriteLine("Recieved...");
                     for (int i = 0; i < k - 1; i++)
                     {
                         Console.Write(Convert.ToChar(b[i]));
                         cc = Convert.ToChar(b[i]);
-                        test += cc.ToString();
+                        recived += cc.ToString();
                     }
-
-                    switch (test)
+                    Console.WriteLine();
+                    String[] values = recived.Split(' ');
+                    switch (values[0])
                     {
                         case "1":
                             Console.WriteLine("doszło 1");
                             break;
 
-                        case "Play Next":
-                            queuePanel.getNextVideo();
+                        case "PlayNext":
+                            //queuePanel.playNext();
+                            Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.playNext(); }));
                             Console.WriteLine("Playing Next!");
                             break;
 
+                        case "Queue:":
+                            String ytJSON = recived.Substring(7);
+                            Console.WriteLine(ytJSON);
+                            YouTubeInfo sendedInfo = JsonConvert.DeserializeObject<YouTubeInfo>(ytJSON);
+                            sendedInfo.buildURL();
+                            Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.addToQueue(new MusicPiece(sendedInfo)); }));
+                            break;
                         default:
                             Console.WriteLine("Can't interpret right");
                             break;
@@ -91,7 +102,7 @@ namespace NowMine
             }
             catch (Exception e)
             {
-                Console.WriteLine("Error..... " + e.StackTrace);
+                Console.WriteLine("Error..... " + e.ToString());
             }
         }
 
