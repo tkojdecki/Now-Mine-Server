@@ -15,9 +15,15 @@ namespace NowMine
         public string Id { get; set; }
         //public string EmbedUrl { get; set; }
         public string Title { get; set; }
-        public string Author { get; set; }
+        //public string Author { get; set; }
         public string ChannelName { get; set; }
         public Thumbnail thumbnail { get; set; }
+
+        internal void buildURL()
+        {
+            //this.Author = this.ChannelName;
+            this.LinkUrl = "http://www.youtube.com/embed/" + Id;
+        }
 
         #endregion
     }

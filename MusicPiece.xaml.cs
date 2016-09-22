@@ -33,7 +33,7 @@ namespace NowMine
             this.info = inf;
             InitializeComponent();
             lblTitle.Content = info.Title;
-            lblAuthor.Content = info.Author;
+            lblChannelName.Content = info.ChannelName;
             setImage = info.thumbnail.Url;
         }
 
@@ -44,7 +44,7 @@ namespace NowMine
             {
                 info = value;
                 setTitle = info.Title;
-                setAuthor = info.Author;
+                setChannelName = info.ChannelName;
                 setImage = info.thumbnail.Url;
             }
         }
@@ -54,7 +54,7 @@ namespace NowMine
             MusicPiece musicPiece = new MusicPiece();
             musicPiece.info = this.info;
             musicPiece.lblTitle.Content = info.Title;
-            musicPiece.lblAuthor.Content = info.Author;
+            musicPiece.lblChannelName.Content = info.ChannelName;
             musicPiece.setImage = info.thumbnail.Url;
             musicPiece.InitializeComponent();
             return musicPiece;
@@ -68,11 +68,11 @@ namespace NowMine
             }
         }
 
-        private string setAuthor
+        private string setChannelName
         {
             set
             {
-                lblAuthor.Content = value;
+                lblChannelName.Content = value;
             }
         }
 
@@ -96,7 +96,7 @@ namespace NowMine
             SolidColorBrush greyBrush = new SolidColorBrush(Color.FromRgb(111, 111, 111));
             this.border.BorderBrush = greyBrush;
             this.lblTitle.BorderBrush = greyBrush;
-            this.lblAuthor.BorderBrush = greyBrush;
+            this.lblChannelName.BorderBrush = greyBrush;
         }
     }
 }
