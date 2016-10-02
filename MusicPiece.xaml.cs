@@ -23,6 +23,8 @@ namespace NowMine
     {
         
         private YouTubeInfo info = null;
+        public User user = null;
+
         public MusicPiece()
         {
             InitializeComponent();
@@ -32,9 +34,21 @@ namespace NowMine
         {
             this.info = inf;
             InitializeComponent();
-            lblTitle.Content = info.Title;
-            lblChannelName.Content = info.ChannelName;
+            lblTitle.Content = info.title;
+            lblChannelName.Content = info.channelName;
             setImage = info.thumbnail.Url;
+            lbluserName.Content = "Server";
+        }
+
+        public MusicPiece(YouTubeInfo inf, User user)
+        {
+            this.user = user;
+            this.info = inf;
+            InitializeComponent();
+            lblTitle.Content = info.title;
+            lblChannelName.Content = info.channelName;
+            setImage = info.thumbnail.Url;
+            lbluserName.Content = this.user.name;
         }
 
         public YouTubeInfo Info
@@ -43,8 +57,8 @@ namespace NowMine
             set
             {
                 info = value;
-                setTitle = info.Title;
-                setChannelName = info.ChannelName;
+                setTitle = info.title;
+                setChannelName = info.channelName;
                 setImage = info.thumbnail.Url;
             }
         }
@@ -53,8 +67,8 @@ namespace NowMine
         {
             MusicPiece musicPiece = new MusicPiece();
             musicPiece.info = this.info;
-            musicPiece.lblTitle.Content = info.Title;
-            musicPiece.lblChannelName.Content = info.ChannelName;
+            musicPiece.lblTitle.Content = info.title;
+            musicPiece.lblChannelName.Content = info.channelName;
             musicPiece.setImage = info.thumbnail.Url;
             musicPiece.InitializeComponent();
             return musicPiece;

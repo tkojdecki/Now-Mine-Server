@@ -12,17 +12,17 @@ namespace NowMine
     {
         #region Data
         public string LinkUrl { get; set; }
-        public string Id { get; set; }
+        public string id { get; set; }
         //public string EmbedUrl { get; set; }
-        public string Title { get; set; }
+        public string title { get; set; }
         //public string Author { get; set; }
-        public string ChannelName { get; set; }
+        public string channelName { get; set; }
         public Thumbnail thumbnail { get; set; }
 
         internal void buildURL()
         {
             //this.Author = this.ChannelName;
-            this.LinkUrl = "http://www.youtube.com/embed/" + Id;
+            this.LinkUrl = "http://www.youtube.com/embed/" + id;
         }
 
         #endregion

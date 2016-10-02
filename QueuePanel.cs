@@ -11,6 +11,7 @@ namespace NowMine
     class QueuePanel
     {
         public List<MusicPiece> queue { get; }
+        //to Dictionary
         public List<MusicPiece> history { get; }
         StackPanel stackPanel;
         WebPanel webPanel;
@@ -23,15 +24,47 @@ namespace NowMine
             history = new List<MusicPiece>();
         }
 
+        public YouTubeInfo[] getQueueInfo()
+        {
+            int queueCount = queue.Count;
+            YouTubeInfo[] qInfo = new YouTubeInfo[queueCount];
+            for (int i = 0; i < queueCount; i++)
+            {
+                qInfo[i] = queue[i].Info;
+            }
+            return qInfo;
+        }
+
         public void addToQueue(MusicPiece musicPiece)
         {
             if (queue.Count == 0)
             {
                 musicPiece.nowPlayingVisual();
-                webPanel.playNow(musicPiece.Info.Id);
+                webPanel.playNow(musicPiece.Info.id);
+                queue.Add(musicPiece);
+                return;
             }
-            queue.Add(musicPiece);
+            
+            int qPos = calculateQueuePostition(musicPiece.user);
+            if (qPos < queue.Count && qPos >= 0)
+            {
+                queue.Insert(qPos, musicPiece);
+            }
+            else
+            {
+                queue.Add(musicPiece);
+            }
+            
             populateQueueBoard();
+        }
+
+        private int calculateQueuePostition(User user)
+        {
+            int pos = -1;
+            int numberOfUsersInQueue;
+            int thisUserQueuedSongs;
+
+            return pos;
         }
 
         public void populateQueueBoard()
@@ -52,7 +85,7 @@ namespace NowMine
             musicPiece.nowPlayingVisual();
             toHistory(nowPlaying());
             queue.Insert(0, musicPiece);
-            webPanel.playNow(musicPiece.Info.Id);
+            webPanel.playNow(musicPiece.Info.id);
             populateQueueBoard();
         }
 
@@ -89,7 +122,7 @@ namespace NowMine
             {
                 nextVideo.nowPlayingVisual();
                 toHistory(nowPlaying());
-                webPanel.playNow(nextVideo.Info.Id);
+                webPanel.playNow(nextVideo.Info.id);
                 //deleteFromQueue(nowPlaying());
                 populateQueueBoard();
                 return true;
