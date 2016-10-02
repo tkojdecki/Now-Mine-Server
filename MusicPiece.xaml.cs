@@ -34,6 +34,7 @@ namespace NowMine
         {
             this.info = inf;
             InitializeComponent();
+<<<<<<< HEAD
             lblTitle.Content = info.title;
             lblChannelName.Content = info.channelName;
             setImage = info.thumbnail.Url;
@@ -47,6 +48,10 @@ namespace NowMine
             InitializeComponent();
             lblTitle.Content = info.title;
             lblChannelName.Content = info.channelName;
+=======
+            lblTitle.Content = info.Title;
+            lblChannelName.Content = info.ChannelName;
+>>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
             setImage = info.thumbnail.Url;
             lbluserName.Content = this.user.name;
         }
@@ -57,8 +62,13 @@ namespace NowMine
             set
             {
                 info = value;
+<<<<<<< HEAD
                 setTitle = info.title;
                 setChannelName = info.channelName;
+=======
+                setTitle = info.Title;
+                setChannelName = info.ChannelName;
+>>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
                 setImage = info.thumbnail.Url;
             }
         }
@@ -67,8 +77,13 @@ namespace NowMine
         {
             MusicPiece musicPiece = new MusicPiece();
             musicPiece.info = this.info;
+<<<<<<< HEAD
             musicPiece.lblTitle.Content = info.title;
             musicPiece.lblChannelName.Content = info.channelName;
+=======
+            musicPiece.lblTitle.Content = info.Title;
+            musicPiece.lblChannelName.Content = info.ChannelName;
+>>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
             musicPiece.setImage = info.thumbnail.Url;
             musicPiece.InitializeComponent();
             return musicPiece;

@@ -11,7 +11,10 @@ namespace NowMine
     class QueuePanel
     {
         public List<MusicPiece> queue { get; }
+<<<<<<< HEAD
         //to Dictionary
+=======
+>>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
         public List<MusicPiece> history { get; }
         StackPanel stackPanel;
         WebPanel webPanel;
@@ -22,6 +25,7 @@ namespace NowMine
             this.webPanel = webPanel;
             queue = new List<MusicPiece>();
             history = new List<MusicPiece>();
+<<<<<<< HEAD
         }
 
         public YouTubeInfo[] getQueueInfo()
@@ -33,6 +37,8 @@ namespace NowMine
                 qInfo[i] = queue[i].Info;
             }
             return qInfo;
+=======
+>>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
         }
 
         public void addToQueue(MusicPiece musicPiece)
@@ -40,6 +46,7 @@ namespace NowMine
             if (queue.Count == 0)
             {
                 musicPiece.nowPlayingVisual();
+<<<<<<< HEAD
                 webPanel.playNow(musicPiece.Info.id);
                 queue.Add(musicPiece);
                 return;
@@ -53,11 +60,15 @@ namespace NowMine
             else
             {
                 queue.Add(musicPiece);
+=======
+                webPanel.playNow(musicPiece.Info.Id);
+>>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
             }
             
             populateQueueBoard();
         }
 
+<<<<<<< HEAD
         private int calculateQueuePostition(User user)
         {
             int pos = -1;
@@ -67,6 +78,8 @@ namespace NowMine
             return pos;
         }
 
+=======
+>>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
         public void populateQueueBoard()
         {
             stackPanel.Children.Clear();
@@ -85,7 +98,11 @@ namespace NowMine
             musicPiece.nowPlayingVisual();
             toHistory(nowPlaying());
             queue.Insert(0, musicPiece);
+<<<<<<< HEAD
             webPanel.playNow(musicPiece.Info.id);
+=======
+            webPanel.playNow(musicPiece.Info.Id);
+>>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
             populateQueueBoard();
         }
 
@@ -122,7 +139,11 @@ namespace NowMine
             {
                 nextVideo.nowPlayingVisual();
                 toHistory(nowPlaying());
+<<<<<<< HEAD
                 webPanel.playNow(nextVideo.Info.id);
+=======
+                webPanel.playNow(nextVideo.Info.Id);
+>>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
                 //deleteFromQueue(nowPlaying());
                 populateQueueBoard();
                 return true;
