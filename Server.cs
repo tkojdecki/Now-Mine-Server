@@ -16,12 +16,8 @@ namespace NowMine
         QueuePanel queuePanel;
         UdpClient udp;
         const int TCP_PORT = 4444;
-<<<<<<< HEAD
         IPAddress serverIP = null;
         Dictionary<IPAddress, User> users = new Dictionary<IPAddress, User>();
-=======
-        IPAddress tcpIp = null;
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
         public void ServerInit(QueuePanel queuePanel)
         {
             this.queuePanel = queuePanel;
@@ -35,20 +31,14 @@ namespace NowMine
                     //Console.WriteLine("IP Address {0}: {1} ", i, IpA[i].ToString());
                     if (IpA[i].AddressFamily == AddressFamily.InterNetwork)
                     {
-<<<<<<< HEAD
                         serverIP = IpA[i];
-=======
-                        tcpIp = IpA[i];
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
+
                     }
                 }
 
                 /* Initializes the Listener */
-<<<<<<< HEAD
                 TcpListener myList = new TcpListener(serverIP, TCP_PORT);
-=======
-                TcpListener myList = new TcpListener(tcpIp, TCP_PORT);
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
+
 
                 /* Start Listeneting at the specified port */
                 myList.Start();
@@ -76,19 +66,17 @@ namespace NowMine
                         recived += cc.ToString();
                     }
                     Console.WriteLine();
-<<<<<<< HEAD
+
                     IPAddress connectedIP = ((IPEndPoint)s.RemoteEndPoint).Address;
                     User user = null;
                     if(!users.ContainsKey(connectedIP))
                     {
-                        user = new User();
+                        user = new User(connectedIP.ToString());
                         user.name = "User " + users.Count + 1;
                         users.Add(connectedIP, user);
                     }
                     else { user = users[connectedIP]; }
 
-=======
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
                     String[] values = recived.Split(' ');
                     switch (values[0])
                     {
@@ -107,15 +95,14 @@ namespace NowMine
                             Console.WriteLine(ytJSON);
                             YouTubeInfo sendedInfo = JsonConvert.DeserializeObject<YouTubeInfo>(ytJSON);
                             sendedInfo.buildURL();
-<<<<<<< HEAD
-                            Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.addToQueue(new MusicPiece(sendedInfo, user)); }));
+                            Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.addToQueue(new MusicPiece(sendedInfo), user); }));
                             //Application.Current.Dispatcher.Invoke(new Action(() => { user.addToQueue(new MusicPiece(sendedInfo)); }));
                             Console.WriteLine("Playing Next!");
                             break;
 
                         case "GetQueue":
                             YouTubeInfo[] ytInfo = null;
-                            Application.Current.Dispatcher.Invoke(new Action(() => { ytInfo = queuePanel.getQueueInfo(); }));
+                            Application.Current.Dispatcher.Invoke(new Action(() => { ytInfo = queuePanel.getQueueInfo().ToArray(); }));
                             if (ytInfo != null && ytInfo.Count() > 0)
                             {
                                 String[] message = new String[ytInfo.Count()];
@@ -127,27 +114,12 @@ namespace NowMine
                             }
                             break;
 
-=======
-                            Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.addToQueue(new MusicPiece(sendedInfo)); }));
-                            break;
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
                         default:
                             Console.WriteLine("Can't interpret right");
                             break;
 
                     }
                     ASCIIEncoding asen = new ASCIIEncoding();
-<<<<<<< HEAD
-=======
-                    //s.Send(asen.GetBytes("The string was recieved by the server."));
-                    //s.Close();
-
-                    /* clean up */
-                    //goto m;
-                    //s.Close();
-                    //myList.Stop();
-                    //Console.ReadLine();
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
                 }
 
             }
@@ -177,7 +149,6 @@ namespace NowMine
             {
                 Console.WriteLine("Connecting to: {0}", ip.Address.ToString());
                 //UDPSend(tcpIp.ToString());
-<<<<<<< HEAD
 
                 sendServerIP(ip.Address);
                 //Console.WriteLine("Connecting to: {0}", ip.Address.ToString());
@@ -186,33 +157,23 @@ namespace NowMine
         }
 
         private void sendServerIP(IPAddress ip)
-=======
+        {
+            { 
                 TCPConnect(ip);
                 //Console.WriteLine("Connecting to: {0}", ip.Address.ToString());
             }
         }
 
-        private void TCPConnect(IPEndPoint ip)
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
+        private void TCPConnect(IPAddress ip)
         {
             try
             {
                 TcpClient tcpclnt = new TcpClient();
                 Console.WriteLine("Connecting.....");
-
-<<<<<<< HEAD
                 tcpclnt.Connect(ip, 4444);
                 Console.WriteLine("Connected");
 
                 String str = serverIP.ToString();
-=======
-                tcpclnt.Connect(ip.Address.ToString(), 4444);
-                // use the ipaddress as in the server program
-
-                Console.WriteLine("Connected");
-
-                String str = "DAWAJ KURWO";
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
                 Stream stm = tcpclnt.GetStream();
 
                 ASCIIEncoding asen = new ASCIIEncoding();
@@ -220,7 +181,6 @@ namespace NowMine
                 Console.WriteLine("Transmitting.....");
 
                 stm.Write(ba, 0, ba.Length);
-<<<<<<< HEAD
                 tcpclnt.Close();
             }
 
@@ -256,15 +216,6 @@ namespace NowMine
                     ba = asen.GetBytes(message[i] + "\n");
                     stm.Write(ba, 0, ba.Length);
                 }
-=======
-
-                //byte[] bb = new byte[100];
-                //int k = stm.Read(bb, 0, 100);
-
-                //for (int i = 0; i < k; i++)
-                //    Console.Write(Convert.ToChar(bb[i]));
-
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
                 tcpclnt.Close();
             }
 
@@ -273,18 +224,5 @@ namespace NowMine
                 Console.WriteLine("Error..... " + ee.StackTrace);
             }
         }
-<<<<<<< HEAD
-=======
-
-        //public void UDPSend(string message)
-        //{
-        //    UdpClient client = new UdpClient();
-        //    IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
-        //    byte[] bytes = Encoding.ASCII.GetBytes(message);
-        //    client.Send(bytes, bytes.Length, ip);
-        //    client.Close();
-        //    Console.WriteLine("Sent: {0} ", message);
-        //}
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
     }
 }

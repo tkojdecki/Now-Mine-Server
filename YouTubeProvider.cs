@@ -68,15 +68,9 @@ namespace NowMine
                 {
                     case "youtube#video":
                         videos.Add(String.Format("{0} ({1})", MusicPiece.Snippet.Title, MusicPiece.Id.VideoId));
-<<<<<<< HEAD
                         result.title = MusicPiece.Snippet.Title;
                         result.channelName = MusicPiece.Snippet.ChannelTitle;
                         result.id = MusicPiece.Id.VideoId;
-=======
-                        result.Title = MusicPiece.Snippet.Title;
-                        result.ChannelName = MusicPiece.Snippet.ChannelTitle;
-                        result.Id = MusicPiece.Id.VideoId;
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
                         result.LinkUrl = "http://www.youtube.com/embed/" + MusicPiece.Id.VideoId;
                         result.thumbnail = MusicPiece.Snippet.Thumbnails.Default__;
                         resultInfo.Add(result);

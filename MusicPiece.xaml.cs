@@ -21,39 +21,38 @@ namespace NowMine
     /// </summary>
     public partial class MusicPiece : UserControl
     {
-        
+
         private YouTubeInfo info = null;
-        public User user = null;
+        private DateTime created { get; set; }
 
         public MusicPiece()
         {
             InitializeComponent();
         }
 
+        // to the SearchBar
         public MusicPiece(YouTubeInfo inf)
         {
             this.info = inf;
             InitializeComponent();
-<<<<<<< HEAD
             lblTitle.Content = info.title;
             lblChannelName.Content = info.channelName;
             setImage = info.thumbnail.Url;
-            lbluserName.Content = "Server";
+            lbluserName.Visibility = Visibility.Collapsed;
+            created = DateTime.Now;
         }
 
+        //to Queue
         public MusicPiece(YouTubeInfo inf, User user)
         {
-            this.user = user;
             this.info = inf;
             InitializeComponent();
             lblTitle.Content = info.title;
             lblChannelName.Content = info.channelName;
-=======
-            lblTitle.Content = info.Title;
-            lblChannelName.Content = info.ChannelName;
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
             setImage = info.thumbnail.Url;
-            lbluserName.Content = this.user.name;
+            created = DateTime.Now;
+            lbluserName.Content = user.name;
+            //coloring on user color
         }
 
         public YouTubeInfo Info
@@ -62,13 +61,8 @@ namespace NowMine
             set
             {
                 info = value;
-<<<<<<< HEAD
                 setTitle = info.title;
                 setChannelName = info.channelName;
-=======
-                setTitle = info.Title;
-                setChannelName = info.ChannelName;
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
                 setImage = info.thumbnail.Url;
             }
         }
@@ -77,15 +71,11 @@ namespace NowMine
         {
             MusicPiece musicPiece = new MusicPiece();
             musicPiece.info = this.info;
-<<<<<<< HEAD
             musicPiece.lblTitle.Content = info.title;
             musicPiece.lblChannelName.Content = info.channelName;
-=======
-            musicPiece.lblTitle.Content = info.Title;
-            musicPiece.lblChannelName.Content = info.ChannelName;
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
             musicPiece.setImage = info.thumbnail.Url;
             musicPiece.InitializeComponent();
+            musicPiece.created = DateTime.Now;
             return musicPiece;
         }
 

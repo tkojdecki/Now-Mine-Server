@@ -43,11 +43,7 @@ namespace NowMine
 
         public void playNow(MusicPiece musicPiece)
         {
-<<<<<<< HEAD
             webControl.ExecuteJavascript("changeVideo(\'" + musicPiece.Info.id + "')");
-=======
-            webControl.ExecuteJavascript("changeVideo(\'" + musicPiece.Info.Id + "')");
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
         }
 
         public void BindMethods()
@@ -56,20 +52,17 @@ namespace NowMine
             if (result.IsObject)
             {
                 JSObject appObject = result;
-                appObject.Bind("getNextVideo", getNextVideo);
+                appObject.Bind("getNextVideo", playNextQueued);
             }
         }
 
-        private JSValue getNextVideo(object obj, JavascriptMethodEventArgs jsMethodArgs)
+        private JSValue playNextQueued(object obj, JavascriptMethodEventArgs jsMethodArgs)
         {
-            MusicPiece nextVideo = queuePanel.getNextVideo();
+            MusicPiece nextVideo = queuePanel.getNextMusicPiece();
             nextVideo.nowPlayingVisual();
             queuePanel.toHistory(queuePanel.nowPlaying());
-<<<<<<< HEAD
+
             playNow(nextVideo.Info.id);
-=======
-            playNow(nextVideo.Info.Id);
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
             queuePanel.populateQueueBoard();
             return null;
         }

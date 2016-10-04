@@ -48,7 +48,7 @@ namespace NowMine
         {
             var musicPiece = (MusicPiece)sender;
             var queueMusicPiece = musicPiece.copy();
-            queuePanel.addToQueue(queueMusicPiece);
+            queuePanel.addToQueue(queueMusicPiece, User.getServerUser());
         }
 
         public List<MusicPiece> getSearchList(String searchWord)

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 
 namespace NowMine
 {
-<<<<<<< HEAD
     public class User
     {
         public String name;
@@ -33,10 +32,6 @@ namespace NowMine
             }
             return serverUser;
         }
-=======
-    class User
-    {
-
->>>>>>> 3e8e90aa518eb41b9e9876abd6e8831da805f7c6
     }
 }
+
