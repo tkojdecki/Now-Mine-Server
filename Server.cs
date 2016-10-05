@@ -97,7 +97,7 @@ namespace NowMine
                             sendedInfo.buildURL();
                             Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.addToQueue(new MusicPiece(sendedInfo), user); }));
                             //Application.Current.Dispatcher.Invoke(new Action(() => { user.addToQueue(new MusicPiece(sendedInfo)); }));
-                            Console.WriteLine("Playing Next!");
+                            Console.WriteLine("Added to Queue!");
                             break;
 
                         case "GetQueue":

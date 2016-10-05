@@ -620,3 +620,50 @@
 [1005/014831:INFO:(0)] Running Awesomium 1.7.5.1
 [1005/015356:INFO:(0)] WebCore is now online.
 [1005/015356:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/022215:INFO:(0)] WebCore is now online.
+[1005/022215:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/022411:INFO:(0)] WebCore is now online.
+[1005/022411:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/024359:INFO:(0)] WebCore is now online.
+[1005/024359:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/031136:INFO:(0)] WebCore is now online.
+[1005/031136:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/031217:ERROR:ipc_channel_win.cc(360)] pipe error: 232
+[1005/031502:INFO:(0)] WebCore is now online.
+[1005/031502:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/031626:INFO:(0)] WebCore is now online.
+[1005/031626:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/031929:INFO:(0)] WebCore is now online.
+[1005/031929:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/032209:INFO:(0)] WebCore is now online.
+[1005/032209:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/032220:INFO:(0)] WebCore is now online.
+[1005/032220:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/032608:INFO:(0)] WebCore is now online.
+[1005/032608:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/032914:INFO:(0)] WebCore is now online.
+[1005/032914:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/144501:INFO:(0)] WebCore is now online.
+[1005/144501:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/150232:INFO:(0)] WebCore is now online.
+[1005/150232:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/153611:INFO:(0)] WebCore is now online.
+[1005/153611:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/190004:INFO:(0)] WebCore is now online.
+[1005/190004:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/190009:WARNING:Awesomium.NET(0)] System.TimeoutException: The operation has timed out. The child process or the I/O thread, are busy. Please try to create the object again.
+   w Awesomium.Windows.Controls.WebControl.CreateGlobalJavascriptObject(String name)
+   w Awesomium.Core.JavascriptHelper.Register()
+[1005/191520:INFO:(0)] WebCore is now online.
+[1005/191520:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/191702:INFO:(0)] WebCore is now online.
+[1005/191702:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/191758:INFO:(0)] WebCore is now online.
+[1005/191758:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/193347:INFO:(0)] WebCore is now online.
+[1005/193347:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/193716:INFO:(0)] WebCore is now online.
+[1005/193716:INFO:(0)] Running Awesomium 1.7.5.1
+[1005/193804:ERROR:ipc_channel_win.cc(360)] pipe error: 232
+[1005/193812:INFO:(0)] WebCore is now online.
+[1005/193812:INFO:(0)] Running Awesomium 1.7.5.1

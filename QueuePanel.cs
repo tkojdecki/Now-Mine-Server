@@ -39,19 +39,21 @@ namespace NowMine
 
         public void addToQueue(MusicPiece musicPiece, User user)
         {
-            QueuePiece queuePiece;
+            QueuePiece queuePiece = new QueuePiece();
             queuePiece.MusicPiece = musicPiece;
             queuePiece.User = user;
 
             if (queue.Count == 0)
             {
-                musicPiece.nowPlayingVisual();
+                queuePiece.MusicPiece.nowPlayingVisual();
                 webPanel.playNow(musicPiece.Info.id);
                 queue.Add(queuePiece);
+                populateQueueBoard();
                 return;
             }
-            
+
             int qPos = calculateQueuePostition(user);
+            //int qPos = -1;
             if (qPos < queue.Count && qPos >= 0)
             {
                 queue.Insert(qPos, queuePiece);
@@ -67,10 +69,60 @@ namespace NowMine
         private int calculateQueuePostition(User user)
         {
             int pos = -1;
-            int numberOfUsersInQueue;
-            int thisUserQueuedSongs;
-
+            //int numberOfUsersInQueue = queue.GroupBy(q => q.User.name).ToList().Count;
+            float songsPerUser = getSongsPerUser(user);
+            List<QueuePiece> rev = new List<QueuePiece>(queue);
+            rev.Reverse();
+            foreach (QueuePiece qPiece in rev)
+            {
+                if (qPiece.User == user)
+                {
+                    if (qPiece == queue.Last())
+                    {
+                        return -1;
+                    }
+                    else
+                    {
+                        pos = queue.IndexOf(qPiece) + 2;
+                        return pos;
+                    }
+                }
+                if (!(songsPerUser < getSongsPerUser(qPiece.User)))
+                {
+                    pos = queue.IndexOf(qPiece) + 1;
+                    return pos;
+                }
+                if (qPiece.MusicPiece == nowPlaying().MusicPiece)
+                {
+                    pos = 1;
+                    return pos;
+                }
+            }
+            //int numberOfUsersInQueue = uniq.Count;
+            //Console.WriteLine("number of users in queue: " + numberOfUsersInQueue);
+            //int thisUserQueuedSongs = queue.GroupBy(q => q.User.name).Select(grp => grp.Where(gq => gq.User.name == user.name)).ToList().Count;
+            //Console.WriteLine("number of user songs in queue: " + thisUserQueuedSongs);
             return pos;
+        }
+
+        private float getSongsPerUser(User user)
+        {
+            List<User> uniq = new List<User> { user };
+            int userQueuedSongs = 0;
+            int numberOfUsersInQueue = 1;
+            foreach (QueuePiece queuePiece in queue)
+            {
+                if (!uniq.Contains(queuePiece.User))
+                {
+                    uniq.Add(queuePiece.User);
+                    numberOfUsersInQueue++;
+                }
+                if (queuePiece.User == user)
+                {
+                    userQueuedSongs++;
+                }
+            }
+            return (float)userQueuedSongs / (float)numberOfUsersInQueue;
         }
 
         public void populateQueueBoard()
@@ -156,16 +208,24 @@ namespace NowMine
 
         private QueuePiece findQueuePiece(MusicPiece musicPiece)
         {
-            IEnumerable<QueuePiece> queuePieces = queue.Where(q => q.MusicPiece == musicPiece);
-            foreach (QueuePiece queuePiece in queuePieces)
-            {
-                return queuePiece;  
-            }
-            return queuePieces.First();
+            //IEnumerable<QueuePiece> queuePieces = queue.Where(q => q.MusicPiece == musicPiece);
+            //foreach (QueuePiece queuePiece in queuePieces)
+            //{
+            //    return queuePiece;  
+            //}
+            //return queuePieces.First();
             //tuniedziaua
+            foreach(QueuePiece qPiece in queue)
+            {
+                if (qPiece.MusicPiece == musicPiece)
+                {
+                    return qPiece;
+                }
+            }
+            return null;
         }
 
-        public struct QueuePiece
+        public class QueuePiece
         {
             
             public MusicPiece MusicPiece;
