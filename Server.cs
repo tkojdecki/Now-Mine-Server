@@ -8,6 +8,7 @@ using System.Threading;
 using System.IO;
 using System.Windows;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace NowMine
 {
@@ -91,17 +92,17 @@ namespace NowMine
                             break;
 
                         case "Queue:":
-                            String ytJSON = recived.Substring(7);
+                            String ytJSON = recived.Substring(7); //Substring 7 to cut the "Queue: " from string
                             Console.WriteLine(ytJSON);
                             YouTubeInfo sendedInfo = JsonConvert.DeserializeObject<YouTubeInfo>(ytJSON);
                             sendedInfo.buildURL();
-                            Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.addToQueue(new MusicPiece(sendedInfo), user); }));
+                            Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.addToQueue(new MusicPiece(sendedInfo, user), user); }));
                             //Application.Current.Dispatcher.Invoke(new Action(() => { user.addToQueue(new MusicPiece(sendedInfo)); }));
                             Console.WriteLine("Added to Queue!");
                             break;
 
                         case "GetQueue":
-                            YouTubeInfo[] ytInfo = null;
+                            QueuePieceToSend[] ytInfo = null;
                             Application.Current.Dispatcher.Invoke(new Action(() => { ytInfo = queuePanel.getQueueInfo().ToArray(); }));
                             if (ytInfo != null && ytInfo.Count() > 0)
                             {

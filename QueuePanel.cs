@@ -24,28 +24,27 @@ namespace NowMine
             history = new List<QueuePiece>();
         }
 
-        public List<YouTubeInfo> getQueueInfo()
+        public List<QueuePieceToSend> getQueueInfo()
         {
             int queueCount = queue.Count;
-            List<YouTubeInfo> qInfo = new List<YouTubeInfo>(queueCount);
+            List<QueuePieceToSend> qInfo = new List<QueuePieceToSend>(queueCount);
 
             foreach (QueuePiece queuePiece in queue)
             {
-                MusicPiece musicPiece = queuePiece.MusicPiece;
-                qInfo.Add(musicPiece.Info);
+                MusicPiece musicPiece = queuePiece.musicPiece;
+                QueuePieceToSend qpts = new QueuePieceToSend(musicPiece.Info, queuePiece.user);
+                qInfo.Add(qpts);
             }
             return qInfo;
         }
 
         public void addToQueue(MusicPiece musicPiece, User user)
         {
-            QueuePiece queuePiece = new QueuePiece();
-            queuePiece.MusicPiece = musicPiece;
-            queuePiece.User = user;
+            QueuePiece queuePiece = new QueuePiece(musicPiece, user);
 
             if (queue.Count == 0)
             {
-                queuePiece.MusicPiece.nowPlayingVisual();
+                queuePiece.musicPiece.nowPlayingVisual();
                 webPanel.playNow(musicPiece.Info.id);
                 queue.Add(queuePiece);
                 populateQueueBoard();
@@ -75,7 +74,7 @@ namespace NowMine
             rev.Reverse();
             foreach (QueuePiece qPiece in rev)
             {
-                if (qPiece.User == user)
+                if (qPiece.user == user)
                 {
                     if (qPiece == queue.Last())
                     {
@@ -87,12 +86,12 @@ namespace NowMine
                         return pos;
                     }
                 }
-                if (!(songsPerUser < getSongsPerUser(qPiece.User)))
+                if (!(songsPerUser < getSongsPerUser(qPiece.user)))
                 {
                     pos = queue.IndexOf(qPiece) + 1;
                     return pos;
                 }
-                if (qPiece.MusicPiece == nowPlaying().MusicPiece)
+                if (qPiece.musicPiece == nowPlaying().musicPiece)
                 {
                     pos = 1;
                     return pos;
@@ -112,12 +111,12 @@ namespace NowMine
             int numberOfUsersInQueue = 1;
             foreach (QueuePiece queuePiece in queue)
             {
-                if (!uniq.Contains(queuePiece.User))
+                if (!uniq.Contains(queuePiece.user))
                 {
-                    uniq.Add(queuePiece.User);
+                    uniq.Add(queuePiece.user);
                     numberOfUsersInQueue++;
                 }
-                if (queuePiece.User == user)
+                if (queuePiece.user == user)
                 {
                     userQueuedSongs++;
                 }
@@ -130,8 +129,8 @@ namespace NowMine
             stackPanel.Children.Clear();
             foreach (QueuePiece result in queue)
             {
-                result.MusicPiece.MouseDoubleClick += Queue_DoubleClick;
-                stackPanel.Children.Add(result.MusicPiece);
+                result.musicPiece.MouseDoubleClick += Queue_DoubleClick;
+                stackPanel.Children.Add(result.musicPiece);
             }
         }
 
@@ -139,17 +138,22 @@ namespace NowMine
         private void Queue_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             var musicPiece = (MusicPiece)sender;
-            
-            toHistory(nowPlaying());
-            //var selected = queue.Where(queuePiece => queuePiece.MusicPiece == musicPiece);
-            //Console.WriteLine(selected.ToString());
-            //deleteFromQueue(selected.First());
-            //queue.Insert(0, musicPiece);
             var queuePiece = findQueuePiece(musicPiece);
-            deleteFromQueue(queuePiece);
-            queue.Insert(0, queuePiece);
-            webPanel.playNow(musicPiece.Info.id);
-            populateQueueBoard();
+            if (queuePiece != null)
+            {
+                toHistory(nowPlaying());
+                deleteFromQueue(queuePiece);
+                queuePiece.musicPiece.nowPlayingVisual();
+                queue.Insert(0, queuePiece);
+                //var selected = queue.Where(queuePiece => queuePiece.MusicPiece == musicPiece);
+                //Console.WriteLine(selected.ToString());
+                //deleteFromQueue(selected.First());
+                //queue.Insert(0, musicPiece);
+
+                webPanel.playNow(musicPiece.Info.id);
+                populateQueueBoard();
+            }
+            
         }
 
         public void deleteFromQueue(QueuePiece queuePiece)
@@ -163,7 +167,7 @@ namespace NowMine
         public void toHistory(QueuePiece queuePiece)
         {
             deleteFromQueue(queuePiece);
-            queuePiece.MusicPiece.historyVisual();
+            queuePiece.musicPiece.historyVisual();
             history.Add(queuePiece);
         }
 
@@ -181,15 +185,15 @@ namespace NowMine
         public MusicPiece getNextMusicPiece()
         {
             QueuePiece nextQueue = getNextPiece();
-            return nextQueue.MusicPiece;
+            return nextQueue.musicPiece;
         }
 
         public bool playNext()
         {
             QueuePiece nextQueue = getNextPiece();
-            if (nextQueue.MusicPiece == null)
+            if (nextQueue.musicPiece == null)
             {
-                MusicPiece nextVideo = nextQueue.MusicPiece;
+                MusicPiece nextVideo = nextQueue.musicPiece;
                 nextVideo.nowPlayingVisual();
                 toHistory(nowPlaying());
                 webPanel.playNow(nextVideo.Info.id);
@@ -217,7 +221,7 @@ namespace NowMine
             //tuniedziaua
             foreach(QueuePiece qPiece in queue)
             {
-                if (qPiece.MusicPiece == musicPiece)
+                if (qPiece.musicPiece == musicPiece)
                 {
                     return qPiece;
                 }
@@ -228,8 +232,14 @@ namespace NowMine
         public class QueuePiece
         {
             
-            public MusicPiece MusicPiece;
-            public User User;
+            public MusicPiece musicPiece { get; set; }
+            public User user { get; set; }
+
+            public QueuePiece (MusicPiece musicPiece, User user)
+            {
+                this.musicPiece = musicPiece;
+                this.user = user;
+            }
         }
     }
 }

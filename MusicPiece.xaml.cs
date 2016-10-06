@@ -33,11 +33,12 @@ namespace NowMine
         // to the SearchBar
         public MusicPiece(YouTubeInfo inf)
         {
-            this.info = inf;
             InitializeComponent();
+            this.info = inf;
             lblTitle.Content = info.title;
             lblChannelName.Content = info.channelName;
             setImage = info.thumbnail.Url;
+            lbluserName.Content = User.getServerUser().name;
             lbluserName.Visibility = Visibility.Collapsed;
             created = DateTime.Now;
         }
@@ -45,8 +46,8 @@ namespace NowMine
         //to Queue
         public MusicPiece(YouTubeInfo inf, User user)
         {
-            this.info = inf;
             InitializeComponent();
+            this.info = inf;
             lblTitle.Content = info.title;
             lblChannelName.Content = info.channelName;
             setImage = info.thumbnail.Url;
@@ -74,8 +75,9 @@ namespace NowMine
             musicPiece.lblTitle.Content = info.title;
             musicPiece.lblChannelName.Content = info.channelName;
             musicPiece.setImage = info.thumbnail.Url;
-            musicPiece.InitializeComponent();
             musicPiece.created = DateTime.Now;
+            musicPiece.lbluserName.Content = lbluserName.Content;
+            musicPiece.InitializeComponent();
             return musicPiece;
         }
 
@@ -106,8 +108,8 @@ namespace NowMine
 
         internal void nowPlayingVisual()
         {
-            SolidColorBrush greenBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-            this.border.BorderBrush = greenBrush;
+            SolidColorBrush redBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+            this.border.BorderBrush = redBrush;
         }
 
         internal void historyVisual()

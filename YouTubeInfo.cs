@@ -27,4 +27,28 @@ namespace NowMine
 
         #endregion
     }
+
+    public class QueuePieceToSend : YouTubeInfo
+    {
+        public string userName;
+        public string color;
+
+        public QueuePieceToSend(YouTubeInfo info)
+        {
+            this.id = info.id;
+            this.title = info.title;
+            this.channelName = info.channelName;
+            this.thumbnail = info.thumbnail;            
+        }
+
+        public QueuePieceToSend(YouTubeInfo info, User user)
+        {
+            this.id = info.id;
+            this.title = info.title;
+            this.channelName = info.channelName;
+            this.thumbnail = info.thumbnail;
+            this.userName = user.name;
+            this.color = "#00ff00";
+        }
+    }
 }
