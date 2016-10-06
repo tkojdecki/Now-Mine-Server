@@ -19,6 +19,8 @@
             <StackPanel x:Name="searchBoard" />
         </ScrollViewer>
         <awe:WebControl x:Name="webPlayer" DocumentReady="webPlayer_DocumentReady" Grid.Column="1"/>
-        <StackPanel x:Name="queueBoard" Grid.Column="2"/>
+        <ScrollViewer Grid.Column="2">
+            <StackPanel x:Name="queueBoard" Grid.Column="2"/>
+        </ScrollViewer>
     </Grid>
 </Window>

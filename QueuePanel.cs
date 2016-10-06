@@ -191,7 +191,7 @@ namespace NowMine
         public bool playNext()
         {
             QueuePiece nextQueue = getNextPiece();
-            if (nextQueue.musicPiece == null)
+            if (nextQueue.musicPiece != null)
             {
                 MusicPiece nextVideo = nextQueue.musicPiece;
                 nextVideo.nowPlayingVisual();

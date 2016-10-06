@@ -719,3 +719,13 @@
 [1007/005904:WARNING:Awesomium.NET(0)] System.TimeoutException: The operation has timed out. The child process or the I/O thread, are busy. Please try to create the object again.
    w Awesomium.Windows.Controls.WebControl.CreateGlobalJavascriptObject(String name)
    w Awesomium.Core.JavascriptHelper.Register()
+[1007/011032:INFO:(0)] WebCore is now online.
+[1007/011032:INFO:(0)] Running Awesomium 1.7.5.1
+[1007/011310:INFO:(0)] WebCore is now online.
+[1007/011310:INFO:(0)] Running Awesomium 1.7.5.1
+[1007/011443:INFO:(0)] WebCore is now online.
+[1007/011443:INFO:(0)] Running Awesomium 1.7.5.1
+[1007/011746:INFO:(0)] WebCore is now online.
+[1007/011746:INFO:(0)] Running Awesomium 1.7.5.1
+[1007/012949:INFO:(0)] WebCore is now online.
+[1007/012949:INFO:(0)] Running Awesomium 1.7.5.1
