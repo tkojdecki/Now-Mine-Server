@@ -12,13 +12,13 @@ using Newtonsoft.Json.Linq;
 
 namespace NowMine
 {
-    class Server
+    class ServerTCP
     {
         QueuePanel queuePanel;
-        UdpClient udp;
         const int TCP_PORT = 4444;
         IPAddress serverIP = null;
         Dictionary<IPAddress, User> users = new Dictionary<IPAddress, User>();
+
         public void ServerInit(QueuePanel queuePanel)
         {
             this.queuePanel = queuePanel;
@@ -33,7 +33,6 @@ namespace NowMine
                     if (IpA[i].AddressFamily == AddressFamily.InterNetwork)
                     {
                         serverIP = IpA[i];
-
                     }
                 }
 
@@ -81,12 +80,7 @@ namespace NowMine
                     String[] values = recived.Split(' ');
                     switch (values[0])
                     {
-                        case "1":
-                            Console.WriteLine("doszło 1");
-                            break;
-
                         case "PlayNext":
-                            //queuePanel.playNext();
                             Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.playNext(); }));
                             Console.WriteLine("Playing Next!");
                             break;
@@ -97,7 +91,6 @@ namespace NowMine
                             YouTubeInfo sendedInfo = JsonConvert.DeserializeObject<YouTubeInfo>(ytJSON);
                             sendedInfo.buildURL();
                             Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.addToQueue(new MusicPiece(sendedInfo, user), user); }));
-                            //Application.Current.Dispatcher.Invoke(new Action(() => { user.addToQueue(new MusicPiece(sendedInfo)); }));
                             Console.WriteLine("Added to Queue!");
                             break;
 
@@ -130,34 +123,7 @@ namespace NowMine
             }
         }
 
-        public void udpListener()
-        {
-            int PORT_NUMBER = 1234;
-
-            Console.WriteLine("Starting UDP Listener");
-            if (udp == null)
-                udp = new UdpClient(PORT_NUMBER);
-            IAsyncResult ar_ = udp.BeginReceive(Receive, new object());
-        }
-
-        private void Receive(IAsyncResult ar)
-        {
-            IPEndPoint ip = new IPEndPoint(IPAddress.Any, 1234);
-            byte[] bytes = udp.EndReceive(ar, ref ip);
-            string message = Encoding.ASCII.GetString(bytes);
-            Console.WriteLine("From {0} received: {1} ", ip.Address.ToString(), message);
-            if (message.Equals("NowMine!"))
-            {
-                Console.WriteLine("Connecting to: {0}", ip.Address.ToString());
-                //UDPSend(tcpIp.ToString());
-
-                sendServerIP(ip.Address);
-                //Console.WriteLine("Connecting to: {0}", ip.Address.ToString());
-                udpListener();
-            }
-        }
-
-        private void sendServerIP(IPAddress ip)
+        public void sendServerIP(IPAddress ip)
         {
             { 
                 TCPConnect(ip);
@@ -170,16 +136,16 @@ namespace NowMine
             try
             {
                 TcpClient tcpclnt = new TcpClient();
-                Console.WriteLine("Connecting.....");
+                Console.WriteLine("TCP/ Connecting to: " + ip.ToString());
                 tcpclnt.Connect(ip, 4444);
-                Console.WriteLine("Connected");
+                Console.WriteLine("TCP/ Connected");
 
                 String str = serverIP.ToString();
                 Stream stm = tcpclnt.GetStream();
 
                 ASCIIEncoding asen = new ASCIIEncoding();
                 byte[] ba = asen.GetBytes(str);
-                Console.WriteLine("Transmitting.....");
+                Console.WriteLine("TCP/ Transmitting: " + str);
 
                 stm.Write(ba, 0, ba.Length);
                 tcpclnt.Close();
@@ -187,7 +153,7 @@ namespace NowMine
 
             catch (Exception ee)
             {
-                Console.WriteLine("Error..... " + ee.StackTrace);
+                Console.WriteLine("Error... " + ee.StackTrace);
             }
         }
 
@@ -196,12 +162,12 @@ namespace NowMine
             try
             {
                 TcpClient tcpclnt = new TcpClient();
-                Console.WriteLine("Connecting.....");
+                Console.WriteLine("TCP/ Connecting To: " + ip.ToString());
 
                 tcpclnt.Connect(ip, 4444);
                 // use the ipaddress as in the server program
 
-                Console.WriteLine("Connected");
+                Console.WriteLine("TCP/ Connected");
 
                 Stream stm = tcpclnt.GetStream();
                 String msg = message.Length.ToString();
@@ -213,7 +179,7 @@ namespace NowMine
                 
                 for (int i = 0; i < message.Length; i++)
                 {
-                    Console.WriteLine("Transmitting: " + message[i]);
+                    Console.WriteLine("TCP/ Transmitting: " + message[i]);
                     ba = asen.GetBytes(message[i] + "\n");
                     stm.Write(ba, 0, ba.Length);
                 }

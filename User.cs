@@ -18,7 +18,8 @@ namespace NowMine
         public User(String name)
         {
             this.name = name;
-            //color = Color.FromRgb(); ;
+            Random rnd = new Random();
+            this.color = Color.FromRgb((byte)rnd.Next(0, 255), (byte)rnd.Next(0, 255), (byte)rnd.Next(0, 255));
         }
 
         public void addToQueue(MusicPiece piece)
@@ -34,6 +35,11 @@ namespace NowMine
                 serverUser = new User("Server");
             }
             return serverUser;
+        }
+
+        internal Color getColor()
+        {
+            return this.color;
         }
     }
 }

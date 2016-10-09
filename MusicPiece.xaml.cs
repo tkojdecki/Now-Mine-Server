@@ -53,7 +53,6 @@ namespace NowMine
             setImage = info.thumbnail.Url;
             created = DateTime.Now;
             lbluserName.Content = user.name;
-            //coloring on user color
         }
 
         public YouTubeInfo Info
@@ -110,6 +109,12 @@ namespace NowMine
         {
             SolidColorBrush redBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
             this.border.BorderBrush = redBrush;
+        }
+
+        internal void userColorBrush(User user)
+        {
+            SolidColorBrush userBrush = new SolidColorBrush(user.getColor());
+            this.border.BorderBrush = userBrush;
         }
 
         internal void historyVisual()

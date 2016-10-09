@@ -29,7 +29,8 @@ namespace NowMine
         WebPanel webPanel;
         Thread serverThread;
         Thread udpThread;
-        Server server;
+        ServerTCP serverTCP;
+        ServerUDP serverUDP;
 
         public MainWindow()
         {
@@ -39,12 +40,13 @@ namespace NowMine
             searchPanel = new SearchPanel(searchBoard, txtSearch, queuePanel);
             webPanel.reinitialize(webPlayer, queuePanel);
             
-            server = new Server();
-            serverThread = new Thread(() => server.ServerInit(queuePanel));
+            this.serverTCP = new ServerTCP();
+            serverThread = new Thread(() => serverTCP.ServerInit(queuePanel));
             serverThread.IsBackground = true;
             serverThread.Start();
 
-            udpThread = new Thread(server.udpListener);
+            this.serverUDP = new ServerUDP(this.serverTCP);
+            udpThread = new Thread(serverUDP.udpListener);
             udpThread.IsBackground = true;
             udpThread.Start();
         }

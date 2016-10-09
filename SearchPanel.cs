@@ -10,7 +10,6 @@ namespace NowMine
 {
     class SearchPanel
     {
-        //List<MusicPiece> resultsList;
         YouTubeProvider youtubeProvider = new YouTubeProvider();
         StackPanel stackPanel;
         TextBox textBox;
@@ -55,10 +54,8 @@ namespace NowMine
         {
             List<MusicPiece> list;
             List<YouTubeInfo> infoList = youtubeProvider.LoadVideosKey(searchWord);
-            //this.resultsList = infoToResults(infoList);
             list = infoToResults(infoList);
             return list;
-            //PopulateSearchBoard(this.resultsList);
         }
 
         private List<MusicPiece> infoToResults(List<YouTubeInfo> infoList)

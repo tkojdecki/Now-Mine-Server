@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
-using System.Linq;
 
 namespace NowMine
 {
@@ -51,6 +50,7 @@ namespace NowMine
                 return;
             }
 
+            musicPiece.userColorBrush(user);
             int qPos = calculateQueuePostition(user);
             //int qPos = -1;
             if (qPos < queue.Count && qPos >= 0)
@@ -68,7 +68,6 @@ namespace NowMine
         private int calculateQueuePostition(User user)
         {
             int pos = -1;
-            //int numberOfUsersInQueue = queue.GroupBy(q => q.User.name).ToList().Count;
             float songsPerUser = getSongsPerUser(user);
             List<QueuePiece> rev = new List<QueuePiece>(queue);
             rev.Reverse();
@@ -97,10 +96,6 @@ namespace NowMine
                     return pos;
                 }
             }
-            //int numberOfUsersInQueue = uniq.Count;
-            //Console.WriteLine("number of users in queue: " + numberOfUsersInQueue);
-            //int thisUserQueuedSongs = queue.GroupBy(q => q.User.name).Select(grp => grp.Where(gq => gq.User.name == user.name)).ToList().Count;
-            //Console.WriteLine("number of user songs in queue: " + thisUserQueuedSongs);
             return pos;
         }
 
@@ -134,7 +129,6 @@ namespace NowMine
             }
         }
 
-
         private void Queue_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             var musicPiece = (MusicPiece)sender;
@@ -145,10 +139,6 @@ namespace NowMine
                 deleteFromQueue(queuePiece);
                 queuePiece.musicPiece.nowPlayingVisual();
                 queue.Insert(0, queuePiece);
-                //var selected = queue.Where(queuePiece => queuePiece.MusicPiece == musicPiece);
-                //Console.WriteLine(selected.ToString());
-                //deleteFromQueue(selected.First());
-                //queue.Insert(0, musicPiece);
 
                 webPanel.playNow(musicPiece.Info.id);
                 populateQueueBoard();
@@ -173,13 +163,11 @@ namespace NowMine
 
         public QueuePiece getNextPiece()
         {
-            //deleteFromQueue(nowPlaying());
-            //return nowPlaying();
-            //if (queue.Count >= 2)
-            //{
+            if (queue.Count >= 2)
+            {
                 return queue[1];
-            //}
-            //return null;
+            }
+            return null;
         }
 
         public MusicPiece getNextMusicPiece()
@@ -197,7 +185,6 @@ namespace NowMine
                 nextVideo.nowPlayingVisual();
                 toHistory(nowPlaying());
                 webPanel.playNow(nextVideo.Info.id);
-                //deleteFromQueue(nowPlaying());
                 populateQueueBoard();
                 return true;
             }
@@ -212,13 +199,6 @@ namespace NowMine
 
         private QueuePiece findQueuePiece(MusicPiece musicPiece)
         {
-            //IEnumerable<QueuePiece> queuePieces = queue.Where(q => q.MusicPiece == musicPiece);
-            //foreach (QueuePiece queuePiece in queuePieces)
-            //{
-            //    return queuePiece;  
-            //}
-            //return queuePieces.First();
-            //tuniedziaua
             foreach(QueuePiece qPiece in queue)
             {
                 if (qPiece.musicPiece == musicPiece)
