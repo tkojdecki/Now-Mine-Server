@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace NowMine
 {
@@ -12,10 +13,12 @@ namespace NowMine
         List<MusicPiece> queued = new List<MusicPiece>();
         List<MusicPiece> history = new List<MusicPiece>();
         private static User serverUser;
+        private Color color;
 
         public User(String name)
         {
             this.name = name;
+            //color = Color.FromRgb(); ;
         }
 
         public void addToQueue(MusicPiece piece)
