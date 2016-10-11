@@ -5,9 +5,9 @@
         Title="Now Mine!" Height="600" Width="1300">
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="360" x:Name="columnDefinitionSearch"/>
+            <ColumnDefinition Width="375" x:Name="columnDefinitionSearch"/>
             <ColumnDefinition Width="*" x:Name="columnDefinitionPlayer"/>
-            <ColumnDefinition Width="360" x:Name="columnDefinitionQueue" />
+            <ColumnDefinition Width="375" x:Name="columnDefinitionQueue" />
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="columnSearch" Grid.Column="0">

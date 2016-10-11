@@ -4,18 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="75" d:DesignWidth="360">
-    <Grid>
+             d:DesignHeight="75"
+             d:DesignWidth="360"
+             Padding="0, 5, 0, 5">
+    
+    <Grid x:Name="gridPiece">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="11*"/>
             <ColumnDefinition Width="39*"/>
         </Grid.ColumnDefinitions>
-        <Label x:Name="lblTitle" Content=" " Margin="27,0,0,0" VerticalAlignment="Top" Grid.Column="1"/>
-        <Label x:Name="lblChannelName" Content=" " Margin="27,26,0,21" Grid.Column="1" HorizontalAlignment="Left" Width="254"/>
-        <Label x:Name="lbluserName" Content="" Grid.Column="1" Margin="144,54,0,0" />
-        
-        <Image x:Name ="imgMain" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="101"/>
 
-        <Border x:Name="border" BorderBrush="Black" BorderThickness="1" Height="75" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="360"/>
+        <Rectangle Height="75" Grid.ColumnSpan="2" Width="360" Fill="White" Opacity="0" x:Name="recBackground"/>
+
+        <Grid Grid.Column="0">
+            <Image x:Name ="imgMain" HorizontalAlignment="Left" Height="75" VerticalAlignment="Top" Width="101"/>
+        </Grid>
+
+        <Grid Grid.Column="1">
+            <Label x:Name="lblTitle" Content="" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="lblChannelName" Content="" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Label x:Name="lbluserName" Content="" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        </Grid>
+        
+        <Border x:Name="border" BorderBrush="Black" BorderThickness="3" Height="75" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="360">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0" BlurRadius="20" x:Name="dropShadowEffect"/>
+            </Border.Effect>
+        </Border>
+        
     </Grid>
 </UserControl>

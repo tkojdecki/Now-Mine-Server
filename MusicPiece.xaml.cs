@@ -26,36 +26,6 @@ namespace NowMine
         private DateTime created { get; set; }
         private DateTime played { get; set; }
 
-        public MusicPiece()
-        {
-            InitializeComponent();
-        }
-
-        // to the SearchBar
-        public MusicPiece(YouTubeInfo inf)
-        {
-            InitializeComponent();
-            this.info = inf;
-            lblTitle.Content = info.title;
-            lblChannelName.Content = info.channelName;
-            setImage = info.thumbnail.Url;
-            lbluserName.Content = User.getServerUser().name;
-            lbluserName.Visibility = Visibility.Collapsed;
-            created = DateTime.Now;
-        }
-
-        //to Queue
-        public MusicPiece(YouTubeInfo inf, User user)
-        {
-            InitializeComponent();
-            this.info = inf;
-            lblTitle.Content = info.title;
-            lblChannelName.Content = info.channelName;
-            setImage = info.thumbnail.Url;
-            created = DateTime.Now;
-            lbluserName.Content = user.name;
-        }
-
         public YouTubeInfo Info
         {
             get { return info; }
@@ -66,19 +36,6 @@ namespace NowMine
                 setChannelName = info.channelName;
                 setImage = info.thumbnail.Url;
             }
-        }
-
-        public MusicPiece copy()
-        {
-            MusicPiece musicPiece = new MusicPiece();
-            musicPiece.info = this.info;
-            musicPiece.lblTitle.Content = info.title;
-            musicPiece.lblChannelName.Content = info.channelName;
-            musicPiece.setImage = info.thumbnail.Url;
-            musicPiece.created = DateTime.Now;
-            musicPiece.lbluserName.Content = lbluserName.Content;
-            musicPiece.InitializeComponent();
-            return musicPiece;
         }
 
         private string setTitle
@@ -106,6 +63,49 @@ namespace NowMine
             }
         }
 
+        public MusicPiece()
+        {
+            InitializeComponent();
+        }
+
+        // to the SearchBar
+        public MusicPiece(YouTubeInfo inf)
+        {
+            InitializeComponent();
+            this.info = inf;
+            lblTitle.Content = info.title;
+            lblChannelName.Content = info.channelName;
+            setImage = info.thumbnail.Url;
+            lbluserName.Content = User.getServerUser().name;
+            lbluserName.Visibility = Visibility.Hidden;
+            created = DateTime.Now;
+        }
+
+        //to Queue
+        public MusicPiece(YouTubeInfo inf, User user)
+        {
+            InitializeComponent();
+            this.info = inf;
+            lblTitle.Content = info.title;
+            lblChannelName.Content = info.channelName;
+            setImage = info.thumbnail.Url;
+            created = DateTime.Now;
+            lbluserName.Content = user.name;
+        }
+
+        public MusicPiece copy()
+        {
+            MusicPiece musicPiece = new MusicPiece();
+            musicPiece.InitializeComponent();
+            musicPiece.info = this.info;
+            musicPiece.lblTitle.Content = info.title;
+            musicPiece.lblChannelName.Content = info.channelName;
+            musicPiece.setImage = info.thumbnail.Url;
+            musicPiece.created = DateTime.Now;
+            musicPiece.lbluserName.Content = lbluserName.Content;
+            return musicPiece;
+        }
+
         internal void nowPlayingVisual()
         {
             SolidColorBrush redBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
@@ -116,6 +116,9 @@ namespace NowMine
         {
             SolidColorBrush userBrush = new SolidColorBrush(user.getColor());
             this.border.BorderBrush = userBrush;
+            this.dropShadowEffect.Color = user.getColor();
+            this.recBackground.Fill = userBrush;
+            this.recBackground.Opacity = 0.3d;
         }
 
         internal void historyVisual()

@@ -50,10 +50,6 @@ namespace NowMine
             udpThread = new Thread(serverUDP.udpListener);
             udpThread.IsBackground = true;
             udpThread.Start();
-
-            //columnSearch.Background = new SolidColorBrush(Color.FromRgb(255, 0, 0));
-            //columnPlayer.Background = new SolidColorBrush(Color.FromRgb(0, 255, 0));
-            //columnQueue.Background = new SolidColorBrush(Color.FromRgb(0, 0, 255));
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
@@ -100,24 +96,15 @@ namespace NowMine
         private void maximalizePlayer()
         {
             isMaximized = true;
-            
-            //searchBoard.Visibility = Visibility.Collapsed;
-            //searchButtons.Visibility = Visibility.Collapsed;
-            //txtSearch.Visibility = Visibility.Collapsed;
-            //searchButton.Visibility = Visibility.Collapsed;
-            //playNextButton.Visibility = Visibility.Collapsed;
+ 
             columnSearch.Visibility = Visibility.Collapsed;
-            //columnSearch.Width = 10.0f;
             columnDefinitionSearch.Width = new GridLength(0);
-            //mainGrid.Children.Remove(columnSearch);
 
             columnQueue.Visibility = Visibility.Collapsed;
             columnDefinitionQueue.Width = new GridLength(0);
 
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
-
-            //webPlayer.Reload(true);
         }
 
         private void minimizePlayer()
@@ -131,14 +118,6 @@ namespace NowMine
 
             columnQueue.Visibility = Visibility.Visible;
             columnDefinitionQueue.Width = new GridLength(360);
-            //searchBoard.Visibility = Visibility.Visible;
-            //queueBoard.Visibility = Visibility.Visible;
-            //queueScroll.Visibility = Visibility.Visible;
         }
-
-        //private void refreshButton_Click(object sender, RoutedEventArgs e)
-        //{
-        //    webPlayer.Reload(true);
-        //}
     }
 }
