@@ -41,8 +41,12 @@ namespace NowMine
         {
             QueuePiece queuePiece = new QueuePiece(musicPiece, user);
 
-            if (queue.Count == 0)
+            if (queue.Count == 0 || !webPanel.isPlaying)
             {
+                if (nowPlaying() != null)
+                {
+                    toHistory(nowPlaying());
+                }
                 queuePiece.musicPiece.nowPlayingVisual();
                 webPanel.playNow(musicPiece.Info.id);
                 queue.Add(queuePiece);
@@ -156,6 +160,7 @@ namespace NowMine
 
         public void toHistory(QueuePiece queuePiece)
         {
+            queuePiece.musicPiece.setPlayedDate();
             deleteFromQueue(queuePiece);
             queuePiece.musicPiece.historyVisual();
             history.Add(queuePiece);
@@ -173,13 +178,19 @@ namespace NowMine
         public MusicPiece getNextMusicPiece()
         {
             QueuePiece nextQueue = getNextPiece();
-            return nextQueue.musicPiece;
+            if (nextQueue != null)
+            {
+                return nextQueue.musicPiece;
+            } else
+            {
+                return null;
+            }
         }
 
         public bool playNext()
         {
             QueuePiece nextQueue = getNextPiece();
-            if (nextQueue.musicPiece != null)
+            if (nextQueue != null)
             {
                 MusicPiece nextVideo = nextQueue.musicPiece;
                 nextVideo.nowPlayingVisual();
@@ -194,7 +205,15 @@ namespace NowMine
 
         public QueuePiece nowPlaying()
         {
-            return queue.First();
+            if (queue.Count >= 1)
+            {
+                return queue.First();
+            }
+            else
+            {
+                return null;
+            }
+                
         }
 
         private QueuePiece findQueuePiece(MusicPiece musicPiece)

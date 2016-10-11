@@ -48,7 +48,7 @@ namespace NowMine
             this.channelName = info.channelName;
             this.thumbnail = info.thumbnail;
             this.userName = user.name;
-            this.color = "#00ff00";
+            this.color = user.getColor().ToString();
         }
     }
 }

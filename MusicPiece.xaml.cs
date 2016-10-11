@@ -24,6 +24,7 @@ namespace NowMine
 
         private YouTubeInfo info = null;
         private DateTime created { get; set; }
+        private DateTime played { get; set; }
 
         public MusicPiece()
         {
@@ -123,6 +124,11 @@ namespace NowMine
             this.border.BorderBrush = greyBrush;
             this.lblTitle.BorderBrush = greyBrush;
             this.lblChannelName.BorderBrush = greyBrush;
+        }
+
+        public void setPlayedDate()
+        {
+            this.played = DateTime.Now;
         }
     }
 }

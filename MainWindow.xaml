@@ -3,24 +3,33 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:awe="http://schemas.awesomium.com/winfx" x:Class="NowMine.MainWindow"
         Title="Now Mine!" Height="600" Width="1300">
-    <Grid>
+    <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="360"/>
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="360" />
+            <ColumnDefinition Width="360" x:Name="columnDefinitionSearch"/>
+            <ColumnDefinition Width="*" x:Name="columnDefinitionPlayer"/>
+            <ColumnDefinition Width="360" x:Name="columnDefinitionQueue" />
         </Grid.ColumnDefinitions>
+
+        <Grid x:Name="columnSearch" Grid.Column="0">
+            <WrapPanel x:Name="searchButtons">
+                <TextBox x:Name="txtSearch" Text="Search" VerticalAlignment="Top" Width="120" KeyDown="txtSearch_KeyDown" HorizontalAlignment="Center" GotFocus="txtSearch_GotFocus"/>
+                <Button x:Name="searchButton" Content="Szukaj!" Width="75" Click="searchButton_Click" FontSize="15" HorizontalAlignment="Right"/>
+                <Button x:Name="playNextButton" Content="Next!" Width="75" HorizontalAlignment="Center" FontSize="15" Click="playNextButton_Click"/>
+            </WrapPanel>
+            <ScrollViewer Margin="0,30,0,0" >
+                <StackPanel x:Name="searchBoard" />
+            </ScrollViewer>
+        </Grid>
+
+        <Grid x:Name="columnPlayer" Grid.Column="1">
+            <awe:WebControl x:Name="webPlayer" DocumentReady="webPlayer_DocumentReady" MouseDoubleClick="Player_MouseDoubleClick"/>
+        </Grid>
         
-        <WrapPanel x:Name="searchButtons" Grid.Column="0">
-            <TextBox x:Name="txtSearch" Text="Search" VerticalAlignment="Top" Width="120" KeyDown="txtSearch_KeyDown" HorizontalAlignment="Center" GotFocus="txtSearch_GotFocus"/>
-            <Button x:Name="searchButton" Content="Szukaj!" Width="75" Click="searchButton_Click" FontSize="15" HorizontalAlignment="Right"/>
-            <Button x:Name="playNextButton" Content="Next!" Width="75" HorizontalAlignment="Center" FontSize="15" Click="playNextButton_Click"/>
-        </WrapPanel>
-        <ScrollViewer Grid.Column="0" Margin="0,30,0,0">
-            <StackPanel x:Name="searchBoard" />
-        </ScrollViewer>
-        <awe:WebControl x:Name="webPlayer" DocumentReady="webPlayer_DocumentReady" Grid.Column="1"/>
-        <ScrollViewer Grid.Column="2">
-            <StackPanel x:Name="queueBoard" Grid.Column="2"/>
-        </ScrollViewer>
+        <Grid x:Name="columnQueue" Grid.Column="2">
+            <!-- <Button x:Name="refreshButton" Content="Refresh" Click="refreshButton_Click" /> -->
+            <ScrollViewer x:Name="queueScroll">
+                <StackPanel x:Name="queueBoard"/>
+            </ScrollViewer>
+        </Grid>
     </Grid>
 </Window>

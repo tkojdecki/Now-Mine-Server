@@ -14,6 +14,7 @@ namespace NowMine
     {
         WebControl webControl;
         QueuePanel queuePanel;
+        public bool isPlaying = false;
 
         public WebPanel(WebControl webControl, QueuePanel queuePanel)
         {
@@ -38,11 +39,19 @@ namespace NowMine
 
         public void playNow(String id)
         {
+            if (!isPlaying)
+            {
+                isPlaying = true;
+            }
             webControl.ExecuteJavascript("changeVideo('" + id + "')");
         }
 
         public void playNow(MusicPiece musicPiece)
         {
+            if (!isPlaying)
+            {
+                isPlaying = true;
+            }
             webControl.ExecuteJavascript("changeVideo(\'" + musicPiece.Info.id + "')");
         }
 
@@ -59,11 +68,20 @@ namespace NowMine
         private JSValue playNextQueued(object obj, JavascriptMethodEventArgs jsMethodArgs)
         {
             MusicPiece nextVideo = queuePanel.getNextMusicPiece();
-            nextVideo.nowPlayingVisual();
-            queuePanel.toHistory(queuePanel.nowPlaying());
+            if (nextVideo != null)
+            {
+                isPlaying = true;
+                nextVideo.nowPlayingVisual();
+                queuePanel.toHistory(queuePanel.nowPlaying());
 
-            playNow(nextVideo.Info.id);
-            queuePanel.populateQueueBoard();
+                playNow(nextVideo.Info.id);
+                queuePanel.populateQueueBoard();
+            }
+            else
+            {
+                isPlaying = false;
+            }
+            
             return null;
         }
     }
