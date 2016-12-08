@@ -12,10 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using Awesomium;
-using Awesomium.Windows.Controls;
-using Awesomium.Core;
-using Awesomium.Core.Data;
+using CefSharp.Wpf;
+using CefSharp;
+using System.IO;
+using CefSharp.SchemeHandler;
 
 namespace NowMine
 {
@@ -32,15 +32,25 @@ namespace NowMine
         ServerTCP serverTCP;
         ServerUDP serverUDP;
         private bool isMaximized = false;
+        ChromiumWebBrowser webPlayer;
 
         public MainWindow()
         {
             InitializeComponent();
+            InitializeChromium();
+            webPlayer = new ChromiumWebBrowser();
+
             webPanel = new WebPanel(webPlayer, queuePanel);
+            webPlayer.RegisterJsObject("app", webPanel);
+            webPlayer.FrameLoadEnd += WebPlayer_FrameLoadEnd;
+            webPlayer.Initialized += WebPlayer_Initialized;
+            
+            columnPlayer.Children.Add(webPlayer);
+
             queuePanel = new QueuePanel(queueBoard, webPanel);
             searchPanel = new SearchPanel(searchBoard, txtSearch, queuePanel);
             webPanel.reinitialize(webPlayer, queuePanel);
-            
+
             this.serverTCP = new ServerTCP();
             serverThread = new Thread(() => serverTCP.ServerInit(queuePanel));
             serverThread.IsBackground = true;
@@ -50,6 +60,45 @@ namespace NowMine
             udpThread = new Thread(serverUDP.udpListener);
             udpThread.IsBackground = true;
             udpThread.Start();
+            
+
+        }
+
+        private void InitializeChromium()
+        {
+            var settings = new CefSettings();
+            settings.CefCommandLineArgs.Add("disable-gpu-vsync", "1");
+            settings.CefCommandLineArgs.Add("disable-gpu", "1");
+            settings.LogSeverity = LogSeverity.Verbose;
+            settings.CefCommandLineArgs.Add("no-proxy-server", "1");
+
+            settings.RegisterScheme(new CefCustomScheme
+            {
+                SchemeName = "local",
+                SchemeHandlerFactory = new FolderSchemeHandlerFactory(
+                                                rootFolder: @"..\..\..\Resources",
+                                                schemeName: "local", //Optional param no schemename checking if null
+                                                //hostName: "cefsharp", //Optional param no hostname checking if null
+                                                defaultPage: "YoutubeWrapper.html" //Optional param will default to index.html
+                                                )
+            });
+
+            Cef.Initialize(settings);
+        }
+
+
+        private void WebPlayer_Initialized(object sender, EventArgs e)
+        {
+            this.webPlayer.Address = @"local://index.html";
+        }
+
+        private void WebPlayer_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
+        {
+            Console.WriteLine("Frame Load End: " +  e.Frame + " " + e.HttpStatusCode + " " + e.Url);
+            if (e.HttpStatusCode == 200 && e.Url.Contains("youtube.com"))
+            {
+                Application.Current.Dispatcher.Invoke(new Action(() => { activateUI(); }));
+            }
         }
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
@@ -63,11 +112,6 @@ namespace NowMine
             {
                 searchPanel.search();
             }
-        }
-
-        private void webPlayer_DocumentReady(object sender, DocumentReadyEventArgs e)
-        {
-            webPanel.BindMethods();
         }
 
         private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
@@ -118,6 +162,19 @@ namespace NowMine
 
             columnQueue.Visibility = Visibility.Visible;
             columnDefinitionQueue.Width = new GridLength(360);
+        }
+
+        private void activateUI()
+        {
+            txtSearch.KeyDown += txtSearch_KeyDown;
+            searchButton.IsEnabled = true;
+            playNextButton.IsEnabled = true;
+            webPlayer.MouseDoubleClick += Player_MouseDoubleClick;
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            Cef.Shutdown();
         }
     }
 }

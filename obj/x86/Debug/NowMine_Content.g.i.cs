@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("youtubewrapper.html")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/youtubewrapper.html")]
 
 
