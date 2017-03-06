@@ -47,7 +47,7 @@ namespace NowMine
             this.title = info.title;
             this.channelName = info.channelName;
             this.thumbnail = info.thumbnail;
-            this.userName = user.name;
+            this.userName = user.Name;
             this.color = user.getColor().ToString();
         }
     }

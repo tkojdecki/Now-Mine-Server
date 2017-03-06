@@ -13,48 +13,60 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Google.Apis.YouTube.v3.Data;
+using System.ComponentModel;
 
 namespace NowMine
 {
     /// <summary>
     /// Interaction logic for ListObject.xaml
     /// </summary>
-    public partial class MusicPiece : UserControl
-    {
+    public partial class MusicPiece : UserControl, INotifyPropertyChanged
+    {  
+        private DateTime Created { get; set; }
+        private DateTime Played { get; set; }
 
-        private YouTubeInfo info = null;
-        private DateTime created { get; set; }
-        private DateTime played { get; set; }
-
+        private YouTubeInfo _info = null;
         public YouTubeInfo Info
         {
-            get { return info; }
+            get { return _info; }
             set
             {
-                info = value;
-                setTitle = info.title;
-                setChannelName = info.channelName;
-                setImage = info.thumbnail.Url;
+                _info = value;
+                Title = _info.title;
+                ChannelName = _info.channelName;
+                setImage = _info.thumbnail.Url;
             }
         }
 
-        private string setTitle
+        private string _title;
+        public string Title
         {
+            get
+            {
+                return _title;
+            }
             set
             {
-                lblTitle.Content = value;
+                _title = value;
+                OnPropertyChanged("Title");
             }
         }
 
-        private string setChannelName
+        private string _channelName;
+        public string ChannelName
         {
+            get
+            {
+                return _channelName;
+            }
             set
             {
-                lblChannelName.Content = value;
+                _channelName = value;
+                OnPropertyChanged("ChannelName");
             }
         }
 
-        private string setImage
+        public string setImage
         {
             set
             {
@@ -62,7 +74,27 @@ namespace NowMine
                 imgMain.Source = bmp;
             }
         }
+        
 
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyChanged(string name)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
+
+        private User _user;
+        public User User
+        {
+            get
+            {
+                return _user;
+            }
+            set
+            {
+                _user = value;
+                OnPropertyChanged("User");
+            }
+        }
         public MusicPiece()
         {
             InitializeComponent();
@@ -72,37 +104,31 @@ namespace NowMine
         public MusicPiece(YouTubeInfo inf)
         {
             InitializeComponent();
-            this.info = inf;
-            lblTitle.Content = info.title;
-            lblChannelName.Content = info.channelName;
-            setImage = info.thumbnail.Url;
-            lbluserName.Content = User.getServerUser().name;
+            Info = inf;
+            setImage = _info.thumbnail.Url;
+            User = User.getServerUser();
             lbluserName.Visibility = Visibility.Hidden;
-            created = DateTime.Now;
+            Created = DateTime.Now;
         }
 
         //to Queue
         public MusicPiece(YouTubeInfo inf, User user)
         {
             InitializeComponent();
-            this.info = inf;
-            lblTitle.Content = info.title;
-            lblChannelName.Content = info.channelName;
-            setImage = info.thumbnail.Url;
-            created = DateTime.Now;
-            lbluserName.Content = user.name;
+            Info = inf;
+            setImage = _info.thumbnail.Url;
+            Created = DateTime.Now;
+            User = user;
         }
 
         public MusicPiece copy()
         {
             MusicPiece musicPiece = new MusicPiece();
             musicPiece.InitializeComponent();
-            musicPiece.info = this.info;
-            musicPiece.lblTitle.Content = info.title;
-            musicPiece.lblChannelName.Content = info.channelName;
-            musicPiece.setImage = info.thumbnail.Url;
-            musicPiece.created = DateTime.Now;
-            musicPiece.lbluserName.Content = lbluserName.Content;
+            musicPiece.Info = this._info;
+            musicPiece.setImage = _info.thumbnail.Url;
+            musicPiece.Created = DateTime.Now;
+            musicPiece.User = this.User;
             return musicPiece;
         }
 
@@ -112,11 +138,11 @@ namespace NowMine
             this.border.BorderBrush = redBrush;
         }
 
-        internal void userColorBrush(User user)
+        internal void userColorBrush()
         {
-            SolidColorBrush userBrush = new SolidColorBrush(user.getColor());
+            SolidColorBrush userBrush = new SolidColorBrush(User.getColor());
             this.border.BorderBrush = userBrush;
-            this.dropShadowEffect.Color = user.getColor();
+            this.dropShadowEffect.Color = User.getColor();
             this.recBackground.Fill = userBrush;
             this.recBackground.Opacity = 0.3d;
         }
@@ -131,7 +157,7 @@ namespace NowMine
 
         public void setPlayedDate()
         {
-            this.played = DateTime.Now;
+            this.Played = DateTime.Now;
         }
     }
 }

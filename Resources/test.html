@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+<!--<h1>TO JEST TEST</h1>-->    
+ <script>
+        (function() {
+
+            var $allVideos = $("div[id^='player'], object, embed"),
+            $fluidEl = $("figure");
+
+	        $allVideos.each(function() {
+
+	          $(this)
+	            // jQuery .data does not work on object/embed elements
+	            .attr('data-aspectRatio', this.height / this.width)
+	            .removeAttr('height')
+	            .removeAttr('width');
+
+	        });
+
+	        $(window).resize(function() {
+
+	          var newWidth = $fluidEl.width();
+	          $allVideos.each(function() {
+
+	            var $el = $(this);
+	            $el
+	                .width(newWidth)
+	                .height(newWidth * $el.attr('data-aspectRatio'));
+
+	          });
+
+	        }).resize();
+
+        });
+    </script>
+
+    <style>
+        .embed-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        .embed-container iframe, .embed-container object, .embed-container embed {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .unselectable {
+           -moz-user-select: -moz-none;
+           -khtml-user-select: none;
+           -webkit-user-select: none;
+
+           /*
+             Introduced in IE 10.
+             See http://ie.microsoft.com/testdrive/HTML5/msUserSelect/
+           */
+           -ms-user-select: none;
+           user-select: none;
+        }
+    </style>
+	<div class='embed-container'>
+    <div id="player" class="unselectable"></div>
+	</div>
+	
+	<!--<iframe id="player" type="text/html" frameborder="0" src="http://www.youtube.com/embed/59JGY-K0BeQ"></iframe>   - To samo co zwykły, VEVO z watch on youtube-->
+    <object width="560" height="315"><param name="movie" value="http://www.youtube.com/v/59JGY-K0BeQ?version=3&amp;hl=en_GB"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/59JGY-K0BeQ?version=3&amp;hl=en_GB" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+
+    <script>
+      // 2. This code loads the IFrame Player API code asynchronously.
+      //var tag = document.createElement('script');
+
+      //tag.src = "https://www.youtube.com/iframe_api";
+      //var firstScriptTag = document.getElementsByTagName('script')[0];
+      //firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      //var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange,
+              'onError': onPlayerError
+          }
+        });
+      }
+
+      function onPlayerError(event) {
+          if (event.data == 150 || event.data == 101)
+          {
+              app.errorHandle();
+          }
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      //var done = false;
+      function onPlayerStateChange(event) {
+          if (event.data == YT.PlayerState.ENDED) {
+              app.getNextVideo();
+        }
+      }
+
+      function stopVideo() {
+        player.stopVideo();
+      }
+	  
+	  function changeVideo(a){
+		player.loadVideoById({videoId: a});
+	  }
+
+	  function addToQueue(video) {
+	      player.cueVideoById({
+              videoId: video
+	      })
+	  }
+    </script>
+</body>
+</html>

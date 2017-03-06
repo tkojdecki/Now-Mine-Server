@@ -47,7 +47,9 @@ namespace NowMine
         {
             var musicPiece = (MusicPiece)sender;
             var queueMusicPiece = musicPiece.copy();
-            queuePanel.addToQueue(queueMusicPiece, User.getServerUser());
+            queueMusicPiece.userColorBrush();
+            queueMusicPiece.lbluserName.Visibility = System.Windows.Visibility.Visible;
+            queuePanel.addToQueue(queueMusicPiece);
         }
 
         public List<MusicPiece> getSearchList(String searchWord)

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="NowMine.MainWindow"
         xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
+        xmlns:nm="clr-namespace:NowMine"
         Title="Now Mine!" Height="600" Width="1300" Closing="Window_Closing">
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
@@ -26,9 +27,17 @@
 
         </Grid>
 
-        <Grid x:Name="columnQueue" Grid.Column="2">
+        <Grid x:Name="columnQueue" Grid.Column="2" >
             <ScrollViewer x:Name="queueScroll">
-                <StackPanel x:Name="queueBoard"/>
+                <StackPanel x:Name="queueBoard">
+                    <ItemsControl ItemsSource="{Binding Path=Queue}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <nm:MusicPiece></nm:MusicPiece>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
             </ScrollViewer>
         </Grid>
     </Grid>

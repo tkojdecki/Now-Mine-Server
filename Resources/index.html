@@ -91,12 +91,20 @@
         player = new YT.Player('player', {
           height: '390',
           width: '640',
-          videoId: 'M7lc1UVf-VE',
+         // videoId: 'M7lc1UVf-VE',
           events: {
-            //'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange,
+              'onError': onPlayerError
           }
         });
+      }
+
+      function onPlayerError(event) {
+          if (event.data == 150 || event.data == 101)
+          {
+              app.errorHandle();
+          }
       }
 
       // 4. The API will call this function when the video player is ready.
@@ -107,7 +115,7 @@
       // 5. The API calls this function when the player's state changes.
       //    The function indicates that when playing a video (state=1),
       //    the player should play for six seconds and then stop.
-      var done = false;
+      //var done = false;
       function onPlayerStateChange(event) {
           if (event.data == YT.PlayerState.ENDED) {
               app.getNextVideo();

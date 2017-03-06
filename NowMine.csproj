@@ -165,13 +165,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <None Include="!AgileCore" />
     <Compile Include="QueuePanel.cs" />
     <Compile Include="SearchPanel.cs" />
     <Compile Include="MusicPiece.xaml.cs">
       <DependentUpon>MusicPiece.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ServerTCP.cs" />
-    <Compile Include="ServerUDP.cs" />
+    <Compile Include="Network\ServerTCP.cs" />
+    <Compile Include="Network\ServerUDP.cs" />
     <Compile Include="User.cs" />
     <Compile Include="WebPanel.cs" />
     <Compile Include="YouTubeInfo.cs" />
@@ -224,7 +225,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\YoutubeWrapper.html" />
+    <Content Include="Resources\index.html" />
+    <Content Include="Resources\test.html" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets" Condition="Exists('packages\Microsoft.Bcl.Build.1.0.21\build\Microsoft.Bcl.Build.targets')" />

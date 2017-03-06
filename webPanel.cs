@@ -14,12 +14,14 @@ namespace NowMine
     {
         ChromiumWebBrowser webControl;
         QueuePanel queuePanel;
+        MainWindow mainWindow;
         public bool isPlaying = false;
 
-        public WebPanel(ChromiumWebBrowser webControl, QueuePanel queuePanel)
+        public WebPanel(ChromiumWebBrowser webControl, QueuePanel queuePanel, MainWindow mainWindow)
         {
             this.webControl = webControl;
             this.queuePanel = queuePanel;
+            this.mainWindow = mainWindow;
         }
 
         public void reinitialize(ChromiumWebBrowser webControl, QueuePanel queuePanel)
@@ -40,24 +42,29 @@ namespace NowMine
 
         public void playNow(MusicPiece musicPiece)
         {
-            if (!isPlaying)
+            if (musicPiece != null)
             {
-                isPlaying = true;
+                if (!isPlaying)
+                {
+                    isPlaying = true;
+                }
+                webControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + musicPiece.Info.id + "')");
             }
-            webControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + musicPiece.Info.id + "')");
         }
 
-        public void BindMethods()
-        {
-            webControl.RegisterJsObject("app", this);
-        }
 
+
+        //public void BindMethods()
+        //{
+        //    webControl.RegisterJsObject("app", this);
+        //}
+
+        //functions to call from javascript
         public void getNextVideo()
         {
-            MusicPiece nextVideo = queuePanel.getNextMusicPiece();
+            MusicPiece nextVideo = queuePanel.getNextPiece();
             if (nextVideo != null)
             {
-                isPlaying = true;
                 Application.Current.Dispatcher.Invoke(new Action(() => { nextVideo.nowPlayingVisual(); }));
                 //nextVideo.nowPlayingVisual();
                 Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.toHistory(queuePanel.nowPlaying()); }));
@@ -66,11 +73,45 @@ namespace NowMine
                 playNow(nextVideo.Info.id);
                 Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.populateQueueBoard(); }));
                 //queuePanel.populateQueueBoard();
+                isPlaying = true;
             }
             else
             {
                 isPlaying = false;
+                //queueEnded  <---tutaj skończyłem
+
+                if (mainWindow.isYoutubePage)
+                {
+                    mainWindow.isYoutubePage = false;
+                    
+                }
             }
+        }
+
+        public void errorHandle()
+        {
+            //Console.WriteLine("ONERROR" + error.ToString());
+            Console.WriteLine("ONERROR");
+            MusicPiece nowPlaying = queuePanel.nowPlaying();
+            Application.Current.Dispatcher.Invoke(new Action(() =>
+            {
+                this.webControl.Address = @"http://www.youtube.com/watch?v=" + nowPlaying.Info.id;
+                //webControl.GetMainFrame().ExecuteJavaScriptAsync("alert('asdf')"); <- dziaua
+                //webControl.GetMainFrame().ExecuteJavaScriptAsync("app.ytEnded();");
+            }));
+            mainWindow.isYoutubePage = true;
+            mainWindow.videoID = nowPlaying.Info.id;
+        }
+
+        public void ytEnded()
+        {
+            Console.WriteLine("asdfasdfasdf");
+        }
+
+        internal void setYoutubeWrapper(bool isInitial)
+        {
+            this.webControl.Address = @"local://index.html";
+            queuePanel.playNext();
         }
     }
 }

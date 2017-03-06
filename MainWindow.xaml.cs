@@ -16,6 +16,9 @@ using CefSharp.Wpf;
 using CefSharp;
 using System.IO;
 using CefSharp.SchemeHandler;
+using System.Net;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace NowMine
 {
@@ -32,18 +35,22 @@ namespace NowMine
         ServerTCP serverTCP;
         ServerUDP serverUDP;
         private bool isMaximized = false;
-        ChromiumWebBrowser webPlayer;
+        public ChromiumWebBrowser webPlayer;
+        public bool isYoutubePage = false;
+        public string videoID = "";
 
         public MainWindow()
         {
+            
             InitializeComponent();
             InitializeChromium();
             webPlayer = new ChromiumWebBrowser();
 
-            webPanel = new WebPanel(webPlayer, queuePanel);
+            webPanel = new WebPanel(webPlayer, queuePanel, this);
             webPlayer.RegisterJsObject("app", webPanel);
             webPlayer.FrameLoadEnd += WebPlayer_FrameLoadEnd;
             webPlayer.Initialized += WebPlayer_Initialized;
+            webPlayer.LoadingStateChanged += WebPlayer_LoadingStateChanged;
             
             columnPlayer.Children.Add(webPlayer);
 
@@ -60,8 +67,10 @@ namespace NowMine
             udpThread = new Thread(serverUDP.udpListener);
             udpThread.IsBackground = true;
             udpThread.Start();
-            
 
+            serverTCP.MusicPieceReceived += queuePanel.addFromNetwork;
+            DataContext = this;
+            columnQueue.DataContext = queuePanel;
         }
 
         private void InitializeChromium()
@@ -70,16 +79,17 @@ namespace NowMine
             settings.CefCommandLineArgs.Add("disable-gpu-vsync", "1");
             settings.CefCommandLineArgs.Add("disable-gpu", "1");
             settings.LogSeverity = LogSeverity.Verbose;
-            settings.CefCommandLineArgs.Add("no-proxy-server", "1");
+            settings.RemoteDebuggingPort = 8088;
+            //settings.CefCommandLineArgs.Add("no-proxy-server", "1");
 
             settings.RegisterScheme(new CefCustomScheme
             {
                 SchemeName = "local",
                 SchemeHandlerFactory = new FolderSchemeHandlerFactory(
                                                 rootFolder: @"..\..\..\Resources",
-                                                schemeName: "local", //Optional param no schemename checking if null
+                                                schemeName: "local" //Optional param no schemename checking if null
                                                 //hostName: "cefsharp", //Optional param no hostname checking if null
-                                                defaultPage: "YoutubeWrapper.html" //Optional param will default to index.html
+                                                //defaultPage: "test.html" //Optional param will default to index.html
                                                 )
             });
 
@@ -95,11 +105,59 @@ namespace NowMine
         private void WebPlayer_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
         {
             Console.WriteLine("Frame Load End: " +  e.Frame + " " + e.HttpStatusCode + " " + e.Url);
-            if (e.HttpStatusCode == 200 && e.Url.Contains("youtube.com"))
+            if (!isYoutubePage && e.HttpStatusCode == 200 && e.Url.Contains("youtube.com"))
             {
                 Application.Current.Dispatcher.Invoke(new Action(() => { activateUI(); }));
+                if (queuePanel.nowPlaying() != null)
+                {
+                    webPanel.playNow(queuePanel.nowPlaying());
+                }
+                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
+                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function asdf() { alert('asdf') });");
+                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onReady', function asdf() { alert('asdf') });");
+
             }
+            if ( e.Url.Contains("googleapis") || e.Url.Contains("google.com")) //!isYoutubePage &&
+            {
+                isYoutubePage = true;
+
+                
+            }
+            if (!this.videoID.Equals("") && e.Url.Contains(this.videoID) && e.Frame.IsMain) //&& !e.Browser.IsLoading
+            {
+                webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
+                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function asdf() { alert('asdf') });");
+                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', app.ytEnded());");
+                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"app.ytEnded();");
+                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function asdf() { app.ytEnded(); });"); 
+                webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function onPlayerStateChange(event){if(event.data==0){app.getNextVideo();}});");
+            }
+            //if (isYoutubePage && e.HttpStatusCode == 200 && e.Url.Contains("google.com"))
+            //{
+            //    webPanel.setYoutubeWrapper(false);
+            //    isYoutubePage = false;
+            //}
         }
+
+        private void WebPlayer_LoadingStateChanged(object sender, LoadingStateChangedEventArgs e)
+        {
+            ChromiumWebBrowser browser = sender as ChromiumWebBrowser;
+            string bradres = "";
+            Application.Current.Dispatcher.Invoke(new Action(() => { bradres = browser.Address; }));
+            if (isYoutubePage && !bradres.Contains(this.videoID))
+            {
+                Console.WriteLine("Back to index.html!");
+                webPanel.isPlaying = false;
+                Application.Current.Dispatcher.Invoke(new Action(() => { this.webPlayer.Address = @"local://index.html"; }));
+                Application.Current.Dispatcher.Invoke(new Action(() => { webPanel.getNextVideo(); }));
+
+                //Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.playNext(); }));
+                isYoutubePage = false;
+            }
+            Console.WriteLine("LoadingStateChanged " + bradres);
+        }
+
+        //private void 
 
         private void searchButton_Click(object sender, RoutedEventArgs e)
         {
@@ -122,7 +180,24 @@ namespace NowMine
 
         private void playNextButton_Click(object sender, RoutedEventArgs e)
         {
-            queuePanel.playNext();
+            webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
+            //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', app.ytEnded);");
+            webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function asdf() { alert('asdf') });");
+            webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"alert(ytpl);");
+            //if (isYoutubePage)
+            //{
+            //    Console.WriteLine("Back to index.html!");
+            //    webPanel.isPlaying = false;
+            //    Application.Current.Dispatcher.Invoke(new Action(() => { this.webPlayer.Address = @"local://index.html"; }));
+            //    Application.Current.Dispatcher.Invoke(new Action(() => { webPanel.getNextVideo(); }));
+            //    //webPanel.getNextVideo();
+            //    //Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.playNext(); }));
+            //    isYoutubePage = false;
+            //}
+            //else
+            //{
+            //    queuePanel.playNext();
+            //}
         }
 
         private void Player_MouseDoubleClick(object sender, MouseButtonEventArgs e)

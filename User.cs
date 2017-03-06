@@ -9,7 +9,7 @@ namespace NowMine
 {
     public class User
     {
-        public String name;
+        public String Name { get; set; }
         List<MusicPiece> queued = new List<MusicPiece>();
         List<MusicPiece> history = new List<MusicPiece>();
         private static User serverUser;
@@ -17,14 +17,14 @@ namespace NowMine
 
         public User(String name)
         {
-            this.name = name;
+            this.Name = name;
             Random rnd = new Random();
             this.color = Color.FromRgb((byte)rnd.Next(0, 255), (byte)rnd.Next(0, 255), (byte)rnd.Next(0, 255));
         }
 
         public void addToQueue(MusicPiece piece)
         {
-            piece.lbluserName.Content = this.name;
+            piece.lbluserName.Content = this.Name;
             queued.Add(piece);
         }
 

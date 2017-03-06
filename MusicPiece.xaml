@@ -6,7 +6,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="75"
              d:DesignWidth="360"
-             Padding="0, 5, 0, 5">
+             Padding="0, 5, 0, 5"
+             DataContext="{Binding RelativeSource={RelativeSource Self}}">
     
     <Grid x:Name="gridPiece">
         <Grid.ColumnDefinitions>
@@ -21,9 +22,9 @@
         </Grid>
 
         <Grid Grid.Column="1">
-            <Label x:Name="lblTitle" Content="" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-            <Label x:Name="lblChannelName" Content="" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-            <Label x:Name="lbluserName" Content="" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+            <Label x:Name="lblTitle" Content="{Binding Path=Title}" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+            <Label x:Name="lblChannelName" Content="{Binding Path=ChannelName}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+            <Label x:Name="lbluserName" Content="{Binding Path=User.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
         </Grid>
         
         <Border x:Name="border" BorderBrush="Black" BorderThickness="3" Height="75" VerticalAlignment="Top" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="360">
