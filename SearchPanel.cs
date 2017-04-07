@@ -15,6 +15,18 @@ namespace NowMine
         TextBox textBox;
         QueuePanel queuePanel;
 
+        public delegate void VideoQueuedEventHandler(object s, MusicPieceReceivedEventArgs e);
+        public event VideoQueuedEventHandler VideoQueued;
+        protected virtual void OnVideoQueued(YoutubeQueued youtubeQueued)
+        {
+            if (VideoQueued != null)
+            {
+                var e = new MusicPieceReceivedEventArgs();
+                e.YoutubeQueued = youtubeQueued;
+                VideoQueued(this, e);
+            }
+        }
+
         public SearchPanel(StackPanel stackPanel, TextBox textBox, QueuePanel queuePanel)
         {
             this.stackPanel = stackPanel;
@@ -49,7 +61,8 @@ namespace NowMine
             var queueMusicPiece = musicPiece.copy();
             queueMusicPiece.userColorBrush();
             queueMusicPiece.lbluserName.Visibility = System.Windows.Visibility.Visible;
-            queuePanel.addToQueue(queueMusicPiece);
+            int qPos = queuePanel.addToQueue(queueMusicPiece);
+            OnVideoQueued(new YoutubeQueued(musicPiece.Info, qPos, User.serverUser.Id));
         }
 
         public List<MusicPiece> getSearchList(String searchWord)

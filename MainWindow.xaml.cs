@@ -40,8 +40,7 @@ namespace NowMine
         public string videoID = "";
 
         public MainWindow()
-        {
-            
+        {            
             InitializeComponent();
             InitializeChromium();
             webPlayer = new ChromiumWebBrowser();
@@ -68,9 +67,13 @@ namespace NowMine
             udpThread.IsBackground = true;
             udpThread.Start();
 
-            serverTCP.MusicPieceReceived += queuePanel.addFromNetwork;
+            //serverTCP.MusicPieceReceived += queuePanel.addFromNetwork;
+            serverTCP.MusicPieceReceived += serverUDP.sendQueuedPiece;
+            searchPanel.VideoQueued += serverUDP.sendQueuedPiece;
+            webPanel.VideoEnded += serverUDP.DeletedPiece;
+            queuePanel.PlayedNow += serverUDP.playedNow;
             DataContext = this;
-            columnQueue.DataContext = queuePanel;
+            columnQueue.DataContext = queuePanel;   
         }
 
         private void InitializeChromium()
@@ -78,7 +81,7 @@ namespace NowMine
             var settings = new CefSettings();
             settings.CefCommandLineArgs.Add("disable-gpu-vsync", "1");
             settings.CefCommandLineArgs.Add("disable-gpu", "1");
-            settings.LogSeverity = LogSeverity.Verbose;
+            //settings.LogSeverity = LogSeverity.Verbose;
             settings.RemoteDebuggingPort = 8088;
             //settings.CefCommandLineArgs.Add("no-proxy-server", "1");
 

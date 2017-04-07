@@ -38,7 +38,7 @@ namespace NowMine
             this.id = info.id;
             this.title = info.title;
             this.channelName = info.channelName;
-            this.thumbnail = info.thumbnail;            
+            this.thumbnail = info.thumbnail;
         }
 
         public QueuePieceToSend(YouTubeInfo info, User user)
@@ -49,6 +49,43 @@ namespace NowMine
             this.thumbnail = info.thumbnail;
             this.userName = user.Name;
             this.color = user.getColor().ToString();
+        }
+    }
+
+    public class YoutubeQueued : YouTubeInfo
+    {
+        public YoutubeQueued (YouTubeInfo yi, int qPos, int userId)
+        {
+            this.LinkUrl = yi.LinkUrl;
+            this.id = yi.id;
+            this.title = yi.title;
+            this.channelName = yi.channelName;
+            this.thumbnail = yi.thumbnail;
+            this.qPos = qPos;
+            this.userId = userId;
+        }
+
+        public YoutubeQueued(YouTubeInfo yi, int qPos) //for PlayedNow from QueuePanel to send on udp played video from queue
+        {
+            this.LinkUrl = yi.LinkUrl;
+            this.id = yi.id;
+            this.title = yi.title;
+            this.channelName = yi.channelName;
+            this.thumbnail = yi.thumbnail;
+            this.qPos = qPos;
+            this.userId = 0;
+        }
+        public int qPos;
+        public int userId;
+    }
+
+    public class GenericEventArgs<T> : EventArgs
+    {
+        public T EventData { get; private set; }
+
+        public GenericEventArgs(T EventData)
+        {
+            this.EventData = EventData;
         }
     }
 }

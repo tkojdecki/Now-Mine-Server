@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Controls ;
 
 namespace NowMine
 {
@@ -16,6 +16,9 @@ namespace NowMine
         QueuePanel queuePanel;
         MainWindow mainWindow;
         public bool isPlaying = false;
+
+        public delegate void VideoEndedEventHandler(object source, EventArgs args);
+        public event VideoEndedEventHandler VideoEnded;
 
         public WebPanel(ChromiumWebBrowser webControl, QueuePanel queuePanel, MainWindow mainWindow)
         {
@@ -28,6 +31,14 @@ namespace NowMine
         {
             this.webControl = webControl;
             this.queuePanel = queuePanel;
+        }
+
+        protected virtual void OnVideoEnded()
+        {
+            if (VideoEnded != null)
+            {
+                VideoEnded(this, EventArgs.Empty);
+            }
         }
 
         public void playNow(String id)
@@ -66,13 +77,10 @@ namespace NowMine
             if (nextVideo != null)
             {
                 Application.Current.Dispatcher.Invoke(new Action(() => { nextVideo.nowPlayingVisual(); }));
-                //nextVideo.nowPlayingVisual();
                 Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.toHistory(queuePanel.nowPlaying()); }));
-                //queuePanel.toHistory(queuePanel.nowPlaying());
 
                 playNow(nextVideo.Info.id);
                 Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.populateQueueBoard(); }));
-                //queuePanel.populateQueueBoard();
                 isPlaying = true;
             }
             else
@@ -86,6 +94,7 @@ namespace NowMine
                     
                 }
             }
+            OnVideoEnded();
         }
 
         public void errorHandle()
@@ -103,10 +112,10 @@ namespace NowMine
             mainWindow.videoID = nowPlaying.Info.id;
         }
 
-        public void ytEnded()
-        {
-            Console.WriteLine("asdfasdfasdf");
-        }
+        //public void ytEnded()
+        //{
+        //    Console.WriteLine("asdfasdfasdf");
+        //}
 
         internal void setYoutubeWrapper(bool isInitial)
         {

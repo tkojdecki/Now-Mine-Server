@@ -15,24 +15,25 @@ namespace NowMine
 {
     public class MusicPieceReceivedEventArgs : EventArgs
     {
-        public MusicPiece MusicPiece { get; set; }
+        public YoutubeQueued YoutubeQueued { get; set; }
     }
 
     class ServerTCP
     {
         QueuePanel queuePanel;
-        const int TCP_PORT = 4444;
+        readonly int TCP_PORT = 4444;
         public IPAddress serverIP = null;
         Dictionary<IPAddress, User> users = new Dictionary<IPAddress, User>();
+        readonly int commandMessagePos = Encoding.UTF8.GetByteCount("Queue: ");
 
         public delegate void MusicPieceReceivedEventHandler(object s, MusicPieceReceivedEventArgs e);
         public event MusicPieceReceivedEventHandler MusicPieceReceived;
-        protected virtual void OnMusicPieceReceived(MusicPiece musicPiece)
+        protected virtual void OnMusicPieceReceived(YoutubeQueued youtubeQueued)
         {
             if (MusicPieceReceived!=null)
             {
                 var e = new MusicPieceReceivedEventArgs();
-                e.MusicPiece = musicPiece;
+                e.YoutubeQueued = youtubeQueued;
                 MusicPieceReceived(this, e);
             }
         }
@@ -69,7 +70,6 @@ namespace NowMine
                 while (true)
                 {
                     Socket s = myList.AcceptSocket();
-                    var asdf = new NetworkStream(s);
                     Console.WriteLine("Connection accepted from " + s.RemoteEndPoint);
 
                     byte[] b = new byte[512];
@@ -92,15 +92,15 @@ namespace NowMine
                         continue;
 
                     IPAddress connectedIP = ((IPEndPoint)s.RemoteEndPoint).Address;
-                    User user = null;
-                    if(!users.ContainsKey(connectedIP))
-                    {
-                        Console.WriteLine("New User!");
-                        user = new User(connectedIP.ToString());
-                        user.Name = "User " + users.Count + 1;
-                        users.Add(connectedIP, user);
-                    }
-                    else { user = users[connectedIP]; }
+                    //User user = null;
+                    //if(!users.ContainsKey(connectedIP))
+                    //{
+                    //    Console.WriteLine("New User!");
+                    //    user = new User("User " + users.Count + 1, users.Count + 1);
+                    //    users.Add(connectedIP, user);
+                    //}
+                    //else { user = users[connectedIP]; }
+                    var user = users[connectedIP];
                     Console.WriteLine("IP {0} is user {1}", s.RemoteEndPoint, user.Name);
 
                     string[] values = recived.Split(' ');
@@ -114,17 +114,13 @@ namespace NowMine
                         case "Queue:":
                             Console.WriteLine("To Queue!");
 
-                            YouTubeInfo toQueue;
-                            //byte[] bson = Encoding.UTF8.GetBytes(recived.Substring(7));
-                            //byte[] bson = bArray;
-                            int commandMessagePos = Encoding.UTF8.GetByteCount("Queue: ");
+                            YouTubeInfo toQueue;            
                             using (MemoryStream ms = new MemoryStream(bArray, commandMessagePos, bArray.Length - commandMessagePos))
                             using (BsonReader reader = new BsonReader(ms))
                             {
                                 JsonSerializer serializer = new JsonSerializer();
                                 toQueue = serializer.Deserialize<YouTubeInfo>(reader);
                             }
-                            //YouTubeInfo sendedInfo = BsonConvert.DeserializeObject<YouTubeInfo>(ytBSON);
                             if (toQueue == null)
                             {
                                 Console.WriteLine("Failed to get Youtube Info from {0}", s.RemoteEndPoint);
@@ -137,7 +133,14 @@ namespace NowMine
                             Application.Current.Dispatcher.Invoke(new Action(() => {qPos = queuePanel.addToQueue(new MusicPiece(toQueue, user)); }));
                             Console.WriteLine("Sending position of queued element {0} to {1}", qPos, s.RemoteEndPoint);
                             s.Send(BitConverter.GetBytes(qPos));
-                            break;
+                            s.Disconnect(false);
+                            Console.WriteLine(string.Format("Disconnecting with {0}", s.RemoteEndPoint));
+                            var youtubeQueued = new YoutubeQueued(toQueue, qPos, user.Id);
+                            OnMusicPieceReceived(youtubeQueued);
+                            //serverUDP.UDPSend(bArray);
+                            //tutaj kurwa send z numerem kolejki
+                            continue;
+                            //break;
 
                         case "GetQueue":
                             Console.WriteLine("Get Queue!");
@@ -151,6 +154,22 @@ namespace NowMine
                                     JsonSerializer serializer = new JsonSerializer();
                                     //serializer.Serialize()
                                     serializer.Serialize(writer, ytInfo, typeof(QueuePieceToSend[]));
+                                    Console.WriteLine("TCP/ Sending to: {0} : {1}", s.RemoteEndPoint, Convert.ToBase64String(ms.ToArray()));
+                                    s.Send(ms.ToArray());
+                                }
+                            }
+                            break;
+
+                        case "GetUsers":
+                            Console.WriteLine("Get Users!");
+                            if (users != null)
+                            {
+                                MemoryStream ms = new MemoryStream();
+                                using (BsonWriter writer = new BsonWriter(ms))
+                                {
+                                    JsonSerializer serializer = new JsonSerializer();
+                                    //serializer.Serialize()
+                                    serializer.Serialize(writer, users, typeof(User[]));
                                     Console.WriteLine("TCP/ Sending to: {0} : {1}", s.RemoteEndPoint, Convert.ToBase64String(ms.ToArray()));
                                     s.Send(ms.ToArray());
                                 }
@@ -183,20 +202,33 @@ namespace NowMine
         {
             try
             {
-                TcpClient tcpclnt = new TcpClient();
-                Console.WriteLine("TCP/ Connecting to: " + ip.ToString());
-                tcpclnt.Connect(ip, 4444);
-                Console.WriteLine("TCP/ Connected");
-                 
-                string str = serverIP.ToString();
-                Stream stm = tcpclnt.GetStream();
+                User user = null;
+                if (!users.ContainsKey(ip))
+                {
+                    Console.WriteLine("New User!");
+                    user = new User("User " + users.Count + 1, users.Count + 1);
+                    users.Add(ip, user);
+                }
+                else
+                    user = users[ip];
+                
+                using (TcpClient tcpclnt = new TcpClient())
+                {
+                    Console.WriteLine("TCP/ Connecting to: " + ip.ToString());
+                    tcpclnt.Connect(ip, 4444);
+                    Console.WriteLine("TCP/ Connected");
 
-                ASCIIEncoding asen = new ASCIIEncoding();
-                byte[] ba = asen.GetBytes(str);
-                Console.WriteLine("TCP/ Transmitting: " + str);
+                    byte[] ipBytes = serverIP.GetAddressBytes();
+                    Stream stm = tcpclnt.GetStream();
 
-                stm.Write(ba, 0, ba.Length);
-                tcpclnt.Close();
+                    byte[] idBytes = BitConverter.GetBytes(user.Id);
+                    Console.WriteLine("TCP/ Transmitting: " + ipBytes);
+
+                    stm.Write(ipBytes, 0, ipBytes.Length);
+                    stm.Write(idBytes, 0, idBytes.Length);
+                    tcpclnt.Close();
+                    
+                }
             }
             catch (Exception ee)
             {

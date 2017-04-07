@@ -110,3 +110,4 @@ D:\now-mine\bin\Debug\Zlib.Portable.xml
 D:\now-mine\obj\Debug\NowMine.exe
 D:\now-mine\obj\Debug\NowMine.pdb
 E:\now-mine\bin\Debug\NowMine.exe.config
+D:\programowanie\now-mine\bin\Debug\NowMine.exe.config

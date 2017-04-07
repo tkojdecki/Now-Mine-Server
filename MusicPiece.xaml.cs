@@ -106,7 +106,7 @@ namespace NowMine
             InitializeComponent();
             Info = inf;
             setImage = _info.thumbnail.Url;
-            User = User.getServerUser();
+            User = User.serverUser;
             lbluserName.Visibility = Visibility.Hidden;
             Created = DateTime.Now;
         }

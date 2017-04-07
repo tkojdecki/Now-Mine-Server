@@ -36,6 +36,22 @@ namespace NowMine
         StackPanel stackPanel;
         WebPanel webPanel;
 
+        public delegate void VideoEndedEventHandler(object s, EventArgs e);
+        public event VideoEndedEventHandler VideoEnded;
+
+        public delegate void PlayedNowEventHandler(object s, PlayedNowEventArgs e);
+        public event PlayedNowEventHandler PlayedNow;
+
+        protected virtual void OnPlayedNow(int qPos)
+        {
+            PlayedNow?.Invoke(this, new PlayedNowEventArgs() { qPos = qPos });
+        }
+
+        protected virtual void OnVideoEnded()
+        {
+            VideoEnded?.Invoke(this, EventArgs.Empty);
+        }
+
         public QueuePanel(StackPanel stackPanel, WebPanel webPanel)
         {
             this.stackPanel = stackPanel;
@@ -56,10 +72,10 @@ namespace NowMine
             return qInfo;
         }
 
-        public void addFromNetwork(object o, MusicPieceReceivedEventArgs e)
-        {
-            addToQueue(e.MusicPiece);
-        }
+        //public void addFromNetwork(object o, MusicPieceReceivedEventArgs e)
+        //{
+        //    addToQueue(e.MusicPiece);
+        //}
 
         //czy tutaj powinien być Queue search? na ile funkcji to rozbić? na ile klas to rozbić? jak gęsto funkcje i jak jedną bardzo bulky
         public int addToQueue(MusicPiece musicPiece)
@@ -158,16 +174,16 @@ namespace NowMine
         private void Queue_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             var musicPiece = (MusicPiece)sender;
-            if (musicPiece != null)
-            {
-                toHistory(nowPlaying());
-                deleteFromQueue(musicPiece);
-                musicPiece.nowPlayingVisual();
-                Queue.Insert(0, musicPiece);
+            toHistory(nowPlaying());
+            deleteFromQueue(musicPiece);
+            musicPiece.nowPlayingVisual();
+            Queue.Insert(0, musicPiece);
 
-                webPanel.playNow(musicPiece.Info.id);
-                populateQueueBoard();
-            }
+            webPanel.playNow(musicPiece.Info.id);
+            populateQueueBoard();
+            int qPos = Queue.IndexOf(musicPiece);
+            OnPlayedNow(qPos);
+            e.Handled = true;
         }
 
         public void deleteFromQueue(MusicPiece queuePiece)
@@ -223,5 +239,10 @@ namespace NowMine
             }
                 
         }
+    }
+
+    public class PlayedNowEventArgs : EventArgs
+    {
+        public int qPos { get; set; }
     }
 }

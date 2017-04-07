@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Bson;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -45,12 +48,53 @@ namespace NowMine
 
         public void UDPSend(string message)
         {
-            
             IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
             byte[] bytes = Encoding.ASCII.GetBytes(message);
             udp.Send(bytes, bytes.Length, ip);
             //udp.Close();
-            Console.WriteLine("Sent: {0} ", message);
+            Console.WriteLine("UDP Sent: {0} ", message);
+        }
+
+        public void UDPSend(byte[] message)
+        {
+            IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
+            udp.Send(message, message.Length, ip);
+            //udp.Close();
+            Console.WriteLine("UDP Sent: {0} ", message);
+        }
+
+
+        public void sendQueuedPiece(object o, MusicPieceReceivedEventArgs e)
+        {
+            MemoryStream ms = new MemoryStream();
+            using (BsonWriter writer = new BsonWriter(ms))
+            {
+                JsonSerializer serializer = new JsonSerializer();
+                serializer.Serialize(writer, e.YoutubeQueued);
+
+                var data = ms.ToArray();
+                byte[] queueString = Encoding.UTF8.GetBytes("Queue: ");
+                byte[] message = new byte[queueString.Length + data.Length];
+                System.Buffer.BlockCopy(queueString, 0, message, 0, queueString.Length);
+                System.Buffer.BlockCopy(data, 0, message, queueString.Length, data.Length);
+                Console.WriteLine("UPD/ Sending to Broadcast: {0}", Convert.ToBase64String(message));
+                UDPSend(message);
+            }
+        }
+
+        internal void playedNow(object s, PlayedNowEventArgs e)
+        {
+            byte[] playedNowBytes = Encoding.UTF8.GetBytes("PlayedNow: ");
+            byte[] qPosBytes = BitConverter.GetBytes(e.qPos);
+            byte[] message = new byte[playedNowBytes.Length + qPosBytes.Length];
+            System.Buffer.BlockCopy(playedNowBytes, 0, message, 0, playedNowBytes.Length);
+            System.Buffer.BlockCopy(qPosBytes, 0, message, playedNowBytes.Length, qPosBytes.Length);
+            UDPSend(message);
+        }
+
+        internal void DeletedPiece(object source, EventArgs args)
+        {
+            UDPSend("Delete: 0");
         }
     }
 }
