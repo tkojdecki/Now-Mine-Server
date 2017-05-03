@@ -166,6 +166,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <None Include="!AgileCore" />
+    <Compile Include="Helpers\BytesMessegeBuilder.cs" />
+    <Compile Include="Helpers\EventArgsHelper.cs" />
     <Compile Include="QueuePanel.cs" />
     <Compile Include="SearchPanel.cs" />
     <Compile Include="MusicPiece.xaml.cs">

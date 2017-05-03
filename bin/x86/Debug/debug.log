@@ -17035,3 +17035,12 @@ Histogram: sri.resource_integrity_mismatch_event recorded 118 samples, average =
 [0405/214214:WARNING:quota_manager.cc(1833)] Create directory failed for path
 [0405/214214:WARNING:quota_manager.cc(1833)] Create directory failed for path
 [0406/204345:ERROR:ssl_client_socket_impl.cc(1141)] handshake failed; returned -1, SSL error code 1, net_error -100
+[0408/220058:WARNING:audio_sync_reader.cc(132)] AudioSyncReader::Read timed out, audio glitch count=1
+[0408/220920:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0408/220920:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0408/223924:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0408/223924:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0408/230351:WARNING:spdy_session.cc(2455)] Received HEADERS for invalid stream 239
+[0419/215036:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
+[0419/215037:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0419/215037:WARNING:quota_manager.cc(1833)] Create directory failed for path

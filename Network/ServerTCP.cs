@@ -10,14 +10,10 @@ using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Bson;
+using NowMine.Helpers;
 
 namespace NowMine
 {
-    public class MusicPieceReceivedEventArgs : EventArgs
-    {
-        public YoutubeQueued YoutubeQueued { get; set; }
-    }
-
     class ServerTCP
     {
         QueuePanel queuePanel;
@@ -36,6 +32,16 @@ namespace NowMine
                 e.YoutubeQueued = youtubeQueued;
                 MusicPieceReceived(this, e);
             }
+        }
+
+        public delegate void UserNameChangedEventHandler(object s, GenericEventArgs<byte[]> e);
+        public event UserNameChangedEventHandler UserNameChanged;
+        protected virtual void OnUserNameChange(string userName, int userId)
+        {
+            var userNameBytes = Encoding.UTF8.GetBytes(userName);
+            var userData = BytesMessegeBuilder.MergeBytesArray(userNameBytes, BitConverter.GetBytes(userId));
+            var message = BytesMessegeBuilder.MergeBytesArray(UnicodeEncoding.UTF8.GetBytes("ChangeName: "), userData);
+            UserNameChanged?.Invoke(this, new GenericEventArgs<byte[]>(message));
         }
 
         public void ServerInit(QueuePanel queuePanel)
@@ -176,6 +182,25 @@ namespace NowMine
                             }
                             break;
 
+                        case "ChangeName":
+                            Console.WriteLine("Changing Name!");
+                            if (!users.Values.Any(u => u.Name.Equals(values[1])))
+                            {
+                                Console.WriteLine("No other user with this name!");
+                                user.Name = values[1];
+                                OnUserNameChange(values[1], user.Id);
+                                Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.userChangeName(user); }));
+                                //Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.Queue.Where( q => q.User.Id == user.Id).ToList().ForEach( q => q.User.Name = values[1]); }));
+                                
+                                s.Send(BitConverter.GetBytes(1));
+                            }
+                            else
+                            {
+                                Console.WriteLine("Other user with same name!");
+                                s.Send(BitConverter.GetBytes(0));
+                            }
+                            break;
+
                         default:
                             Console.WriteLine("Can't interpret right");
                             break;
@@ -193,41 +218,56 @@ namespace NowMine
         public void sendServerIP(IPAddress ip)
         {
             { 
-                TCPConnect(ip);
+                TCPConnectToNewUser(ip);
                 //Console.WriteLine("Connecting to: {0}", ip.Address.ToString());
             }
         }
 
-        private void TCPConnect(IPAddress ip)
+        private void TCPConnectToNewUser(IPAddress ip)
         {
             try
             {
-                User user = null;
-                if (!users.ContainsKey(ip))
-                {
-                    Console.WriteLine("New User!");
-                    user = new User("User " + users.Count + 1, users.Count + 1);
-                    users.Add(ip, user);
-                }
-                else
-                    user = users[ip];
-                
                 using (TcpClient tcpclnt = new TcpClient())
                 {
                     Console.WriteLine("TCP/ Connecting to: " + ip.ToString());
+                    Int32 userId = users.Count + 1;
+                    byte[] userIdBytes = new byte[4]; 
+                    userIdBytes = BitConverter.GetBytes(userId);
+                    byte[] ipBytes = serverIP.GetAddressBytes(); //4 bytes
+                    byte[] message = BytesMessegeBuilder.MergeBytesArray(ipBytes, userIdBytes);
                     tcpclnt.Connect(ip, 4444);
                     Console.WriteLine("TCP/ Connected");
-
-                    byte[] ipBytes = serverIP.GetAddressBytes();
                     Stream stm = tcpclnt.GetStream();
-
-                    byte[] idBytes = BitConverter.GetBytes(user.Id);
+                    //stm.ReadTimeout = 250;
+                    //stm.WriteTimeout = 250;
                     Console.WriteLine("TCP/ Transmitting: " + ipBytes);
-
-                    stm.Write(ipBytes, 0, ipBytes.Length);
-                    stm.Write(idBytes, 0, idBytes.Length);
-                    tcpclnt.Close();
-                    
+                    stm.Write(message, 0, message.Length);
+                    stm.Flush();
+                    byte[] msgLengthBytes = new byte[4];
+                    stm.Read(msgLengthBytes, 0, 4);
+                    int msgLength = BitConverter.ToInt32(msgLengthBytes, 0);
+                    byte[] bytes = new byte[msgLength];
+                    stm.Flush();
+                    stm.Read(bytes, 0, msgLength);
+                    User newUser = null;
+                    using (MemoryStream ms = new MemoryStream(bytes.ToArray()))
+                    using (BsonReader reader = new BsonReader(ms))
+                    {
+                        JsonSerializer serializer = new JsonSerializer();
+                        newUser = serializer.Deserialize<User>(reader);
+                    }
+                    if (newUser != null && newUser.Id == userId)
+                    {
+                        if (users.ContainsKey(ip))
+                            users[ip] = newUser;
+                        else
+                            users.Add(ip, newUser);
+                        stm.WriteByte(1);
+                    }
+                    else
+                        stm.WriteByte(0);
+                        
+                    tcpclnt.Close();       
                 }
             }
             catch (Exception ee)
@@ -236,38 +276,38 @@ namespace NowMine
             }
         }
 
-        private void TCPConnect(IPAddress ip, String[] message)
-        {
-            try
-            {
-                TcpClient tcpclnt = new TcpClient();
-                Console.WriteLine("TCP/ Connecting To: " + ip.ToString());
+        //private void TCPConnect(IPAddress ip, String[] message)
+        //{
+        //    try
+        //    {
+        //        TcpClient tcpclnt = new TcpClient();
+        //        Console.WriteLine("TCP/ Connecting To: " + ip.ToString());
 
-                tcpclnt.Connect(ip, 4444);
-                // use the ipaddress as in the server program
+        //        tcpclnt.Connect(ip, 4444);
+        //        // use the ipaddress as in the server program
 
-                Console.WriteLine("TCP/ Connected");
+        //        Console.WriteLine("TCP/ Connected");
 
-                Stream stm = tcpclnt.GetStream();
-                String msg = message.Length.ToString();
-                ASCIIEncoding asen = new ASCIIEncoding();
-                byte[] ba = asen.GetBytes(msg + " \n");
+        //        Stream stm = tcpclnt.GetStream();
+        //        String msg = message.Length.ToString();
+        //        ASCIIEncoding asen = new ASCIIEncoding();
+        //        byte[] ba = asen.GetBytes(msg + " \n");
                 
 
-                stm.Write(ba, 0, ba.Length);
+        //        stm.Write(ba, 0, ba.Length);
                 
-                for (int i = 0; i < message.Length; i++)
-                {
-                    Console.WriteLine("TCP/ Transmitting: " + message[i]);
-                    ba = asen.GetBytes(message[i] + "\n");
-                    stm.Write(ba, 0, ba.Length);
-                }
-                tcpclnt.Close();
-            }
-            catch (Exception ee)
-            {
-                Console.WriteLine("Error..... " + ee.StackTrace);
-            }
-        }
+        //        for (int i = 0; i < message.Length; i++)
+        //        {
+        //            Console.WriteLine("TCP/ Transmitting: " + message[i]);
+        //            ba = asen.GetBytes(message[i] + "\n");
+        //            stm.Write(ba, 0, ba.Length);
+        //        }
+        //        tcpclnt.Close();
+        //    }
+        //    catch (Exception ee)
+        //    {
+        //        Console.WriteLine("Error..... " + ee.StackTrace);
+        //    }
+        //}
     }
 }

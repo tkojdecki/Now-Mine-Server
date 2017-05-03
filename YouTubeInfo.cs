@@ -78,14 +78,4 @@ namespace NowMine
         public int qPos;
         public int userId;
     }
-
-    public class GenericEventArgs<T> : EventArgs
-    {
-        public T EventData { get; private set; }
-
-        public GenericEventArgs(T EventData)
-        {
-            this.EventData = EventData;
-        }
-    }
 }

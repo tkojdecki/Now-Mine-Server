@@ -69,6 +69,7 @@ namespace NowMine
 
             //serverTCP.MusicPieceReceived += queuePanel.addFromNetwork;
             serverTCP.MusicPieceReceived += serverUDP.sendQueuedPiece;
+            serverTCP.UserNameChanged += serverUDP.sendQueuedPiece;
             searchPanel.VideoQueued += serverUDP.sendQueuedPiece;
             webPanel.VideoEnded += serverUDP.DeletedPiece;
             queuePanel.PlayedNow += serverUDP.playedNow;

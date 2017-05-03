@@ -202,7 +202,6 @@ namespace NowMine
             history.Add(musicPiece);
         }
 
-
         public MusicPiece getNextPiece()
         {
             if (Queue.Count >= 2)
@@ -238,6 +237,19 @@ namespace NowMine
                 return null;
             }
                 
+        }
+
+        internal void userChangeName(User user)
+        {
+            foreach (MusicPiece piece in Queue)
+            {
+                if (piece.User.Id == user.Id)
+                {
+                    piece.User = user;
+                }
+            }
+            populateQueueBoard();
+            OnPropertyChanged("Queue");
         }
     }
 
