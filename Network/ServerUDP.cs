@@ -36,6 +36,8 @@ namespace NowMine
         {
             IPEndPoint ip = new IPEndPoint(IPAddress.Any, 1234);
             byte[] bytes = udp.EndReceive(ar, ref ip);
+            if (ip.Address == tcp.serverIP)
+                return;
             string message = Encoding.ASCII.GetString(bytes);
             Console.WriteLine("UDP/ From {0} received: {1} ", ip.Address.ToString(), message);
             if (message.Equals("NowMine!"))

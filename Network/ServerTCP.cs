@@ -144,7 +144,6 @@ namespace NowMine
                             var youtubeQueued = new YoutubeQueued(toQueue, qPos, user.Id);
                             OnMusicPieceReceived(youtubeQueued);
                             //serverUDP.UDPSend(bArray);
-                            //tutaj kurwa send z numerem kolejki
                             continue;
                             //break;
 
@@ -230,7 +229,11 @@ namespace NowMine
                 using (TcpClient tcpclnt = new TcpClient())
                 {
                     Console.WriteLine("TCP/ Connecting to: " + ip.ToString());
-                    Int32 userId = users.Count + 1;
+                    Int32 userId;
+                    if (users.ContainsKey(ip))
+                        userId = users[ip].Id;
+                    else
+                        userId = users.Count + 1;
                     byte[] userIdBytes = new byte[4]; 
                     userIdBytes = BitConverter.GetBytes(userId);
                     byte[] ipBytes = serverIP.GetAddressBytes(); //4 bytes
@@ -240,7 +243,7 @@ namespace NowMine
                     Stream stm = tcpclnt.GetStream();
                     //stm.ReadTimeout = 250;
                     //stm.WriteTimeout = 250;
-                    Console.WriteLine("TCP/ Transmitting: " + ipBytes);
+                    Console.WriteLine("TCP/ Transmitting: " + Convert.ToBase64String(message));
                     stm.Write(message, 0, message.Length);
                     stm.Flush();
                     byte[] msgLengthBytes = new byte[4];

@@ -214,16 +214,26 @@ namespace NowMine
         public bool playNext()
         {
             MusicPiece nextVideo = getNextPiece();
+            if (nowPlaying() != null)
+            {
+                toHistory(nowPlaying());
+                webPanel.isPlaying = false;
+            }
+                
             if (nextVideo != null)
             {
                 nextVideo.nowPlayingVisual();
-                toHistory(nowPlaying());
+                //toHistory(nowPlaying());
                 webPanel.playNow(nextVideo.Info.id);
                 populateQueueBoard();
                 return true;
             }
             else
-                return false;            
+            {
+                populateQueueBoard();
+                return false;
+            }
+                
         }
 
         public MusicPiece nowPlaying()

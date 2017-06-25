@@ -74,25 +74,18 @@ namespace NowMine
         public void getNextVideo()
         {
             MusicPiece nextVideo = queuePanel.getNextPiece();
+            Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.toHistory(queuePanel.nowPlaying()); }));
             if (nextVideo != null)
             {
                 Application.Current.Dispatcher.Invoke(new Action(() => { nextVideo.nowPlayingVisual(); }));
-                Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.toHistory(queuePanel.nowPlaying()); }));
-
-                playNow(nextVideo.Info.id);
+                //playNow(nextVideo.Info.id);//w zależności od isyoutubepage - na stronie yt changevideo nie dziaua
                 Application.Current.Dispatcher.Invoke(new Action(() => { queuePanel.populateQueueBoard(); }));
-                isPlaying = true;
+                if (!isPlaying)
+                    isPlaying = true;
             }
             else
             {
                 isPlaying = false;
-                //queueEnded  <---tutaj skończyłem
-
-                if (mainWindow.isYoutubePage)
-                {
-                    mainWindow.isYoutubePage = false;
-                    
-                }
             }
             OnVideoEnded();
         }
@@ -110,6 +103,7 @@ namespace NowMine
             }));
             mainWindow.isYoutubePage = true;
             mainWindow.videoID = nowPlaying.Info.id;
+            isPlaying = true;
         }
 
         //public void ytEnded()
