@@ -9,9 +9,7 @@ namespace NowMine
 {
     public class User
     {
-        public string Name { get; set; }
-        //List<MusicPiece> queued = new List<MusicPiece>();
-        //List<MusicPiece> history = new List<MusicPiece>();
+        public string Name { get; set; 
         private static User _serverUser;
         public static User serverUser
         {
@@ -23,7 +21,6 @@ namespace NowMine
             }
         }
         
-        //public Color color { get; set; }
         public int Id { get; set; }
         private byte[] _color;
         public byte[] UserColor
@@ -54,7 +51,6 @@ namespace NowMine
         public void addToQueue(MusicPiece piece)
         {
             piece.lbluserName.Content = this.Name;
-            //queued.Add(piece);
         }
 
         internal Color getColor()

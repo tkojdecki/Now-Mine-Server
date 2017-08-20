@@ -15,11 +15,12 @@ namespace NowMine
     class ServerUDP
     {
         private UdpClient udp;
-        private ServerTCP tcp;
 
-        public ServerUDP(ServerTCP tcp)
+        public delegate void NewUserEventHandler(object s, GenericEventArgs<IPAddress> e);
+        public event NewUserEventHandler NewUser;
+        protected virtual void OnNewUser(IPAddress ip)
         {
-            this.tcp = tcp;
+            NewUser?.Invoke(this, new GenericEventArgs<IPAddress>(ip));
         }
 
         public void udpListener()
@@ -36,15 +37,12 @@ namespace NowMine
         {
             IPEndPoint ip = new IPEndPoint(IPAddress.Any, 1234);
             byte[] bytes = udp.EndReceive(ar, ref ip);
-            if (ip.Address == tcp.serverIP)
-                return;
             string message = Encoding.ASCII.GetString(bytes);
             Console.WriteLine("UDP/ From {0} received: {1} ", ip.Address.ToString(), message);
             if (message.Equals("NowMine!"))
             {
-                Console.WriteLine("TCP/ Connecting to: {0}", ip.Address.ToString());
-                tcp.sendServerIP(ip.Address);
-                //UDPSend(tcp.serverIP.ToString());
+                Console.WriteLine("UDP/ Firing Event OnNewUser");
+                OnNewUser(ip.Address);
             }
             udpListener();
         }
@@ -54,7 +52,6 @@ namespace NowMine
             IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
             byte[] bytes = Encoding.ASCII.GetBytes(message);
             udp.Send(bytes, bytes.Length, ip);
-            //udp.Close();
             Console.WriteLine("UDP Sent: {0} ", message);
         }
 
@@ -62,7 +59,6 @@ namespace NowMine
         {
             IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
             udp.Send(message, message.Length, ip);
-            //udp.Close();
             Console.WriteLine("UDP Sent: {0} ", message);
         }
 
@@ -78,28 +74,27 @@ namespace NowMine
                 var data = ms.ToArray();
                 byte[] queueString = Encoding.UTF8.GetBytes("Queue: ");
                 byte[] message = BytesMessegeBuilder.MergeBytesArray(queueString, data);
-                //message = BytesMessegeBuilder.MergeBytesArray(message, BitConverter.GetBytes(e.YoutubeQueued.userId)); //adding userid on end
                 Console.WriteLine("UPD/ Sending to Broadcast: {0}", Convert.ToBase64String(message));
                 UDPSend(message);
             }
         }
 
-        public void sendQueuedPiece(object o, GenericEventArgs<byte[]> e)
+        public void sendData(object o, GenericEventArgs<byte[]> e)
         {
             UDPSend(e.EventData);
         }
 
-        internal void playedNow(object s, PlayedNowEventArgs e)
+        internal void playedNow(object s, GenericEventArgs<int> e)
         {
             byte[] playedNowBytes = Encoding.UTF8.GetBytes("PlayedNow: ");
-            byte[] qPosBytes = BitConverter.GetBytes(e.qPos);
+            byte[] qPosBytes = BitConverter.GetBytes(e.EventData);
             byte[] message = BytesMessegeBuilder.MergeBytesArray(playedNowBytes, qPosBytes);
             UDPSend(message);
         }
 
-        internal void DeletedPiece(object source, EventArgs args)
+        internal void DeletedPiece(object source, GenericEventArgs<int> e)
         {
-            UDPSend("Delete: 0");
+            UDPSend(String.Format("Delete: {0}", e.EventData));
         }
     }
 }

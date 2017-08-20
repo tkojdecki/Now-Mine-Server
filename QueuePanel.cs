@@ -72,12 +72,6 @@ namespace NowMine
             return qInfo;
         }
 
-        //public void addFromNetwork(object o, MusicPieceReceivedEventArgs e)
-        //{
-        //    addToQueue(e.MusicPiece);
-        //}
-
-        //czy tutaj powinien być Queue search? na ile funkcji to rozbić? na ile klas to rozbić? jak gęsto funkcje i jak jedną bardzo bulky
         public int addToQueue(MusicPiece musicPiece)
         {
             musicPiece.MouseDoubleClick += Queue_DoubleClick;
@@ -91,7 +85,6 @@ namespace NowMine
                 webPanel.playNow(musicPiece.Info.id);
                 Queue.Add(musicPiece);
                 OnPropertyChanged("Queue");
-                //populateQueueBoard();
                 return 0;
             }
             int qPos = calculateQueuePostition(musicPiece.User);

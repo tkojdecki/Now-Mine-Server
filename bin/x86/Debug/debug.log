@@ -17332,3 +17332,204 @@ Histogram: sri.resource_integrity_mismatch_event recorded 118 samples, average =
 [0618/022947:WARNING:audio_sync_reader.cc(132)] AudioSyncReader::Read timed out, audio glitch count=1
 [0618/023449:WARNING:webmediaplayer_impl.cc(341)] Using MultibufferDataSource
 [0618/023509:ERROR:audio_output_device.cc(431)] IO loop going away before the audio device has been stopped
+[0625/195002:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0625/195002:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0625/195218:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0625/195218:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0625/202218:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0625/202218:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0708/035843.202:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0708/035843.216:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0708/035847.816:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0708/040519.347:ERROR:child_thread_impl.cc(762)] Request for unknown Channel-associated interface: ui::mojom::GpuMain
+[0708/040624.234:ERROR:child_thread_impl.cc(762)] Request for unknown Channel-associated interface: ui::mojom::GpuMain
+[0708/040639.497:ERROR:child_thread_impl.cc(762)] Request for unknown Channel-associated interface: ui::mojom::GpuMain
+[0708/040743.633:ERROR:render_process_host_impl.cc(2077)] Request for unknown Channel-associated interface: device::mojom::ScreenOrientationListener
+[0708/040810.317:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0708/040810.321:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0807/234107.235:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0807/234107.344:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[0807/234116.285:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0807/234116.315:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[0807/234116.345:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[0807/234116.376:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=4
+[0807/234116.405:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=5
+[0807/234116.436:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=6
+[0809/210729.129:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0809/210729.209:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[0809/210729.239:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[0809/210729.269:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=4
+[0809/210729.255:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0809/232402.467:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0809/232402.509:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0809/232402.517:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[0809/232402.548:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[0809/232402.577:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=4
+[0813/184452.488:ERROR:broker_win.cc(138)] Error sending sync broker message
+[0813/184452.561:WARNING:child_thread_impl.cc(695)] Browser failed to allocate shared memory
+[0813/184932.345:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/184941.122:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 5
+[0813/184941.132:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/185014.107:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/185021.508:ERROR:render_process_host_impl.cc(2077)] Request for unknown Channel-associated interface: device::mojom::ScreenOrientationListener
+[0813/185057.636:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/185101.589:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 79
+[0813/185101.598:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/185156.825:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/185204.108:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 3
+[0813/185204.118:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/185204.124:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 1
+[0813/185218.322:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed with unconsumed attachments: 0/1
+[0813/185218.322:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed with unconsumed attachments: 0/1
+[0813/185218.327:WARNING:ipc_message_attachment_set.cc(49)] MessageAttachmentSet destroyed with unconsumed attachments: 0/1
+[0813/185442.071:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/185545.610:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/202358.681:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0813/202358.721:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[0813/202358.745:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/202404.602:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/202409.380:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 23
+[0813/202409.384:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 5
+[0813/202409.398:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/202416.537:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/202419.245:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 9
+[0813/202419.246:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 13
+[0813/202419.247:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 7
+[0813/202419.251:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 5
+[0813/202419.259:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 15
+[0813/202419.264:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0813/202419.270:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 19
+[0813/202419.280:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 17
+[0813/202419.294:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 11
+[0813/202422.967:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0816/212027.549:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0816/214928.639:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0816/214928.742:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0816/232525.683:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0816/232525.771:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0817/215403.472:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0817/215403.513:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0817/215403.522:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[0818/000027.472:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0818/000027.513:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[0818/000027.543:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[0818/000027.564:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0818/000027.573:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=4
+[0819/034553.507:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0819/034553.537:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0819/182931.726:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0819/182931.799:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0819/190633.621:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0819/190635.105:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0819/190637.038:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0819/200400.560:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0819/200401.813:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0820/021854.663:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0820/021854.723:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[0820/021854.753:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[0820/021854.774:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=4
+[0820/021854.803:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=5
+[0820/021854.833:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=6
+[0820/021854.863:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=7
+[0820/021854.893:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=8
+[0820/021854.923:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=9
+[0820/021854.954:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=10
+[0820/021854.984:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=11
+[0820/021855.014:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=12
+[0820/021855.044:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=13
+[0820/021855.073:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=14
+[0820/021855.103:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=15
+[0820/021855.134:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=16
+[0820/021855.163:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=17
+[0820/021855.193:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=18
+[0820/021855.223:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=19
+[0820/021855.254:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=20
+[0820/021855.283:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=21
+[0820/021855.313:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=22
+[0820/021855.343:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=23
+[0820/021855.374:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=24
+[0820/021855.403:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=25
+[0820/021855.433:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=26
+[0820/021855.463:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=27
+[0820/021855.494:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=28
+[0820/021855.523:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=29
+[0820/021855.553:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=30
+[0820/021855.583:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=31
+[0820/021855.614:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=32
+[0820/021855.643:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=33
+[0820/021855.673:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=34
+[0820/021855.703:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=35
+[0820/021855.734:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=36
+[0820/021855.764:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=37
+[0820/021855.793:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=38
+[0820/021855.823:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=39
+[0820/021855.853:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=40
+[0820/021855.883:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=41
+[0820/021855.913:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=42
+[0820/021855.944:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=43
+[0820/021855.974:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=44
+[0820/021856.004:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=45
+[0820/021856.034:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=46
+[0820/021856.064:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=47
+[0820/021856.095:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=48
+[0820/021856.123:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=49
+[0820/021856.153:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=50
+[0820/021856.183:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=51
+[0820/021856.213:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=52
+[0820/021856.243:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=53
+[0820/021856.273:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=54
+[0820/021856.303:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=55
+[0820/021856.334:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=56
+[0820/021856.363:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=57
+[0820/021856.393:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=58
+[0820/021856.423:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=59
+[0820/021856.454:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=60
+[0820/021856.483:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=61
+[0820/021856.514:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=62
+[0820/021856.544:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=63
+[0820/021856.574:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=64
+[0820/021856.603:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=65
+[0820/021856.633:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=66
+[0820/021856.663:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=67
+[0820/021856.693:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=68
+[0820/021856.723:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=69
+[0820/021856.753:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=70
+[0820/021856.783:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=71
+[0820/021856.813:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=72
+[0820/021856.843:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=73
+[0820/021856.873:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=74
+[0820/021856.903:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=75
+[0820/021856.934:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=76
+[0820/021856.964:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=77
+[0820/021856.993:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=78
+[0820/021857.023:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=79
+[0820/021857.043:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=80
+[0820/021857.073:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=81
+[0820/021857.103:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=82
+[0820/021857.133:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=83
+[0820/021857.163:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=84
+[0820/021857.193:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=85
+[0820/021857.223:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=86
+[0820/021857.253:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=87
+[0820/021857.283:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=88
+[0820/021857.313:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=89
+[0820/021857.343:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=90
+[0820/021857.374:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=91
+[0820/021857.403:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=92
+[0820/021857.434:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=93
+[0820/021857.464:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=94
+[0820/021857.494:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=95
+[0820/021857.524:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=96
+[0820/021857.553:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=97
+[0820/021857.583:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=98
+[0820/021857.613:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=99
+[0820/021857.643:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=100
+[0820/021857.643:WARNING:audio_sync_reader.cc(191)] (log cap reached, suppressing further logs)
+[0820/021923.984:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[0820/021924.525:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[0820/021925.054:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[0820/021925.587:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[0820/021926.088:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[0820/022714.081:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[0820/025829.614:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[0820/025829.617:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition

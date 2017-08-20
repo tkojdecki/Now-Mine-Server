@@ -86,7 +86,6 @@ namespace NowMine
                         //result.Title = MusicPiece.Snippet.Title;
                         break;
                 }
-                //resultInfo.Add(result);
             }
             return resultInfo;
         }

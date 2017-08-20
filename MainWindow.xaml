@@ -4,22 +4,37 @@
         x:Class="NowMine.MainWindow"
         xmlns:wpf="clr-namespace:CefSharp.Wpf;assembly=CefSharp.Wpf"
         xmlns:nm="clr-namespace:NowMine"
-        Title="Now Mine!" Height="600" Width="1300" Closing="Window_Closing">
+    xmlns:local="clr-namespace:NowMine.Queue"
+    Title="Now Mine!" Height="600" Width="1300" Closing="Window_Closing">
+
+    <Window.Resources>
+        <local:QueueManager x:Key="queueManager"/>
+        <!--<ObjectDataProvider x:Key="queueManager" ObjectType="{x:Type QueueManager}" MethodName="get_Queue"></ObjectDataProvider>-->
+    </Window.Resources>
+    
     <Grid x:Name="mainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="375" x:Name="columnDefinitionSearch"/>
             <ColumnDefinition Width="*" x:Name="columnDefinitionPlayer"/>
-            <ColumnDefinition Width="375" x:Name="columnDefinitionQueue" />
+            <ColumnDefinition Width="375" x:Name="columnDefinitionQueue"/>
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="columnSearch" Grid.Column="0">
             <WrapPanel x:Name="searchButtons">
-                <TextBox x:Name="txtSearch" Text="Search" VerticalAlignment="Top" Width="120" HorizontalAlignment="Center" GotFocus="txtSearch_GotFocus"/>
-                <Button x:Name="searchButton" Content="Szukaj!" Width="75" Click="searchButton_Click" FontSize="15" HorizontalAlignment="Right" IsEnabled="False"/>
-                <Button x:Name="playNextButton" Content="Next!" Width="75" HorizontalAlignment="Center" FontSize="15" Click="playNextButton_Click" IsEnabled="False"/>
+                <TextBox x:Name="txtSearch" Text="{Binding Path=SearchText}" VerticalAlignment="Top" Width="120" HorizontalAlignment="Center" GotFocus="txtSearch_GotFocus"/>
+                <Button x:Name="searchButton" Content="Szukaj!" Width="75" Command="{Binding Path=SearchCommand}" FontSize="15" HorizontalAlignment="Right" IsEnabled="False"/>
+                <!--<Button x:Name="playNextButton" Content="Next!" Width="75" HorizontalAlignment="Center" FontSize="15" Click="playNextButton_Click" IsEnabled="False"/>-->
             </WrapPanel>
             <ScrollViewer Margin="0,30,0,0" >
-                <StackPanel x:Name="searchBoard" />
+                <StackPanel x:Name="searchBoard">
+                    <ItemsControl ItemsSource="{Binding Path=SearchList}">
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <nm:MusicPiece />
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </StackPanel>
             </ScrollViewer>
         </Grid>
 
@@ -30,7 +45,7 @@
         <Grid x:Name="columnQueue" Grid.Column="2" >
             <ScrollViewer x:Name="queueScroll">
                 <StackPanel x:Name="queueBoard">
-                    <ItemsControl ItemsSource="{Binding Path=Queue}">
+                    <ItemsControl ItemsSource="{Binding Source={StaticResource queueManager}, Path=Queue}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
                                 <nm:MusicPiece></nm:MusicPiece>

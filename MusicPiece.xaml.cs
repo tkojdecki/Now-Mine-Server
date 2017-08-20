@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Google.Apis.YouTube.v3.Data;
 using System.ComponentModel;
+using NowMine.Queue;
 
 namespace NowMine
 {
@@ -34,7 +35,7 @@ namespace NowMine
                 _info = value;
                 Title = _info.title;
                 ChannelName = _info.channelName;
-                setImage = _info.thumbnail.Url;
+                setImage(_info.thumbnail.Url);
             }
         }
 
@@ -65,17 +66,7 @@ namespace NowMine
                 OnPropertyChanged("ChannelName");
             }
         }
-
-        public string setImage
-        {
-            set
-            {
-                BitmapImage bmp = new BitmapImage(new Uri(value, UriKind.RelativeOrAbsolute));
-                imgMain.Source = bmp;
-            }
-        }
         
-
         public event PropertyChangedEventHandler PropertyChanged;
         private void OnPropertyChanged(string name)
         {
@@ -105,7 +96,7 @@ namespace NowMine
         {
             InitializeComponent();
             Info = inf;
-            setImage = _info.thumbnail.Url;
+            setImage(_info.thumbnail.Url);
             User = User.serverUser;
             lbluserName.Visibility = Visibility.Hidden;
             Created = DateTime.Now;
@@ -116,9 +107,9 @@ namespace NowMine
         {
             InitializeComponent();
             Info = inf;
-            setImage = _info.thumbnail.Url;
             Created = DateTime.Now;
             User = user;
+            setImage(_info.thumbnail.Url);
         }
 
         public MusicPiece copy()
@@ -126,9 +117,10 @@ namespace NowMine
             MusicPiece musicPiece = new MusicPiece();
             musicPiece.InitializeComponent();
             musicPiece.Info = this._info;
-            musicPiece.setImage = _info.thumbnail.Url;
+            
             musicPiece.Created = DateTime.Now;
             musicPiece.User = this.User;
+            musicPiece.setImage(_info.thumbnail.Url);
             return musicPiece;
         }
 
@@ -158,6 +150,21 @@ namespace NowMine
         public void setPlayedDate()
         {
             this.Played = DateTime.Now;
+        }
+
+        public void setImage(string url)
+        {
+            BitmapImage bmp = new BitmapImage(new Uri(url, UriKind.RelativeOrAbsolute));
+            imgMain.Source = bmp;
+        }
+
+        private void SearchResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var musicPiece = (MusicPiece)sender;
+            var queueMusicPiece = musicPiece.copy();
+            queueMusicPiece.userColorBrush();
+            queueMusicPiece.lbluserName.Visibility = System.Windows.Visibility.Visible;
+            int qPos = QueueManager.addToQueue(queueMusicPiece);
         }
     }
 }
