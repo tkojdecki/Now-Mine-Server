@@ -21,6 +21,14 @@ namespace NowMine
         public delegate void VideoEndedEventHandler(object source, GenericEventArgs<int> e);
         public event VideoEndedEventHandler VideoEnded;
 
+        public delegate void PlayedNowEventHandler(object s, GenericEventArgs<int> e);
+        public event PlayedNowEventHandler PlayedNow;
+
+        public void OnPlayedNow(int qPos)
+        {
+            PlayedNow?.Invoke(this, new GenericEventArgs<int>(qPos));
+        }
+
         public WebPanel(ChromiumWebBrowser webControl, MainWindow mainWindow)
         {
             this.webControl = webControl;
@@ -37,26 +45,35 @@ namespace NowMine
             VideoEnded?.Invoke(this, new GenericEventArgs<int>(0));
         }
 
-        public void playNow(String id)
+        private void PlayNow(String id)
         {
             if (!isPlaying)
             {
                 isPlaying = true;
             }
             webControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + id + "')");
-            Console.WriteLine("playnow!");
         }
 
-        public void playNow(MusicPiece musicPiece)
+        public void PlayNow(MusicPiece musicPiece, int qPos)
         {
             if (musicPiece != null)
             {
-                if (!isPlaying)
-                {
-                    isPlaying = true;
-                }
-                webControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + musicPiece.Info.id + "')");
+                PlayNow(musicPiece.Info.id);
+                OnPlayedNow(qPos);
+                Console.WriteLine("Played Now {0}!", musicPiece.Info.id);
             }
+                
+        }
+
+        public void PlayNow(GenericEventArgs<YoutubeQueued> ytQueued)
+        {
+            if (ytQueued != null)
+            {
+                PlayNow(ytQueued.EventData.id);
+                OnPlayedNow(ytQueued.EventData.QPos);
+                Console.WriteLine("Played Now {0}!", ytQueued.EventData.id);
+            }
+
         }
 
         //functions to call from javascript
@@ -96,15 +113,16 @@ namespace NowMine
             QueueManager.playNext();
         }
 
-        public void VideoQueuedHandler(object s, MusicPieceReceivedEventArgs args)
+        public void VideoQueuedHandler(object s, GenericEventArgs<YoutubeQueued> args)
         {
             if (!isPlaying)
-                playNow(args.YoutubeQueued.id);
+                PlayNow(args);
         }
 
         internal void PlayedNowHandler(object s, GenericEventArgs<int> e)
         {
-            playNow(QueueManager.Queue[e.EventData]);
+            int qPos = e.EventData == -1 ? QueueManager.Queue.Count - 1 : e.EventData;
+            PlayNow(QueueManager.Queue[qPos], qPos);
         }
     }
 }

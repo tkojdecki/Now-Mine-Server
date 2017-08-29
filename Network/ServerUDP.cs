@@ -14,7 +14,7 @@ namespace NowMine
 {
     class ServerUDP
     {
-        private UdpClient udp;
+        private UdpClient UDPClient;
 
         public delegate void NewUserEventHandler(object s, GenericEventArgs<IPAddress> e);
         public event NewUserEventHandler NewUser;
@@ -28,15 +28,15 @@ namespace NowMine
             int PORT_NUMBER = 1234;
 
             Console.WriteLine("UDP/ Starting UDP Listener");
-            if (udp == null)
-                udp = new UdpClient(PORT_NUMBER);
-            IAsyncResult ar_ = udp.BeginReceive(Receive, new object());
+            if (UDPClient == null)
+                UDPClient = new UdpClient(PORT_NUMBER);
+            IAsyncResult ar_ = UDPClient.BeginReceive(Receive, new object());
         }
 
         private void Receive(IAsyncResult ar)
         {
             IPEndPoint ip = new IPEndPoint(IPAddress.Any, 1234);
-            byte[] bytes = udp.EndReceive(ar, ref ip);
+            byte[] bytes = UDPClient.EndReceive(ar, ref ip);
             string message = Encoding.ASCII.GetString(bytes);
             Console.WriteLine("UDP/ From {0} received: {1} ", ip.Address.ToString(), message);
             if (message.Equals("NowMine!"))
@@ -51,25 +51,25 @@ namespace NowMine
         {
             IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
             byte[] bytes = Encoding.ASCII.GetBytes(message);
-            udp.Send(bytes, bytes.Length, ip);
+            UDPClient.Send(bytes, bytes.Length, ip);
             Console.WriteLine("UDP Sent: {0} ", message);
         }
 
         public void UDPSend(byte[] message)
         {
             IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
-            udp.Send(message, message.Length, ip);
-            Console.WriteLine("UDP Sent: {0} ", message);
+            UDPClient.Send(message, message.Length, ip);
+            Console.WriteLine("UDP Sent: {0} ", Convert.ToBase64String(message));
         }
 
 
-        public void sendQueuedPiece(object o, MusicPieceReceivedEventArgs e)
+        public void sendQueuedPiece(object o, GenericEventArgs<YoutubeQueued> e)
         {
             MemoryStream ms = new MemoryStream();
-            using (BsonWriter writer = new BsonWriter(ms))
+            using (BsonDataWriter writer = new BsonDataWriter(ms))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(writer, e.YoutubeQueued);
+                serializer.Serialize(writer, e.EventData);
 
                 var data = ms.ToArray();
                 byte[] queueString = Encoding.UTF8.GetBytes("Queue: ");

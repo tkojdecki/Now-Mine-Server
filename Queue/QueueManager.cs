@@ -42,23 +42,14 @@ namespace NowMine.Queue
             }
         }
 
-        public delegate void VideoQueuedEventArgs(object s, MusicPieceReceivedEventArgs e);
+        public delegate void VideoQueuedEventArgs(object s, GenericEventArgs<YoutubeQueued> e);
         static public event VideoQueuedEventArgs VideoQueued;
-
-        public delegate void PlayedNowEventHandler(object s, GenericEventArgs<int> e);
-        static public event PlayedNowEventHandler PlayedNow;
-
-        static public void OnPlayedNow(int qPos)
-        {
-            PlayedNow?.Invoke(typeof(QueueManager), new GenericEventArgs <int>(qPos));
-        }
 
         static public void OnVideoQueued(YoutubeQueued video)
         {
             if (video != null)
             {
-                var e = new MusicPieceReceivedEventArgs();
-                e.YoutubeQueued = video;
+                var e = new GenericEventArgs<YoutubeQueued>(video);                
                 VideoQueued?.Invoke(typeof(QueueManager), e);
             }
         }
@@ -102,7 +93,7 @@ namespace NowMine.Queue
             Queue.Insert(0, musicPiece);
 
             int qPos = Queue.IndexOf(musicPiece);
-            OnPlayedNow(qPos);
+
             e.Handled = true;
         }
 
@@ -165,7 +156,7 @@ namespace NowMine.Queue
 
         }
 
-        static internal void userChangeName(User user)
+        static internal void RefreshQueueUserNames(User user)
         {
             foreach (MusicPiece piece in Queue)
             {

@@ -58,7 +58,7 @@ namespace NowMine
             var searchPanelVM = new SearchPanelViewModel();
 
             this.serverTCP = new ServerTCP();
-            serverThread = new Thread(() => serverTCP.ServerInit());
+            serverThread = new Thread(() => serverTCP.StartListener());
             serverThread.Name = "TCP Server Thread";
             serverThread.IsBackground = true;
             serverThread.Start();
@@ -72,12 +72,11 @@ namespace NowMine
             serverTCP.UserNameChanged += serverUDP.sendData;
             serverUDP.NewUser += serverTCP.TCPConnectToNewUser;
             webPanel.VideoEnded += serverUDP.DeletedPiece;
-            QueueManager.PlayedNow += serverUDP.playedNow;
-            QueueManager.PlayedNow += webPanel.PlayedNowHandler;
+            webPanel.VideoEnded += ChangeToIndex;
+            webPanel.PlayedNow += serverUDP.playedNow;
             QueueManager.VideoQueued += webPanel.VideoQueuedHandler;
             QueueManager.VideoQueued += serverUDP.sendQueuedPiece;
 
-            webPanel.VideoEnded += ChangeToIndex;
             DataContext = this;
             //columnQueue.DataContext = queuePanelVM;
             columnSearch.DataContext = searchPanelVM;
@@ -120,7 +119,7 @@ namespace NowMine
                 string bradres = "";
                 if (webPanel.isPlaying)
                 {
-                    Application.Current.Dispatcher.Invoke(new Action(() => { webPanel.playNow(QueueManager.nowPlaying()); }));
+                    Application.Current.Dispatcher.Invoke(new Action(() => { webPanel.PlayNow(QueueManager.nowPlaying(), 0); }));
                 }
             }
 

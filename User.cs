@@ -9,7 +9,7 @@ namespace NowMine
 {
     public class User
     {
-        public string Name { get; set; 
+        public string Name { get; set; } 
         private static User _serverUser;
         public static User serverUser
         {
@@ -42,7 +42,6 @@ namespace NowMine
         {
             this.Name = name;
             Random rnd = new Random();
-            //this.color = Color.FromRgb((byte)rnd.Next(0, 255), (byte)rnd.Next(0, 255), (byte)rnd.Next(0, 255));
             Id = id;
             for (int i = 0; i < 3; i++)
                 UserColor[i] = (byte)rnd.Next(0, 255);

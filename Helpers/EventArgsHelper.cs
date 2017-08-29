@@ -19,9 +19,4 @@ namespace NowMine.Helpers
             this.EventData = EventData;
         }
     }
-
-    public class MusicPieceReceivedEventArgs : EventArgs
-    {
-        public YoutubeQueued YoutubeQueued { get; set; }
-    }
 }
