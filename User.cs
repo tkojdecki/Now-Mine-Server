@@ -9,7 +9,7 @@ namespace NowMine
 {
     public class User
     {
-        public string Name { get; set; 
+        public string Name { get; set; }
         private static User _serverUser;
         public static User serverUser
         {
