@@ -38,7 +38,7 @@ namespace NowMine
             webPlayer.FrameLoadEnd += WebPlayer_FrameLoadEnd;
             webPlayer.Initialized += WebPlayer_Initialized;
             
-            columnPlayer.Children.Add(webPlayer);
+            RowPlayer.Children.Add(webPlayer);
 
             webPanel.reinitialize(webPlayer);
             //var queuePanelVM = new QueuePanelViewModel();
@@ -156,8 +156,8 @@ namespace NowMine
             columnSearch.Visibility = Visibility.Collapsed;
             columnDefinitionSearch.Width = new GridLength(0);
 
-            columnQueue.Visibility = Visibility.Collapsed;
-            columnDefinitionQueue.Width = new GridLength(0);
+            RowQueue.Visibility = Visibility.Collapsed;
+            //columnDefinitionQueue.Width = new GridLength(0);
 
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
@@ -172,8 +172,8 @@ namespace NowMine
             columnSearch.Visibility = Visibility.Visible;
             columnDefinitionSearch.Width = new GridLength(360);
 
-            columnQueue.Visibility = Visibility.Visible;
-            columnDefinitionQueue.Width = new GridLength(360);
+            RowQueue.Visibility = Visibility.Visible;
+            //columnDefinitionQueue.Width = new GridLength(360);
         }
 
         private void activateUI()

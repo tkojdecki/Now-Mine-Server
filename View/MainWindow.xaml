@@ -16,7 +16,6 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="375" x:Name="columnDefinitionSearch"/>
             <ColumnDefinition Width="*" x:Name="columnDefinitionPlayer"/>
-            <ColumnDefinition Width="375" x:Name="columnDefinitionQueue"/>
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="columnSearch" Grid.Column="0">
@@ -38,22 +37,28 @@
             </ScrollViewer>
         </Grid>
 
-        <Grid x:Name="columnPlayer" Grid.Column="1">
+        <Grid x:Name="PlayerGrid" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="RowPlayer" Grid.Row="0">
 
-        </Grid>
+            </Grid>
 
-        <Grid x:Name="columnQueue" Grid.Column="2" >
-            <ScrollViewer x:Name="queueScroll">
-                <StackPanel x:Name="queueBoard">
-                    <ItemsControl ItemsSource="{Binding Source={StaticResource queueManager}, Path=Queue}">
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <nm:MusicPiece></nm:MusicPiece>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-            </ScrollViewer>
+            <Grid x:Name="RowQueue" Grid.Row="1" >
+                <ScrollViewer x:Name="queueScroll">
+                    <StackPanel x:Name="queueBoard" Orientation="Horizontal">
+                        <ItemsControl ItemsSource="{Binding Source={StaticResource queueManager}, Path=Queue}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <nm:MusicPiece></nm:MusicPiece>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
         </Grid>
     </Grid>
 </Window>
