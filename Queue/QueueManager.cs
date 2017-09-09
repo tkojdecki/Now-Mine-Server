@@ -5,18 +5,19 @@ using System.Linq;
 using System.Windows.Input;
 using NowMine.Helpers;
 using System.ComponentModel;
+using NowMine.Data;
 
 namespace NowMine.Queue
 {
     class QueueManager : INotifyPropertyChanged
     {
-        static private ObservableCollection<MusicPiece> _queue;
-        static public ObservableCollection<MusicPiece> Queue
+        static private ObservableCollection<MusicData> _queue;
+        static public ObservableCollection<MusicData> Queue
         {
             get
             {
                 if (_queue == null)
-                    _queue = new ObservableCollection<MusicPiece>();
+                    _queue = new ObservableCollection<MusicData>();
                 return _queue;
             }
             set
@@ -25,13 +26,13 @@ namespace NowMine.Queue
             }
         }
 
-        static private ObservableCollection<MusicPiece> _history;
-        static private ObservableCollection<MusicPiece> History
+        static private ObservableCollection<MusicData> _history;
+        static private ObservableCollection<MusicData> History
         {
             get
             {
                 if (_history == null)
-                    _history = new ObservableCollection<MusicPiece>();
+                    _history = new ObservableCollection<MusicData>();
                 return _history;
             }
             set
@@ -65,18 +66,19 @@ namespace NowMine.Queue
         {
             int queueCount = Queue.Count;
             List<QueuePieceToSend> qInfo = new List<QueuePieceToSend>(queueCount);
-
+            /*
             foreach (MusicPiece musicPiece in Queue)
             {
                 QueuePieceToSend qpts = new QueuePieceToSend(musicPiece.Info, musicPiece.User);
                 qInfo.Add(qpts);
             }
+            */
             return qInfo;
         }
 
-        static public int addToQueue(MusicPiece musicPiece)
+        static public int addToQueue(MusicData musicPiece)
         {
-            musicPiece.MouseDoubleClick += Queue_DoubleClick;
+            //musicPiece.MouseDoubleClick += Queue_DoubleClick;
             int qPos = QueueCalculator.calculateQueuePostition(musicPiece.User);
             if (qPos < Queue.Count && qPos >= 0)
             {
@@ -87,10 +89,11 @@ namespace NowMine.Queue
                 Queue.Add(musicPiece);
             }
             OnGlobalPropertyChanged("Queue");
-            OnVideoQueued(new YoutubeQueued(musicPiece.Info, qPos, musicPiece.User.Id));
+            OnVideoQueued(new YoutubeQueued(musicPiece.YTInfo, qPos, musicPiece.User.Id));
             return qPos;
         }
 
+        /*
         static private void Queue_DoubleClick(object sender, MouseButtonEventArgs e)
         {
             var musicPiece = (MusicPiece)sender;
@@ -103,8 +106,9 @@ namespace NowMine.Queue
             OnPlayedNow(qPos);
             e.Handled = true;
         }
+        */
 
-        static public void deleteFromQueue(MusicPiece queuePiece)
+        static public void deleteFromQueue(MusicData queuePiece)
         {
             if (Queue.Contains(queuePiece))
             {
@@ -113,15 +117,15 @@ namespace NowMine.Queue
             }
         }
 
-        static public void toHistory(MusicPiece musicPiece)
+        static public void toHistory(MusicData musicPiece)
         {
-            musicPiece.setPlayedDate();
+            musicPiece.SetPlayedDate();
             deleteFromQueue(musicPiece);
-            musicPiece.historyVisual();
+            //musicPiece.historyVisual();
             History.Add(musicPiece);
         }
 
-        static public MusicPiece getNextPiece()
+        static public MusicData getNextPiece()
         {
             if (Queue.Count >= 2)
             {
@@ -132,7 +136,7 @@ namespace NowMine.Queue
 
         static public bool playNext()
         {
-            MusicPiece nextVideo = getNextPiece();
+            MusicData nextVideo = getNextPiece();
             if (nowPlaying() != null)
             {
                 toHistory(nowPlaying());
@@ -140,7 +144,7 @@ namespace NowMine.Queue
 
             if (nextVideo != null)
             {
-                nextVideo.nowPlayingVisual();
+                //nextVideo.nowPlayingVisual();
                 return true;
             }
             else
@@ -150,7 +154,7 @@ namespace NowMine.Queue
 
         }
 
-        static public MusicPiece nowPlaying()
+        static public MusicData nowPlaying()
         {
             if (Queue.Count >= 1)
             {
@@ -165,7 +169,7 @@ namespace NowMine.Queue
 
         static internal void userChangeName(User user)
         {
-            foreach (MusicPiece piece in Queue)
+            foreach (MusicData piece in Queue)
             {
                 if (piece.User.Id == user.Id)
                 {

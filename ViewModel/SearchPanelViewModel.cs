@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
+using NowMine.Data;
 
 namespace NowMine.ViewModel
 {
@@ -29,13 +30,13 @@ namespace NowMine.ViewModel
             }
         }
 
-        private ObservableCollection<MusicPiece> _searchList;
-        public ObservableCollection<MusicPiece> SearchList
+        private ObservableCollection<MusicData> _searchList;
+        public ObservableCollection<MusicData> SearchList
         {
             get
             {
                 if (_searchList == null)
-                    _searchList = new ObservableCollection<MusicPiece>();
+                    _searchList = new ObservableCollection<MusicData>();
                 return _searchList;
             }
             set
@@ -47,6 +48,7 @@ namespace NowMine.ViewModel
 
         private void SearchResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+        /*
             var musicPiece = (MusicPiece)sender;
             var queueMusicPiece = musicPiece.copy();
             queueMusicPiece.MouseDoubleClick -= SearchResult_MouseDoubleClick;
@@ -54,22 +56,23 @@ namespace NowMine.ViewModel
             queueMusicPiece.lbluserName.Visibility = System.Windows.Visibility.Visible;
             int qPos = QueueManager.addToQueue(queueMusicPiece);
             e.Handled = true;
+            */
         }
 
-        public List<MusicPiece> getSearchList(String searchWord)
+        public List<MusicData> GetSearchList(String searchWord)
         {
-            List<MusicPiece> list;
+            List<MusicData> list;
             List<YouTubeInfo> infoList = youtubeProvider.LoadVideosKey(searchWord);
-            list = infoToResults(infoList);
+            list = InfoToResults(infoList);
             return list;
         }
 
-        private List<MusicPiece> infoToResults(List<YouTubeInfo> infoList)
+        private List<MusicData> InfoToResults(List<YouTubeInfo> infoList)
         {
-            List<MusicPiece> list = new List<MusicPiece>();
+            List<MusicData> list = new List<MusicData>();
             foreach (YouTubeInfo info in infoList)
             {
-                MusicPiece result = new MusicPiece(info);
+                MusicData result = new MusicData(info);
                 list.Add(result);
             }
             return list;
@@ -100,8 +103,8 @@ namespace NowMine.ViewModel
 
         private void SearchClickObject()
         {
-            var searchList = getSearchList(SearchText);
-            var observableList = new ObservableCollection<MusicPiece>();
+            var searchList = this.GetSearchList(SearchText);
+            var observableList = new ObservableCollection<MusicData>();
             searchList.ForEach(m => observableList.Add(m));
             SearchList = observableList;
         }
@@ -132,13 +135,15 @@ namespace NowMine.ViewModel
 
         private void SearchObject()
         {
-            var searchList = getSearchList(SearchText);
-            var observableList = new ObservableCollection<MusicPiece>();
-            foreach (MusicPiece musicPiece in searchList)
+            var searchList = this.GetSearchList(SearchText);
+            var observableList = new ObservableCollection<MusicData>();
+            
+            foreach (MusicData musicPiece in searchList)
             {
-                musicPiece.MouseDoubleClick += SearchResult_MouseDoubleClick;
+                //musicPiece.MouseDoubleClick += SearchResult_MouseDoubleClick;
                 observableList.Add(musicPiece);
             }
+            
             SearchList = observableList;
         }
 

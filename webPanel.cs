@@ -4,6 +4,7 @@ using NowMine.Helpers;
 using NowMine.Queue;
 using System;
 using System.Windows;
+using NowMine.Data;
 
 namespace NowMine
 {
@@ -42,7 +43,7 @@ namespace NowMine
             Console.WriteLine("playnow!");
         }
 
-        public void playNow(MusicPiece musicPiece)
+        public void playNow(MusicData musicPiece)
         {
             if (musicPiece != null)
             {
@@ -50,10 +51,13 @@ namespace NowMine
                 {
                     isPlaying = true;
                 }
-                webControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + musicPiece.Info.id + "')");
+                
+                webControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + musicPiece.YTInfo.id + "')");
+                
             }
         }
 
+        /*
         //functions to call from javascript
         public void getNextVideo()
         {
@@ -71,7 +75,7 @@ namespace NowMine
             }
             OnVideoEnded();
         }
-
+        
         public void errorHandle()
         {
             Console.WriteLine("ONERROR");
@@ -79,12 +83,13 @@ namespace NowMine
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
                 this.webControl.Address = @"http://www.youtube.com/watch?v=" + nowPlaying.Info.id;
+                
             }));
             mainWindow.isYoutubePage = true;
             mainWindow.videoID = nowPlaying.Info.id;
             isPlaying = true;
         }
-
+        */
         internal void setYoutubeWrapper(bool isInitial)
         {
             this.webControl.Address = @"local://index.html";

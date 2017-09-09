@@ -62,14 +62,17 @@ namespace NowMine
             int queueCount = Queue.Count;
             List<QueuePieceToSend> qInfo = new List<QueuePieceToSend>(queueCount);
 
+            /*
             foreach (MusicPiece musicPiece in Queue)
             {
                 QueuePieceToSend qpts = new QueuePieceToSend(musicPiece.Info, musicPiece.User);
                 qInfo.Add(qpts);
             }
+            */
             return qInfo;
         }
 
+        /*
         public int addToQueue(MusicPiece musicPiece)
         {
             musicPiece.MouseDoubleClick += Queue_DoubleClick;
@@ -97,6 +100,7 @@ namespace NowMine
             OnPropertyChanged("Queue");
             return qPos;
         }
+        */
 
         private int calculateQueuePostition(User user)
         {
@@ -170,7 +174,7 @@ namespace NowMine
             musicPiece.nowPlayingVisual();
             Queue.Insert(0, musicPiece);
 
-            webPanel.playNow(musicPiece.Info.id);
+            //webPanel.playNow(musicPiece.Info.id);
             populateQueueBoard();
             int qPos = Queue.IndexOf(musicPiece);
             OnPlayedNow(qPos);
@@ -215,7 +219,7 @@ namespace NowMine
             {
                 nextVideo.nowPlayingVisual();
                 //toHistory(nowPlaying());
-                webPanel.playNow(nextVideo.Info.id);
+                //webPanel.playNow(nextVideo.Info.id);
                 populateQueueBoard();
                 return true;
             }

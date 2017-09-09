@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using NowMine.Data;
 
 namespace NowMine.Queue
 {
@@ -9,9 +10,9 @@ namespace NowMine.Queue
         {
             int pos = -1;
             float songsPerUser = getSongsPerUser(user);
-            List<MusicPiece> rev = new List<MusicPiece>(QueueManager.Queue);
+            List<MusicData> rev = new List<MusicData>(QueueManager.Queue);
             rev.Reverse();
-            foreach (MusicPiece mPiece in rev)
+            foreach (MusicData mPiece in rev)
             {
                 if (mPiece.User == user)
                 {
@@ -39,7 +40,7 @@ namespace NowMine.Queue
             List<User> uniq = new List<User> { user };
             int userQueuedSongs = 0;
             int numberOfUsersInQueue = 1;
-            foreach (MusicPiece musicPiece in QueueManager.Queue)
+            foreach (MusicData musicPiece in QueueManager.Queue)
             {
                 if (!uniq.Contains(musicPiece.User))
                 {

@@ -10,6 +10,7 @@ using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json.Bson;
+using NowMine.Data;
 using NowMine.Helpers;
 using NowMine.Queue;
 
@@ -120,7 +121,7 @@ namespace NowMine
                             toQueue.buildURL();
                             Console.WriteLine(string.Format("Adding to queue {0} ", toQueue.title));
                             int qPos = -2;
-                            Application.Current.Dispatcher.Invoke(new Action(() => {qPos = QueueManager.addToQueue(new MusicPiece(toQueue, user)); }));
+                            Application.Current.Dispatcher.Invoke(new Action(() => {qPos = QueueManager.addToQueue(new MusicData(toQueue, user)); }));
                             Console.WriteLine("Sending position of queued element {0} to {1}", qPos, s.RemoteEndPoint);
                             s.Send(BitConverter.GetBytes(qPos));
                             break;

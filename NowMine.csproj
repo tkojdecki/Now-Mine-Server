@@ -157,10 +157,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Data\MusicData.cs" />
     <Compile Include="Helpers\BytesMessegeBuilder.cs" />
     <Compile Include="Helpers\EventArgs.cs" />
     <Compile Include="Helpers\EventArgsHelper.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
+    <Compile Include="View\MusicControl.xaml.cs">
+      <DependentUpon>MusicControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\QueuePanel.cs" />
     <Compile Include="Queue\QueueCalculator.cs" />
     <Compile Include="Queue\QueueManager.cs" />
@@ -176,6 +180,10 @@
     <Compile Include="WebPanel.cs" />
     <Compile Include="YouTubeInfo.cs" />
     <Compile Include="YouTubeProvider.cs" />
+    <Page Include="View\MusicControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\MusicPiece.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
