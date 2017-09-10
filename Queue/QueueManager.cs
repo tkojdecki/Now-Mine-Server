@@ -76,9 +76,9 @@ namespace NowMine.Queue
             return qInfo;
         }
 
-        static public int addToQueue(MusicData musicPiece)
+        public static int AddToQueue(MusicData musicPiece)
         {
-            //musicPiece.MouseDoubleClick += Queue_DoubleClick;
+            musicPiece.OnClick += Queue_DoubleClick;
             int qPos = QueueCalculator.calculateQueuePostition(musicPiece.User);
             if (qPos < Queue.Count && qPos >= 0)
             {
@@ -91,6 +91,16 @@ namespace NowMine.Queue
             OnGlobalPropertyChanged("Queue");
             OnVideoQueued(new YoutubeQueued(musicPiece.YTInfo, qPos, musicPiece.User.Id));
             return qPos;
+        }
+
+        private static void Queue_DoubleClick(object sender, MusicData data)
+        {
+            toHistory(nowPlaying());
+            deleteFromQueue(data);
+            Queue.Insert(0, data);
+
+            int qPos = Queue.IndexOf(data);
+            OnPlayedNow(qPos);
         }
 
         /*

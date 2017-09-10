@@ -73,7 +73,7 @@ namespace NowMine
         }
 
         /*
-        public int addToQueue(MusicPiece musicPiece)
+        public int AddToQueue(MusicPiece musicPiece)
         {
             musicPiece.MouseDoubleClick += Queue_DoubleClick;
             if (Queue.Count == 0 || !webPanel.isPlaying)

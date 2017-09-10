@@ -46,17 +46,23 @@ namespace NowMine.ViewModel
             }
         }
 
+        /*
         private void SearchResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-        /*
             var musicPiece = (MusicPiece)sender;
             var queueMusicPiece = musicPiece.copy();
             queueMusicPiece.MouseDoubleClick -= SearchResult_MouseDoubleClick;
             queueMusicPiece.userColorBrush();
             queueMusicPiece.lbluserName.Visibility = System.Windows.Visibility.Visible;
-            int qPos = QueueManager.addToQueue(queueMusicPiece);
+            int qPos = QueueManager.AddToQueue(queueMusicPiece);
             e.Handled = true;
-            */
+        }
+        */
+
+        private void AddToQueue(object sender, MusicData data)
+        {
+            MusicData newData = data.Copy();
+            int qPos = QueueManager.AddToQueue(newData);
         }
 
         public List<MusicData> GetSearchList(String searchWord)
@@ -140,7 +146,7 @@ namespace NowMine.ViewModel
             
             foreach (MusicData musicPiece in searchList)
             {
-                //musicPiece.MouseDoubleClick += SearchResult_MouseDoubleClick;
+                musicPiece.OnClick += this.AddToQueue;
                 observableList.Add(musicPiece);
             }
             

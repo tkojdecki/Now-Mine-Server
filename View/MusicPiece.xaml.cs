@@ -161,7 +161,7 @@ namespace NowMine
             var queueMusicPiece = musicPiece.copy();
             queueMusicPiece.userColorBrush();
             queueMusicPiece.lbluserName.Visibility = System.Windows.Visibility.Visible;
-            int qPos = QueueManager.addToQueue(queueMusicPiece);
+            int qPos = QueueManager.AddToQueue(queueMusicPiece);
             */
         }
     }

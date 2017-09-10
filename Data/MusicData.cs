@@ -14,6 +14,10 @@ namespace NowMine.Data
         public YouTubeInfo YTInfo = null;
         public User User;
 
+        //public Action<MusicData> OnClick;
+
+        public EventHandler<MusicData> OnClick;
+
         public string Title
         {
             get
@@ -42,6 +46,11 @@ namespace NowMine.Data
             {
                 User = user;
             }
+        }
+
+        public MusicData Copy()
+        {
+            return new MusicData(this.YTInfo, this.User);
         }
 
         public void SetPlayedDate()
