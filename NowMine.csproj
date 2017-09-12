@@ -177,6 +177,9 @@
     <Compile Include="User.cs" />
     <Compile Include="ViewModel\QueuePanelViewModel.cs" />
     <Compile Include="ViewModel\SearchPanelViewModel.cs" />
+    <Compile Include="View\SearchControl.xaml.cs">
+      <DependentUpon>SearchControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WebPanel.cs" />
     <Compile Include="YouTubeInfo.cs" />
     <Compile Include="YouTubeProvider.cs" />
@@ -200,6 +203,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\SearchControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">

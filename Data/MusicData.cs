@@ -13,9 +13,7 @@ namespace NowMine.Data
 
         public YouTubeInfo YTInfo = null;
         public User User;
-
-        //public Action<MusicData> OnClick;
-
+        
         public EventHandler<MusicData> OnClick;
 
         public string Title
@@ -23,6 +21,14 @@ namespace NowMine.Data
             get
             {
                 return this.YTInfo?.title;
+            }
+        }
+
+        public string ChannelName
+        {
+            get
+            {
+                return this.YTInfo?.channelName;
             }
         }
 

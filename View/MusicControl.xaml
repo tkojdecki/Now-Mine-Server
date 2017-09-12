@@ -4,24 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             MouseDoubleClick="MusicControl_OnMouseDoubleClick">
-    <Grid Background="White" Margin="8, 4, 8, 4">
+             MouseDoubleClick="MusicControl_OnMouseDoubleClick"
+             MouseEnter="MusicControl_OnMouseEnter"
+             MouseLeave="MusicControl_OnMouseLeave">
+    <Grid x:Name="MusicControl_MainGrid" Background="White" Margin="8, 4, 8, 4">
 
         <StackPanel Orientation="Horizontal"
                             VerticalAlignment="Stretch">
 
-            <Image x:Name ="imgMain" Source ="{Binding Path=Image}" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
+            <Image Source ="{Binding Path=Image}" HorizontalAlignment="Left" VerticalAlignment="Stretch"/>
 
-            <StackPanel Orientation="Vertical"
-                                VerticalAlignment="Stretch">
-                <Label x:Name="lblTitle" Content="{Binding Path=Title}" VerticalAlignment="Top" ClipToBounds="True"/>
+            <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
+                <Label Content="{Binding Path=Title}" VerticalAlignment="Top" ClipToBounds="True"/>
+                <Label Content="{Binding Path=ChannelName}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                <Label Content="{Binding Path=User.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
             </StackPanel>
 
         </StackPanel>
 
-        <Border x:Name="border" BorderBrush="Black" BorderThickness="3">
+        <Border BorderBrush="Black" BorderThickness="3">
             <Border.Effect>
-                <DropShadowEffect ShadowDepth="2" BlurRadius="16" Direction="-100" x:Name="dropShadowEffect" />
+                <DropShadowEffect ShadowDepth="2" BlurRadius="16" Direction="-100" />
             </Border.Effect>
         </Border>
 

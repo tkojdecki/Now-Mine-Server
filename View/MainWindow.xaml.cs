@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Threading;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Input;
 using CefSharp.Wpf;
 using CefSharp;
@@ -68,6 +67,7 @@ namespace NowMine
             DataContext = this;
             //columnQueue.DataContext = queuePanelVM;
             columnSearch.DataContext = searchPanelVM;
+            this.Search.OnSearch += searchPanelVM.PerformSearch;
         }
 
         private void InitializeChromium()
@@ -126,21 +126,7 @@ namespace NowMine
         }
 
         //private
-
-        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                //searchPanel.search();
-            }
-        }
-
-        private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox txtBox = sender as TextBox;
-            txtBox.Text = "";
-        }
-
+        
         private void Player_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (isMaximized)
@@ -151,6 +137,7 @@ namespace NowMine
 
         private void maximalizePlayer()
         {
+        //todo
             isMaximized = true;
  
             columnSearch.Visibility = Visibility.Collapsed;
@@ -165,6 +152,7 @@ namespace NowMine
 
         private void minimizePlayer()
         {
+        //todo
             isMaximized = false;
             WindowState = WindowState.Normal;
             WindowStyle = WindowStyle.SingleBorderWindow;
@@ -178,10 +166,17 @@ namespace NowMine
 
         private void activateUI()
         {
-            txtSearch.KeyDown += txtSearch_KeyDown;
-            searchButton.IsEnabled = true;
+            //txtSearch.KeyDown += txtSearch_KeyDown;
+            //searchButton.IsEnabled = true;
             //playNextButton.IsEnabled = true;
+            Search.ToogleSearchEnabled(true);
+            Search.OnSearch += ScrollSearchQueue;
             webPlayer.MouseDoubleClick += Player_MouseDoubleClick;
+        }
+
+        private void ScrollSearchQueue(Object sender, string searchText)
+        {
+            SearchScroll.ScrollToTop();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

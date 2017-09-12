@@ -1,12 +1,10 @@
 ﻿using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using NowMine.Data;
 
 namespace NowMine.View
 {
-    /// <summary>
-    /// Logika interakcji dla klasy MusicControl.xaml
-    /// </summary>
     public partial class MusicControl : UserControl
     {
         public MusicControl()
@@ -22,6 +20,16 @@ namespace NowMine.View
                 musicData.OnClick.Invoke(this, musicData);
                 e.Handled = true;
             }
+        }
+
+        public void MusicControl_OnMouseEnter(object sender, MouseEventArgs e)
+        {
+            MusicControl_MainGrid.Background = Brushes.Aquamarine;
+        }
+
+        public void MusicControl_OnMouseLeave(object sender, MouseEventArgs e)
+        {
+            MusicControl_MainGrid.Background = Brushes.White;
         }
     }
 }

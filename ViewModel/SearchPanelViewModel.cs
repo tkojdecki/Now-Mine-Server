@@ -46,19 +46,6 @@ namespace NowMine.ViewModel
             }
         }
 
-        /*
-        private void SearchResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var musicPiece = (MusicPiece)sender;
-            var queueMusicPiece = musicPiece.copy();
-            queueMusicPiece.MouseDoubleClick -= SearchResult_MouseDoubleClick;
-            queueMusicPiece.userColorBrush();
-            queueMusicPiece.lbluserName.Visibility = System.Windows.Visibility.Visible;
-            int qPos = QueueManager.AddToQueue(queueMusicPiece);
-            e.Handled = true;
-        }
-        */
-
         private void AddToQueue(object sender, MusicData data)
         {
             MusicData newData = data.Copy();
@@ -84,6 +71,7 @@ namespace NowMine.ViewModel
             return list;
         }
 
+        //TODO refactor
         private ICommand _searchClickCommand;
         public ICommand SearchClickCommand
         {
@@ -115,8 +103,8 @@ namespace NowMine.ViewModel
             SearchList = observableList;
         }
 
+        //TODO refactor
         private ICommand _searchCommand;
-
         public ICommand SearchCommand
         {
             get
@@ -130,6 +118,13 @@ namespace NowMine.ViewModel
                 }
                 return _searchCommand;
             }
+        }
+
+        public void PerformSearch(object sender, string searchText)
+        {
+            SearchText = searchText;
+            //TODO refactor
+            SearchCommand.Execute(null);
         }
 
         private bool CanSearch()

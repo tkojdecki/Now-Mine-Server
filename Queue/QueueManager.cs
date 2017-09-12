@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows.Input;
 using NowMine.Helpers;
 using System.ComponentModel;
 using NowMine.Data;
@@ -78,7 +77,7 @@ namespace NowMine.Queue
 
         public static int AddToQueue(MusicData musicPiece)
         {
-            musicPiece.OnClick += Queue_DoubleClick;
+            musicPiece.OnClick += SendToPlay;
             int qPos = QueueCalculator.calculateQueuePostition(musicPiece.User);
             if (qPos < Queue.Count && qPos >= 0)
             {
@@ -93,7 +92,7 @@ namespace NowMine.Queue
             return qPos;
         }
 
-        private static void Queue_DoubleClick(object sender, MusicData data)
+        private static void SendToPlay(object sender, MusicData data)
         {
             toHistory(nowPlaying());
             deleteFromQueue(data);
