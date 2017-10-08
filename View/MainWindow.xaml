@@ -1,7 +1,6 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="NowMine.MainWindow"
-        xmlns:local="clr-namespace:NowMine.Queue"
         xmlns:data="clr-namespace:NowMine.Data"
         xmlns:view="clr-namespace:NowMine.View"
         Title="Now Mine!"
@@ -10,8 +9,6 @@
         Closing="Window_Closing">
 
     <Window.Resources>
-        <local:QueueManager x:Key="queueManager"/>
-
         <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type data:MusicData}">
             <StackPanel>
                 <view:MusicControl Width="350"/>
@@ -22,15 +19,12 @@
             <StackPanel Orientation="Vertical" Margin="0,0,0,0"/>
         </ItemsPanelTemplate>
 
-        <ItemsPanelTemplate x:Key="QueuePanelTemplate">
-            <StackPanel Orientation="Horizontal" Margin="0,0,0,0"/>
-        </ItemsPanelTemplate>
     </Window.Resources>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="375" x:Name="columnDefinitionSearch"/>
-            <ColumnDefinition Width="*" x:Name="columnDefinitionPlayer"/>
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <Grid x:Name="columnSearch" Grid.Column="0">
@@ -59,23 +53,12 @@
         <Grid x:Name="PlayerGrid" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
-                <RowDefinition Height="120"/>
+                <RowDefinition Height="120" x:Name="RowDefinitionQueue"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="RowPlayer" Grid.Row="0">
+            <Grid x:Name="RowPlayer" Grid.Row="0" />
 
-            </Grid>
-
-            <Grid x:Name="RowQueue" Grid.Row="1" >
-                <ScrollViewer Margin="0,0,0,0" HorizontalScrollBarVisibility="Visible" VerticalScrollBarVisibility="Hidden">
-                    <StackPanel>
-                        <ItemsControl HorizontalAlignment="Left"
-                                      VerticalAlignment="Top"
-                                      Margin="0,0,0,0"
-                                      ItemsSource="{Binding Source={StaticResource queueManager}, Path=Queue}"
-                                      ItemTemplate="{StaticResource MusicDataTemplate}"
-                                      ItemsPanel="{StaticResource QueuePanelTemplate}" />
-                    </StackPanel>
-                </ScrollViewer>
+            <Grid x:Name="RowQueue" Grid.Row="1">
+                <view:QueueControl x:Name="QueueControl" VerticalAlignment="Stretch" />
             </Grid>
         </Grid>
     </Grid>

@@ -1,0 +1,41 @@
+﻿<UserControl x:Class="NowMine.View.QueueControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:data="clr-namespace:NowMine.Data"
+             xmlns:view="clr-namespace:NowMine.View"
+             xmlns:queue="clr-namespace:NowMine.Queue"
+             PreviewMouseWheel = "OnPreviewMouseWheel"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <queue:QueueManager x:Key="queueManager"/>
+
+        <ItemsPanelTemplate x:Key="QueuePanelTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0"/>
+        </ItemsPanelTemplate>
+
+        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type data:MusicData}">
+            <StackPanel>
+                <view:MusicControl Width="350"/>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+
+    <Grid>
+        <ScrollViewer Margin="0,0,0,0"
+                      HorizontalScrollBarVisibility="Visible"
+                      VerticalScrollBarVisibility="Hidden"
+                      x:Name="ScrollView">
+            <StackPanel>
+                <ItemsControl HorizontalAlignment="Left"
+                              VerticalAlignment="Top"
+                              Margin="0,0,0,0"
+                              ItemsSource="{Binding Source={StaticResource queueManager}, Path=Queue}"
+                              ItemTemplate="{StaticResource MusicDataTemplate}"
+                              ItemsPanel="{StaticResource QueuePanelTemplate}" />
+            </StackPanel>
+        </ScrollViewer>
+    </Grid>
+</UserControl>

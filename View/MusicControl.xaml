@@ -17,12 +17,12 @@
             <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
                 <Label Content="{Binding Path=Title}" VerticalAlignment="Top" ClipToBounds="True"/>
                 <Label Content="{Binding Path=ChannelName}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <Label Content="{Binding Path=User.Name}" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+                <Label Content="{Binding Path=UserName}" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
             </StackPanel>
 
         </StackPanel>
 
-        <Border BorderBrush="Black" BorderThickness="3">
+        <Border BorderBrush="Purple" BorderThickness="3" x:Name="MC_Border">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="2" BlurRadius="16" Direction="-100" />
             </Border.Effect>

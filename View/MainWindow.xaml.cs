@@ -7,6 +7,7 @@ using CefSharp;
 using CefSharp.SchemeHandler;
 using NowMine.ViewModel;
 using NowMine.Queue;
+using NowMine.View;
 
 namespace NowMine
 {
@@ -144,7 +145,7 @@ namespace NowMine
             columnDefinitionSearch.Width = new GridLength(0);
 
             RowQueue.Visibility = Visibility.Collapsed;
-            //columnDefinitionQueue.Width = new GridLength(0);
+            RowDefinitionQueue.Height = new GridLength(0);
 
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
@@ -158,20 +159,20 @@ namespace NowMine
             WindowStyle = WindowStyle.SingleBorderWindow;
 
             columnSearch.Visibility = Visibility.Visible;
-            columnDefinitionSearch.Width = new GridLength(360);
+            columnDefinitionSearch.Width = new GridLength(375);
 
             RowQueue.Visibility = Visibility.Visible;
-            //columnDefinitionQueue.Width = new GridLength(360);
+            RowDefinitionQueue.Height = new GridLength(120);
         }
 
         private void activateUI()
         {
-            //txtSearch.KeyDown += txtSearch_KeyDown;
-            //searchButton.IsEnabled = true;
-            //playNextButton.IsEnabled = true;
-            Search.ToogleSearchEnabled(true);
+            webPlayer.HorizontalAlignment = HorizontalAlignment.Stretch;
+            webPlayer.VerticalAlignment = VerticalAlignment.Stretch;
+
             Search.OnSearch += ScrollSearchQueue;
             webPlayer.MouseDoubleClick += Player_MouseDoubleClick;
+            Search.ToogleSearchEnabled(true);
         }
 
         private void ScrollSearchQueue(Object sender, string searchText)

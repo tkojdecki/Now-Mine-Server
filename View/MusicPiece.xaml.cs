@@ -128,10 +128,10 @@ namespace NowMine
 
         internal void userColorBrush()
         {
-            SolidColorBrush userBrush = new SolidColorBrush(User.getColor());
-            this.border.BorderBrush = userBrush;
-            this.dropShadowEffect.Color = User.getColor();
-            this.recBackground.Fill = userBrush;
+            //SolidColorBrush userBrush = new SolidColorBrush(User.getColor());
+            //this.border.BorderBrush = userBrush;
+            //this.dropShadowEffect.Color = User.getColor();
+            //this.recBackground.Fill = userBrush;
             this.recBackground.Opacity = 0.3d;
         }
 

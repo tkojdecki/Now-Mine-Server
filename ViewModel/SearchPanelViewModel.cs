@@ -5,12 +5,15 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Windows.Media;
 using NowMine.Data;
 
 namespace NowMine.ViewModel
 {
     class SearchPanelViewModel : INotifyPropertyChanged
     {
+        public static Color SEARCH_COLOR = Color.FromRgb(0,0,0);
+
         YouTubeProvider youtubeProvider = new YouTubeProvider();
 
         private string _searchText;
@@ -141,6 +144,7 @@ namespace NowMine.ViewModel
             
             foreach (MusicData musicPiece in searchList)
             {
+                musicPiece.Color = SEARCH_COLOR;
                 musicPiece.OnClick += this.AddToQueue;
                 observableList.Add(musicPiece);
             }

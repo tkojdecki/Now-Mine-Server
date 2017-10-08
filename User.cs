@@ -19,7 +19,7 @@ namespace NowMine
         
         public int Id { get; set; }
         private byte[] _color;
-        public byte[] UserColor
+        private byte[] UserColor
         {
             get
             {
@@ -33,12 +33,18 @@ namespace NowMine
                 _color = value;
             }
         }
+        public Color Color
+        {
+            get
+            {
+                return Color.FromRgb(UserColor[0], UserColor[1], UserColor[2]);
+            }
+        }
 
         public User(string name, int id)
         {
             this.Name = name;
             Random rnd = new Random();
-            //this.color = Color.FromRgb((byte)rnd.Next(0, 255), (byte)rnd.Next(0, 255), (byte)rnd.Next(0, 255));
             Id = id;
             for (int i = 0; i < 3; i++)
                 UserColor[i] = (byte)rnd.Next(0, 255);
@@ -47,11 +53,6 @@ namespace NowMine
         public void addToQueue(MusicPiece piece)
         {
             piece.lbluserName.Content = this.Name;
-        }
-
-        internal Color getColor()
-        {
-            return Color.FromRgb(UserColor[0], UserColor[1], UserColor[2]);
         }
     }
 }

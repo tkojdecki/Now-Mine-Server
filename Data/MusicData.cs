@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace NowMine.Data
@@ -32,11 +33,36 @@ namespace NowMine.Data
             }
         }
 
+        public string UserName
+        {
+            get
+            {
+                return this.User?.Name;
+            }
+        }
+
         public BitmapImage Image
         {
             get
             {
                 return new BitmapImage(new Uri(this.YTInfo?.thumbnail.Url, UriKind.RelativeOrAbsolute));
+            }
+        }
+
+        private Color? m_Color = null;
+        public Color Color
+        {
+            get
+            {
+                if (m_Color.HasValue)
+                {
+                    return m_Color.Value;
+                }
+                return User.Color;
+            }
+            set
+            {
+                m_Color = value;
             }
         }
 
