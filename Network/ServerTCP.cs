@@ -8,9 +8,9 @@ using System.IO;
 using System.Windows;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
-using NowMine.Data;
 using NowMine.Helpers;
 using NowMine.Queue;
+using NowMine.ViewModel;
 
 namespace NowMine
 {

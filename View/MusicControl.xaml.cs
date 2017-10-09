@@ -2,12 +2,40 @@
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using NowMine.Data;
+using NowMine.ViewModel;
 
 namespace NowMine.View
 {
     public partial class MusicControl : UserControl
     {
+        public bool UsernameVisible
+        {
+            get
+            {
+                return (bool)GetValue(UsernameVisibleProperty);
+            }
+            set
+            {
+                SetValue(UsernameVisibleProperty, value);
+            }
+        }
+
+        public static readonly DependencyProperty UsernameVisibleProperty
+            = DependencyProperty.Register(
+                "UsernameVisible",
+                typeof(bool),
+                typeof(MusicControl),
+                new UIPropertyMetadata(true, UsernameVisibilityChanged)
+            );
+
+        private static void UsernameVisibilityChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            MusicControl mc = (MusicControl) d;
+            if (mc != null)
+            {
+                mc.SetupUsernameVisibility();
+            }
+        }
 
         public MusicControl()
         {
@@ -24,8 +52,14 @@ namespace NowMine.View
             if (musicData != null)
             {
                 MC_Border.BorderBrush = new SolidColorBrush(musicData.Color);
-                Visibility = Visibility.Visible;
+
+                this.Visibility = Visibility.Visible;
             }
+        }
+
+        public void SetupUsernameVisibility()
+        {
+            this.LabelUser.Visibility = this.UsernameVisible ? Visibility.Visible : Visibility.Hidden;
         }
 
         public void MusicControl_OnMouseDoubleClick(object sender, MouseButtonEventArgs e)

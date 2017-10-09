@@ -4,7 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using NowMine.Helpers;
 using System.ComponentModel;
-using NowMine.Data;
+using NowMine.ViewModel;
 
 namespace NowMine.Queue
 {
@@ -26,7 +26,7 @@ namespace NowMine.Queue
         }
 
         static private ObservableCollection<MusicData> _history;
-        static private ObservableCollection<MusicData> History
+        static public ObservableCollection<MusicData> History
         {
             get
             {
@@ -100,6 +100,8 @@ namespace NowMine.Queue
 
             int qPos = Queue.IndexOf(data);
             OnPlayedNow(qPos);
+
+            OnGlobalPropertyChanged("Queue");
         }
 
         /*
@@ -122,7 +124,6 @@ namespace NowMine.Queue
             if (Queue.Contains(queuePiece))
             {
                 Queue.Remove(queuePiece);
-                OnGlobalPropertyChanged("Queue");
             }
         }
 
@@ -188,8 +189,24 @@ namespace NowMine.Queue
             OnGlobalPropertyChanged("Queue");
         }
 
-        static event PropertyChangedEventHandler GlobalPropertyChanged = delegate { };
-        static void OnGlobalPropertyChanged(string propertyName)
+        public static void ClearHistory()
+        {
+            History.Clear();
+            OnGlobalPropertyChanged("History");
+        }
+
+        public static void ClearQueue()
+        {
+        //todo clear only current user
+            while (Queue.Count > 1)
+            {
+                Queue.RemoveAt(Queue.Count-1);
+            }
+            OnGlobalPropertyChanged("Queue");
+        }
+
+        public static event PropertyChangedEventHandler GlobalPropertyChanged = delegate { };
+        public static void OnGlobalPropertyChanged(string propertyName)
         {
             GlobalPropertyChanged(
                 typeof(QueueManager),

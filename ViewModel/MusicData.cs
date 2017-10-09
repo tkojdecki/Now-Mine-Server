@@ -3,14 +3,14 @@ using System.ComponentModel;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace NowMine.Data
+namespace NowMine.ViewModel
 {
     class MusicData : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private DateTime CreatedDate { get; set; }
-        private DateTime PlayedDate { get; set; }
+        private DateTime? CreatedDate { get; set; }
+        private DateTime? m_PlayedDate { get; set; }
 
         public YouTubeInfo YTInfo = null;
         public User User;
@@ -54,40 +54,45 @@ namespace NowMine.Data
         {
             get
             {
-                if (m_Color.HasValue)
+                if (this.m_Color.HasValue)
                 {
-                    return m_Color.Value;
+                    return this.m_Color.Value;
                 }
-                return User.Color;
+                return this.User.Color;
             }
             set
             {
-                m_Color = value;
+                this.m_Color = value;
             }
         }
 
         public MusicData(YouTubeInfo ytInfo, User user = null)
         {
-            YTInfo = ytInfo;
-            CreatedDate = DateTime.Now;
+            this.YTInfo = ytInfo;
+            this.CreatedDate = DateTime.Now;
             if (user == null)
             {
-                User = User.serverUser;
+                this.User = User.serverUser;
             }
             else
             {
-                User = user;
+                this.User = user;
             }
         }
 
         public MusicData Copy()
         {
-            return new MusicData(this.YTInfo, this.User);
+            MusicData md = new MusicData(this.YTInfo, this.User);
+            if (this.m_Color.HasValue)
+            {
+                md.Color = this.m_Color.Value;
+            }
+            return md;
         }
 
         public void SetPlayedDate()
         {
-            this.PlayedDate = DateTime.Now;
+            this.m_PlayedDate = DateTime.Now;
         }
     }
 }

@@ -1,17 +1,17 @@
 ﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="NowMine.MainWindow"
-        xmlns:data="clr-namespace:NowMine.Data"
         xmlns:view="clr-namespace:NowMine.View"
+        xmlns:viewModel="clr-namespace:NowMine.ViewModel"
         Title="Now Mine!"
         Height="650"
         Width="1235"
         Closing="Window_Closing">
 
     <Window.Resources>
-        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type data:MusicData}">
+        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:MusicData}">
             <StackPanel>
-                <view:MusicControl Width="350"/>
+                <view:MusicControl Width="350" UsernameVisible="False"/>
             </StackPanel>
         </DataTemplate>
 
@@ -58,7 +58,7 @@
             <Grid x:Name="RowPlayer" Grid.Row="0" />
 
             <Grid x:Name="RowQueue" Grid.Row="1">
-                <view:QueueControl x:Name="QueueControl" VerticalAlignment="Stretch" />
+                <view:QueuePanel x:Name="QueueControl" VerticalAlignment="Stretch" />
             </Grid>
         </Grid>
     </Grid>

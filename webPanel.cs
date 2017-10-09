@@ -4,7 +4,7 @@ using NowMine.Helpers;
 using NowMine.Queue;
 using System;
 using System.Windows;
-using NowMine.Data;
+using NowMine.ViewModel;
 
 namespace NowMine
 {

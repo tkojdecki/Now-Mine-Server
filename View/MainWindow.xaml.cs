@@ -7,7 +7,6 @@ using CefSharp;
 using CefSharp.SchemeHandler;
 using NowMine.ViewModel;
 using NowMine.Queue;
-using NowMine.View;
 
 namespace NowMine
 {
@@ -169,6 +168,8 @@ namespace NowMine
         {
             webPlayer.HorizontalAlignment = HorizontalAlignment.Stretch;
             webPlayer.VerticalAlignment = VerticalAlignment.Stretch;
+
+            this.QueueControl.DataContext = new QueuePanelViewModel();
 
             Search.OnSearch += ScrollSearchQueue;
             webPlayer.MouseDoubleClick += Player_MouseDoubleClick;

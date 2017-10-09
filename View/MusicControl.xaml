@@ -17,7 +17,7 @@
             <StackPanel Orientation="Vertical" VerticalAlignment="Stretch">
                 <Label Content="{Binding Path=Title}" VerticalAlignment="Top" ClipToBounds="True"/>
                 <Label Content="{Binding Path=ChannelName}" VerticalAlignment="Center" HorizontalAlignment="Left"/>
-                <Label Content="{Binding Path=UserName}" VerticalAlignment="Bottom" HorizontalAlignment="Left"/>
+                <Label Content="{Binding Path=UserName}" VerticalAlignment="Bottom" HorizontalAlignment="Left" x:Name="LabelUser"/>
             </StackPanel>
 
         </StackPanel>

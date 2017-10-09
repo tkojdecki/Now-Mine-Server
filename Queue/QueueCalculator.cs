@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using NowMine.Data;
+using NowMine.ViewModel;
 
 namespace NowMine.Queue
 {
