@@ -73,9 +73,12 @@ namespace NowMine
             serverUDP.NewUser += serverTCP.TCPConnectToNewUser;
             webPanel.VideoEnded += serverUDP.DeletedPiece;
             webPanel.VideoEnded += ChangeToIndex;
-            webPanel.PlayedNow += serverUDP.playedNow;
+            //webPanel.PlayedNow += serverUDP.playedNow;
+            QueueManager.PlayedNow += serverUDP.playedNow;
             QueueManager.VideoQueued += webPanel.VideoQueuedHandler;
             QueueManager.VideoQueued += serverUDP.sendQueuedPiece;
+
+            webPlayer.MouseDoubleClick += Player_MouseDoubleClick;
 
             DataContext = this;
             //columnQueue.DataContext = queuePanelVM;
@@ -99,7 +102,6 @@ namespace NowMine
                                                 //defaultPage: "test.html" //Optional param will default to index.html
                                                 )
             });
-
             Cef.Initialize(settings);
         }
 
@@ -193,7 +195,6 @@ namespace NowMine
             txtSearch.KeyDown += txtSearch_KeyDown;
             searchButton.IsEnabled = true;
             //playNextButton.IsEnabled = true;
-            webPlayer.MouseDoubleClick += Player_MouseDoubleClick;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

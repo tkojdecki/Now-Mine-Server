@@ -54,6 +54,15 @@ namespace NowMine.Queue
             }
         }
 
+        public delegate void PlayedNowEventHandler(object s, GenericEventArgs<int> e);
+        static public event PlayedNowEventHandler PlayedNow;
+
+        static public void OnPlayedNow(int qPos)
+        {
+            PlayedNow?.Invoke(typeof(QueueManager), new GenericEventArgs<int>(qPos));
+        }
+
+
         static public List<QueuePieceToSend> getQueueInfo()
         {
             int queueCount = Queue.Count;
@@ -93,7 +102,7 @@ namespace NowMine.Queue
             Queue.Insert(0, musicPiece);
 
             int qPos = Queue.IndexOf(musicPiece);
-
+            OnPlayedNow(qPos);
             e.Handled = true;
         }
 

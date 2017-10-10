@@ -52,7 +52,7 @@ namespace NowMine
             IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
             byte[] bytes = Encoding.ASCII.GetBytes(message);
             UDPClient.Send(bytes, bytes.Length, ip);
-            Console.WriteLine("UDP Sent: {0} ", message);
+            Console.WriteLine("UDP Sending string: {0} ", message);
         }
 
         public void UDPSend(byte[] message)

@@ -21,14 +21,6 @@ namespace NowMine
         public delegate void VideoEndedEventHandler(object source, GenericEventArgs<int> e);
         public event VideoEndedEventHandler VideoEnded;
 
-        public delegate void PlayedNowEventHandler(object s, GenericEventArgs<int> e);
-        public event PlayedNowEventHandler PlayedNow;
-
-        public void OnPlayedNow(int qPos)
-        {
-            PlayedNow?.Invoke(this, new GenericEventArgs<int>(qPos));
-        }
-
         public WebPanel(ChromiumWebBrowser webControl, MainWindow mainWindow)
         {
             this.webControl = webControl;
@@ -59,7 +51,7 @@ namespace NowMine
             if (musicPiece != null)
             {
                 PlayNow(musicPiece.Info.id);
-                OnPlayedNow(qPos);
+                //OnPlayedNow(qPos);
                 Console.WriteLine("Played Now {0}!", musicPiece.Info.id);
             }
                 
@@ -70,7 +62,7 @@ namespace NowMine
             if (ytQueued != null)
             {
                 PlayNow(ytQueued.EventData.id);
-                OnPlayedNow(ytQueued.EventData.QPos);
+                //OnPlayedNow(ytQueued.EventData.QPos);
                 Console.WriteLine("Played Now {0}!", ytQueued.EventData.id);
             }
 
@@ -117,6 +109,8 @@ namespace NowMine
         {
             if (!isPlaying)
                 PlayNow(args);
+            //else
+            //    OnPlayedNow(args.EventData.QPos);
         }
 
         internal void PlayedNowHandler(object s, GenericEventArgs<int> e)
