@@ -7,13 +7,14 @@ namespace NowMine.View
 {
     public partial class SearchControl : UserControl
     {
+        private static bool m_SearchedOnce = false;
         public EventHandler<string> OnSearch;
 
         public SearchControl()
         {
             InitializeComponent();
             ToogleSearchEnabled(false);
-            ClearSearchText();
+            //ClearSearchText();
         }
 
         public void ToogleSearchEnabled(bool enable)
@@ -31,11 +32,13 @@ namespace NowMine.View
 
         private void GotFocus(object sender, RoutedEventArgs e)
         {
+            CheckSearchedOnce(); //todo clear text twice; is this even a problem?
             ClearSearchText();
         }
 
         private void SearchButtonClick(object sender, RoutedEventArgs e)
         {
+            CheckSearchedOnce();
             e.Handled = Search();
         }
 
@@ -47,6 +50,16 @@ namespace NowMine.View
                 //ClearSearchText();
             }
             return SearchButton.IsEnabled;
+        }
+
+        private void CheckSearchedOnce()
+        {
+        //used to clear initial tooltip
+            if (!m_SearchedOnce)
+            {
+                m_SearchedOnce = true;
+                ClearSearchText();
+            }
         }
 
         private void ClearSearchText()
