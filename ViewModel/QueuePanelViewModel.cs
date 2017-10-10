@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 using NowMine.Helpers;
@@ -11,6 +12,9 @@ namespace NowMine.ViewModel
 {
     class QueuePanelViewModel : INotifyPropertyChanged
     {
+        private const string QUEUE_TOOLTIP = "Double click items to add them to queue!\nRight-click for menu.";
+        private const string HISTORY_TOOLTIP = "Play something to add it to history!\nRight-click for menu.";
+
         private bool m_NowPlayingVisibility = true;
         public bool NowPlayingVisibility
         {
@@ -42,8 +46,15 @@ namespace NowMine.ViewModel
                     this.m_HistoryVisible = value;
                     OnSettingsChanged();
                     OnPropertyChanged("ObservedQueue");
+                    OnPropertyChanged("QueueTooltipContent");
+                    OnPropertyChanged("QueueTooltipVisibility");
                 }
             }
+        }
+
+        public bool QueueEmpty
+        {
+            get { return ObservedQueue.Count == 0; }
         }
 
         public ObservableCollection<MusicData> ObservedQueue
@@ -88,16 +99,47 @@ namespace NowMine.ViewModel
             }
         }
 
-        public QueuePanelViewModel()
+        public string QueueTooltipContent
         {
-            QueueManager.GlobalPropertyChanged += QueueManagerOnGlobalPropertyChanged;
+            get
+            {
+                if (HistoryVisible)
+                {
+                    return HISTORY_TOOLTIP;
+                }
+                else
+                {
+                    return QUEUE_TOOLTIP;
+                }
+            }
         }
 
-        private void QueueManagerOnGlobalPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
+        public Visibility QueueTooltipVisibility
+        {
+            get
+            {
+                if (QueueEmpty)
+                {
+                    return Visibility.Visible;
+                }
+                else
+                {
+                    return Visibility.Collapsed;
+                }
+            }
+        }
+
+        public QueuePanelViewModel()
+        {
+            QueueManager.GlobalPropertyChanged += QueueManager_OnGlobalPropertyChanged;
+        }
+
+        private void QueueManager_OnGlobalPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
         //todo magic strings
             OnPropertyChanged("NowPlaying");
             OnPropertyChanged("ObservedQueue");
+            OnPropertyChanged("QueueTooltipVisibility");
         }
 
         private RelayCommand _toggleNowPlaying;
