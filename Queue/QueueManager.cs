@@ -43,6 +43,14 @@ namespace NowMine.Queue
         public delegate void VideoQueuedEventArgs(object s, GenericEventArgs<YoutubeQueued> e);
         static public event VideoQueuedEventArgs VideoQueued;
 
+        public delegate void PlayedNowEventHandler(object s, GenericEventArgs<int> e);
+        static public event PlayedNowEventHandler PlayedNow;
+
+        static public void OnPlayedNow(int qPos)
+        {
+            PlayedNow?.Invoke(typeof(QueueManager), new GenericEventArgs<int>(qPos));
+        }
+
         static public void OnVideoQueued(YoutubeQueued video)
         {
             if (video != null)
@@ -89,8 +97,8 @@ namespace NowMine.Queue
             deleteFromQueue(data);
             Queue.Insert(0, data);
 
-            //int qPos = Queue.IndexOf(data);
-            //OnPlayedNow(qPos);
+            int qPos = Queue.IndexOf(data);
+            OnPlayedNow(qPos);
 
             OnGlobalPropertyChanged("Queue");
         }

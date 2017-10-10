@@ -60,6 +60,7 @@ namespace NowMine
             webPanel.VideoEnded += serverUDP.DeletedPiece;
             webPanel.VideoEnded += ChangeToIndex;
             webPanel.PlayedNow += serverUDP.playedNow;
+            QueueManager.PlayedNow += webPanel.PlayedNowHandler;
             QueueManager.VideoQueued += webPanel.VideoQueuedHandler;
             QueueManager.VideoQueued += serverUDP.sendQueuedPiece;
 
