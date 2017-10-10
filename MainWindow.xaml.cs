@@ -51,7 +51,7 @@ namespace NowMine
             webPlayer.FrameLoadEnd += WebPlayer_FrameLoadEnd;
             webPlayer.Initialized += WebPlayer_Initialized;
             
-            columnPlayer.Children.Add(webPlayer);
+            RowPlayer.Children.Add(webPlayer);
 
             webPanel.reinitialize(webPlayer);
             //var queuePanelVM = new QueuePanelViewModel();
@@ -78,8 +78,6 @@ namespace NowMine
             QueueManager.PlayedNow += serverUDP.playedNow;
             QueueManager.VideoQueued += webPanel.VideoQueuedHandler;
             QueueManager.VideoQueued += serverUDP.sendQueuedPiece;
-
-            webPlayer.MouseDoubleClick += Player_MouseDoubleClick;
 
             DataContext = this;
             //columnQueue.DataContext = queuePanelVM;
@@ -141,21 +139,7 @@ namespace NowMine
         }
 
         //private
-
-        private void txtSearch_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.Key == Key.Enter)
-            {
-                //searchPanel.search();
-            }
-        }
-
-        private void txtSearch_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox txtBox = sender as TextBox;
-            txtBox.Text = "";
-        }
-
+        
         private void Player_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (isMaximized)
@@ -166,13 +150,14 @@ namespace NowMine
 
         private void maximalizePlayer()
         {
+        //todo
             isMaximized = true;
  
             columnSearch.Visibility = Visibility.Collapsed;
             columnDefinitionSearch.Width = new GridLength(0);
 
-            columnQueue.Visibility = Visibility.Collapsed;
-            columnDefinitionQueue.Width = new GridLength(0);
+            RowQueue.Visibility = Visibility.Collapsed;
+            RowDefinitionQueue.Height = new GridLength(0);
 
             WindowState = WindowState.Maximized;
             WindowStyle = WindowStyle.None;
@@ -185,17 +170,27 @@ namespace NowMine
             WindowStyle = WindowStyle.SingleBorderWindow;
 
             columnSearch.Visibility = Visibility.Visible;
-            columnDefinitionSearch.Width = new GridLength(360);
+            columnDefinitionSearch.Width = new GridLength(375);
 
-            columnQueue.Visibility = Visibility.Visible;
-            columnDefinitionQueue.Width = new GridLength(360);
+            RowQueue.Visibility = Visibility.Visible;
+            RowDefinitionQueue.Height = new GridLength(120);
         }
 
         private void activateUI()
         {
-            txtSearch.KeyDown += txtSearch_KeyDown;
-            searchButton.IsEnabled = true;
-            //playNextButton.IsEnabled = true;
+            webPlayer.HorizontalAlignment = HorizontalAlignment.Stretch;
+            webPlayer.VerticalAlignment = VerticalAlignment.Stretch;
+
+            this.QueueControl.DataContext = new QueuePanelViewModel();
+
+            Search.OnSearch += ScrollSearchQueue;
+            webPlayer.MouseDoubleClick += Player_MouseDoubleClick;
+            Search.ToogleSearchEnabled(true);
+        }
+
+        private void ScrollSearchQueue(Object sender, string searchText)
+        {
+            SearchScroll.ScrollToTop();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
