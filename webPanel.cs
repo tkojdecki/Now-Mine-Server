@@ -17,6 +17,14 @@ namespace NowMine
         public delegate void VideoEndedEventHandler(object source, GenericEventArgs<int> e);
         public event VideoEndedEventHandler VideoEnded;
 
+        public delegate void PlayedNowEventHandler(object s, GenericEventArgs<int> e);
+        public event PlayedNowEventHandler PlayedNow;
+
+        public void OnPlayedNow(int qPos)
+        {
+            PlayedNow?.Invoke(this, new GenericEventArgs<int>(qPos));
+        }
+
         public WebPanel(ChromiumWebBrowser webControl, MainWindow mainWindow)
         {
             this.webControl = webControl;
@@ -33,39 +41,46 @@ namespace NowMine
             VideoEnded?.Invoke(this, new GenericEventArgs<int>(0));
         }
 
-        public void playNow(String id)
+        private void PlayNow(String id)
         {
             if (!isPlaying)
             {
                 isPlaying = true;
             }
             webControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + id + "')");
-            Console.WriteLine("playnow!");
         }
 
-        public void playNow(MusicData musicPiece)
+        public void PlayNow(MusicData musicPiece, int qPos)
         {
             if (musicPiece != null)
             {
-                if (!isPlaying)
-                {
-                    isPlaying = true;
-                }
-                
-                webControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + musicPiece.YTInfo.id + "')");
-                
+                PlayNow(musicPiece.YTInfo.id);
+                OnPlayedNow(qPos);
+                Console.WriteLine("Played Now {0}!", musicPiece.YTInfo.id);
             }
+                
         }
 
-        /*
+        public void PlayNow(GenericEventArgs<YoutubeQueued> ytQueued)
+        {
+            if (ytQueued != null)
+            {
+                PlayNow(ytQueued.EventData.id);
+                OnPlayedNow(ytQueued.EventData.QPos);
+                Console.WriteLine("Played Now {0}!", ytQueued.EventData.id);
+            }
+
+        }
+
+        
         //functions to call from javascript
         public void getNextVideo()
         {
-            MusicPiece nextVideo = QueueManager.getNextPiece();
+            MusicData nextVideo = QueueManager.getNextPiece();
             Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.toHistory(QueueManager.nowPlaying()); }));
             if (nextVideo != null)
             {
-                Application.Current.Dispatcher.Invoke(new Action(() => { nextVideo.nowPlayingVisual(); }));
+                Application.Current.Dispatcher.Invoke(new Action(() => { /*nextVideo.nowPlayingVisual();*/ }));
                 if (!isPlaying)
                     isPlaying = true;
             }
@@ -79,32 +94,33 @@ namespace NowMine
         public void errorHandle()
         {
             Console.WriteLine("ONERROR");
-            MusicPiece nowPlaying = QueueManager.nowPlaying();
+            MusicData nowPlaying = QueueManager.nowPlaying();
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                this.webControl.Address = @"http://www.youtube.com/watch?v=" + nowPlaying.Info.id;
+                this.webControl.Address = @"http://www.youtube.com/watch?v=" + nowPlaying.YTInfo.id;
                 
             }));
             mainWindow.isYoutubePage = true;
-            mainWindow.videoID = nowPlaying.Info.id;
+            mainWindow.videoID = nowPlaying.YTInfo.id;
             isPlaying = true;
         }
-        */
+        
         internal void setYoutubeWrapper(bool isInitial)
         {
             this.webControl.Address = @"local://index.html";
             QueueManager.playNext();
         }
 
-        public void VideoQueuedHandler(object s, MusicPieceReceivedEventArgs args)
+        public void VideoQueuedHandler(object s, GenericEventArgs<YoutubeQueued> args)
         {
             if (!isPlaying)
-                playNow(args.YoutubeQueued.id);
+                PlayNow(args);
         }
 
         internal void PlayedNowHandler(object s, GenericEventArgs<int> e)
         {
-            playNow(QueueManager.Queue[e.EventData]);
+            int qPos = e.EventData == -1 ? QueueManager.Queue.Count - 1 : e.EventData;
+            PlayNow(QueueManager.Queue[qPos], qPos);
         }
     }
 }

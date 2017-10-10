@@ -1,4 +1,6 @@
 ﻿using Google.Apis.YouTube.v3.Data;
+using NowMine.ViewModel;
+
 namespace NowMine
 {
     /// <summary>
@@ -47,6 +49,9 @@ namespace NowMine
 
     public class YoutubeQueued : YouTubeInfo
     {
+        public int QPos { get; set; }
+        public int UserID { get; set; }
+
         public YoutubeQueued (YouTubeInfo yi, int qPos, int userId)
         {
             this.LinkUrl = yi.LinkUrl;
@@ -54,8 +59,8 @@ namespace NowMine
             this.title = yi.title;
             this.channelName = yi.channelName;
             this.thumbnail = yi.thumbnail;
-            this.qPos = qPos;
-            this.userId = userId;
+            this.QPos = qPos;
+            this.UserID = userId;
         }
 
         public YoutubeQueued(YouTubeInfo yi, int qPos) //for PlayedNow from QueuePanel to send on udp played video from queue
@@ -65,10 +70,20 @@ namespace NowMine
             this.title = yi.title;
             this.channelName = yi.channelName;
             this.thumbnail = yi.thumbnail;
-            this.qPos = qPos;
-            this.userId = 0;
+            this.QPos = qPos;
+            this.UserID = 0;
         }
-        public int qPos;
-        public int userId;
+
+        public YoutubeQueued(MusicData musicPiece, int qPos)
+        {
+            this.LinkUrl = musicPiece.YTInfo.LinkUrl;
+            this.id = musicPiece.YTInfo.id;
+            this.title = musicPiece.YTInfo.title;
+            this.channelName = musicPiece.YTInfo.channelName;
+            this.thumbnail = musicPiece.YTInfo.thumbnail;
+            this.QPos = qPos;
+            this.UserID = musicPiece.User.Id;
+        }
+        
     }
 }

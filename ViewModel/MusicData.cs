@@ -5,7 +5,7 @@ using System.Windows.Media.Imaging;
 
 namespace NowMine.ViewModel
 {
-    class MusicData : INotifyPropertyChanged
+    public class MusicData : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
