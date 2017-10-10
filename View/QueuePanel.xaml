@@ -30,7 +30,7 @@
 
     </UserControl.Resources>
 
-    <Grid Background="Transparent">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="360" x:Name="ColumnDefinitionNowPlaying"/>
             <ColumnDefinition Width="*" x:Name="ColumnDefinitionQueue"/>
@@ -44,8 +44,6 @@
                           VerticalScrollBarVisibility="Hidden"
                           x:Name="ScrollView">
                 <StackPanel>
-                    <Label Content="{Binding Path=QueueTooltipContent}" VerticalAlignment="Center" Visibility="{Binding Path=QueueTooltipVisibility}" ClipToBounds="True"/>
-
                     <ItemsControl HorizontalAlignment="Left"
                                   VerticalAlignment="Top"
                                   Margin="0,0,0,0"

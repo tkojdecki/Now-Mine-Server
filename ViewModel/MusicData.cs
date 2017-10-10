@@ -83,7 +83,10 @@ namespace NowMine.ViewModel
         public MusicData Copy()
         {
             MusicData md = new MusicData(this.YTInfo, this.User);
-
+            if (this.m_Color.HasValue)
+            {
+                md.Color = this.m_Color.Value;
+            }
             return md;
         }
 

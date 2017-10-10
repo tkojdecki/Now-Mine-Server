@@ -11,10 +11,10 @@
             <ColumnDefinition Width="75"/>
         </Grid.ColumnDefinitions>
         <Grid Column="0">
-            <TextBox x:Name="SearchBox" Text="Type anything to search!" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" KeyDown="OnKeyDown" GotFocus="GotFocus"/>
+            <TextBox x:Name="SearchBox" Text="" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" KeyDown="OnKeyDown" GotFocus="GotFocus"/>
         </Grid>
         <Grid Column="1">
-            <Button x:Name="SearchButton" Content="Search!" FontSize="15" HorizontalAlignment="Center" IsEnabled="False" Click="SearchButtonClick"/>
+            <Button x:Name="SearchButton" Content="Szukaj!" FontSize="15" HorizontalAlignment="Center" IsEnabled="False" Click="SearchButtonClick"/>
         </Grid>
     </Grid>
 </UserControl>
