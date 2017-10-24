@@ -17654,3 +17654,134 @@ Histogram: sri.resource_integrity_mismatch_event recorded 118 samples, average =
 [0916/164902.010:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=4
 [0916/164902.039:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=5
 [0916/164902.384:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1017/222718.791:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[1017/222718.828:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[1017/222720.496:WARNING:quota_manager.cc(1833)] Create directory failed for path
+[1017/223031.085:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1017/231127.083:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[1017/231127.101:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1017/231127.153:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[1017/232650.335:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[1017/232650.395:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[1017/232650.425:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[1017/232650.455:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=4
+[1017/233726.315:ERROR:render_media_log.cc(30)] MediaEvent: MEDIA_ERROR_LOG_ENTRY {"error":"Failed to reconcile encoded audio times with decoded output."}
+[1018/185707.554:WARNING:htmlmediaelement.cpp(1949)] currentPlaybackPosition readyState = 4 but no webMeidaPlayer to provide currentPlaybackPosition
+[1019/204244.223:ERROR:ssl_client_socket_impl.cc(1136)] handshake failed; returned -1, SSL error code 1, net_error -100
+[1019/204412.618:ERROR:ssl_client_socket_impl.cc(1136)] handshake failed; returned -1, SSL error code 1, net_error -100
+[1019/205155.903:ERROR:ssl_client_socket_impl.cc(1136)] handshake failed; returned -1, SSL error code 1, net_error -100
+[1019/205155.905:ERROR:ssl_client_socket_impl.cc(1136)] handshake failed; returned -1, SSL error code 1, net_error -100
+[1023/222655.200:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[1024/001743.805:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=1
+[1024/001743.865:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=2
+[1024/001743.895:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=3
+[1024/001743.925:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=4
+[1024/001743.955:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=5
+[1024/001743.985:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=6
+[1024/001744.015:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=7
+[1024/001744.045:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=8
+[1024/001744.076:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=9
+[1024/001744.106:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=10
+[1024/001744.135:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=11
+[1024/001744.165:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=12
+[1024/001744.195:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=13
+[1024/001744.225:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=14
+[1024/001744.255:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=15
+[1024/001744.285:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=16
+[1024/001744.315:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=17
+[1024/001744.345:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=18
+[1024/001744.375:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=19
+[1024/001744.405:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=20
+[1024/001744.435:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=21
+[1024/001744.465:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=22
+[1024/001744.495:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=23
+[1024/001744.525:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=24
+[1024/001744.556:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=25
+[1024/001744.585:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=26
+[1024/001744.615:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=27
+[1024/001744.645:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=28
+[1024/001744.675:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=29
+[1024/001744.705:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=30
+[1024/001744.735:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=31
+[1024/001744.765:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=32
+[1024/001744.795:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=33
+[1024/001744.825:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=34
+[1024/001744.855:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=35
+[1024/001744.885:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=36
+[1024/001744.915:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=37
+[1024/001744.955:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=38
+[1024/001744.985:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=39
+[1024/001745.015:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=40
+[1024/001745.036:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=41
+[1024/001745.065:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=42
+[1024/001745.095:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=43
+[1024/001745.125:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=44
+[1024/001745.155:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=45
+[1024/001745.185:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=46
+[1024/001745.215:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=47
+[1024/001745.245:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=48
+[1024/001745.275:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=49
+[1024/001745.305:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=50
+[1024/001745.335:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=51
+[1024/001745.365:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=52
+[1024/001745.395:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=53
+[1024/001745.425:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=54
+[1024/001745.455:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=55
+[1024/001745.485:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=56
+[1024/001745.516:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=57
+[1024/001745.545:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=58
+[1024/001745.575:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=59
+[1024/001745.605:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=60
+[1024/001745.635:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=61
+[1024/001745.665:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=62
+[1024/001745.695:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=63
+[1024/001745.725:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=64
+[1024/001745.755:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=65
+[1024/001745.785:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=66
+[1024/001745.815:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=67
+[1024/001745.845:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=68
+[1024/001745.875:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=69
+[1024/001745.905:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=70
+[1024/001745.935:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=71
+[1024/001745.965:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=72
+[1024/001745.996:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=73
+[1024/001746.025:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=74
+[1024/001746.055:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=75
+[1024/001746.085:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=76
+[1024/001746.116:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=77
+[1024/001746.145:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=78
+[1024/001746.175:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=79
+[1024/001746.205:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=80
+[1024/001746.235:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=81
+[1024/001746.265:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=82
+[1024/001746.295:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=83
+[1024/001746.325:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=84
+[1024/001746.355:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=85
+[1024/001746.385:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=86
+[1024/001746.416:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=87
+[1024/001746.446:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=88
+[1024/001746.476:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=89
+[1024/001746.505:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=90
+[1024/001746.535:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=91
+[1024/001746.565:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=92
+[1024/001746.595:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=93
+[1024/001746.625:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=94
+[1024/001746.655:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=95
+[1024/001746.685:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=96
+[1024/001746.715:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=97
+[1024/001746.745:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=98
+[1024/001746.775:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=99
+[1024/001746.805:WARNING:audio_sync_reader.cc(188)] AudioSyncReader::Read timed out, audio glitch count=100
+[1024/001746.805:WARNING:audio_sync_reader.cc(191)] (log cap reached, suppressing further logs)
+[1024/001813.196:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[1024/001813.746:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[1024/001814.276:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[1024/001814.806:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[1024/001815.336:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[1024/001815.868:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[1024/001816.369:WARNING:audio_sync_reader.cc(173)] ASR: No room in socket buffer.
+[1024/001823.842:ERROR:ssl_client_socket_impl.cc(1136)] handshake failed; returned -1, SSL error code 1, net_error -100
+[1024/001823.843:ERROR:ssl_client_socket_impl.cc(1136)] handshake failed; returned -1, SSL error code 1, net_error -100
+[1024/001823.844:ERROR:ssl_client_socket_impl.cc(1136)] handshake failed; returned -1, SSL error code 1, net_error -100
+[1024/001823.858:ERROR:ssl_client_socket_impl.cc(1136)] handshake failed; returned -1, SSL error code 1, net_error -100
+[1024/002257.684:WARNING:spdy_session.cc(2276)] Received HEADERS for invalid stream 5

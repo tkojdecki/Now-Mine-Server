@@ -28,12 +28,13 @@ namespace NowMine.Queue
                         return pos;
                     }
                 }
-                if (!(songsPerUser < getSongsPerUser(mPiece.User)))
+                if (songsPerUser > getSongsPerUser(mPiece.User))
                 {
                     pos = QueueManager.Queue.IndexOf(mPiece) + 1;
                     return pos;
                 }
             }
+            pos = 1;
             return pos;
         }
 

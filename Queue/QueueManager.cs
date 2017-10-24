@@ -80,6 +80,7 @@ namespace NowMine.Queue
         {
             musicPiece.MouseDoubleClick += Queue_DoubleClick;
             int qPos = QueueCalculator.calculateQueuePostition(musicPiece.User);
+            musicPiece.userColorBrush();
             if (qPos < Queue.Count && qPos >= 0)
             {
                 Queue.Insert(qPos, musicPiece);
@@ -172,6 +173,7 @@ namespace NowMine.Queue
                 if (piece.User.Id == user.Id)
                 {
                     piece.User = user;
+                    piece.userColorBrush();
                 }
             }
             OnGlobalPropertyChanged("Queue");

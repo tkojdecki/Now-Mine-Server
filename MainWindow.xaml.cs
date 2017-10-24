@@ -70,6 +70,7 @@ namespace NowMine
             udpThread.Start();
 
             serverTCP.UserNameChanged += serverUDP.sendData;
+            serverTCP.UserColorChanged += serverUDP.sendData;
             serverUDP.NewUser += serverTCP.TCPConnectToNewUser;
             webPanel.VideoEnded += serverUDP.DeletedPiece;
             webPanel.VideoEnded += ChangeToIndex;

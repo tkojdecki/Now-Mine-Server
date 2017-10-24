@@ -168,7 +168,6 @@ namespace NowMine
                         break;
 
                     case "GetUsers":
-
                         Console.WriteLine("TCP/ Get Users!");
                         var ms = BytesMessegeBuilder.SerializeUsers(users.Values.ToArray());
                         Console.WriteLine("TCP/ Sending users to: {0} - {1}, Users length {2}", tcpClient.RemoteEndPoint, user.Name, users.Count);
@@ -179,7 +178,7 @@ namespace NowMine
                         Console.WriteLine("TCP/ Changing Name!");
                         if (!users.Values.Any(u => u.Name.Equals(values[1])))
                         {
-                            Console.WriteLine("TCP/ Changing User {0} to {1} ({3})", user.Name, values[1], tcpClient.RemoteEndPoint);
+                            Console.WriteLine("TCP/ Changing User {0} to {1} ({2})", user.Name, values[1], tcpClient.RemoteEndPoint);
                             user.Name = values[1];
                             Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.RefreshQueueUserNames(user); }));
                             OnUserNameChange(values[1], user.Id);
@@ -191,6 +190,45 @@ namespace NowMine
                             Console.WriteLine("TCP/Change Name: Other user with same name; Sending 0");
                             tcpClient.Send(BitConverter.GetBytes(0));
                         }
+                        break;
+
+                    case "ChangeColor":
+                        Console.WriteLine("TCP/ Changing Color!");
+                        
+                        try
+                        {
+                            var changedColors = new byte[3];
+                            int changeColorBytePos = Encoding.UTF8.GetByteCount("ChangeColor ");
+
+                            for (int i = 0; i < 3; i++)
+                            {
+                                changedColors[i] = buffer[changeColorBytePos + i];
+                            }
+
+                            //changedColors[0] = byte.Parse(values[1]);
+                            //changedColors[1] = byte.Parse(values[2]);
+                            //changedColors[2] = byte.Parse(values[3]);
+                            //Encoding.UTF8.
+                            //changedColors = BitConverter.GetBytes(values[1],);
+                            user.UserColor = changedColors;
+                            Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.RefreshQueueUserNames(user); }));
+
+                            //OnUserColorChange(changedColors, user.Id);
+
+                            //for (int i = 0; i < values[1].Length; i += 2)
+                            //{
+                            //    changedColors[i / 2] = Convert.ToByte(values[1].Substring(i, 2), 16);
+                            //}
+
+                            tcpClient.Send(BitConverter.GetBytes(1));
+                            
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine("TCP/ On ChangeColor: {0}", ex.Message);
+                            tcpClient.Send(BitConverter.GetBytes(0));
+                        }
+                        
                         break;
 
                     default:
@@ -264,6 +302,15 @@ namespace NowMine
             var userData = BytesMessegeBuilder.MergeBytesArray(userNameBytes, BitConverter.GetBytes(userId));
             var message = BytesMessegeBuilder.MergeBytesArray(UnicodeEncoding.UTF8.GetBytes("ChangeName: "), userData);
             UserNameChanged?.Invoke(this, new GenericEventArgs<byte[]>(message));
+        }
+
+        public delegate void UserColorChangedEventHandler(object s, GenericEventArgs<byte[]> e);
+        public event UserColorChangedEventHandler UserColorChanged;
+        protected virtual void OnUserColorChange(byte[] colorChanged, int userId)
+        {
+            var userData = BytesMessegeBuilder.MergeBytesArray(colorChanged, BitConverter.GetBytes(userId));
+            var message = BytesMessegeBuilder.MergeBytesArray(UnicodeEncoding.UTF8.GetBytes("ChangeColor: "), userData);
+            UserColorChanged?.Invoke(this, new GenericEventArgs<byte[]>(message));
         }
     }
 }
