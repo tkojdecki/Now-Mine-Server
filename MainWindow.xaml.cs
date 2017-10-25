@@ -165,6 +165,7 @@ namespace NowMine
 
         private void minimizePlayer()
         {
+        //todo
             isMaximized = false;
             WindowState = WindowState.Normal;
             WindowStyle = WindowStyle.SingleBorderWindow;

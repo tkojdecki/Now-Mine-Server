@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="NowMine.View.QueuePanel"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:view="clr-namespace:NowMine.View"
+             xmlns:viewModel="clr-namespace:NowMine.ViewModel"
+             PreviewMouseWheel = "OnPreviewMouseWheel"
+             MouseRightButtonUp="OnMouseRightButtonUp"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ItemsPanelTemplate x:Key="QueuePanelTemplate">
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,0"/>
+        </ItemsPanelTemplate>
+
+        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:MusicData}">
+            <StackPanel>
+                <view:MusicControl Width="350"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <ContextMenu x:Key="ContextMenu">
+        <!-- TODO -->
+            <MenuItem Header="Now Playing" IsChecked ="{Binding Path=NowPlayingVisibility}" Command="{Binding Path=ToggleNowPlayingVisibilityCommand}" />
+            <MenuItem Header="History" IsChecked ="{Binding Path=HistoryVisible}" Command="{Binding Path=ToggleHistoryVisibleCommand}" />
+            <Separator />
+            <MenuItem Header="Clear" Command="{Binding Path=ClearQueueCommand}" />
+        </ContextMenu>
+
+    </UserControl.Resources>
+
+    <Grid Background="Transparent">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="360" x:Name="ColumnDefinitionNowPlaying"/>
+            <ColumnDefinition Width="*" x:Name="ColumnDefinitionQueue"/>
+        </Grid.ColumnDefinitions>
+        <Grid Column="0">
+            <view:MusicControl Width="350" DataContext="{Binding Path=NowPlaying}" x:Name="ControlNowPlaying"/>
+        </Grid>
+        <Grid Column="1">
+            <ScrollViewer Margin="0,0,0,0"
+                          HorizontalScrollBarVisibility="Visible"
+                          VerticalScrollBarVisibility="Hidden"
+                          x:Name="ScrollView">
+                <StackPanel>
+                    <Label Content="{Binding Path=QueueTooltipContent}" VerticalAlignment="Center" Visibility="{Binding Path=QueueTooltipVisibility}" ClipToBounds="True"/>
+
+                    <ItemsControl HorizontalAlignment="Left"
+                                  VerticalAlignment="Top"
+                                  Margin="0,0,0,0"
+                                  ItemsSource="{Binding Path=ObservedQueue}"
+                                  ItemTemplate="{StaticResource MusicDataTemplate}"
+                                  ItemsPanel="{StaticResource QueuePanelTemplate}" />
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</UserControl>

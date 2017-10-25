@@ -1,0 +1,65 @@
+﻿<Window xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="NowMine.MainWindow"
+        xmlns:view="clr-namespace:NowMine.View"
+        xmlns:viewModel="clr-namespace:NowMine.ViewModel"
+        Title="Now Mine!"
+        Height="650"
+        Width="1235"
+        Closing="Window_Closing">
+
+    <Window.Resources>
+        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:MusicData}">
+            <StackPanel>
+                <view:MusicControl Width="350" UsernameVisible="False"/>
+            </StackPanel>
+        </DataTemplate>
+
+        <ItemsPanelTemplate x:Key="SearchPanelTemplate">
+            <StackPanel Orientation="Vertical" Margin="0,0,0,0"/>
+        </ItemsPanelTemplate>
+
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="375" x:Name="columnDefinitionSearch"/>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid x:Name="columnSearch" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid Row="0">
+                <view:SearchControl x:Name="Search" HorizontalAlignment="Stretch" />
+            </Grid>
+
+            <Grid Row="1">
+                <ScrollViewer x:Name="SearchScroll" Margin="0,0,0, 0" >
+                    <StackPanel>
+                        <ItemsControl HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Top"
+                                  Margin="0,4,0,0"
+                                  ItemsSource="{Binding Path=SearchList}"
+                                  ItemTemplate="{StaticResource MusicDataTemplate}"
+                                  ItemsPanel="{StaticResource SearchPanelTemplate}" />
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
+        </Grid>
+
+        <Grid x:Name="PlayerGrid" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="120" x:Name="RowDefinitionQueue"/>
+            </Grid.RowDefinitions>
+            <Grid x:Name="RowPlayer" Grid.Row="0" />
+
+            <Grid x:Name="RowQueue" Grid.Row="1">
+                <view:QueuePanel x:Name="QueueControl" VerticalAlignment="Stretch" />
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>
