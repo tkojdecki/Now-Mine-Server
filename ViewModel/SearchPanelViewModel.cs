@@ -4,16 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media;
 
 namespace NowMine.ViewModel
 {
     class SearchPanelViewModel : INotifyPropertyChanged
     {
+        public static Color SEARCH_COLOR = Color.FromRgb(0,0,0);
+
         YouTubeProvider youtubeProvider = new YouTubeProvider();
 
         private string _searchText;
@@ -33,13 +32,13 @@ namespace NowMine.ViewModel
             }
         }
 
-        private ObservableCollection<MusicPiece> _searchList;
-        public ObservableCollection<MusicPiece> SearchList
+        private ObservableCollection<MusicData> _searchList;
+        public ObservableCollection<MusicData> SearchList
         {
             get
             {
                 if (_searchList == null)
-                    _searchList = new ObservableCollection<MusicPiece>();
+                    _searchList = new ObservableCollection<MusicData>();
                 return _searchList;
             }
             set
@@ -49,36 +48,32 @@ namespace NowMine.ViewModel
             }
         }
 
-        private void SearchResult_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void AddToQueue(object sender, MusicData data)
         {
-            var musicPiece = (MusicPiece)sender;
-            var queueMusicPiece = musicPiece.copy();
-            queueMusicPiece.MouseDoubleClick -= SearchResult_MouseDoubleClick;
-            queueMusicPiece.userColorBrush();
-            queueMusicPiece.lbluserName.Visibility = System.Windows.Visibility.Visible;
-            int qPos = QueueManager.addToQueue(queueMusicPiece);
-            e.Handled = true;
+            MusicData newData = data.Copy();
+            int qPos = QueueManager.AddToQueue(newData);
         }
 
-        public List<MusicPiece> getSearchList(String searchWord)
+        public List<MusicData> GetSearchList(String searchWord)
         {
-            List<MusicPiece> list;
+            List<MusicData> list;
             List<YouTubeInfo> infoList = youtubeProvider.LoadVideosKey(searchWord);
-            list = infoToResults(infoList);
+            list = InfoToResults(infoList);
             return list;
         }
 
-        private List<MusicPiece> infoToResults(List<YouTubeInfo> infoList)
+        private List<MusicData> InfoToResults(List<YouTubeInfo> infoList)
         {
-            List<MusicPiece> list = new List<MusicPiece>();
+            List<MusicData> list = new List<MusicData>();
             foreach (YouTubeInfo info in infoList)
             {
-                MusicPiece result = new MusicPiece(info);
+                MusicData result = new MusicData(info);
                 list.Add(result);
             }
             return list;
         }
 
+        //TODO refactor
         private ICommand _searchClickCommand;
         public ICommand SearchClickCommand
         {
@@ -104,14 +99,14 @@ namespace NowMine.ViewModel
 
         private void SearchClickObject()
         {
-            var searchList = getSearchList(SearchText);
-            var observableList = new ObservableCollection<MusicPiece>();
+            var searchList = this.GetSearchList(SearchText);
+            var observableList = new ObservableCollection<MusicData>();
             searchList.ForEach(m => observableList.Add(m));
             SearchList = observableList;
         }
 
+        //TODO refactor
         private ICommand _searchCommand;
-
         public ICommand SearchCommand
         {
             get
@@ -127,6 +122,13 @@ namespace NowMine.ViewModel
             }
         }
 
+        public void PerformSearch(object sender, string searchText)
+        {
+            SearchText = searchText;
+            //TODO refactor
+            SearchCommand.Execute(null);
+        }
+
         private bool CanSearch()
         {
             //if (string.IsNullOrEmpty(SearchText)) -- enable jak sie cos wpisze dopiero
@@ -136,13 +138,16 @@ namespace NowMine.ViewModel
 
         private void SearchObject()
         {
-            var searchList = getSearchList(SearchText);
-            var observableList = new ObservableCollection<MusicPiece>();
-            foreach (MusicPiece musicPiece in searchList)
+            var searchList = this.GetSearchList(SearchText);
+            var observableList = new ObservableCollection<MusicData>();
+            
+            foreach (MusicData musicPiece in searchList)
             {
-                musicPiece.MouseDoubleClick += SearchResult_MouseDoubleClick;
+                musicPiece.Color = SEARCH_COLOR;
+                musicPiece.OnClick += this.AddToQueue;
                 observableList.Add(musicPiece);
             }
+            
             SearchList = observableList;
         }
 

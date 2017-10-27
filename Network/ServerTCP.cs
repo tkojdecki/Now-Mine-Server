@@ -13,6 +13,7 @@ using Newtonsoft.Json.Bson;
 using NowMine.Helpers;
 using NowMine.Queue;
 using System.Threading.Tasks;
+using NowMine.ViewModel;
 
 namespace NowMine
 {
@@ -130,7 +131,6 @@ namespace NowMine
 
                     case "Queue:":
                         Console.WriteLine("TCP/ To Queue!");
-
                         YouTubeInfo toQueue;
                         using (MemoryStream msq = new MemoryStream(buffer, commandMessagePos, byteCount - commandMessagePos))
                         {
@@ -146,14 +146,14 @@ namespace NowMine
                         toQueue.buildURL();
                         Console.WriteLine(string.Format("TCP/ Adding to queue {0} ", toQueue.title));
                         int qPos = -2;
-                        Application.Current.Dispatcher.Invoke(new Action(() => { qPos = QueueManager.addToQueue(new MusicPiece(toQueue, user)); }));
+                        Application.Current.Dispatcher.Invoke(new Action(() => { qPos = QueueManager.AddToQueue(new MusicData(toQueue, user)); }));
                         Console.WriteLine("TCP/ Sending position of queued element {0} to {1}", qPos, tcpClient.RemoteEndPoint);
                         tcpClient.Send(BitConverter.GetBytes(qPos));
                         break;
 
                     case "GetQueue":
                         Console.WriteLine("TCP/ Get Queue!");
-                        QueuePieceToSend[] ytInfo = null;
+                        NetworkYoutubeInfo[] ytInfo = null;
                         Application.Current.Dispatcher.Invoke(new Action(() => { ytInfo = QueueManager.getQueueInfo().ToArray(); }));
                         if (ytInfo != null && ytInfo.Length > 0)
                         {
@@ -194,41 +194,23 @@ namespace NowMine
 
                     case "ChangeColor":
                         Console.WriteLine("TCP/ Changing Color!");
-                        
                         try
                         {
                             var changedColors = new byte[3];
                             int changeColorBytePos = Encoding.UTF8.GetByteCount("ChangeColor ");
-
                             for (int i = 0; i < 3; i++)
                             {
                                 changedColors[i] = buffer[changeColorBytePos + i];
                             }
-
-                            //changedColors[0] = byte.Parse(values[1]);
-                            //changedColors[1] = byte.Parse(values[2]);
-                            //changedColors[2] = byte.Parse(values[3]);
-                            //Encoding.UTF8.
-                            //changedColors = BitConverter.GetBytes(values[1],);
                             user.UserColor = changedColors;
                             Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.RefreshQueueUserNames(user); }));
-
-                            //OnUserColorChange(changedColors, user.Id);
-
-                            //for (int i = 0; i < values[1].Length; i += 2)
-                            //{
-                            //    changedColors[i / 2] = Convert.ToByte(values[1].Substring(i, 2), 16);
-                            //}
-
-                            tcpClient.Send(BitConverter.GetBytes(1));
-                            
+                            tcpClient.Send(BitConverter.GetBytes(1));                          
                         }
                         catch (Exception ex)
                         {
                             Console.WriteLine("TCP/ On ChangeColor: {0}", ex.Message);
                             tcpClient.Send(BitConverter.GetBytes(0));
                         }
-                        
                         break;
 
                     default:

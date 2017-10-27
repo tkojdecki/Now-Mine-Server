@@ -2,6 +2,7 @@
 using CefSharp.Wpf;
 using NowMine.Helpers;
 using NowMine.Queue;
+using NowMine.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -46,13 +47,13 @@ namespace NowMine
             webControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + id + "')");
         }
 
-        public void PlayNow(MusicPiece musicPiece, int qPos)
+        public void PlayNow(MusicData musicPiece, int qPos)
         {
             if (musicPiece != null)
             {
-                PlayNow(musicPiece.Info.id);
+                PlayNow(musicPiece.YTInfo.id);
                 //OnPlayedNow(qPos);
-                Console.WriteLine("Played Now {0}!", musicPiece.Info.id);
+                Console.WriteLine("Played Now {0}!", musicPiece.YTInfo.id);
             }
                 
         }
@@ -71,11 +72,11 @@ namespace NowMine
         //functions to call from javascript
         public void getNextVideo()
         {
-            MusicPiece nextVideo = QueueManager.getNextPiece();
+            var nextVideo = QueueManager.getNextPiece();
             Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.toHistory(QueueManager.nowPlaying()); }));
             if (nextVideo != null)
             {
-                Application.Current.Dispatcher.Invoke(new Action(() => { nextVideo.nowPlayingVisual(); }));
+                Application.Current.Dispatcher.Invoke(new Action(() => { /* nextVideo.nowPlayingVisual(); */}));
                 if (!isPlaying)
                     isPlaying = true;
             }
@@ -89,13 +90,13 @@ namespace NowMine
         public void errorHandle()
         {
             Console.WriteLine("ONERROR");
-            MusicPiece nowPlaying = QueueManager.nowPlaying();
+            var nowPlaying = QueueManager.nowPlaying();
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                this.webControl.Address = @"http://www.youtube.com/watch?v=" + nowPlaying.Info.id;
+                this.webControl.Address = @"http://www.youtube.com/watch?v=" + nowPlaying.YTInfo.id;
             }));
             mainWindow.isYoutubePage = true;
-            mainWindow.videoID = nowPlaying.Info.id;
+            mainWindow.videoID = nowPlaying.YTInfo.id;
             isPlaying = true;
         }
 

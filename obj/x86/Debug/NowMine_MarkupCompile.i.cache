@@ -9,12 +9,12 @@ NowMine
 none
 false
 DEBUG;TRACE
-E:\now-mine\App.xaml
-21118144987
+E:\now-mine\View\App.xaml
+52113983137
 2834585851
-241281738534
-861805795202
-MusicPiece.xaml;MainWindow.xaml;
+292003653349
+861162325352
+View\MusicControl.xaml;View\MusicPiece.xaml;View\MainWindow.xaml;View\QueuePanel.xaml;View\SearchControl.xaml;
 
-False
+True
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NowMine.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,11 +11,13 @@ namespace NowMine.Queue
     {
         public static int calculateQueuePostition(User user)
         {
+            if (QueueManager.Queue.Count == 0)
+                return 0;
             int pos = -1;
             float songsPerUser = getSongsPerUser(user);
-            List<MusicPiece> rev = new List<MusicPiece>(QueueManager.Queue);
+            var rev = new List<MusicData>(QueueManager.Queue);
             rev.Reverse();
-            foreach (MusicPiece mPiece in rev)
+            foreach (var mPiece in rev)
             {
                 if (mPiece.User == user)
                 {
@@ -43,7 +46,7 @@ namespace NowMine.Queue
             List<User> uniq = new List<User> { user };
             int userQueuedSongs = 0;
             int numberOfUsersInQueue = 1;
-            foreach (MusicPiece musicPiece in QueueManager.Queue)
+            foreach (var musicPiece in QueueManager.Queue)
             {
                 if (!uniq.Contains(musicPiece.User))
                 {

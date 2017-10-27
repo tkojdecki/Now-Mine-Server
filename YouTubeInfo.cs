@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Google.Apis.YouTube.v3.Data;
+﻿using Google.Apis.YouTube.v3.Data;
+using NowMine.ViewModel;
+
 namespace NowMine
 {
     /// <summary>
@@ -25,12 +23,12 @@ namespace NowMine
         #endregion
     }
 
-    public class QueuePieceToSend : YouTubeInfo
+    public class NetworkYoutubeInfo : YouTubeInfo
     {
         public string userName;
         public string color;
 
-        public QueuePieceToSend(YouTubeInfo info)
+        public NetworkYoutubeInfo(YouTubeInfo info)
         {
             this.id = info.id;
             this.title = info.title;
@@ -38,14 +36,14 @@ namespace NowMine
             this.thumbnail = info.thumbnail;
         }
 
-        public QueuePieceToSend(YouTubeInfo info, User user)
+        public NetworkYoutubeInfo(YouTubeInfo info, User user)
         {
             this.id = info.id;
             this.title = info.title;
             this.channelName = info.channelName;
             this.thumbnail = info.thumbnail;
             this.userName = user.Name;
-            this.color = user.getColor().ToString();
+            this.color = user.Color.ToString();
         }
     }
 
@@ -76,13 +74,13 @@ namespace NowMine
             this.UserID = 0;
         }
 
-        public YoutubeQueued(MusicPiece musicPiece, int qPos)
+        public YoutubeQueued(MusicData musicPiece, int qPos)
         {
-            this.LinkUrl = musicPiece.Info.LinkUrl;
-            this.id = musicPiece.Info.id;
-            this.title = musicPiece.Info.title;
-            this.channelName = musicPiece.Info.channelName;
-            this.thumbnail = musicPiece.Info.thumbnail;
+            this.LinkUrl = musicPiece.YTInfo.LinkUrl;
+            this.id = musicPiece.YTInfo.id;
+            this.title = musicPiece.YTInfo.title;
+            this.channelName = musicPiece.YTInfo.channelName;
+            this.thumbnail = musicPiece.YTInfo.thumbnail;
             this.QPos = qPos;
             this.UserID = musicPiece.User.Id;
         }

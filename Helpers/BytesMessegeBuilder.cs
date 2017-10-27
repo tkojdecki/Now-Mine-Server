@@ -19,13 +19,13 @@ namespace NowMine.Helpers
             return result;
         }
 
-        public static byte[] SerializeQueuePieceToSend(QueuePieceToSend[] listToSerialize)
+        public static byte[] SerializeQueuePieceToSend(NetworkYoutubeInfo[] listToSerialize)
         {
             MemoryStream ms = new MemoryStream();
             using (BsonDataWriter writer = new BsonDataWriter(ms))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(writer, listToSerialize, typeof(QueuePieceToSend[]));
+                serializer.Serialize(writer, listToSerialize, typeof(NetworkYoutubeInfo[]));
                 return ms.ToArray();
             }
         }

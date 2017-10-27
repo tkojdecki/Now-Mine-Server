@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using NowMine.Helpers;
 using System.ComponentModel;
+using NowMine.ViewModel;
 
 namespace NowMine.Queue
 {
@@ -57,22 +55,20 @@ namespace NowMine.Queue
         {
             if (video != null)
             {
-                var e = new GenericEventArgs<YoutubeQueued>(video);                
+                var e = new GenericEventArgs<YoutubeQueued>(video);
                 VideoQueued?.Invoke(typeof(QueueManager), e);
             }
         }
 
-        static public List<QueuePieceToSend> getQueueInfo()
+        static public List<NetworkYoutubeInfo> getQueueInfo()
         {
             int queueCount = Queue.Count;
-            List<QueuePieceToSend> qInfo = new List<QueuePieceToSend>(queueCount);
-            /*
-            foreach (MusicPiece musicPiece in Queue)
+            List<NetworkYoutubeInfo> qInfo = new List<NetworkYoutubeInfo>(queueCount);
+            foreach (var musicPiece in Queue)
             {
-                QueuePieceToSend qpts = new QueuePieceToSend(musicPiece.Info, musicPiece.User);
+                NetworkYoutubeInfo qpts = new NetworkYoutubeInfo(musicPiece.YTInfo, musicPiece.User);
                 qInfo.Add(qpts);
             }
-            */
             return qInfo;
         }
 
@@ -99,8 +95,8 @@ namespace NowMine.Queue
             deleteFromQueue(data);
             Queue.Insert(0, data);
 
-            //int qPos = Queue.IndexOf(data);
-            //OnPlayedNow(qPos);
+            int qPos = Queue.IndexOf(data);
+            OnPlayedNow(qPos);
 
             OnGlobalPropertyChanged("Queue");
         }
@@ -115,7 +111,7 @@ namespace NowMine.Queue
             Queue.Insert(0, musicPiece);
 
             int qPos = Queue.IndexOf(musicPiece);
-
+			OnPlayedNow(qPos);
             e.Handled = true;
         }
         */
@@ -127,6 +123,7 @@ namespace NowMine.Queue
                 Queue.Remove(queuePiece);
             }
         }
+
 
         static public void toHistory(MusicData musicPiece)
         {
@@ -198,10 +195,10 @@ namespace NowMine.Queue
 
         public static void ClearQueue()
         {
-        //todo clear only current user
+            //todo clear only current user
             while (Queue.Count > 1)
             {
-                Queue.RemoveAt(Queue.Count-1);
+                Queue.RemoveAt(Queue.Count - 1);
             }
             OnGlobalPropertyChanged("Queue");
         }

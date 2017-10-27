@@ -38,6 +38,14 @@ namespace NowMine
             }
         }
 
+        public Color Color
+        {
+            get
+            {
+                return Color.FromRgb(UserColor[0], UserColor[1], UserColor[2]);
+            }
+        }
+
         public User(string name, int id)
         {
             this.Name = name;
