@@ -149,10 +149,9 @@ namespace NowMine.Queue
             {
                 toHistory(nowPlaying());
             }
-
+            OnGlobalPropertyChanged("Queue");
             if (nextVideo != null)
             {
-                //nextVideo.nowPlayingVisual();
                 return true;
             }
             else

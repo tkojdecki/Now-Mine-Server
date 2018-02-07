@@ -5,6 +5,7 @@ using NowMine.Queue;
 using NowMine.ViewModel;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,7 +23,7 @@ namespace NowMine
         public delegate void VideoEndedEventHandler(object source, GenericEventArgs<int> e);
         public event VideoEndedEventHandler VideoEnded;
 
-        public WebPanel(ChromiumWebBrowser webControl, MainWindow mainWindow)
+        public WebPanel(ref ChromiumWebBrowser webControl, MainWindow mainWindow)
         {
             this.webControl = webControl;
             this.mainWindow = mainWindow;
@@ -72,20 +73,38 @@ namespace NowMine
         //functions to call from javascript
         public void getNextVideo()
         {
+            
+            isPlaying = false;
+            //string html = File.ReadAllText(Directory.GetCurrentDirectory() + "/index.html");
+            //Application.Current.Dispatcher.Invoke(new Action(() => { this.webControl.WebBrowser.LoadHtml(html, @"local://index.html"); }));
+            //Console.WriteLine(html);
+            OnVideoEnded();
             var nextVideo = QueueManager.getNextPiece();
-            Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.toHistory(QueueManager.nowPlaying()); }));
+            //Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.toHistory(QueueManager.nowPlaying()); }));
             if (nextVideo != null)
             {
-                Application.Current.Dispatcher.Invoke(new Action(() => { /* nextVideo.nowPlayingVisual(); */}));
-                if (!isPlaying)
-                    isPlaying = true;
+                PlayNow(nextVideo.YTInfo.id);
+            //    //Application.Current.Dispatcher.Invoke(new Action(() => { nextVideo.nowPlayingVisual();}));
+            //    if (!isPlaying)
+            //    {
+            //        isPlaying = true;
+            //        //Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.}));
             }
-            else
-            {
-                isPlaying = false;
-            }
-            OnVideoEnded();
+            QueueManager.playNext();
+            //}
+            //else
+            //{
+            //    isPlaying = false;
+            //}
+
+            //Application.Current.Dispatcher.Invoke(new Action(() => { this.webControl.Stop(); }));
+            //Application.Current.Dispatcher.Invoke(new Action(() => { this.webControl.WebBrowser.Load(@"local://index.html"); }));
+            //Application.Current.Dispatcher.Invoke(new Action(() => { this.webControl.WebBrowser.Load(@"E:/now-mine/Resources/index.html"); }));
+            //Application.Current.Dispatcher.Invoke(new Action(() => { this.webControl.WebBrowser.Load(@"http://www.google.pl"); }));
+            //Application.Current.Dispatcher.Invoke(new Action(() => { this.webControl.Reload(); }));
+            //Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.playNext(); }));
         }
+
 
         public void errorHandle()
         {
@@ -93,18 +112,34 @@ namespace NowMine
             var nowPlaying = QueueManager.nowPlaying();
             Application.Current.Dispatcher.Invoke(new Action(() =>
             {
-                this.webControl.Address = @"http://www.youtube.com/watch?v=" + nowPlaying.YTInfo.id;
+                //this.webControl.Address = @"http://www.youtube.com/watch?v=" + nowPlaying.YTInfo.id;
+                this.webControl.Address = @"https://www.youtube.com/tv#/watch?v=" + nowPlaying.YTInfo.id;
+
+
+                //this.webControl.FrameLoadEnd += ClearVideo_FrameLoadEnd;
             }));
             mainWindow.isYoutubePage = true;
             mainWindow.videoID = nowPlaying.YTInfo.id;
             isPlaying = true;
         }
 
-        internal void setYoutubeWrapper(bool isInitial)
-        {
-            this.webControl.Address = @"local://index.html";
-            QueueManager.playNext();
-        }
+        //private void ClearVideo_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
+        //{
+        //    if (e.HttpStatusCode == 200 && e.Url.Contains("youtube.com"))
+        //    {
+        //        webControl.GetMainFrame().ExecuteJavaScriptAsync(string.Format("var player=document.evaluate(\"//*[@id=\'top\']/*[@id=\'container\']/*[@id=\'main\']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;"));
+        //        webControl.GetMainFrame().ExecuteJavaScriptAsync(@"for(var childName in player.children){var childNode=player.children[childName];if(childNode.id && childNode.id != 'content-separator'){player.removeChild(childNode);}}");
+        //        webControl.GetMainFrame().ExecuteJavaScriptAsync(string.Format("var toolbar=document.evaluate(\"//*[@id=\'masthead-container\']\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;"));
+        //        webControl.GetMainFrame().ExecuteJavaScriptAsync(@"toolbar.remove();");
+        //        webControl.FrameLoadEnd -= ClearVideo_FrameLoadEnd;
+        //    }
+        //}
+
+        //internal void setYoutubeWrapper(bool isInitial)
+        //{
+        //    this.webControl.Address = @"local://index.html";
+        //    QueueManager.playNext();
+        //}
 
         public void VideoQueuedHandler(object s, GenericEventArgs<YoutubeQueued> args)
         {

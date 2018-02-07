@@ -270,6 +270,10 @@ namespace NowMine
                     tcpclnt.Close();       
                 }
             }
+            catch(SocketException se)
+            {
+                Console.WriteLine("TCP/ SocketExeption Error..." + se.Message);
+            }
             catch (Exception ee)
             {
                 Console.WriteLine("TCP/ Error... " + ee.Message);

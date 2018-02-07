@@ -6,7 +6,7 @@
         Title="Now Mine!"
         Height="650"
         Width="1235"
-        Closing="Window_Closing">
+        Closing="Window_Closing" KeyUp="Window_KeyUp">
 
     <Window.Resources>
         <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:MusicData}">
