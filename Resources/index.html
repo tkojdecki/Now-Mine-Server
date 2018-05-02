@@ -6,6 +6,12 @@
     <title></title>
 </head>
 <body>
+
+<script type="text/javascript">
+    (async function () {
+        await CefSharp.BindObjectAsync("app", "bound");
+    })();
+</script>
     
  <script>
         (function() {

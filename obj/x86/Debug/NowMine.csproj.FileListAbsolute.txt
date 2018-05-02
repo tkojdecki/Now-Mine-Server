@@ -179,53 +179,6 @@ C:\Users\DanielD\Documents\AsistnetBackup\Now-Mine-Server\obj\x86\Debug\NowMine.
 C:\Users\DanielD\Documents\AsistnetBackup\Now-Mine-Server\obj\x86\Debug\NowMine.exe
 C:\Users\DanielD\Documents\AsistnetBackup\Now-Mine-Server\obj\x86\Debug\NowMine.pdb
 C:\Users\DanielD\Documents\AsistnetBackup\Now-Mine-Server\obj\x86\Debug\NowMine.csprojResolveAssemblyReference.cache
-F:\now-mine\bin\x86\Debug\NowMine.exe.config
-F:\now-mine\obj\x86\Debug\NowMine.exe
-F:\now-mine\obj\x86\Debug\NowMine.pdb
-F:\now-mine\bin\x86\Debug\NowMine.exe
-F:\now-mine\bin\x86\Debug\NowMine.pdb
-F:\now-mine\bin\x86\Debug\CefSharp.Core.dll
-F:\now-mine\bin\x86\Debug\CefSharp.dll
-F:\now-mine\bin\x86\Debug\CefSharp.Wpf.dll
-F:\now-mine\bin\x86\Debug\Google.Apis.Auth.dll
-F:\now-mine\bin\x86\Debug\Google.Apis.Auth.PlatformServices.dll
-F:\now-mine\bin\x86\Debug\Google.Apis.Core.dll
-F:\now-mine\bin\x86\Debug\Google.Apis.dll
-F:\now-mine\bin\x86\Debug\Google.Apis.PlatformServices.dll
-F:\now-mine\bin\x86\Debug\Google.Apis.YouTube.v3.dll
-F:\now-mine\bin\x86\Debug\Google.GData.Client.dll
-F:\now-mine\bin\x86\Debug\Google.GData.Extensions.dll
-F:\now-mine\bin\x86\Debug\log4net.dll
-F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.dll
-F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
-F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.dll
-F:\now-mine\bin\x86\Debug\Newtonsoft.Json.dll
-F:\now-mine\bin\x86\Debug\System.Net.Http.Extensions.dll
-F:\now-mine\bin\x86\Debug\System.Net.Http.Primitives.dll
-F:\now-mine\bin\x86\Debug\Zlib.Portable.dll
-F:\now-mine\bin\x86\Debug\CefSharp.Wpf.xml
-F:\now-mine\bin\x86\Debug\CefSharp.xml
-F:\now-mine\bin\x86\Debug\CefSharp.Core.xml
-F:\now-mine\bin\x86\Debug\Google.Apis.xml
-F:\now-mine\bin\x86\Debug\Google.Apis.Auth.xml
-F:\now-mine\bin\x86\Debug\Google.Apis.Core.xml
-F:\now-mine\bin\x86\Debug\Google.Apis.YouTube.v3.xml
-F:\now-mine\bin\x86\Debug\log4net.xml
-F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.xml
-F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.xml
-F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
-F:\now-mine\bin\x86\Debug\Newtonsoft.Json.xml
-F:\now-mine\bin\x86\Debug\System.Net.Http.Extensions.xml
-F:\now-mine\bin\x86\Debug\System.Net.Http.Primitives.xml
-F:\now-mine\bin\x86\Debug\Zlib.Portable.xml
-F:\now-mine\obj\x86\Debug\NowMine.csprojResolveAssemblyReference.cache
-F:\now-mine\obj\x86\Debug\NowMine_Content.g.cs
-F:\now-mine\obj\x86\Debug\NowMine_MarkupCompile.cache
-F:\now-mine\obj\x86\Debug\NowMine.g.resources
-F:\now-mine\obj\x86\Debug\NowMine.Properties.Resources.resources
-F:\now-mine\obj\x86\Debug\NowMine.csproj.GenerateResource.Cache
-F:\now-mine\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
-F:\now-mine\obj\x86\Debug\NowMine_MarkupCompile.lref
 D:\programowanie\now-mine\bin\x86\Debug\NowMine.exe.config
 D:\programowanie\now-mine\obj\x86\Debug\NowMine.exe
 D:\programowanie\now-mine\obj\x86\Debug\NowMine.pdb
@@ -347,8 +300,46 @@ E:\now-mine\obj\x86\Debug\NowMine.csproj.CoreCompileInputs.cache
 E:\now-mine\obj\x86\Debug\NowMine.exe
 E:\now-mine\obj\x86\Debug\NowMine.pdb
 E:\now-mine\obj\x86\Debug\NowMine.csprojResolveAssemblyReference.cache
+F:\now-mine\bin\x86\Debug\NowMine.exe.config
+F:\now-mine\bin\x86\Debug\NowMine.exe
+F:\now-mine\bin\x86\Debug\NowMine.pdb
+F:\now-mine\bin\x86\Debug\CefSharp.Core.dll
+F:\now-mine\bin\x86\Debug\CefSharp.dll
+F:\now-mine\bin\x86\Debug\CefSharp.Wpf.dll
+F:\now-mine\bin\x86\Debug\Google.Apis.Auth.dll
+F:\now-mine\bin\x86\Debug\Google.Apis.Auth.PlatformServices.dll
+F:\now-mine\bin\x86\Debug\Google.Apis.Core.dll
+F:\now-mine\bin\x86\Debug\Google.Apis.dll
+F:\now-mine\bin\x86\Debug\Google.Apis.PlatformServices.dll
+F:\now-mine\bin\x86\Debug\Google.Apis.YouTube.v3.dll
+F:\now-mine\bin\x86\Debug\Google.GData.Client.dll
+F:\now-mine\bin\x86\Debug\Google.GData.Extensions.dll
+F:\now-mine\bin\x86\Debug\log4net.dll
+F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.dll
+F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.dll
 F:\now-mine\bin\x86\Debug\Newtonsoft.Json.Bson.dll
+F:\now-mine\bin\x86\Debug\Newtonsoft.Json.dll
+F:\now-mine\bin\x86\Debug\System.Net.Http.Extensions.dll
+F:\now-mine\bin\x86\Debug\System.Net.Http.Primitives.dll
+F:\now-mine\bin\x86\Debug\Zlib.Portable.dll
+F:\now-mine\bin\x86\Debug\CefSharp.Wpf.xml
+F:\now-mine\bin\x86\Debug\CefSharp.xml
+F:\now-mine\bin\x86\Debug\CefSharp.Core.xml
+F:\now-mine\bin\x86\Debug\Google.Apis.xml
+F:\now-mine\bin\x86\Debug\Google.Apis.Auth.xml
+F:\now-mine\bin\x86\Debug\Google.Apis.Core.xml
+F:\now-mine\bin\x86\Debug\Google.Apis.YouTube.v3.xml
+F:\now-mine\bin\x86\Debug\log4net.xml
+F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.xml
+F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.xml
+F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+F:\now-mine\bin\x86\Debug\Newtonsoft.Json.xml
 F:\now-mine\bin\x86\Debug\Newtonsoft.Json.Bson.xml
+F:\now-mine\bin\x86\Debug\System.Net.Http.Extensions.xml
+F:\now-mine\bin\x86\Debug\System.Net.Http.Primitives.xml
+F:\now-mine\bin\x86\Debug\Zlib.Portable.xml
+F:\now-mine\obj\x86\Debug\NowMine.csprojResolveAssemblyReference.cache
 F:\now-mine\obj\x86\Debug\View\MusicControl.baml
 F:\now-mine\obj\x86\Debug\View\MusicPiece.baml
 F:\now-mine\obj\x86\Debug\View\SearchControl.baml
@@ -358,6 +349,155 @@ F:\now-mine\obj\x86\Debug\View\MainWindow.g.cs
 F:\now-mine\obj\x86\Debug\View\QueuePanel.g.cs
 F:\now-mine\obj\x86\Debug\View\SearchControl.g.cs
 F:\now-mine\obj\x86\Debug\View\App.g.cs
+F:\now-mine\obj\x86\Debug\NowMine_Content.g.cs
+F:\now-mine\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+F:\now-mine\obj\x86\Debug\NowMine_MarkupCompile.cache
+F:\now-mine\obj\x86\Debug\NowMine_MarkupCompile.lref
 F:\now-mine\obj\x86\Debug\View\MainWindow.baml
 F:\now-mine\obj\x86\Debug\View\QueuePanel.baml
+F:\now-mine\obj\x86\Debug\NowMine.g.resources
+F:\now-mine\obj\x86\Debug\NowMine.Properties.Resources.resources
+F:\now-mine\obj\x86\Debug\NowMine.csproj.GenerateResource.cache
 F:\now-mine\obj\x86\Debug\NowMine.csproj.CoreCompileInputs.cache
+F:\now-mine\obj\x86\Debug\NowMine.csproj.CopyComplete
+F:\now-mine\obj\x86\Debug\NowMine.exe
+F:\now-mine\obj\x86\Debug\NowMine.pdb
+F:\now-mine — kopia\bin\x86\Debug\cef.pak
+F:\now-mine — kopia\bin\x86\Debug\cef_100_percent.pak
+F:\now-mine — kopia\bin\x86\Debug\cef_200_percent.pak
+F:\now-mine — kopia\bin\x86\Debug\cef_extensions.pak
+F:\now-mine — kopia\bin\x86\Debug\chrome_elf.dll
+F:\now-mine — kopia\bin\x86\Debug\d3dcompiler_47.dll
+F:\now-mine — kopia\bin\x86\Debug\devtools_resources.pak
+F:\now-mine — kopia\bin\x86\Debug\icudtl.dat
+F:\now-mine — kopia\bin\x86\Debug\libcef.dll
+F:\now-mine — kopia\bin\x86\Debug\libEGL.dll
+F:\now-mine — kopia\bin\x86\Debug\libGLESv2.dll
+F:\now-mine — kopia\bin\x86\Debug\locales\am.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\ar.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\bg.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\bn.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\ca.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\cs.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\da.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\de.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\el.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\en-GB.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\en-US.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\es-419.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\es.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\et.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\fa.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\fi.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\fil.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\fr.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\gu.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\he.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\hi.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\hr.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\hu.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\id.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\it.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\ja.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\kn.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\ko.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\lt.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\lv.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\ml.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\mr.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\ms.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\nb.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\nl.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\pl.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\pt-BR.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\pt-PT.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\ro.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\ru.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\sk.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\sl.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\sr.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\sv.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\sw.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\ta.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\te.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\th.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\tr.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\uk.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\vi.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\zh-CN.pak
+F:\now-mine — kopia\bin\x86\Debug\locales\zh-TW.pak
+F:\now-mine — kopia\bin\x86\Debug\natives_blob.bin
+F:\now-mine — kopia\bin\x86\Debug\snapshot_blob.bin
+F:\now-mine — kopia\bin\x86\Debug\swiftshader\libEGL.dll
+F:\now-mine — kopia\bin\x86\Debug\swiftshader\libGLESv2.dll
+F:\now-mine — kopia\bin\x86\Debug\v8_context_snapshot.bin
+F:\now-mine — kopia\bin\x86\Debug\widevinecdmadapter.dll
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.BrowserSubprocess.Core.dll
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.BrowserSubprocess.Core.pdb
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.BrowserSubprocess.exe
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.BrowserSubprocess.pdb
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.Core.dll
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.Core.pdb
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.Core.xml
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.dll
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.pdb
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.XML
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.Wpf.dll
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.Wpf.pdb
+F:\now-mine — kopia\bin\x86\Debug\CefSharp.Wpf.XML
+F:\now-mine — kopia\bin\x86\Debug\NowMine.exe.config
+F:\now-mine — kopia\bin\x86\Debug\NowMine.exe
+F:\now-mine — kopia\bin\x86\Debug\NowMine.pdb
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.Auth.dll
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.Auth.PlatformServices.dll
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.Core.dll
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.dll
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.PlatformServices.dll
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.YouTube.v3.dll
+F:\now-mine — kopia\bin\x86\Debug\Google.GData.Client.dll
+F:\now-mine — kopia\bin\x86\Debug\Google.GData.Extensions.dll
+F:\now-mine — kopia\bin\x86\Debug\log4net.dll
+F:\now-mine — kopia\bin\x86\Debug\Microsoft.Threading.Tasks.dll
+F:\now-mine — kopia\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+F:\now-mine — kopia\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.dll
+F:\now-mine — kopia\bin\x86\Debug\Newtonsoft.Json.Bson.dll
+F:\now-mine — kopia\bin\x86\Debug\Newtonsoft.Json.dll
+F:\now-mine — kopia\bin\x86\Debug\System.Net.Http.Extensions.dll
+F:\now-mine — kopia\bin\x86\Debug\System.Net.Http.Primitives.dll
+F:\now-mine — kopia\bin\x86\Debug\Zlib.Portable.dll
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.xml
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.Auth.xml
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.Core.xml
+F:\now-mine — kopia\bin\x86\Debug\Google.Apis.YouTube.v3.xml
+F:\now-mine — kopia\bin\x86\Debug\log4net.xml
+F:\now-mine — kopia\bin\x86\Debug\Microsoft.Threading.Tasks.xml
+F:\now-mine — kopia\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.xml
+F:\now-mine — kopia\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+F:\now-mine — kopia\bin\x86\Debug\Newtonsoft.Json.xml
+F:\now-mine — kopia\bin\x86\Debug\Newtonsoft.Json.Bson.xml
+F:\now-mine — kopia\bin\x86\Debug\System.Net.Http.Extensions.xml
+F:\now-mine — kopia\bin\x86\Debug\System.Net.Http.Primitives.xml
+F:\now-mine — kopia\bin\x86\Debug\Zlib.Portable.xml
+F:\now-mine — kopia\obj\x86\Debug\View\MusicControl.baml
+F:\now-mine — kopia\obj\x86\Debug\View\MusicPiece.baml
+F:\now-mine — kopia\obj\x86\Debug\View\SearchControl.baml
+F:\now-mine — kopia\obj\x86\Debug\View\MusicControl.g.cs
+F:\now-mine — kopia\obj\x86\Debug\View\MusicPiece.g.cs
+F:\now-mine — kopia\obj\x86\Debug\View\MainWindow.g.cs
+F:\now-mine — kopia\obj\x86\Debug\View\QueuePanel.g.cs
+F:\now-mine — kopia\obj\x86\Debug\View\SearchControl.g.cs
+F:\now-mine — kopia\obj\x86\Debug\View\App.g.cs
+F:\now-mine — kopia\obj\x86\Debug\NowMine_Content.g.cs
+F:\now-mine — kopia\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+F:\now-mine — kopia\obj\x86\Debug\NowMine_MarkupCompile.cache
+F:\now-mine — kopia\obj\x86\Debug\NowMine_MarkupCompile.lref
+F:\now-mine — kopia\obj\x86\Debug\View\MainWindow.baml
+F:\now-mine — kopia\obj\x86\Debug\View\QueuePanel.baml
+F:\now-mine — kopia\obj\x86\Debug\NowMine.g.resources
+F:\now-mine — kopia\obj\x86\Debug\NowMine.Properties.Resources.resources
+F:\now-mine — kopia\obj\x86\Debug\NowMine.csproj.GenerateResource.cache
+F:\now-mine — kopia\obj\x86\Debug\NowMine.csproj.CoreCompileInputs.cache
+F:\now-mine — kopia\obj\x86\Debug\NowMine.csproj.CopyComplete
+F:\now-mine — kopia\obj\x86\Debug\NowMine.exe
+F:\now-mine — kopia\obj\x86\Debug\NowMine.pdb
+F:\now-mine — kopia\obj\x86\Debug\NowMine.csprojResolveAssemblyReference.cache

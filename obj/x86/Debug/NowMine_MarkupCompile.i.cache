@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-E:\now-mine\obj\x86\Debug\
+F:\now-mine — kopia\obj\x86\Debug\
 NowMine
 none
 false
 DEBUG;TRACE
-E:\now-mine\View\App.xaml
+F:\now-mine — kopia\View\App.xaml
 52113983137
 2834585851
-292003653349
-861162325352
+32-687192706
+86-450575661
 View\MusicControl.xaml;View\MusicPiece.xaml;View\MainWindow.xaml;View\QueuePanel.xaml;View\SearchControl.xaml;
 
-True
+False
 
