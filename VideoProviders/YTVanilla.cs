@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using NowMine.Enumerates;
 using NowMine.Interfaces;
 
 namespace NowMine.VideoProviders
@@ -22,9 +23,29 @@ namespace NowMine.VideoProviders
             return returnList;
         }
 
+        public List<string> GetOnLoadScripts()
+        {
+            return new List<string>();
+        }
+
         public string GetVideoURL(string id)
         {
             return @"http://www.youtube.com/watch?v=" + id;
+        }
+
+        public IVideoProvider GetErrorHandler()
+        {
+            return this;
+        }
+
+        public string GetHomePage()
+        {
+            return "home.html";
+        }
+
+        public NextVideoType NextVideoType()
+        {
+            return Enumerates.NextVideoType.ChangeSite;
         }
     }
 }

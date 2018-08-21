@@ -81,7 +81,5 @@ namespace NowMine.View
         {
             MusicControl_MainGrid.Background = Brushes.White;
         }
-
-
     }
 }

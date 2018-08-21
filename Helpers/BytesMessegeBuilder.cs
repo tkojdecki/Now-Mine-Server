@@ -49,13 +49,13 @@ namespace NowMine.Helpers
             }
         }
 
-        public static byte[] SerializeUsers(User[] users)
+        public static byte[] SerializeUsers(List<User> users)
         {
             MemoryStream ms = new MemoryStream();
             using (BsonDataWriter writer = new BsonDataWriter(ms))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(writer, users, typeof(User[]));
+                serializer.Serialize(writer, users.ToArray(), typeof(User[]));
                 return ms.ToArray();
             }
         }

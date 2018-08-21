@@ -37,8 +37,9 @@ namespace NowMine
 
             webPanel = new WebPanel(ref webPlayer, this);
             //webPlayer.RegisterJsObject("app", webPanel);
-            webPlayer.FrameLoadEnd += WebPlayer_FrameLoadEnd;
+            //webPlayer.FrameLoadEnd += WebPlayer_FrameLoadEnd;
             webPlayer.Initialized += WebPlayer_Initialized;
+            webPlayer.IsBrowserInitializedChanged += WebPlayer_IsBrowserInitializedChanged;
 
             RowPlayer.Children.Add(webPlayer);
 
@@ -61,31 +62,32 @@ namespace NowMine
             serverTCP.UserNameChanged += serverUDP.sendData;
             serverTCP.UserColorChanged += serverUDP.sendData;
             serverUDP.NewUser += serverTCP.TCPConnectToNewUser;
-            webPanel.VideoEnded += serverUDP.DeletedPiece;
-            webPanel.VideoEnded += ChangeToIndex;
+            //webPanel.VideoEnded += serverUDP.DeletedPiece; -- on playednow hendlowane
+            //webPanel.VideoEnded += ChangeToIndex;
             //webPanel.PlayedNow += serverUDP.playedNow;
             QueueManager.PlayedNow += serverUDP.playedNow;
+            QueueManager.PlayedNow += webPanel.playNow;
+            QueueManager.PlayedNext += serverUDP.playedNext;
             QueueManager.VideoQueued += webPanel.VideoQueuedHandler;
             QueueManager.VideoQueued += serverUDP.sendQueuedPiece;
-
             DataContext = this;
             //columnQueue.DataContext = queuePanelVM;
             columnSearch.DataContext = searchPanelVM;
             this.Search.OnSearch += searchPanelVM.PerformSearch;
         }
 
-        //private void WebPlayer_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)
-        //{
-        //    string html = File.ReadAllText(Directory.GetCurrentDirectory() + "/index.html");
-        //    //this.webPlayer.LoadHtml(html, @"local://index.html");
-        //    this.webPlayer.LoadHtml(html, @"http://index.html");
-        //    Console.WriteLine(html);
-        //}
+        private void WebPlayer_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            if ((bool)e.NewValue && !(bool)e.OldValue)
+            {
+                string html = File.ReadAllText(Directory.GetCurrentDirectory() + @"\" + webPanel.VideoProvider.GetHomePage());
+                this.webPlayer.LoadHtml(html, @"local://home.html");
+            }
+        }
 
         private void InitializeChromium()
         {
             var settings = new CefSettings();
-            //CefSharpSettings.LegacyJavascriptBindingEnabled = true;
             settings.CefCommandLineArgs.Add("disable-gpu", "1");
             //settings.LogSeverity = LogSeverity.Verbose;
             settings.RemoteDebuggingPort = 8088;
@@ -107,54 +109,45 @@ namespace NowMine
 
         private void WebPlayer_Initialized(object sender, EventArgs e)
         {
-            this.webPlayer.Address = LOCALSITEADDRESS;
-            //ChangeToIndex();
             webPlayer.JavascriptObjectRepository.Register("app", webPanel, true);
-        }
-
-        private void AddJSEventListener_OnTimedEvent(object sender, ElapsedEventArgs e)
-        {
-            Console.WriteLine("Adding Javascript Listener!");
-            webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
-            webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function onPlayerStateChange(event){if(event==0){app.getNextVideo();}});");
-            webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"(async function () { await CefSharp.BindObjectAsync('app', 'bound');})();");
-            var timer = sender as System.Timers.Timer;
-            timer.Stop();
+            activateUI();
         }
         
         private void WebPlayer_FrameLoadEnd(object sender, FrameLoadEndEventArgs e)
         {
-            Console.WriteLine("Frame Load End: " +  e.Frame + " " + e.HttpStatusCode + " " + e.Url);
-            if (!isYoutubePage && e.HttpStatusCode == 200 && e.Url.Contains("youtube.com"))
-            {
-                Application.Current.Dispatcher.Invoke(new Action(() => { activateUI(); }));
-                var browser = sender as ChromiumWebBrowser;
-                if (webPanel.isPlaying)
-                {
-                    Application.Current.Dispatcher.Invoke(new Action(() => { webPanel.PlayNow(QueueManager.nowPlaying(), 0); }));
-                }
-            }
+            //Console.WriteLine("Frame Load End: " +  e.Frame + " " + e.HttpStatusCode + " " + e.Url);
+            //if (!isYoutubePage && e.HttpStatusCode == 200 && e.Url.Contains("youtube.com"))
+            //{
+            //    Application.Current.Dispatcher.Invoke(new Action(() => { activateUI(); }));
+            //    var browser = sender as ChromiumWebBrowser;
+            //    if (webPanel.isPlaying)
+            //    {
+            //        Application.Current.Dispatcher.Invoke(new Action(() => { webPanel.PlayNow(QueueManager.nowPlaying(), 0); }));
+            //    }
+            //}
 
-            if (!this.videoID.Equals("") && e.Url.Contains(this.videoID) && e.Frame.IsMain)
-            {
-                //get next video after ending this
-                Console.WriteLine("Injecting listiner for end video");
-                var aTimer = new System.Timers.Timer(10  * 60 * 3);
-                aTimer.Elapsed += AddJSEventListener_OnTimedEvent;
+            //if (!this.videoID.Equals("") && e.Url.Contains(this.videoID) && e.Frame.IsMain)
+            //{
+                //Console.WriteLine("Injecting listiner for DOM creation");
+                //string jsListenerScript = "document.addEventListener('DOMContentLoaded', function(){ alert('DomLoaded'); });";
+                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(jsListenerScript);
+                //var aTimer = new System.Timers.Timer(10  * 60 * 3);
+                //aTimer.Elapsed += AddJSEventListener_OnTimedEvent;
                 //aTimer.Enabled = true;
-                aTimer.Start();
-            }
+                //aTimer.Start();
+            //}
 
-            if (!this.videoID.Equals("") && !e.Url.Contains(this.videoID) && e.Url.Contains("google") && !e.Frame.IsMain)
-            {
-                Console.WriteLine("Clearing youtube page from non-video elements");
-                //clearing rest window etc.
-                var Scripts = webPanel.VideoProvider.GetAfterLoadScripts();
-                foreach(var script in Scripts)
-                {
-                    webPlayer.GetMainFrame().ExecuteJavaScriptAsync(script);
-                }
-            }
+            //if (!this.videoID.Equals("") && !e.Url.Contains(this.videoID) && e.Url.Contains("google") && !e.Frame.IsMain)
+            //if (!e.Browser.IsLoading && e.Frame.IsMain && e.Browser.HasDocument)
+            //{
+            //    Console.WriteLine("Clearing youtube page from non-video elements");
+            //    //clearing rest window etc.
+            //    var Scripts = webPanel.VideoProvider.GetAfterLoadScripts();
+            //    foreach(var script in Scripts)
+            //    {
+            //        webPlayer.GetMainFrame().ExecuteJavaScriptAsync(script);
+            //    }
+            //}
         }
 
         public void ChangeToIndex(object s, EventArgs e)
@@ -165,13 +158,10 @@ namespace NowMine
         public void ChangeToIndex()
         {
             Console.WriteLine("Stopping Video!");
-            //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.stopVideo();");
             Console.WriteLine("Back to index.html!");
             isYoutubePage = false;
 
-            //string html = File.ReadAllText(Directory.GetCurrentDirectory() + "/index.html");
-            Application.Current.Dispatcher.Invoke(new Action(() => { this.webPlayer.WebBrowser.Load(LOCALSITEADDRESS); }));
-            //QueueManager.playNext();
+            Application.Current.Dispatcher.Invoke(new Action(() => { this.webPlayer.WebBrowser.Load(webPanel.VideoProvider.GetHomePage()); }));
         }
 
         //private   
@@ -236,11 +226,16 @@ namespace NowMine
 
         private void Window_KeyUp(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Pause)
+            switch(e.Key)
             {
-                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
-                //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function onPlayerStateChange(event){if(event==0){app.getNextVideo();}});");
-                this.webPlayer.Load(@"http://www.google.pl");
+                case (Key.F5):
+                    webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"window.location.reload();");
+                    break;
+                case (Key.Pause):
+                    //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
+                    //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function onPlayerStateChange(event){if(event==0){app.getNextVideo();}});");
+                    this.webPlayer.Load(@"http://www.google.pl");
+                    break;
             }
         }
     }

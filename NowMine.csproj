@@ -177,7 +177,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Enumerates\NextVideoType.cs" />
     <Compile Include="Interfaces\IVideoProvider.cs" />
+    <Compile Include="VideoProviders\YTNowMine.cs" />
     <Compile Include="VideoProviders\YTTV.cs" />
     <Compile Include="VideoProviders\YTVanilla.cs" />
     <Compile Include="ViewModel\MusicData.cs" />

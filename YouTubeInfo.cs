@@ -26,6 +26,7 @@ namespace NowMine
     public class NetworkYoutubeInfo : YouTubeInfo
     {
         public string userName;
+        public int userId;
         public string color;
 
         public NetworkYoutubeInfo(YouTubeInfo info)
@@ -43,6 +44,7 @@ namespace NowMine
             this.channelName = info.channelName;
             this.thumbnail = info.thumbnail;
             this.userName = user.Name;
+            this.userId = user.Id;
             this.color = user.Color.ToString();
         }
     }

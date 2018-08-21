@@ -15,6 +15,7 @@ namespace NowMine
     class ServerUDP
     {
         private UdpClient UDPClient;
+        private IPEndPoint BradcastUDPIP = new IPEndPoint(IPAddress.Broadcast, 1234);
 
         public delegate void NewUserEventHandler(object s, GenericEventArgs<IPAddress> e);
         public event NewUserEventHandler NewUser;
@@ -57,8 +58,7 @@ namespace NowMine
 
         public void UDPSend(byte[] message)
         {
-            IPEndPoint ip = new IPEndPoint(IPAddress.Broadcast, 1234);
-            UDPClient.Send(message, message.Length, ip);
+            UDPClient.Send(message, message.Length, BradcastUDPIP);
             Console.WriteLine("UDP Sent: {0} ", Convert.ToBase64String(message));
         }
 
@@ -89,6 +89,12 @@ namespace NowMine
             byte[] playedNowBytes = Encoding.UTF8.GetBytes("PlayedNow: ");
             byte[] qPosBytes = BitConverter.GetBytes(e.EventData);
             byte[] message = BytesMessegeBuilder.MergeBytesArray(playedNowBytes, qPosBytes);
+            UDPSend(message);
+        }
+
+        internal void playedNext(object o, EventArgs eventArgs)
+        {
+            byte[] message = Encoding.UTF8.GetBytes("Delete: 0");
             UDPSend(message);
         }
 

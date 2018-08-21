@@ -113,6 +113,7 @@ namespace NowMine
                 }
 
                 IPAddress connectedIP = ((IPEndPoint)tcpClient.RemoteEndPoint).Address;
+                //todo
                 var user = users[connectedIP];
                 if (user == null)
                 {
@@ -126,7 +127,15 @@ namespace NowMine
                 {
                     case "PlayNext":
                         Console.WriteLine("TCP/ PlayNext from {0}", tcpClient.RemoteEndPoint);
-                        Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.playNext(); }));
+                        if (QueueManager.nowPlaying().User.Id == user.Id)
+                        {
+                            Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.playNext(); }));
+                            tcpClient.Send(BitConverter.GetBytes(1));
+                        }
+                        else
+                        {
+                            tcpClient.Send(BitConverter.GetBytes(0));
+                        }
                         break;
 
                     case "Queue:":
@@ -169,7 +178,9 @@ namespace NowMine
 
                     case "GetUsers":
                         Console.WriteLine("TCP/ Get Users!");
-                        var ms = BytesMessegeBuilder.SerializeUsers(users.Values.ToArray());
+                        var usrlst = new List<User>(users.Values.ToList());
+                        usrlst.Add(User.serverUser);
+                        var ms = BytesMessegeBuilder.SerializeUsers(usrlst);
                         Console.WriteLine("TCP/ Sending users to: {0} - {1}, Users length {2}", tcpClient.RemoteEndPoint, user.Name, users.Count);
                         tcpClient.Send(ms.ToArray());
                         break;

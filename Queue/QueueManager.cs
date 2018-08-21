@@ -51,6 +51,13 @@ namespace NowMine.Queue
             PlayedNow?.Invoke(typeof(QueueManager), new GenericEventArgs<int>(qPos));
         }
 
+        static public event EventHandler PlayedNext;
+
+        static public void OnPlayedNext()
+        {
+            PlayedNext?.Invoke(typeof(QueueManager), EventArgs.Empty);
+        }
+
         static public void OnVideoQueued(YoutubeQueued video)
         {
             if (video != null)
@@ -68,6 +75,8 @@ namespace NowMine.Queue
             {
                 NetworkYoutubeInfo qpts = new NetworkYoutubeInfo(musicPiece.YTInfo, musicPiece.User);
                 qInfo.Add(qpts);
+                var asdf = new int[2];
+                asdf[0]++;
             }
             return qInfo;
         }
@@ -91,12 +100,12 @@ namespace NowMine.Queue
 
         private static void SendToPlay(object sender, MusicData data)
         {
+            int qPos = Queue.IndexOf(data);
+            OnPlayedNow(qPos);
+
             toHistory(nowPlaying());
             deleteFromQueue(data);
             Queue.Insert(0, data);
-
-            int qPos = Queue.IndexOf(data);
-            OnPlayedNow(qPos);
 
             OnGlobalPropertyChanged("Queue");
         }
@@ -150,6 +159,7 @@ namespace NowMine.Queue
                 toHistory(nowPlaying());
             }
             OnGlobalPropertyChanged("Queue");
+            OnPlayedNext();
             if (nextVideo != null)
             {
                 return true;
