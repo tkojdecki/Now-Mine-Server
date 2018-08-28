@@ -88,7 +88,7 @@ namespace NowMine.ViewModel
                 if (QueueManager.nowPlaying() != null)
                 {
                     MusicData md = QueueManager.nowPlaying().Copy();
-                    md.Color = Color.FromRgb(255, 0, 0);
+                    //md.Color = Color.FromRgb(255, 0, 0);
                     md.OnClick += ToggleNowPlayingVisibility;
                     return md;
                 }

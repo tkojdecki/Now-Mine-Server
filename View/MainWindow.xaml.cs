@@ -70,6 +70,7 @@ namespace NowMine
             QueueManager.PlayedNext += serverUDP.playedNext;
             QueueManager.VideoQueued += webPanel.VideoQueuedHandler;
             QueueManager.VideoQueued += serverUDP.sendQueuedPiece;
+            QueueManager.RemovedPiece += serverUDP.DeletedPiece;
             DataContext = this;
             //columnQueue.DataContext = queuePanelVM;
             columnSearch.DataContext = searchPanelVM;

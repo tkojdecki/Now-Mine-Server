@@ -40,18 +40,26 @@ namespace NowMine.Queue
             }
         }
 
+        static public event EventHandler PlayedNext;
+
         public delegate void VideoQueuedEventArgs(object s, GenericEventArgs<YoutubeQueued> e);
         static public event VideoQueuedEventArgs VideoQueued;
 
         public delegate void PlayedNowEventHandler(object s, GenericEventArgs<int> e);
         static public event PlayedNowEventHandler PlayedNow;
 
+        public delegate void RemovedPieceEventHandler(object s, GenericEventArgs<int> e);
+        static public event RemovedPieceEventHandler RemovedPiece;
+
         static public void OnPlayedNow(int qPos)
         {
             PlayedNow?.Invoke(typeof(QueueManager), new GenericEventArgs<int>(qPos));
         }
 
-        static public event EventHandler PlayedNext;
+        static public void OnRemovedPiece(int qPos)
+        {
+            RemovedPiece?.Invoke(typeof(QueueManager), new GenericEventArgs<int>(qPos));
+        }
 
         static public void OnPlayedNext()
         {
@@ -130,6 +138,20 @@ namespace NowMine.Queue
             if (Queue.Contains(queuePiece))
             {
                 Queue.Remove(queuePiece);
+            }
+        }
+
+        static public void deleteFromQueue(string videoID, int userID)
+        {
+            foreach (var piece in Queue)
+            {
+                if (piece.YTInfo.id == videoID && piece.User.Id == userID)
+                {
+                    OnRemovedPiece(Queue.IndexOf(piece));
+                    Queue.Remove(piece);
+                    OnGlobalPropertyChanged("Queue");
+                    return;
+                }
             }
         }
 

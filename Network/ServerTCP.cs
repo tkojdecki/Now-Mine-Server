@@ -224,6 +224,19 @@ namespace NowMine
                         }
                         break;
 
+                    case "DeletePiece":
+                        try
+                        {
+                            Queue.QueueManager.deleteFromQueue(values[1], user.Id);
+                            tcpClient.Send(BitConverter.GetBytes(1));
+                        }
+                        catch(Exception ex)
+                        {
+                            Console.WriteLine("TCP/ On DeletePiece: {0}", ex.Message);
+                            tcpClient.Send(BitConverter.GetBytes(0));
+                        }
+                        break;
+
                     default:
                         Console.WriteLine("TCP/ Can't interpret right");
                         break;
