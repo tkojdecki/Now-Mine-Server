@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 using NowMine.Helpers;
+using NowMine.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -63,7 +64,7 @@ namespace NowMine
         }
 
 
-        public void sendQueuedPiece(object o, GenericEventArgs<YoutubeQueued> e)
+        public void sendQueuedPiece(object o, GenericEventArgs<ClipQueued> e)
         {
             MemoryStream ms = new MemoryStream();
             using (BsonDataWriter writer = new BsonDataWriter(ms))
@@ -101,6 +102,11 @@ namespace NowMine
         internal void DeletedPiece(object source, GenericEventArgs<int> e)
         {
             UDPSend(String.Format("Delete: {0}", e.EventData));
+        }
+
+        internal void SendShutdown()
+        {
+            //todo
         }
     }
 }

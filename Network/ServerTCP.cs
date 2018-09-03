@@ -14,6 +14,7 @@ using NowMine.Helpers;
 using NowMine.Queue;
 using System.Threading.Tasks;
 using NowMine.ViewModel;
+using NowMine.Models;
 
 namespace NowMine
 {
@@ -46,7 +47,6 @@ namespace NowMine
         {
             return Task.Run(async () =>
             {
-                //var tcpListener = TcpListener.Create(8000);
                 var tcpListener = new TcpListener(serverIP, TCP_PORT);
                 tcpListener.Start();
                 while (true)
@@ -129,7 +129,7 @@ namespace NowMine
                         Console.WriteLine("TCP/ PlayNext from {0}", tcpClient.RemoteEndPoint);
                         if (QueueManager.nowPlaying().User.Id == user.Id)
                         {
-                            Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.playNext(); }));
+                            Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.PlayNext(); }));
                             tcpClient.Send(BitConverter.GetBytes(1));
                         }
                         else
@@ -140,7 +140,7 @@ namespace NowMine
 
                     case "Queue:":
                         Console.WriteLine("TCP/ To Queue!");
-                        YouTubeInfo toQueue;
+                        ClipInfo toQueue;
                         using (MemoryStream msq = new MemoryStream(buffer, commandMessagePos, byteCount - commandMessagePos))
                         {
                             toQueue = BytesMessegeBuilder.DeserializeYoutubeInfo(msq);
@@ -152,8 +152,7 @@ namespace NowMine
                             tcpClient.Send(BitConverter.GetBytes(-1));
                             break;
                         }
-                        toQueue.buildURL();
-                        Console.WriteLine(string.Format("TCP/ Adding to queue {0} ", toQueue.title));
+                        Console.WriteLine(string.Format("TCP/ Adding to queue {0} ", toQueue.Title));
                         int qPos = -2;
                         Application.Current.Dispatcher.Invoke(new Action(() => { qPos = QueueManager.AddToQueue(new MusicData(toQueue, user)); }));
                         Console.WriteLine("TCP/ Sending position of queued element {0} to {1}", qPos, tcpClient.RemoteEndPoint);
@@ -162,7 +161,7 @@ namespace NowMine
 
                     case "GetQueue":
                         Console.WriteLine("TCP/ Get Queue!");
-                        NetworkYoutubeInfo[] ytInfo = null;
+                        NetworkClipInfo[] ytInfo = null;
                         Application.Current.Dispatcher.Invoke(new Action(() => { ytInfo = QueueManager.getQueueInfo().ToArray(); }));
                         if (ytInfo != null && ytInfo.Length > 0)
                         {
@@ -191,7 +190,7 @@ namespace NowMine
                         {
                             Console.WriteLine("TCP/ Changing User {0} to {1} ({2})", user.Name, values[1], tcpClient.RemoteEndPoint);
                             user.Name = values[1];
-                            Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.RefreshQueueUserNames(user); }));
+                            QueueManager.OnGlobalPropertyChanged();
                             OnUserNameChange(values[1], user.Id);
                             Console.WriteLine("TCP/ Changed Name; Sending 1");
                             tcpClient.Send(BitConverter.GetBytes(1));
@@ -214,7 +213,7 @@ namespace NowMine
                                 changedColors[i] = buffer[changeColorBytePos + i];
                             }
                             user.UserColor = changedColors;
-                            Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.RefreshQueueUserNames(user); }));
+                            QueueManager.OnGlobalPropertyChanged();
                             tcpClient.Send(BitConverter.GetBytes(1));                          
                         }
                         catch (Exception ex)
@@ -227,7 +226,8 @@ namespace NowMine
                     case "DeletePiece":
                         try
                         {
-                            Queue.QueueManager.deleteFromQueue(values[1], user.Id);
+                            QueueManager.DeleteFromQueue(values[1], user.Id);
+                            QueueManager.OnGlobalPropertyChanged();
                             tcpClient.Send(BitConverter.GetBytes(1));
                         }
                         catch(Exception ex)

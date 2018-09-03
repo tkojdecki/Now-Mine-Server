@@ -177,15 +177,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="APIProviders\IAPIProvider.cs" />
     <Compile Include="Enumerates\NextVideoType.cs" />
-    <Compile Include="Interfaces\IVideoProvider.cs" />
-    <Compile Include="VideoProviders\YTNowMine.cs" />
-    <Compile Include="VideoProviders\YTTV.cs" />
-    <Compile Include="VideoProviders\YTVanilla.cs" />
+    <Compile Include="WebHandlers\IWebHandler.cs" />
+    <Compile Include="WebHandlers\YTNowMine.cs" />
+    <Compile Include="WebHandlers\YTTV.cs" />
+    <Compile Include="WebHandlers\YTVanilla.cs" />
     <Compile Include="ViewModel\MusicData.cs" />
     <Compile Include="Helpers\BytesMessegeBuilder.cs" />
     <Compile Include="Helpers\EventArgs.cs" />
-    <Compile Include="Helpers\EventArgsHelper.cs" />
     <Compile Include="Helpers\RelayCommand.cs" />
     <Compile Include="View\MusicControl.xaml.cs">
       <DependentUpon>MusicControl.xaml</DependentUpon>
@@ -200,16 +200,15 @@
     </Compile>
     <Compile Include="Network\ServerTCP.cs" />
     <Compile Include="Network\ServerUDP.cs" />
-    <Compile Include="tests\SearchTest.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Models\User.cs" />
     <Compile Include="ViewModel\QueuePanelViewModel.cs" />
     <Compile Include="ViewModel\SearchPanelViewModel.cs" />
     <Compile Include="View\SearchControl.xaml.cs">
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="WebPanel.cs" />
-    <Compile Include="YouTubeInfo.cs" />
-    <Compile Include="YouTubeProvider.cs" />
+    <Compile Include="ViewModel\WebPanelViewModel.cs" />
+    <Compile Include="Models\ClipInfo.cs" />
+    <Compile Include="APIProviders\YouTubeProvider.cs" />
     <Page Include="View\MusicControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

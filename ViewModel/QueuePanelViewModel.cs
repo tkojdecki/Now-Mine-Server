@@ -80,7 +80,7 @@ namespace NowMine.ViewModel
                 }
             }
         }
-
+    
         public MusicData NowPlaying
         {
             get
@@ -90,10 +90,12 @@ namespace NowMine.ViewModel
                     MusicData md = QueueManager.nowPlaying().Copy();
                     //md.Color = Color.FromRgb(255, 0, 0);
                     md.OnClick += ToggleNowPlayingVisibility;
+                    NowPlayingVisibility = true;
                     return md;
                 }
                 else
                 {
+                    NowPlayingVisibility = false;
                     return null;
                 }
             }
@@ -120,7 +122,8 @@ namespace NowMine.ViewModel
             {
                 if (QueueEmpty)
                 {
-                    return Visibility.Visible;
+                    
+                    return Visibility.Visible;        
                 }
                 else
                 {
@@ -136,7 +139,7 @@ namespace NowMine.ViewModel
 
         private void QueueManager_OnGlobalPropertyChanged(object sender, PropertyChangedEventArgs propertyChangedEventArgs)
         {
-        //todo magic strings
+            //todo magic strings
             OnPropertyChanged("NowPlaying");
             OnPropertyChanged("ObservedQueue");
             OnPropertyChanged("QueueTooltipVisibility");

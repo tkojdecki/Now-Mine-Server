@@ -1,4 +1,6 @@
-﻿using NowMine.Helpers;
+﻿using NowMine.APIProviders;
+using NowMine.Helpers;
+using NowMine.Models;
 using NowMine.Queue;
 using System;
 using System.Collections.Generic;
@@ -12,8 +14,7 @@ namespace NowMine.ViewModel
     class SearchPanelViewModel : INotifyPropertyChanged
     {
         public static Color SEARCH_COLOR = Color.FromRgb(0,0,0);
-
-        YouTubeProvider youtubeProvider = new YouTubeProvider();
+        IAPIProvider apiProvider = new YouTubeProvider();
 
         private string _searchText;
         public string SearchText
@@ -57,15 +58,15 @@ namespace NowMine.ViewModel
         public List<MusicData> GetSearchList(String searchWord)
         {
             List<MusicData> list;
-            List<YouTubeInfo> infoList = youtubeProvider.LoadVideosKey(searchWord);
+            List<ClipInfo> infoList = apiProvider.GetSearchClipInfos(searchWord);
             list = InfoToResults(infoList);
             return list;
         }
 
-        private List<MusicData> InfoToResults(List<YouTubeInfo> infoList)
+        private List<MusicData> InfoToResults(List<ClipInfo> infoList)
         {
             List<MusicData> list = new List<MusicData>();
-            foreach (YouTubeInfo info in infoList)
+            foreach (ClipInfo info in infoList)
             {
                 MusicData result = new MusicData(info);
                 list.Add(result);

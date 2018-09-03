@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NowMine.Models;
+using System;
 using System.ComponentModel;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -12,7 +13,7 @@ namespace NowMine.ViewModel
         private DateTime? CreatedDate { get; set; }
         private DateTime? m_PlayedDate { get; set; }
 
-        public YouTubeInfo YTInfo = null;
+        public ClipInfo YTInfo = null;
         public User User;
         
         public EventHandler<MusicData> OnClick;
@@ -21,7 +22,7 @@ namespace NowMine.ViewModel
         {
             get
             {
-                return this.YTInfo?.title;
+                return this.YTInfo?.Title;
             }
         }
 
@@ -29,7 +30,7 @@ namespace NowMine.ViewModel
         {
             get
             {
-                return this.YTInfo?.channelName;
+                return this.YTInfo?.ChannelName;
             }
         }
 
@@ -45,7 +46,7 @@ namespace NowMine.ViewModel
         {
             get
             {
-                return new BitmapImage(new Uri(this.YTInfo?.thumbnail.Url, UriKind.RelativeOrAbsolute));
+                return new BitmapImage(new Uri(this.YTInfo?.Thumbnail.Url, UriKind.RelativeOrAbsolute));
             }
         }
 
@@ -66,10 +67,11 @@ namespace NowMine.ViewModel
             }
         }
 
-        public MusicData(YouTubeInfo ytInfo, User user = null)
+        public MusicData(ClipInfo ytInfo, User user = null)
         {
             this.YTInfo = ytInfo;
             this.CreatedDate = DateTime.Now;
+            //todo
             if (user == null)
             {
                 this.User = User.serverUser;
@@ -87,9 +89,9 @@ namespace NowMine.ViewModel
             return md;
         }
 
-        public void SetPlayedDate()
-        {
-            this.m_PlayedDate = DateTime.Now;
-        }
+        //public void SetPlayedDate()
+        //{
+        //    this.m_PlayedDate = DateTime.Now;
+        //}
     }
 }

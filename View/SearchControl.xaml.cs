@@ -66,6 +66,5 @@ namespace NowMine.View
         {
             SearchBox.Text = "";
         }
-        
     }
 }

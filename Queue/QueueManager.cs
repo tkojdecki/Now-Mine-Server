@@ -5,6 +5,7 @@ using System.Linq;
 using NowMine.Helpers;
 using System.ComponentModel;
 using NowMine.ViewModel;
+using NowMine.Models;
 
 namespace NowMine.Queue
 {
@@ -42,7 +43,7 @@ namespace NowMine.Queue
 
         static public event EventHandler PlayedNext;
 
-        public delegate void VideoQueuedEventArgs(object s, GenericEventArgs<YoutubeQueued> e);
+        public delegate void VideoQueuedEventArgs(object s, GenericEventArgs<ClipQueued> e);
         static public event VideoQueuedEventArgs VideoQueued;
 
         public delegate void PlayedNowEventHandler(object s, GenericEventArgs<int> e);
@@ -66,25 +67,23 @@ namespace NowMine.Queue
             PlayedNext?.Invoke(typeof(QueueManager), EventArgs.Empty);
         }
 
-        static public void OnVideoQueued(YoutubeQueued video)
+        static public void OnVideoQueued(ClipQueued video)
         {
             if (video != null)
             {
-                var e = new GenericEventArgs<YoutubeQueued>(video);
+                var e = new GenericEventArgs<ClipQueued>(video);
                 VideoQueued?.Invoke(typeof(QueueManager), e);
             }
         }
 
-        static public List<NetworkYoutubeInfo> getQueueInfo()
+        static public List<NetworkClipInfo> getQueueInfo()
         {
             int queueCount = Queue.Count;
-            List<NetworkYoutubeInfo> qInfo = new List<NetworkYoutubeInfo>(queueCount);
+            List<NetworkClipInfo> qInfo = new List<NetworkClipInfo>(queueCount);
             foreach (var musicPiece in Queue)
             {
-                NetworkYoutubeInfo qpts = new NetworkYoutubeInfo(musicPiece.YTInfo, musicPiece.User);
+                NetworkClipInfo qpts = new NetworkClipInfo(musicPiece.YTInfo, musicPiece.User);
                 qInfo.Add(qpts);
-                var asdf = new int[2];
-                asdf[0]++;
             }
             return qInfo;
         }
@@ -92,7 +91,7 @@ namespace NowMine.Queue
         public static int AddToQueue(MusicData musicPiece)
         {
             musicPiece.OnClick += SendToPlay;
-            int qPos = QueueCalculator.calculateQueuePostition(musicPiece.User);
+            int qPos = QueueCalculator.CalculateQueuePostition(musicPiece.User);
             if (qPos < Queue.Count && qPos >= 0)
             {
                 Queue.Insert(qPos, musicPiece);
@@ -101,8 +100,8 @@ namespace NowMine.Queue
             {
                 Queue.Add(musicPiece);
             }
-            OnGlobalPropertyChanged("Queue");
-            OnVideoQueued(new YoutubeQueued(musicPiece.YTInfo, qPos, musicPiece.User.Id));
+            OnGlobalPropertyChanged();
+            OnVideoQueued(new ClipQueued(musicPiece.YTInfo, qPos, musicPiece.User.Id));
             return qPos;
         }
 
@@ -111,29 +110,14 @@ namespace NowMine.Queue
             int qPos = Queue.IndexOf(data);
             OnPlayedNow(qPos);
 
-            toHistory(nowPlaying());
-            deleteFromQueue(data);
+            ToHistory(nowPlaying());
+            DeleteFromQueue(data);
             Queue.Insert(0, data);
 
-            OnGlobalPropertyChanged("Queue");
+            OnGlobalPropertyChanged();
         }
 
-        /*
-        static private void Queue_DoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            var musicPiece = (MusicPiece)sender;
-            toHistory(nowPlaying());
-            deleteFromQueue(musicPiece);
-            musicPiece.nowPlayingVisual();
-            Queue.Insert(0, musicPiece);
-
-            int qPos = Queue.IndexOf(musicPiece);
-			OnPlayedNow(qPos);
-            e.Handled = true;
-        }
-        */
-
-        static public void deleteFromQueue(MusicData queuePiece)
+        static public void DeleteFromQueue(MusicData queuePiece)
         {
             if (Queue.Contains(queuePiece))
             {
@@ -141,30 +125,30 @@ namespace NowMine.Queue
             }
         }
 
-        static public void deleteFromQueue(string videoID, int userID)
+        static public void DeleteFromQueue(string videoID, int userID)
         {
             foreach (var piece in Queue)
             {
-                if (piece.YTInfo.id == videoID && piece.User.Id == userID)
+                if (piece.YTInfo.ID == videoID && piece.User.Id == userID)
                 {
                     OnRemovedPiece(Queue.IndexOf(piece));
                     Queue.Remove(piece);
-                    OnGlobalPropertyChanged("Queue");
+                    OnGlobalPropertyChanged();
                     return;
                 }
             }
         }
 
 
-        static public void toHistory(MusicData musicPiece)
+        static public void ToHistory(MusicData musicPiece)
         {
-            musicPiece.SetPlayedDate();
-            deleteFromQueue(musicPiece);
+            //musicPiece.SetPlayedDate();
+            DeleteFromQueue(musicPiece);
             //musicPiece.historyVisual();
             History.Add(musicPiece);
         }
 
-        static public MusicData getNextPiece()
+        static public MusicData GetNextPiece()
         {
             if (Queue.Count >= 2)
             {
@@ -173,24 +157,14 @@ namespace NowMine.Queue
             return null;
         }
 
-        static public bool playNext()
+        static public void PlayNext()
         {
-            MusicData nextVideo = getNextPiece();
             if (nowPlaying() != null)
             {
-                toHistory(nowPlaying());
+                ToHistory(nowPlaying());
             }
-            OnGlobalPropertyChanged("Queue");
+            OnGlobalPropertyChanged();
             OnPlayedNext();
-            if (nextVideo != null)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-
         }
 
         static public MusicData nowPlaying()
@@ -206,18 +180,6 @@ namespace NowMine.Queue
 
         }
 
-        static internal void RefreshQueueUserNames(User user)
-        {
-            foreach (MusicData piece in Queue)
-            {
-                if (piece.User.Id == user.Id)
-                {
-                    piece.User = user;
-                }
-            }
-            OnGlobalPropertyChanged("Queue");
-        }
-
         public static void ClearHistory()
         {
             History.Clear();
@@ -231,11 +193,11 @@ namespace NowMine.Queue
             {
                 Queue.RemoveAt(Queue.Count - 1);
             }
-            OnGlobalPropertyChanged("Queue");
+            OnGlobalPropertyChanged();
         }
 
         public static event PropertyChangedEventHandler GlobalPropertyChanged = delegate { };
-        public static void OnGlobalPropertyChanged(string propertyName)
+        public static void OnGlobalPropertyChanged(string propertyName = "Queue")
         {
             GlobalPropertyChanged(
                 typeof(QueueManager),
@@ -243,7 +205,6 @@ namespace NowMine.Queue
         }
 
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged;
-        public event PropertyChangedEventHandler PropertyChanged;
 
         static void OnPropertyChanged(string propertyName)
         {
