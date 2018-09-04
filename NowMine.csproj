@@ -265,8 +265,8 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\home.html" />
     <Content Include="Resources\index.html" />
-    <Content Include="Resources\test.html" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">

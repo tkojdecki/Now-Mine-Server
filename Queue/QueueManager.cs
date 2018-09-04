@@ -205,6 +205,7 @@ namespace NowMine.Queue
         }
 
         public static event EventHandler<PropertyChangedEventArgs> StaticPropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         static void OnPropertyChanged(string propertyName)
         {

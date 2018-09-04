@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/home.html")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/index.html")]
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/test.html")]
 
 
