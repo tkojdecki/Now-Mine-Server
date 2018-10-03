@@ -2,6 +2,7 @@
 using Newtonsoft.Json.Bson;
 using NowMine.Helpers;
 using NowMine.Models;
+using NowMineCommon.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,7 +65,7 @@ namespace NowMine
         }
 
 
-        public void sendQueuedPiece(object o, GenericEventArgs<ClipQueued> e)
+        public void SendQueuedPiece(object o, GenericEventArgs<ClipQueued> e)
         {
             MemoryStream ms = new MemoryStream();
             using (BsonDataWriter writer = new BsonDataWriter(ms))

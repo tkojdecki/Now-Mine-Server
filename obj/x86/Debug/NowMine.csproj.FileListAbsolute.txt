@@ -578,6 +578,20 @@ D:\now-mine — kopia\obj\x86\Debug\NowMine.csproj.GenerateResource.cache
 D:\now-mine — kopia\obj\x86\Debug\NowMine.csproj.CoreCompileInputs.cache
 D:\now-mine — kopia\obj\x86\Debug\NowMine.csproj.CopyComplete
 F:\now-mine — kopia\obj\x86\Debug\NowMine.csprojAssemblyReference.cache
+F:\now-mine\obj\x86\Debug\NowMine.csprojAssemblyReference.cache
+F:\now-mine\obj\x86\Debug\View\MusicControl.baml
+F:\now-mine\obj\x86\Debug\View\MusicPiece.baml
+F:\now-mine\obj\x86\Debug\View\SearchControl.baml
+F:\now-mine\obj\x86\Debug\View\MusicControl.g.cs
+F:\now-mine\obj\x86\Debug\View\MusicPiece.g.cs
+F:\now-mine\obj\x86\Debug\View\MainWindow.g.cs
+F:\now-mine\obj\x86\Debug\View\QueuePanel.g.cs
+F:\now-mine\obj\x86\Debug\View\SearchControl.g.cs
+F:\now-mine\obj\x86\Debug\View\App.g.cs
+F:\now-mine\obj\x86\Debug\NowMine_Content.g.cs
+F:\now-mine\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+F:\now-mine\obj\x86\Debug\NowMine_MarkupCompile.cache
+F:\now-mine\obj\x86\Debug\NowMine_MarkupCompile.lref
 F:\now-mine\bin\x86\Debug\cef.pak
 F:\now-mine\bin\x86\Debug\cef_100_percent.pak
 F:\now-mine\bin\x86\Debug\cef_200_percent.pak
@@ -661,6 +675,7 @@ F:\now-mine\bin\x86\Debug\CefSharp.XML
 F:\now-mine\bin\x86\Debug\CefSharp.Wpf.dll
 F:\now-mine\bin\x86\Debug\CefSharp.Wpf.pdb
 F:\now-mine\bin\x86\Debug\CefSharp.Wpf.XML
+F:\now-mine\bin\x86\Debug\Resources\home.html
 F:\now-mine\bin\x86\Debug\NowMine.exe.config
 F:\now-mine\bin\x86\Debug\NowMine.exe
 F:\now-mine\bin\x86\Debug\NowMine.pdb
@@ -678,9 +693,11 @@ F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
 F:\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.dll
 F:\now-mine\bin\x86\Debug\Newtonsoft.Json.Bson.dll
 F:\now-mine\bin\x86\Debug\Newtonsoft.Json.dll
+F:\now-mine\bin\x86\Debug\NowMineCommon.dll
 F:\now-mine\bin\x86\Debug\System.Net.Http.Extensions.dll
 F:\now-mine\bin\x86\Debug\System.Net.Http.Primitives.dll
 F:\now-mine\bin\x86\Debug\Zlib.Portable.dll
+F:\now-mine\bin\x86\Debug\NowMineCommon.pdb
 F:\now-mine\bin\x86\Debug\Google.Apis.xml
 F:\now-mine\bin\x86\Debug\Google.Apis.Auth.xml
 F:\now-mine\bin\x86\Debug\Google.Apis.Core.xml
@@ -694,19 +711,6 @@ F:\now-mine\bin\x86\Debug\Newtonsoft.Json.Bson.xml
 F:\now-mine\bin\x86\Debug\System.Net.Http.Extensions.xml
 F:\now-mine\bin\x86\Debug\System.Net.Http.Primitives.xml
 F:\now-mine\bin\x86\Debug\Zlib.Portable.xml
-F:\now-mine\obj\x86\Debug\View\MusicControl.baml
-F:\now-mine\obj\x86\Debug\View\MusicPiece.baml
-F:\now-mine\obj\x86\Debug\View\SearchControl.baml
-F:\now-mine\obj\x86\Debug\View\MusicControl.g.cs
-F:\now-mine\obj\x86\Debug\View\MusicPiece.g.cs
-F:\now-mine\obj\x86\Debug\View\MainWindow.g.cs
-F:\now-mine\obj\x86\Debug\View\QueuePanel.g.cs
-F:\now-mine\obj\x86\Debug\View\SearchControl.g.cs
-F:\now-mine\obj\x86\Debug\View\App.g.cs
-F:\now-mine\obj\x86\Debug\NowMine_Content.g.cs
-F:\now-mine\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
-F:\now-mine\obj\x86\Debug\NowMine_MarkupCompile.cache
-F:\now-mine\obj\x86\Debug\NowMine_MarkupCompile.lref
 F:\now-mine\obj\x86\Debug\View\MainWindow.baml
 F:\now-mine\obj\x86\Debug\View\QueuePanel.baml
 F:\now-mine\obj\x86\Debug\NowMine.g.resources
@@ -716,4 +720,294 @@ F:\now-mine\obj\x86\Debug\NowMine.csproj.CoreCompileInputs.cache
 F:\now-mine\obj\x86\Debug\NowMine.csproj.CopyComplete
 F:\now-mine\obj\x86\Debug\NowMine.exe
 F:\now-mine\obj\x86\Debug\NowMine.pdb
-F:\now-mine\obj\x86\Debug\NowMine.csprojAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\cef.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\cef_100_percent.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\cef_200_percent.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\cef_extensions.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\chrome_elf.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\d3dcompiler_47.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\devtools_resources.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\icudtl.dat
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\libcef.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\libEGL.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\libGLESv2.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\am.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\ar.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\bg.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\bn.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\ca.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\cs.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\da.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\de.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\el.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\en-GB.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\en-US.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\es-419.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\es.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\et.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\fa.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\fi.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\fil.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\fr.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\gu.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\he.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\hi.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\hr.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\hu.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\id.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\it.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\ja.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\kn.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\ko.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\lt.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\lv.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\ml.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\mr.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\ms.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\nb.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\nl.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\pl.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\pt-BR.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\pt-PT.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\ro.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\ru.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\sk.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\sl.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\sr.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\sv.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\sw.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\ta.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\te.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\th.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\tr.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\uk.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\vi.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\zh-CN.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\locales\zh-TW.pak
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\natives_blob.bin
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\snapshot_blob.bin
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\swiftshader\libEGL.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\swiftshader\libGLESv2.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\v8_context_snapshot.bin
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\widevinecdmadapter.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.BrowserSubprocess.Core.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.BrowserSubprocess.Core.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.BrowserSubprocess.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.BrowserSubprocess.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.Core.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.Core.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.Core.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.XML
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.Wpf.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.Wpf.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\CefSharp.Wpf.XML
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Resources\home.html
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\NowMine.exe.config
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\NowMine.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\NowMine.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.Auth.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.Core.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.PlatformServices.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.YouTube.v3.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.GData.Client.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.GData.Extensions.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\log4net.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Newtonsoft.Json.Bson.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Newtonsoft.Json.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\NowMineCommon.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\System.Net.Http.Extensions.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\System.Net.Http.Primitives.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Zlib.Portable.dll
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\NowMineCommon.pdb
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.Auth.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.Core.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Google.Apis.YouTube.v3.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\log4net.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Newtonsoft.Json.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Newtonsoft.Json.Bson.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\System.Net.Http.Extensions.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\System.Net.Http.Primitives.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\bin\x86\Debug\Zlib.Portable.xml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine.csprojAssemblyReference.cache
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\MusicControl.baml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\MusicPiece.baml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\SearchControl.baml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\MusicControl.g.cs
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\MusicPiece.g.cs
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\MainWindow.g.cs
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\QueuePanel.g.cs
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\SearchControl.g.cs
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\App.g.cs
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine_Content.g.cs
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine_MarkupCompile.cache
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine_MarkupCompile.lref
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\MainWindow.baml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\View\QueuePanel.baml
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine.g.resources
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine.Properties.Resources.resources
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine.csproj.GenerateResource.cache
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine.csproj.CoreCompileInputs.cache
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine.csproj.CopyComplete
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine.exe
+C:\Users\admin\Documents\Visual Studio 2017\Projects\now-mine\obj\x86\Debug\NowMine.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\cef.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\cef_100_percent.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\cef_200_percent.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\cef_extensions.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\chrome_elf.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\d3dcompiler_47.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\devtools_resources.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\icudtl.dat
+C:\NowMineProjects\now-mine\bin\x86\Debug\libcef.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\libEGL.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\libGLESv2.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\am.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\ar.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\bg.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\bn.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\ca.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\cs.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\da.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\de.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\el.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\en-GB.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\en-US.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\es-419.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\es.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\et.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\fa.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\fi.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\fil.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\fr.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\gu.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\he.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\hi.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\hr.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\hu.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\id.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\it.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\ja.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\kn.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\ko.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\lt.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\lv.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\ml.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\mr.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\ms.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\nb.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\nl.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\pl.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\pt-BR.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\pt-PT.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\ro.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\ru.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\sk.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\sl.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\sr.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\sv.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\sw.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\ta.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\te.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\th.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\tr.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\uk.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\vi.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\zh-CN.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\locales\zh-TW.pak
+C:\NowMineProjects\now-mine\bin\x86\Debug\natives_blob.bin
+C:\NowMineProjects\now-mine\bin\x86\Debug\snapshot_blob.bin
+C:\NowMineProjects\now-mine\bin\x86\Debug\swiftshader\libEGL.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\swiftshader\libGLESv2.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\v8_context_snapshot.bin
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.BrowserSubprocess.Core.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.BrowserSubprocess.Core.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.BrowserSubprocess.exe
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.BrowserSubprocess.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.Core.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.Core.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.Core.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.XML
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.Wpf.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.Wpf.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.Wpf.XML
+C:\NowMineProjects\now-mine\bin\x86\Debug\Resources\home.html
+C:\NowMineProjects\now-mine\bin\x86\Debug\NowMine.exe.config
+C:\NowMineProjects\now-mine\bin\x86\Debug\NowMine.exe
+C:\NowMineProjects\now-mine\bin\x86\Debug\NowMine.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.Auth.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.Auth.PlatformServices.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.Core.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.PlatformServices.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.YouTube.v3.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.GData.Client.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.GData.Extensions.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\log4net.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Newtonsoft.Json.Bson.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Newtonsoft.Json.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\NowMineCommon.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\System.Net.Http.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\System.Net.Http.Extensions.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\System.Net.Http.Primitives.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\System.Security.Cryptography.Algorithms.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\System.Security.Cryptography.Encoding.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\System.Security.Cryptography.Primitives.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\System.Security.Cryptography.X509Certificates.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\Zlib.Portable.dll
+C:\NowMineProjects\now-mine\bin\x86\Debug\NowMineCommon.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.Auth.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.Auth.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.Core.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.Core.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.YouTube.v3.pdb
+C:\NowMineProjects\now-mine\bin\x86\Debug\Google.Apis.YouTube.v3.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\log4net.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\Microsoft.Threading.Tasks.Extensions.Desktop.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\Newtonsoft.Json.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\Newtonsoft.Json.Bson.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\System.Net.Http.Extensions.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\System.Net.Http.Primitives.xml
+C:\NowMineProjects\now-mine\bin\x86\Debug\Zlib.Portable.xml
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine.csprojAssemblyReference.cache
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine.exe.config
+C:\NowMineProjects\now-mine\obj\x86\Debug\View\ClipControl.baml
+C:\NowMineProjects\now-mine\obj\x86\Debug\View\SearchControl.baml
+C:\NowMineProjects\now-mine\obj\x86\Debug\View\ClipControl.g.cs
+C:\NowMineProjects\now-mine\obj\x86\Debug\View\MainWindow.g.cs
+C:\NowMineProjects\now-mine\obj\x86\Debug\View\QueuePanel.g.cs
+C:\NowMineProjects\now-mine\obj\x86\Debug\View\SearchControl.g.cs
+C:\NowMineProjects\now-mine\obj\x86\Debug\View\App.g.cs
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine_Content.g.cs
+C:\NowMineProjects\now-mine\obj\x86\Debug\GeneratedInternalTypeHelper.g.cs
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine_MarkupCompile.cache
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine_MarkupCompile.lref
+C:\NowMineProjects\now-mine\obj\x86\Debug\View\MainWindow.baml
+C:\NowMineProjects\now-mine\obj\x86\Debug\View\QueuePanel.baml
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine.g.resources
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine.Properties.Resources.resources
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine.csproj.GenerateResource.cache
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine.csproj.CoreCompileInputs.cache
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine.csproj.CopyComplete
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine.exe
+C:\NowMineProjects\now-mine\obj\x86\Debug\NowMine.pdb

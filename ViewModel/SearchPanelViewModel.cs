@@ -2,6 +2,7 @@
 using NowMine.Helpers;
 using NowMine.Models;
 using NowMine.Queue;
+using NowMineCommon.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -33,13 +34,13 @@ namespace NowMine.ViewModel
             }
         }
 
-        private ObservableCollection<MusicData> _searchList;
-        public ObservableCollection<MusicData> SearchList
+        private ObservableCollection<ClipData> _searchList;
+        public ObservableCollection<ClipData> SearchList
         {
             get
             {
                 if (_searchList == null)
-                    _searchList = new ObservableCollection<MusicData>();
+                    _searchList = new ObservableCollection<ClipData>();
                 return _searchList;
             }
             set
@@ -49,26 +50,26 @@ namespace NowMine.ViewModel
             }
         }
 
-        private void AddToQueue(object sender, MusicData data)
+        private void AddToQueue(object sender, ClipData data)
         {
-            MusicData newData = data.Copy();
+            ClipData newData = data.Copy();
             int qPos = QueueManager.AddToQueue(newData);
         }
 
-        public List<MusicData> GetSearchList(String searchWord)
+        public List<ClipData> GetSearchList(String searchWord)
         {
-            List<MusicData> list;
+            List<ClipData> list;
             List<ClipInfo> infoList = apiProvider.GetSearchClipInfos(searchWord);
             list = InfoToResults(infoList);
             return list;
         }
 
-        private List<MusicData> InfoToResults(List<ClipInfo> infoList)
+        private List<ClipData> InfoToResults(List<ClipInfo> infoList)
         {
-            List<MusicData> list = new List<MusicData>();
+            List<ClipData> list = new List<ClipData>();
             foreach (ClipInfo info in infoList)
             {
-                MusicData result = new MusicData(info);
+                ClipData result = new ClipData(info);
                 list.Add(result);
             }
             return list;
@@ -101,7 +102,7 @@ namespace NowMine.ViewModel
         private void SearchClickObject()
         {
             var searchList = this.GetSearchList(SearchText);
-            var observableList = new ObservableCollection<MusicData>();
+            var observableList = new ObservableCollection<ClipData>();
             searchList.ForEach(m => observableList.Add(m));
             SearchList = observableList;
         }
@@ -140,9 +141,9 @@ namespace NowMine.ViewModel
         private void SearchObject()
         {
             var searchList = this.GetSearchList(SearchText);
-            var observableList = new ObservableCollection<MusicData>();
+            var observableList = new ObservableCollection<ClipData>();
             
-            foreach (MusicData musicPiece in searchList)
+            foreach (ClipData musicPiece in searchList)
             {
                 musicPiece.Color = SEARCH_COLOR;
                 musicPiece.OnClick += this.AddToQueue;

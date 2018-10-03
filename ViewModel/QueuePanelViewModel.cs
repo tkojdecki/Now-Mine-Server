@@ -57,7 +57,7 @@ namespace NowMine.ViewModel
             get { return ObservedQueue.Count == 0; }
         }
 
-        public ObservableCollection<MusicData> ObservedQueue
+        public ObservableCollection<ClipData> ObservedQueue
         {
             get
             {
@@ -65,13 +65,13 @@ namespace NowMine.ViewModel
                 {
                     if (QueueManager.Queue.Count > 1)
                     {
-                        ObservableCollection<MusicData> queue = new ObservableCollection<MusicData>(QueueManager.Queue);
+                        ObservableCollection<ClipData> queue = new ObservableCollection<ClipData>(QueueManager.Queue);
                         queue.RemoveAt(0);
                         return queue;
                     }
                     else
                     {
-                        return new ObservableCollection<MusicData>();
+                        return new ObservableCollection<ClipData>();
                     }
                 }
                 else
@@ -81,13 +81,13 @@ namespace NowMine.ViewModel
             }
         }
     
-        public MusicData NowPlaying
+        public ClipData NowPlaying
         {
             get
             {
                 if (QueueManager.nowPlaying() != null)
                 {
-                    MusicData md = QueueManager.nowPlaying().Copy();
+                    ClipData md = QueueManager.nowPlaying().Copy();
                     //md.Color = Color.FromRgb(255, 0, 0);
                     md.OnClick += ToggleNowPlayingVisibility;
                     NowPlayingVisibility = true;

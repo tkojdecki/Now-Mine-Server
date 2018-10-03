@@ -14,9 +14,9 @@
             <StackPanel Orientation="Horizontal" Margin="0,0,0,0"/>
         </ItemsPanelTemplate>
 
-        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:MusicData}">
+        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:ClipData}">
             <StackPanel>
-                <view:MusicControl Width="350"/>
+                <view:ClipControl Width="350"/>
             </StackPanel>
         </DataTemplate>
 
@@ -36,7 +36,7 @@
             <ColumnDefinition Width="*" x:Name="ColumnDefinitionQueue"/>
         </Grid.ColumnDefinitions>
         <Grid Column="0">
-            <view:MusicControl Width="350" DataContext="{Binding Path=NowPlaying}" x:Name="ControlNowPlaying"/>
+            <view:ClipControl Width="350" DataContext="{Binding Path=NowPlaying}" x:Name="ControlNowPlaying"/>
         </Grid>
         <Grid Column="1">
             <ScrollViewer Margin="0,0,0,0"

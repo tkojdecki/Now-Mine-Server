@@ -61,7 +61,7 @@ namespace NowMine
                                                 defaultPage: "index.html" //Optional param will default to index.html
                                                 )
             });
-            settings.FocusedNodeChangedEnabled = true;
+            //settings.FocusedNodeChangedEnabled = true;
             Cef.Initialize(settings);
         }
 

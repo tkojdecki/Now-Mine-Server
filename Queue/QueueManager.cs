@@ -6,18 +6,19 @@ using NowMine.Helpers;
 using System.ComponentModel;
 using NowMine.ViewModel;
 using NowMine.Models;
+using NowMineCommon.Models;
 
 namespace NowMine.Queue
 {
     class QueueManager : INotifyPropertyChanged
     {
-        static private ObservableCollection<MusicData> _queue;
-        static public ObservableCollection<MusicData> Queue
+        static private ObservableCollection<ClipData> _queue;
+        static public ObservableCollection<ClipData> Queue
         {
             get
             {
                 if (_queue == null)
-                    _queue = new ObservableCollection<MusicData>();
+                    _queue = new ObservableCollection<ClipData>();
                 return _queue;
             }
             set
@@ -26,13 +27,13 @@ namespace NowMine.Queue
             }
         }
 
-        static private ObservableCollection<MusicData> _history;
-        static public ObservableCollection<MusicData> History
+        static private ObservableCollection<ClipData> _history;
+        static public ObservableCollection<ClipData> History
         {
             get
             {
                 if (_history == null)
-                    _history = new ObservableCollection<MusicData>();
+                    _history = new ObservableCollection<ClipData>();
                 return _history;
             }
             set
@@ -76,19 +77,19 @@ namespace NowMine.Queue
             }
         }
 
-        static public List<NetworkClipInfo> getQueueInfo()
+        static public List<ClipQueued> GetQueueInfo()
         {
             int queueCount = Queue.Count;
-            List<NetworkClipInfo> qInfo = new List<NetworkClipInfo>(queueCount);
+            List<ClipQueued> qInfo = new List<ClipQueued>(queueCount);
             foreach (var musicPiece in Queue)
             {
-                NetworkClipInfo qpts = new NetworkClipInfo(musicPiece.YTInfo, musicPiece.User);
+                ClipQueued qpts = new ClipQueued(musicPiece.ClipInfo, Queue.IndexOf(musicPiece), musicPiece.User.Id);
                 qInfo.Add(qpts);
             }
             return qInfo;
         }
 
-        public static int AddToQueue(MusicData musicPiece)
+        public static int AddToQueue(ClipData musicPiece)
         {
             musicPiece.OnClick += SendToPlay;
             int qPos = QueueCalculator.CalculateQueuePostition(musicPiece.User);
@@ -101,11 +102,11 @@ namespace NowMine.Queue
                 Queue.Add(musicPiece);
             }
             OnGlobalPropertyChanged();
-            OnVideoQueued(new ClipQueued(musicPiece.YTInfo, qPos, musicPiece.User.Id));
+            OnVideoQueued(new ClipQueued(musicPiece.ClipInfo, qPos, musicPiece.User.Id));
             return qPos;
         }
 
-        private static void SendToPlay(object sender, MusicData data)
+        private static void SendToPlay(object sender, ClipData data)
         {
             int qPos = Queue.IndexOf(data);
             OnPlayedNow(qPos);
@@ -117,7 +118,7 @@ namespace NowMine.Queue
             OnGlobalPropertyChanged();
         }
 
-        static public void DeleteFromQueue(MusicData queuePiece)
+        static public void DeleteFromQueue(ClipData queuePiece)
         {
             if (Queue.Contains(queuePiece))
             {
@@ -129,7 +130,7 @@ namespace NowMine.Queue
         {
             foreach (var piece in Queue)
             {
-                if (piece.YTInfo.ID == videoID && piece.User.Id == userID)
+                if (piece.ClipInfo.ID == videoID && piece.User.Id == userID)
                 {
                     OnRemovedPiece(Queue.IndexOf(piece));
                     Queue.Remove(piece);
@@ -140,7 +141,7 @@ namespace NowMine.Queue
         }
 
 
-        static public void ToHistory(MusicData musicPiece)
+        static public void ToHistory(ClipData musicPiece)
         {
             //musicPiece.SetPlayedDate();
             DeleteFromQueue(musicPiece);
@@ -148,7 +149,7 @@ namespace NowMine.Queue
             History.Add(musicPiece);
         }
 
-        static public MusicData GetNextPiece()
+        static public ClipData GetNextPiece()
         {
             if (Queue.Count >= 2)
             {
@@ -167,7 +168,7 @@ namespace NowMine.Queue
             OnPlayedNext();
         }
 
-        static public MusicData nowPlaying()
+        static public ClipData nowPlaying()
         {
             if (Queue.Count >= 1)
             {

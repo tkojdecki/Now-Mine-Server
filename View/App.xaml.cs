@@ -34,7 +34,7 @@ namespace NowMine
             
             QueueManager.PlayedNow += serverUDP.playedNow;
             QueueManager.PlayedNext += serverUDP.playedNext;
-            QueueManager.VideoQueued += serverUDP.sendQueuedPiece;
+            QueueManager.VideoQueued += serverUDP.SendQueuedPiece;
             QueueManager.RemovedPiece += serverUDP.DeletedPiece;
         }
     }

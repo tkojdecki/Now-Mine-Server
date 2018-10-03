@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Google.Apis.YouTube.v3;
 using Google.Apis.Services;
 using NowMine.Models;
+using NowMineCommon.Models;
 
 namespace NowMine.APIProviders
 {
@@ -39,7 +40,7 @@ namespace NowMine.APIProviders
                         result.Title = SearchItem.Snippet.Title;
                         result.ChannelName = SearchItem.Snippet.ChannelTitle;
                         result.ID = SearchItem.Id.VideoId;
-                        result.Thumbnail = SearchItem.Snippet.Thumbnails.Default__;
+                        result.Thumbnail = new Uri(SearchItem.Snippet.Thumbnails.Default__.Url);
                         resultInfo.Add(result);
                         break;
 

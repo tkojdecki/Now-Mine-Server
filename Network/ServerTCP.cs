@@ -15,15 +15,18 @@ using NowMine.Queue;
 using System.Threading.Tasks;
 using NowMine.ViewModel;
 using NowMine.Models;
+using NowMineCommon.Models;
 
 namespace NowMine
 {
     class ServerTCP
     {
         readonly int TCP_PORT = 4444;
-        public IPAddress serverIP = null;
-        private string hostName;
-        Dictionary<IPAddress, User> users = new Dictionary<IPAddress, User>();
+        public readonly IPAddress ServerIP = null;
+        private readonly string HostName;
+        //todo
+        Dictionary<IPAddress, User> Users = new Dictionary<IPAddress, User>();
+        //todo
         readonly int commandMessagePos = Encoding.UTF8.GetByteCount("Queue: ");
 
         object _lock = new Object(); // sync lock 
@@ -32,13 +35,13 @@ namespace NowMine
 
         public ServerTCP()
         {
-            this.hostName = Dns.GetHostName();
-            IPAddress[] IpA = Dns.GetHostAddresses(this.hostName);
+            this.HostName = Dns.GetHostName();
+            IPAddress[] IpA = Dns.GetHostAddresses(this.HostName);
             for (int i = 0; i < IpA.Length; i++)
             {
                 if (IpA[i].AddressFamily == AddressFamily.InterNetwork)
                 {
-                    serverIP = IpA[i];
+                    ServerIP = IpA[i];
                 }
             }
         }
@@ -47,7 +50,7 @@ namespace NowMine
         {
             return Task.Run(async () =>
             {
-                var tcpListener = new TcpListener(serverIP, TCP_PORT);
+                var tcpListener = new TcpListener(ServerIP, TCP_PORT);
                 tcpListener.Start();
                 while (true)
                 {
@@ -113,13 +116,15 @@ namespace NowMine
                 }
 
                 IPAddress connectedIP = ((IPEndPoint)tcpClient.RemoteEndPoint).Address;
-                //todo
-                var user = users[connectedIP];
-                if (user == null)
+
+                if (!Users.ContainsKey(connectedIP))
                 {
                     Console.WriteLine("TCP/ COMMAND FROM NON USER IP: {0}", tcpClient.RemoteEndPoint);
+                    tcpClient.Send(BitConverter.GetBytes(0));
+                    tcpClient.Disconnect(false);
                     return;
                 }
+                var user = Users[connectedIP];
                 Console.WriteLine("TCP/ IP {0} is user {1}", tcpClient.RemoteEndPoint, user.Name);
 
                 string[] values = request.Split(' ');
@@ -154,15 +159,15 @@ namespace NowMine
                         }
                         Console.WriteLine(string.Format("TCP/ Adding to queue {0} ", toQueue.Title));
                         int qPos = -2;
-                        Application.Current.Dispatcher.Invoke(new Action(() => { qPos = QueueManager.AddToQueue(new MusicData(toQueue, user)); }));
+                        Application.Current.Dispatcher.Invoke(new Action(() => { qPos = QueueManager.AddToQueue(new ClipData(toQueue, user)); }));
                         Console.WriteLine("TCP/ Sending position of queued element {0} to {1}", qPos, tcpClient.RemoteEndPoint);
                         tcpClient.Send(BitConverter.GetBytes(qPos));
                         break;
 
                     case "GetQueue":
                         Console.WriteLine("TCP/ Get Queue!");
-                        NetworkClipInfo[] ytInfo = null;
-                        Application.Current.Dispatcher.Invoke(new Action(() => { ytInfo = QueueManager.getQueueInfo().ToArray(); }));
+                        ClipQueued[] ytInfo = null;
+                        Application.Current.Dispatcher.Invoke(new Action(() => { ytInfo = QueueManager.GetQueueInfo().ToArray(); }));
                         if (ytInfo != null && ytInfo.Length > 0)
                         {
                             var qBytes = BytesMessegeBuilder.SerializeQueuePieceToSend(ytInfo);
@@ -177,16 +182,16 @@ namespace NowMine
 
                     case "GetUsers":
                         Console.WriteLine("TCP/ Get Users!");
-                        var usrlst = new List<User>(users.Values.ToList());
+                        var usrlst = new List<User>(Users.Values.ToList());
                         usrlst.Add(User.serverUser);
                         var ms = BytesMessegeBuilder.SerializeUsers(usrlst);
-                        Console.WriteLine("TCP/ Sending users to: {0} - {1}, Users length {2}", tcpClient.RemoteEndPoint, user.Name, users.Count);
+                        Console.WriteLine("TCP/ Sending users to: {0} - {1}, Users length {2}", tcpClient.RemoteEndPoint, user.Name, Users.Count);
                         tcpClient.Send(ms.ToArray());
                         break;
 
                     case "ChangeName":
                         Console.WriteLine("TCP/ Changing Name!");
-                        if (!users.Values.Any(u => u.Name.Equals(values[1])))
+                        if (!Users.Values.Any(u => u.Name.Equals(values[1])))
                         {
                             Console.WriteLine("TCP/ Changing User {0} to {1} ({2})", user.Name, values[1], tcpClient.RemoteEndPoint);
                             user.Name = values[1];
@@ -224,6 +229,7 @@ namespace NowMine
                         break;
 
                     case "DeletePiece":
+                        Console.WriteLine("TCP/ On DeletePiece from {0} {1}", user.Name, values[1]);
                         try
                         {
                             QueueManager.DeleteFromQueue(values[1], user.Id);
@@ -248,7 +254,7 @@ namespace NowMine
 
         public void TCPConnectToNewUser(object s, GenericEventArgs<IPAddress> e)
         {
-            if (e.EventData == serverIP)
+            if (e.EventData == ServerIP)
                 return;
             try
             {
@@ -257,13 +263,13 @@ namespace NowMine
                     var ip = e.EventData;
                     Console.WriteLine("TCP/ Connecting to: " + ip.ToString());
                     Int32 userId;
-                    if (users.ContainsKey(ip))
-                        userId = users[ip].Id;
+                    if (Users.ContainsKey(ip))
+                        userId = Users[ip].Id;
                     else
-                        userId = users.Count + 1;
+                        userId = Users.Count + 1;
                     byte[] userIdBytes = new byte[4]; 
                     userIdBytes = BitConverter.GetBytes(userId);
-                    byte[] ipBytes = serverIP.GetAddressBytes(); //4 bytes
+                    byte[] ipBytes = ServerIP.GetAddressBytes(); //4 bytes
                     byte[] message = BytesMessegeBuilder.MergeBytesArray(ipBytes, userIdBytes);
                     tcpclnt.Connect(ip, 4444);
                     Console.WriteLine("TCP/ Connected");
@@ -282,10 +288,10 @@ namespace NowMine
                     var newUser = BytesMessegeBuilder.DeserializeUser(bytes);
                     if (newUser != null && newUser.Id == userId)
                     {
-                        if (users.ContainsKey(ip))
-                            users[ip] = newUser;
+                        if (Users.ContainsKey(ip))
+                            Users[ip] = newUser;
                         else
-                            users.Add(ip, newUser);
+                            Users.Add(ip, newUser);
                         stm.WriteByte(1);
                     }
                     else

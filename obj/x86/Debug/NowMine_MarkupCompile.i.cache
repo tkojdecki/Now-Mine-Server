@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\now-mine\obj\x86\Debug\
+C:\NowMineProjects\now-mine\obj\x86\Debug\
 NowMine
 none
 false
 DEBUG;TRACE
-F:\now-mine\View\App.xaml
-52113983137
+C:\NowMineProjects\now-mine\View\App.xaml
+4174313099
 219347397
-331751402652
-86-212835640
-View\MusicControl.xaml;View\MusicPiece.xaml;View\MainWindow.xaml;View\QueuePanel.xaml;View\SearchControl.xaml;
+33-1125713307
+93-1748158759
+View\ClipControl.xaml;View\MainWindow.xaml;View\QueuePanel.xaml;View\SearchControl.xaml;
 
 False
 

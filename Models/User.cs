@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
+using NowMineCommon.Models;
 
 namespace NowMine.Models
 {
-    public class User
+    public class User : NowMineCommon.Models.BaseUser
     {
-        public string Name { get; set; } 
         private static User _serverUser;
         public static User serverUser
         {
@@ -20,31 +20,6 @@ namespace NowMine.Models
                 return _serverUser;
             }
         }
-        
-        public int Id { get; set; }
-        private byte[] _color;
-        public byte[] UserColor
-        {
-            get
-            {
-                if (_color == null)
-                    _color = new byte[3];
-                return _color;
-            }
-
-            set
-            {
-                _color = value;
-            }
-        }
-
-        public Color Color
-        {
-            get
-            {
-                return Color.FromRgb(UserColor[0], UserColor[1], UserColor[2]);
-            }
-        }
 
         public User(string name, int id)
         {
@@ -53,11 +28,6 @@ namespace NowMine.Models
             Id = id;
             for (int i = 0; i < 3; i++)
                 UserColor[i] = (byte)rnd.Next(0, 255);
-        }
-
-        public void AddToQueue(MusicPiece piece)
-        {
-            piece.lbluserName.Content = this.Name;
         }
 
         internal Color GetColor()

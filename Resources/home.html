@@ -1,32 +1,31 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <title></title>
-        <style type="text/css">
-            #wrapper {
-                max-width: 200px; /* max-width doesn't behave correctly in legacy IE */
-                margin: 0 auto;
-            }
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <style type="text/css">
+        #wrapper {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
 
-            #wrapper img {
-                width: 100%; /* the image will now scale down as its parent gets smaller */
-            }
-        </style>
-    </head>
-    <body>
+    <script type="text/javascript">
+        (async function () {
+            await CefSharp.BindObjectAsync("app", "bound");
+        })();
+    </script>
 
-        <script type="text/javascript">
-            (async function () {
-                await CefSharp.BindObjectAsync("app", "bound");
-            })();
-        </script>
-
-
+    <center>
         <div id="wrapper">
             <img src="Logo.png" />
         </div>
+    </center>
 
-
-    </body>
+</body>
 </html>

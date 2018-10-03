@@ -17,7 +17,7 @@ namespace NowMine.Queue
             //no
             int pos = -1;
             float songsPerUser = GetSongsPerUser(user);
-            var rev = new List<MusicData>(QueueManager.Queue);
+            var rev = new List<ClipData>(QueueManager.Queue);
             rev.Reverse();
             foreach (var mPiece in rev)
             {

@@ -9,9 +9,9 @@
         Closing="Window_Closing" KeyUp="Window_KeyUp">
 
     <Window.Resources>
-        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:MusicData}">
+        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:ClipData}">
             <StackPanel>
-                <view:MusicControl Width="350" UsernameVisible="False"/>
+                <view:ClipControl Width="350" UsernameVisible="False"/>
             </StackPanel>
         </DataTemplate>
 

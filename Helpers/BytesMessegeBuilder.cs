@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Bson;
 using NowMine.Models;
+using NowMineCommon.Models;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -20,13 +21,13 @@ namespace NowMine.Helpers
             return result;
         }
 
-        public static byte[] SerializeQueuePieceToSend(NetworkClipInfo[] listToSerialize)
+        public static byte[] SerializeQueuePieceToSend(ClipQueued[] listToSerialize)
         {
             MemoryStream ms = new MemoryStream();
             using (BsonDataWriter writer = new BsonDataWriter(ms))
             {
                 JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(writer, listToSerialize, typeof(NetworkClipInfo[]));
+                serializer.Serialize(writer, listToSerialize, typeof(ClipQueued[]));
                 return ms.ToArray();
             }
         }

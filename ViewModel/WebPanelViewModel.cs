@@ -8,6 +8,7 @@ using NowMine.WebHandlers;
 using System.Timers;
 using System.IO;
 using NowMine.Models;
+using NowMineCommon.Models;
 
 namespace NowMine.ViewModel
 {
@@ -15,14 +16,14 @@ namespace NowMine.ViewModel
     {
         ChromiumWebBrowser WebControl;
         public bool isPlaying = false;
-        public IWebHandler VideoProvider;
+        public IWebHandler WebHandler;
         private Timer aTimer;
 
         public WebPanelViewModel(ref ChromiumWebBrowser webControl)
         {
             this.WebControl = webControl;
             //this.VideoProvider = new YTVanilla();
-            this.VideoProvider = new YTTV();
+            this.WebHandler = new YTTV();
             WebControl.IsBrowserInitializedChanged += WebPlayer_IsBrowserInitializedChanged;
             QueueManager.PlayedNow += PlayNow;
             QueueManager.VideoQueued += VideoQueuedHandler;
@@ -38,7 +39,7 @@ namespace NowMine.ViewModel
 
         public void LoadHomePage()
         {
-            string html = File.ReadAllText(Directory.GetCurrentDirectory() + @"\" + VideoProvider.GetHomePage());
+            string html = File.ReadAllText(Directory.GetCurrentDirectory() + @"\Resources\" + WebHandler.GetHomePage());
             WebControl.LoadHtml(html, @"local://home.html");
         }
 
@@ -48,12 +49,12 @@ namespace NowMine.ViewModel
             {
                 isPlaying = true;
             }
-            switch(VideoProvider.NextVideoType())
+            switch(WebHandler.NextVideoType())
             {
                 case Enumerates.NextVideoType.ChangeSite:
                     
                     Application.Current.Dispatcher.Invoke(new Action(() => {
-                        this.WebControl.Address = VideoProvider.GetVideoURL(id);
+                        this.WebControl.Address = WebHandler.GetVideoURL(id);
                         AddJsListener();
                     }));
                     break;
@@ -68,7 +69,7 @@ namespace NowMine.ViewModel
             int qPos = e.EventData;
             if (QueueManager.Queue.Count > qPos)
             {
-                PlayNow(QueueManager.Queue[qPos].YTInfo.ID);
+                PlayNow(QueueManager.Queue[qPos].ClipInfo.ID);
             }
         }
 
@@ -79,7 +80,7 @@ namespace NowMine.ViewModel
             var nextVideo = QueueManager.GetNextPiece();
             if (nextVideo != null)
             {
-                PlayNow(nextVideo.YTInfo.ID);
+                PlayNow(nextVideo.ClipInfo.ID);
                 isPlaying = true;
             }
             else
@@ -93,7 +94,7 @@ namespace NowMine.ViewModel
         {
             Console.WriteLine("ONERROR");
             var nowPlaying = QueueManager.nowPlaying();
-            VideoProvider = VideoProvider.GetErrorHandler();  //no
+            WebHandler = WebHandler.GetErrorHandler();  //no
             isPlaying = true;
         }
 
@@ -117,7 +118,7 @@ namespace NowMine.ViewModel
         public void DomLoaded()
         {
             Console.WriteLine("DOM Loaded!");
-            var Scripts = VideoProvider.GetAfterLoadScripts();
+            var Scripts = WebHandler.GetAfterLoadScripts();
             foreach (var script in Scripts)
             {
                 WebControl.GetMainFrame().ExecuteJavaScriptAsync(script);
@@ -133,7 +134,7 @@ namespace NowMine.ViewModel
         internal void PlayedNowHandler(object s, GenericEventArgs<int> e)
         {
             int qPos = e.EventData == -1 ? QueueManager.Queue.Count - 1 : e.EventData;
-            PlayNow(QueueManager.Queue[qPos].YTInfo.ID);
+            PlayNow(QueueManager.Queue[qPos].ClipInfo.ID);
         }
 
         public void MoviePlayerFound()
