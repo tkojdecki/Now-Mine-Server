@@ -16,7 +16,8 @@ namespace NowMine.ViewModel
 
         public ClipInfo ClipInfo;
         public User User;
-        
+        public uint QueueID { get; set; }
+
         public EventHandler<ClipData> OnClick;
 
         public string Title

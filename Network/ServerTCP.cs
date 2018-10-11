@@ -159,9 +159,12 @@ namespace NowMine
                         }
                         Console.WriteLine(string.Format("TCP/ Adding to queue {0} ", toQueue.Title));
                         int qPos = -2;
-                        Application.Current.Dispatcher.Invoke(new Action(() => { qPos = QueueManager.AddToQueue(new ClipData(toQueue, user)); }));
-                        Console.WriteLine("TCP/ Sending position of queued element {0} to {1}", qPos, tcpClient.RemoteEndPoint);
-                        tcpClient.Send(BitConverter.GetBytes(qPos));
+                        var clipDataToQueue = new ClipData(toQueue, user);
+                        Application.Current.Dispatcher.Invoke(new Action(() => { qPos = QueueManager.AddToQueue(clipDataToQueue); }));
+                        Console.WriteLine("TCP/ Sending position of queued element at {0} with ID {1} to {2}", qPos, clipDataToQueue.QueueID, tcpClient.RemoteEndPoint);
+                        var QueuedClipAnswer = BitConverter.GetBytes(qPos);
+                        QueuedClipAnswer = BytesMessegeBuilder.MergeBytesArray(QueuedClipAnswer, BitConverter.GetBytes(clipDataToQueue.QueueID));
+                        tcpClient.Send(QueuedClipAnswer);
                         break;
 
                     case "GetQueue":
@@ -232,9 +235,13 @@ namespace NowMine
                         Console.WriteLine("TCP/ On DeletePiece from {0} {1}", user.Name, values[1]);
                         try
                         {
-                            QueueManager.DeleteFromQueue(values[1], user.Id);
-                            QueueManager.OnGlobalPropertyChanged();
-                            tcpClient.Send(BitConverter.GetBytes(1));
+                            int deletePiecerBytePos = Encoding.UTF8.GetByteCount("DeletePiece ");
+                            uint queueIDToDelete = BitConverter.ToUInt32(buffer, deletePiecerBytePos);
+                            var isDeleted = QueueManager.DeleteFromQueue(queueIDToDelete, user.Id);
+                            if (isDeleted)
+                                tcpClient.Send(BitConverter.GetBytes(1));
+                            else
+                                tcpClient.Send(BitConverter.GetBytes(0));
                         }
                         catch(Exception ex)
                         {

@@ -53,6 +53,15 @@ namespace NowMine.Queue
         public delegate void RemovedPieceEventHandler(object s, GenericEventArgs<int> e);
         static public event RemovedPieceEventHandler RemovedPiece;
 
+        private static uint _queueIDCount;
+        private static uint QueueIDCount
+        {
+            get
+            {
+                return ++_queueIDCount;
+            }
+        }
+
         static public void OnPlayedNow(int qPos)
         {
             PlayedNow?.Invoke(typeof(QueueManager), new GenericEventArgs<int>(qPos));
@@ -83,7 +92,7 @@ namespace NowMine.Queue
             List<ClipQueued> qInfo = new List<ClipQueued>(queueCount);
             foreach (var musicPiece in Queue)
             {
-                ClipQueued qpts = new ClipQueued(musicPiece.ClipInfo, Queue.IndexOf(musicPiece), musicPiece.User.Id);
+                ClipQueued qpts = new ClipQueued(musicPiece.ClipInfo, Queue.IndexOf(musicPiece), musicPiece.User.Id, musicPiece.QueueID);
                 qInfo.Add(qpts);
             }
             return qInfo;
@@ -93,6 +102,7 @@ namespace NowMine.Queue
         {
             musicPiece.OnClick += SendToPlay;
             int qPos = QueueCalculator.CalculateQueuePostition(musicPiece.User);
+            musicPiece.QueueID = QueueIDCount;
             if (qPos < Queue.Count && qPos >= 0)
             {
                 Queue.Insert(qPos, musicPiece);
@@ -102,7 +112,7 @@ namespace NowMine.Queue
                 Queue.Add(musicPiece);
             }
             OnGlobalPropertyChanged();
-            OnVideoQueued(new ClipQueued(musicPiece.ClipInfo, qPos, musicPiece.User.Id));
+            OnVideoQueued(new ClipQueued(musicPiece.ClipInfo, qPos, musicPiece.User.Id, musicPiece.QueueID));
             return qPos;
         }
 
@@ -126,18 +136,19 @@ namespace NowMine.Queue
             }
         }
 
-        static public void DeleteFromQueue(string videoID, int userID)
+        static public bool DeleteFromQueue(uint queueID, int userID)
         {
-            foreach (var piece in Queue)
+            foreach (var clip in Queue)
             {
-                if (piece.ClipInfo.ID == videoID && piece.User.Id == userID)
+                if (clip.QueueID == queueID && clip.User.Id == userID)
                 {
-                    OnRemovedPiece(Queue.IndexOf(piece));
-                    Queue.Remove(piece);
+                    OnRemovedPiece(Queue.IndexOf(clip));
+                    Queue.Remove(clip);
                     OnGlobalPropertyChanged();
-                    return;
+                    return true;
                 }
             }
+            return false;
         }
 
 
