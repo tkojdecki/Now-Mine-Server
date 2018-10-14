@@ -6,10 +6,18 @@ using System.Threading.Tasks;
 
 namespace NowMine
 {
-    public class EventManager
+    public static class EventManager
     {
-        private uint _eventID;
-        public uint EventID
+        private static uint _eventID;
+        public static uint EventID
+        {
+            get
+            { 
+                return _eventID;
+            }
+        }
+
+        public static uint NextEventID
         {
             get
             {
@@ -17,7 +25,5 @@ namespace NowMine
                 return _eventID;
             }
         }
-
-
     }
 }
