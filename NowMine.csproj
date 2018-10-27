@@ -205,6 +205,7 @@
     <Compile Include="APIProviders\IAPIProvider.cs" />
     <Compile Include="Enumerates\NextVideoType.cs" />
     <Compile Include="EventManager.cs" />
+    <Compile Include="Helpers\JsonMessegeBuilder.cs" />
     <Compile Include="WebHandlers\IWebHandler.cs" />
     <Compile Include="WebHandlers\YTNowMine.cs" />
     <Compile Include="WebHandlers\YTTV.cs" />

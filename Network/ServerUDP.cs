@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NowMine
@@ -41,6 +42,7 @@ namespace NowMine
             IPEndPoint ip = new IPEndPoint(IPAddress.Any, 1234);
             byte[] bytes = UDPClient.EndReceive(ar, ref ip);
             string message = Encoding.ASCII.GetString(bytes);
+            Regex.Replace(message, @"[^\u0020-\u007E]", string.Empty);
             Console.WriteLine("UDP/ From {0} received: {1} ", ip.Address.ToString(), message);
             if (message.Equals("NowMine!"))
             {

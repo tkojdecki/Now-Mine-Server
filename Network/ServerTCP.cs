@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using NowMine.ViewModel;
 using NowMine.Models;
 using NowMineCommon.Models;
+using NowMineCommon.Enums;
 
 namespace NowMine
 {
@@ -127,34 +128,41 @@ namespace NowMine
                 var user = Users[connectedIP];
                 Console.WriteLine("TCP/ IP {0} is user {1}", tcpClient.RemoteEndPoint, user.Name);
 
-                string[] values = request.Split(' ');
-                switch (values[0])
+                //string[] values = request.Split(' ');
+                var command = JsonMessegeBuilder.GetCommandType(request);
+                switch (command)
                 {
-                    case "PlayNext":
+                    case CommandType.PlayNext:
                         Console.WriteLine("TCP/ PlayNext from {0}", tcpClient.RemoteEndPoint);
                         if (QueueManager.nowPlaying().User.Id == user.Id)
                         {
                             Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.PlayNext(); }));
-                            tcpClient.Send(BitConverter.GetBytes(1));
+                            //tcpClient.Send(BitConverter.GetBytes(1));
+                            //eventID ADD
+                            tcpClient.Send(BytesMessegeBuilder.ResponseYesBytes);
                         }
                         else
                         {
-                            tcpClient.Send(BitConverter.GetBytes(0));
+                            tcpClient.Send(BytesMessegeBuilder.ResponseNoBytes);
                         }
                         break;
 
-                    case "Queue:":
+                    case CommandType.QueueClip:
                         Console.WriteLine("TCP/ To Queue!");
-                        ClipInfo toQueue;
-                        using (MemoryStream msq = new MemoryStream(buffer, commandMessagePos, byteCount - commandMessagePos))
-                        {
-                            toQueue = BytesMessegeBuilder.DeserializeYoutubeInfo(msq);
-                        }
+                        //var toQueue = JObject.Parse(request)[CommandType.QueueClip.ToString()].ToObject(typeof(ClipInfo)) as ClipInfo;
+                        //ClipInfo toQueue;
+                        //using (MemoryStream msq = new MemoryStream(buffer, commandMessagePos, byteCount - commandMessagePos))
+                        //{
+                        //    //toQueue = BytesMessegeBuilder.DeserializeYoutubeInfo(msq);
+                        //    toQueue = JsonMessegeBuilder.DeserializeYoutubeInfo(msq);
+                        //}
+
+                        var toQueue = JsonMessegeBuilder.GetStandardRequestData<ClipInfo>(request, CommandType.QueueClip);
 
                         if (toQueue == null)
                         {
                             Console.WriteLine("TCP/ Failed to get Youtube Info from {0}", tcpClient.RemoteEndPoint);
-                            tcpClient.Send(BitConverter.GetBytes(-1));
+                            tcpClient.Send(BytesMessegeBuilder.ResponseNoBytes);
                             break;
                         }
                         Console.WriteLine(string.Format("TCP/ Adding to queue {0} ", toQueue.Title));
@@ -162,67 +170,71 @@ namespace NowMine
                         var clipDataToQueue = new ClipData(toQueue, user);
                         Application.Current.Dispatcher.Invoke(new Action(() => { qPos = QueueManager.AddToQueue(clipDataToQueue); }));
                         Console.WriteLine("TCP/ Sending position of queued element at {0} with ID {1} to {2}", qPos, clipDataToQueue.QueueID, tcpClient.RemoteEndPoint);
-                        var QueuedClipAnswer = BitConverter.GetBytes(qPos);
-                        QueuedClipAnswer = BytesMessegeBuilder.MergeBytesArray(QueuedClipAnswer, BitConverter.GetBytes(clipDataToQueue.QueueID));
-                        tcpClient.Send(QueuedClipAnswer);
+                        //var QueuedClipAnswer = BitConverter.GetBytes(qPos);
+                        //QueuedClipAnswer = BytesMessegeBuilder.MergeBytesArray(QueuedClipAnswer, BitConverter.GetBytes(clipDataToQueue.QueueID));
+                        var QueueClipAnswer = JsonMessegeBuilder.GetQueueClipResponse(qPos, clipDataToQueue.QueueID, 0);
+                        tcpClient.Send(Encoding.UTF8.GetBytes(QueueClipAnswer));
                         break;
 
-                    case "GetQueue":
+                    case CommandType.GetQueue:
                         Console.WriteLine("TCP/ Get Queue!");
                         ClipQueued[] ytInfo = null;
                         Application.Current.Dispatcher.Invoke(new Action(() => { ytInfo = QueueManager.GetQueueInfo().ToArray(); }));
-                        if (ytInfo != null && ytInfo.Length > 0)
+                        if (ytInfo != null) // && ytInfo.Length > 0
                         {
-                            var qBytes = BytesMessegeBuilder.SerializeQueuePieceToSend(ytInfo);
+                            //var qBytes = BytesMessegeBuilder.SerializeQueuePieceToSend(ytInfo);
+                            string QueueResponse = JsonMessegeBuilder.Serialize(ytInfo, CommandType.GetQueue);
                             Console.WriteLine("TCP/ Sending queue to: {0}  - {1}: Queue length : {2}", tcpClient.RemoteEndPoint, user.Name, ytInfo.Length);
-                            tcpClient.Send(qBytes);
+                            tcpClient.Send(Encoding.UTF8.GetBytes(QueueResponse));
                         }
                         else
                         {
-                            tcpClient.Send(BitConverter.GetBytes(0));
+                            tcpClient.Send(BytesMessegeBuilder.ResponseNoBytes);
                         }
                         break;
 
-                    case "GetUsers":
+                    case CommandType.GetUsers:
                         Console.WriteLine("TCP/ Get Users!");
                         var usrlst = new List<User>(Users.Values.ToList());
                         usrlst.Add(User.serverUser);
-                        var ms = BytesMessegeBuilder.SerializeUsers(usrlst);
+                        var GetQueueResponse = JsonMessegeBuilder.Serialize(usrlst, CommandType.GetUsers);
                         Console.WriteLine("TCP/ Sending users to: {0} - {1}, Users length {2}", tcpClient.RemoteEndPoint, user.Name, Users.Count);
-                        tcpClient.Send(ms.ToArray());
+                        tcpClient.Send(Encoding.UTF8.GetBytes(GetQueueResponse));
                         break;
 
-                    case "ChangeName":
+                    case CommandType.ChangeName:
                         Console.WriteLine("TCP/ Changing Name!");
-                        if (!Users.Values.Any(u => u.Name.Equals(values[1])))
+                        string NewUserName = JsonMessegeBuilder.GetStandardRequestData<string>(request, CommandType.ChangeName);
+                        if (!Users.Values.Any(u => u.Name.Equals(NewUserName)))
                         {
-                            Console.WriteLine("TCP/ Changing User {0} to {1} ({2})", user.Name, values[1], tcpClient.RemoteEndPoint);
-                            user.Name = values[1];
+                            Console.WriteLine("TCP/ Changing User {0} to {1} ({2})", user.Name, NewUserName, tcpClient.RemoteEndPoint);
+                            user.Name = NewUserName;
                             QueueManager.OnGlobalPropertyChanged();
-                            OnUserNameChange(values[1], user.Id);
-                            Console.WriteLine("TCP/ Changed Name; Sending 1");
-                            tcpClient.Send(BitConverter.GetBytes(1));
+                            OnUserNameChange(NewUserName, user.Id);
+                            Console.WriteLine("TCP/ Changed Name; Sending Success");
+                            tcpClient.Send(BytesMessegeBuilder.ResponseYesBytes);
                         }
                         else
                         {
                             Console.WriteLine("TCP/Change Name: Other user with same name; Sending 0");
-                            tcpClient.Send(BitConverter.GetBytes(0));
+                            tcpClient.Send(BytesMessegeBuilder.ResponseNoBytes);
                         }
                         break;
 
-                    case "ChangeColor":
+                    case CommandType.ChangeColor:
                         Console.WriteLine("TCP/ Changing Color!");
                         try
                         {
-                            var changedColors = new byte[3];
-                            int changeColorBytePos = Encoding.UTF8.GetByteCount("ChangeColor ");
-                            for (int i = 0; i < 3; i++)
-                            {
-                                changedColors[i] = buffer[changeColorBytePos + i];
-                            }
-                            user.UserColor = changedColors;
+                            //var changedColors = new byte[3];
+                            //int changeColorBytePos = Encoding.UTF8.GetByteCount("ChangeColor ");
+                            //for (int i = 0; i < 3; i++)
+                            //{
+                            //    changedColors[i] = buffer[changeColorBytePos + i];
+                            //}
+                            var changedColors = JsonMessegeBuilder.GetStandardRequestData<string>(request, CommandType.ChangeColor);
+                            user.UserColor = System.Convert.FromBase64String(changedColors);
                             QueueManager.OnGlobalPropertyChanged();
-                            tcpClient.Send(BitConverter.GetBytes(1));                          
+                            tcpClient.Send(BytesMessegeBuilder.ResponseYesBytes);                          
                         }
                         catch (Exception ex)
                         {
@@ -231,22 +243,25 @@ namespace NowMine
                         }
                         break;
 
-                    case "DeletePiece":
-                        Console.WriteLine("TCP/ On DeletePiece from {0} {1}", user.Name, values[1]);
+                    case CommandType.DeleteClip:
+                        Console.WriteLine("TCP/ On DeletePiece from {0}", user.Name);
                         try
                         {
-                            int deletePiecerBytePos = Encoding.UTF8.GetByteCount("DeletePiece ");
-                            uint queueIDToDelete = BitConverter.ToUInt32(buffer, deletePiecerBytePos);
+                            //int deletePiecerBytePos = Encoding.UTF8.GetByteCount("DeletePiece ");
+                            //uint queueIDToDelete = BitConverter.ToUInt32(buffer, deletePiecerBytePos);
+
+                            //var queueIDToDelete = JsonMessegeBuilder.GetQueueID(request);
+                            var queueIDToDelete = JsonMessegeBuilder.GetStandardRequestData<uint>(request, CommandType.DeleteClip);
                             var isDeleted = QueueManager.DeleteFromQueue(queueIDToDelete, user.Id);
                             if (isDeleted)
-                                tcpClient.Send(BitConverter.GetBytes(1));
+                                tcpClient.Send(BytesMessegeBuilder.ResponseYesBytes);
                             else
-                                tcpClient.Send(BitConverter.GetBytes(0));
+                                tcpClient.Send(BytesMessegeBuilder.ResponseNoBytes);
                         }
                         catch(Exception ex)
                         {
                             Console.WriteLine("TCP/ On DeletePiece: {0}", ex.Message);
-                            tcpClient.Send(BitConverter.GetBytes(0));
+                            tcpClient.Send(BytesMessegeBuilder.ResponseNoBytes);
                         }
                         break;
 

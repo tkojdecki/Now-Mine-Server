@@ -11,8 +11,11 @@ using System.Threading.Tasks;
 
 namespace NowMine.Helpers
 {
-    class BytesMessegeBuilder
+    static class BytesMessegeBuilder
     {
+        public readonly static byte[] ResponseYesBytes = Encoding.UTF8.GetBytes(JsonMessegeBuilder.SuccessTrue.ToString());
+        public readonly static byte[] ResponseNoBytes = Encoding.UTF8.GetBytes(JsonMessegeBuilder.SuccessFalse.ToString());
+
         public static byte[] MergeBytesArray(byte[] firstArray, byte[] secondArray)
         {
             byte[] result = new byte[firstArray.Length + secondArray.Length];
@@ -23,6 +26,7 @@ namespace NowMine.Helpers
 
         public static byte[] SerializeQueuePieceToSend(ClipQueued[] listToSerialize)
         {
+
             MemoryStream ms = new MemoryStream();
             using (BsonDataWriter writer = new BsonDataWriter(ms))
             {
@@ -61,5 +65,7 @@ namespace NowMine.Helpers
                 return ms.ToArray();
             }
         }
+
+
     }
 }
