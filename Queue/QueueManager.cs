@@ -7,6 +7,7 @@ using System.ComponentModel;
 using NowMine.ViewModel;
 using NowMine.Models;
 using NowMineCommon.Models;
+using NowMineCommon.Enums;
 
 namespace NowMine.Queue
 {
@@ -42,15 +43,16 @@ namespace NowMine.Queue
             }
         }
 
-        static public event EventHandler PlayedNext;
+        public delegate void PlayedNextEventHandler(byte[] message);
+        static public event PlayedNextEventHandler PlayedNext;
 
-        public delegate void VideoQueuedEventArgs(object s, GenericEventArgs<ClipQueued> e);
+        public delegate void VideoQueuedEventArgs(ClipQueued clip, uint eventID);
         static public event VideoQueuedEventArgs VideoQueued;
 
-        public delegate void PlayedNowEventHandler(object s, GenericEventArgs<int> e);
+        public delegate void PlayedNowEventHandler(int qPos, uint eventID);
         static public event PlayedNowEventHandler PlayedNow;
 
-        public delegate void RemovedPieceEventHandler(object s, GenericEventArgs<int> e);
+        public delegate void RemovedPieceEventHandler(byte[] message);
         static public event RemovedPieceEventHandler RemovedPiece;
 
         private static uint _queueIDCount;
@@ -62,27 +64,28 @@ namespace NowMine.Queue
             }
         }
 
-        static public void OnPlayedNow(int qPos)
+        static public void OnPlayedNow(int qPos, uint eventID)
         {
-            PlayedNow?.Invoke(typeof(QueueManager), new GenericEventArgs<int>(qPos));
+            PlayedNow?.Invoke(qPos, eventID);
         }
 
-        static public void OnRemovedPiece(int qPos)
+        static public void OnRemovedPiece(uint queueID, uint eventID)
         {
-            RemovedPiece?.Invoke(typeof(QueueManager), new GenericEventArgs<int>(qPos));
+            var message = BytesMessegeBuilder.GetRemovedPieceBytes(queueID, eventID);
+            RemovedPiece?.Invoke(message);
         }
 
-        static public void OnPlayedNext()
+        static public void OnPlayedNext(uint queueID, uint eventID)
         {
-            PlayedNext?.Invoke(typeof(QueueManager), EventArgs.Empty);
+            var bytes = BytesMessegeBuilder.GetPlayedNextBytes(queueID, eventID);
+            PlayedNext?.Invoke(bytes);
         }
 
-        static public void OnVideoQueued(ClipQueued video)
+        static public void OnVideoQueued(ClipQueued video, uint eventID)
         {
             if (video != null)
             {
-                var e = new GenericEventArgs<ClipQueued>(video);
-                VideoQueued?.Invoke(typeof(QueueManager), e);
+                VideoQueued?.Invoke(video, eventID);
             }
         }
 
@@ -98,42 +101,45 @@ namespace NowMine.Queue
             return qInfo;
         }
 
-        public static int AddToQueue(ClipData musicPiece)
+        public static ClipQueued AddToQueue(ClipData musicPiece)
         {
             musicPiece.OnClick += SendToPlay;
-            int qPos = QueueCalculator.CalculateQueuePostition(musicPiece.User);
+            Queue.Add(musicPiece);
+            int qPos = QueueCalculator.SortAndIndex(ref _queue, musicPiece);
             musicPiece.QueueID = QueueIDCount;
-            if (qPos < Queue.Count && qPos >= 0)
-            {
-                Queue.Insert(qPos, musicPiece);
-            }
-            else
-            {
-                Queue.Add(musicPiece);
-            }
             OnGlobalPropertyChanged();
-            OnVideoQueued(new ClipQueued(musicPiece.ClipInfo, qPos, musicPiece.User.Id, musicPiece.QueueID));
-            return qPos;
+            var clip = new ClipQueued(musicPiece.ClipInfo, qPos, musicPiece.User.Id, musicPiece.QueueID);
+            uint eventID = EventManager.GetIDForEvent(CommandType.QueueClip, clip);
+            OnVideoQueued(clip, eventID);
+            return clip;
         }
 
         private static void SendToPlay(object sender, ClipData data)
         {
             int qPos = Queue.IndexOf(data);
-            OnPlayedNow(qPos);
+            var clip = new ClipQueued(data.ClipInfo, qPos, data.User.Id, data.QueueID);
+            uint eventID = EventManager.GetIDForEvent(CommandType.PlayNow, clip);
+            OnPlayedNow(qPos, eventID);
 
             ToHistory(nowPlaying());
-            DeleteFromQueue(data);
+            DeleteFromQueue(data, false);
             Queue.Insert(0, data);
 
             OnGlobalPropertyChanged();
         }
 
-        static public void DeleteFromQueue(ClipData queuePiece)
+        static public void DeleteFromQueue(ClipData queuePiece, bool sendUDPMessage)
         {
             if (Queue.Contains(queuePiece))
             {
                 Queue.Remove(queuePiece);
+                uint queueID = queuePiece.QueueID;
+                uint eventID = EventManager.GetIDForEvent(CommandType.PlayNext, queueID);
+                if(sendUDPMessage)
+                    OnRemovedPiece(queueID, eventID);
+                OnGlobalPropertyChanged();
             }
+
         }
 
         static public bool DeleteFromQueue(uint queueID, int userID)
@@ -142,9 +148,11 @@ namespace NowMine.Queue
             {
                 if (clip.QueueID == queueID && clip.User.Id == userID)
                 {
-                    OnRemovedPiece(Queue.IndexOf(clip));
-                    Queue.Remove(clip);
-                    OnGlobalPropertyChanged();
+                    DeleteFromQueue(clip, true);
+
+                    //uint eventID = EventManager.GetIDForEvent(CommandType.PlayNext, queueID);
+                    //OnRemovedPiece(clip.QueueID, eventID);
+                    //OnGlobalPropertyChanged();
                     return true;
                 }
             }
@@ -154,9 +162,7 @@ namespace NowMine.Queue
 
         static public void ToHistory(ClipData musicPiece)
         {
-            //musicPiece.SetPlayedDate();
-            DeleteFromQueue(musicPiece);
-            //musicPiece.historyVisual();
+            //DeleteFromQueue(musicPiece, true);
             History.Add(musicPiece);
         }
 
@@ -171,12 +177,14 @@ namespace NowMine.Queue
 
         static public void PlayNext()
         {
-            if (nowPlaying() != null)
+            var _nowPlaying = nowPlaying();
+            if (_nowPlaying != null)
             {
-                ToHistory(nowPlaying());
+                ToHistory(_nowPlaying);
             }
             OnGlobalPropertyChanged();
-            OnPlayedNext();
+            uint eventID = EventManager.GetIDForEvent(CommandType.PlayNext, _nowPlaying.QueueID);
+            OnPlayedNext(_nowPlaying.QueueID, eventID);
         }
 
         static public ClipData nowPlaying()

@@ -15,51 +15,37 @@ namespace NowMine.Helpers
 {
     static class JsonMessegeBuilder
     {
-        //public readonly static string ResponseYes = string.Format("{{\"Success\": true}}");
-        //public readonly static string ResponseNo = string.Format("{{\"Success\": false}}");
-        public readonly static JObject SuccessTrue = new JObject(new JProperty("Success", true));
-        public readonly static JObject SuccessFalse = new JObject(new JProperty("Success", false));
+        public readonly static JProperty SuccessTrue = new JProperty(JsonNodes.Success, true);
+        public readonly static JProperty SuccessFalse = new JProperty(JsonNodes.Success, false);
 
-        //public static string SerializeQueuePieceToSend(ClipQueued[] listToSerialize)
-        //{
-        //    return JsonConvert.SerializeObject(listToSerialize);
-        //}
-
-        //public static ClipInfo DeserializeYoutubeInfo(string clipInfoSerialized)
-        //{
-        //    return JsonConvert.DeserializeObject(clipInfoSerialized) as ClipInfo;
-        //}
-
-        //public static User DeserializeUser(string serializedUser)
-        //{
-        //    return JsonConvert.DeserializeObject(serializedUser) as User;
-        //}
-
-        //public static string SerializeUsers(List<User> users)
-        //{
-        //    //return JsonConvert.SerializeObject(users, typeof(List<User>), null);
-        //    return JsonConvert.SerializeObject(users);
-        //}
-
-        internal static string GetQueueClipResponse(int qPos, uint queueID, uint eventID)
+        internal static string GetFailWithMessage(string message)
         {
-            JObject response = new JObject(SuccessTrue.Property("Success"),
-                                        new JProperty("QueuePosition", qPos),
-                                        new JProperty("QueueID", queueID),
-                                        new JProperty("EventID", eventID));
-            return response.ToString();
-
+            var Jobj = new JObject(SuccessFalse,
+                                new JProperty(JsonNodes.ErrorMessage, message));
+            return Jobj.ToString();
         }
 
-        //internal static string SerializeGetQueue(ClipQueued[] ytInfo)
-        //{ 
-        //    return JsonConvert.SerializeObject(ytInfo);
-        //}
+        internal static string GetSuccessWithEvent(uint eventID)
+        {
+            var Jobj = new JObject(SuccessTrue,
+                                        new JProperty(JsonNodes.EventID, eventID));
+            return Jobj.ToString();
+        }
+
+        internal static string GetQueueClipResponse(ClipQueued clip, uint eventID)
+        {
+            var Jobj = new JObject(SuccessTrue,
+                                        new JProperty(JsonNodes.QueuePosition, clip.QPos),
+                                        new JProperty(JsonNodes.QueueID, clip.QueueID),
+                                        new JProperty(JsonNodes.EventID, eventID));
+            return Jobj.ToString();
+
+        }
 
         internal static string Serialize(object obj, CommandType cmdType)
         {
             //return JsonConvert.SerializeObject(obj);
-            var Jobj = new JObject(SuccessTrue.Property("Success"),
+            var Jobj = new JObject(SuccessTrue,
                             new JProperty(cmdType.ToString(), JArray.FromObject(obj)));
             return Jobj.ToString();
         }
@@ -67,41 +53,24 @@ namespace NowMine.Helpers
 
         internal static CommandType GetCommandType(string request)
         {
-            return (CommandType)JObject.Parse(request)["Command"].ToObject(typeof(CommandType));               
+            return (CommandType)JObject.Parse(request)[JsonNodes.Command].ToObject(typeof(CommandType));               
         }
 
-        //internal static string GetChangeName(string request)
-        //{
-        //    return JObject.Parse(request)["ChangeName"].ToObject(typeof(string)) as string;
-        //}
-
-        //internal static byte[] GetChangeColor(string request)
-        //{
-        //    return (byte[])JObject.Parse(request)["ChangeColor"].ToObject(typeof(byte[]));
-        //}
-
-        //internal static uint GetQueueID(string request)
-        //{
-        //    return (uint)JObject.Parse(request)["QueueID"].ToObject(typeof(uint));
-        //}
-
-
-        internal static T GetStandardRequestData<T>(string response, string dataNode)
+        internal static T GetRequestData<T>(string response, string dataNode)
         {
-            //return JsonConvert.DeserializeObject<T>(response);
-            //return (T)JObject.Parse(response)[dataNode].ToObject(typeof(T));
-
             var Jobj = JObject.Parse(response);
             return JsonConvert.DeserializeObject<T>(Jobj[dataNode].ToString());
-            //return Jobj[dataNode].ToObject<T>();
-            //return Jobj.ToObject<T>();
-            //var ResponseData = Jobj.GetValue(dataNode);
-            //return ResponseData.ToObject<T>();
         }
 
-        internal static T GetStandardRequestData<T>(string response, CommandType dataNode)
+        internal static T GetRequestData<T>(string response, CommandType dataNode)
         {
-            return GetStandardRequestData<T>(response, dataNode.ToString());
+            return GetRequestData<T>(response, dataNode.ToString());
+        }
+
+        internal static string GetRequestString(string response, CommandType dataNode)
+        {
+            var Jobj = JObject.Parse(response);
+            return Jobj[dataNode.ToString()].ToString();
         }
     }
 }

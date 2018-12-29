@@ -1,7 +1,9 @@
 ﻿using NowMine.Models;
 using NowMine.ViewModel;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,57 +12,39 @@ namespace NowMine.Queue
 {
     public static class QueueCalculator
     {
-        public static int CalculateQueuePostition(User user)
+        static public int SortAndIndex(ref ObservableCollection<ClipData> queue, ClipData clipData)
         {
-            if (QueueManager.Queue.Count == 0)
-                return 0;
-            //no
-            int pos = -1;
-            float songsPerUser = GetSongsPerUser(user);
-            var rev = new List<ClipData>(QueueManager.Queue);
-            rev.Reverse();
-            foreach (var mPiece in rev)
-            {
-                if (mPiece.User == user)
-                {
-                    if (mPiece == QueueManager.Queue.Last())
-                    {
-                        return -1;
-                    }
-                    else
-                    {
-                        pos = QueueManager.Queue.IndexOf(mPiece) + 2;
-                        return pos;
-                    }
-                }
-                if (songsPerUser > GetSongsPerUser(mPiece.User))
-                {
-                    pos = QueueManager.Queue.IndexOf(mPiece) + 1;
-                    return pos;
-                }
-            }
-            pos = 1;
-            return pos;
+            queue = SortQueue(ref queue);
+            return queue.IndexOf(clipData);
         }
 
-        static private float GetSongsPerUser(User user)
+        static public ObservableCollection<ClipData> SortQueue(ref ObservableCollection<ClipData> queue)
         {
-            List<User> uniq = new List<User> { user };
-            int userQueuedSongs = 0;
-            int numberOfUsersInQueue = 1;
-            foreach (var musicPiece in QueueManager.Queue)
+            var queueDic = new Dictionary<User, Queue<ClipData>>();
+            foreach (var q in queue)
             {
-                if (!uniq.Contains(musicPiece.User))
+                if (!queueDic.ContainsKey(q.User))
                 {
-                    uniq.Add(musicPiece.User);
-                    numberOfUsersInQueue++;
+                    queueDic.Add(q.User, new Queue<ClipData>());
                 }
-                if (musicPiece.User == user)
+                var list = queueDic[q.User];
+                list.Enqueue(q);
+            }
+            var userList = queueDic.Keys.ToList();
+            var sortedQueue = new ObservableCollection<ClipData>();
+            while (queueDic.Values.Any(i => i.Count > 0))
+            {
+                foreach (var key in queueDic.Keys)
                 {
-                    userQueuedSongs++;
+                    var userQueue = queueDic[key];
+                    ClipData clipData = null;
+                    if (userQueue.Count > 0)
+                        clipData = userQueue.Dequeue();
+                    if (clipData != null)
+                        sortedQueue.Add(clipData);
                 }
             }
-            return (float)userQueuedSongs / (float)numberOfUsersInQueue;
+            return sortedQueue;
         }
     }
 }

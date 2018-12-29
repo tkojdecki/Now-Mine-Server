@@ -33,9 +33,9 @@ namespace NowMine
             serverUDP.NewUser += serverTCP.TCPConnectToNewUser;
             
             QueueManager.PlayedNow += serverUDP.playedNow;
-            QueueManager.PlayedNext += serverUDP.playedNext;
+            QueueManager.PlayedNext += serverUDP.sendData;
             QueueManager.VideoQueued += serverUDP.SendQueuedPiece;
-            QueueManager.RemovedPiece += serverUDP.DeletedPiece;
+            QueueManager.RemovedPiece += serverUDP.sendData;
         }
     }
 }

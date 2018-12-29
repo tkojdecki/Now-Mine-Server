@@ -1049,7 +1049,7 @@
             Gets the underlying credential instance being wrapped.
             </summary>
         </member>
-        <member name="M:Google.Apis.Auth.OAuth2.GoogleCredential.FromCredential(Google.Apis.Auth.OAuth2.ServiceAccountCredential)">
+        <member name="M:Google.Apis.Auth.OAuth2.GoogleCredential.FromServiceAccountCredential(Google.Apis.Auth.OAuth2.ServiceAccountCredential)">
             <summary>Creates a <c>GoogleCredential</c> wrapping a <see cref="T:Google.Apis.Auth.OAuth2.ServiceAccountCredential"/>.</summary>
         </member>
         <member name="T:Google.Apis.Auth.OAuth2.GoogleCredential.ServiceAccountGoogleCredential">

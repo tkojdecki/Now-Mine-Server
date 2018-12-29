@@ -22,8 +22,9 @@ namespace NowMine.ViewModel
         public WebPanelViewModel(ref ChromiumWebBrowser webControl)
         {
             this.WebControl = webControl;
-            //this.VideoProvider = new YTVanilla();
+            //this.WebHandler = new YTVanilla();
             this.WebHandler = new YTTV();
+            //this.WebHandler = new YTNowMine();
             WebControl.IsBrowserInitializedChanged += WebPlayer_IsBrowserInitializedChanged;
             QueueManager.PlayedNow += PlayNow;
             QueueManager.VideoQueued += VideoQueuedHandler;
@@ -43,7 +44,7 @@ namespace NowMine.ViewModel
             WebControl.LoadHtml(html, @"local://home.html");
         }
 
-        private void PlayNow(String id)
+        private void PlayNow(string id)
         {
             if (!isPlaying)
             {
@@ -64,9 +65,8 @@ namespace NowMine.ViewModel
             }
         }
 
-        internal void PlayNow(object s, GenericEventArgs<int> e)
+        internal void PlayNow(int qPos, uint eventID)
         {
-            int qPos = e.EventData;
             if (QueueManager.Queue.Count > qPos)
             {
                 PlayNow(QueueManager.Queue[qPos].ClipInfo.ID);
@@ -101,7 +101,7 @@ namespace NowMine.ViewModel
         private void AddJsListener()
         {
             Console.WriteLine("Injecting listiner for DOM creation");
-            aTimer = new Timer(10 * 60 * 1);
+            aTimer = new Timer(10 * 60 * 3);
             aTimer.Elapsed += AddJSEventListener_OnTimedEvent;
             aTimer.Enabled = true;
             aTimer.Start();
@@ -125,10 +125,10 @@ namespace NowMine.ViewModel
             }
         }
 
-        public void VideoQueuedHandler(object s, GenericEventArgs<ClipQueued> args)
+        public void VideoQueuedHandler(ClipQueued clip, uint eventID)
         {
             if (!isPlaying)
-                PlayNow(args.EventData.ID);
+                PlayNow(clip.ID);
         }
 
         internal void PlayedNowHandler(object s, GenericEventArgs<int> e)

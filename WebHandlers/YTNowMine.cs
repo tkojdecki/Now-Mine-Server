@@ -5,7 +5,8 @@ namespace NowMine.WebHandlers
 {
     class YTNowMine : IWebHandler
     {
-        private const string LOCALSITEADDRESS = @"local://index.html";
+        //private const string LOCALSITEADDRESS = @"local://index.html";
+        private const string LOCALSITEADDRESS = @"index.html";
 
         public List<string> GetAfterLoadScripts()
         {
@@ -30,6 +31,7 @@ namespace NowMine.WebHandlers
         public string GetHomePage()
         {
             return LOCALSITEADDRESS;
+            //return "home.html";
         }
 
         public NextVideoType NextVideoType()

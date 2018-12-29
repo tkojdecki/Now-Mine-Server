@@ -16,6 +16,7 @@ namespace NowMine.WebHandlers
             scripts.Add(@"legend.remove();");
             scripts.Add("var films=document.evaluate(\"//*[@id=\'bottom-half\']/div[4]/div[2]\",document,null,XPathResult.FIRST_ORDERED_NODE_TYPE,null).singleNodeValue;");
             scripts.Add(@"films.remove();");
+            scripts.Add(@"ytpl.playVideo();");
             return scripts;
         }
 
@@ -32,7 +33,9 @@ namespace NowMine.WebHandlers
 
         public string GetVideoURL(string id)
         {
-            return @"https://www.youtube.com/tv#/watch?v=" + id;
+            //return @"https://www.youtube.com/tv#/watch?v=" + id;
+            //return @"https://www.youtube.com/tv#/watch/video/control?v=" + id; 
+            return $"https://www.youtube.com/tv#/watch/video/control?v={id}&resume";
         }
 
         public IWebHandler GetErrorHandler()

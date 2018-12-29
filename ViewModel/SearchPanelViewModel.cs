@@ -53,7 +53,7 @@ namespace NowMine.ViewModel
         private void AddToQueue(object sender, ClipData data)
         {
             ClipData newData = data.Copy();
-            int qPos = QueueManager.AddToQueue(newData);
+            QueueManager.AddToQueue(newData);
         }
 
         public List<ClipData> GetSearchList(String searchWord)

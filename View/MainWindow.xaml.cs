@@ -21,6 +21,7 @@ namespace NowMine
         private bool isMaximized = false;
         public ChromiumWebBrowser webPlayer;
         private const string LOCALSITEADDRESS= @"local://index.html";
+        //public event EventArgs Shutdown;
 
         public MainWindow()
         {            
@@ -41,8 +42,6 @@ namespace NowMine
             columnSearch.DataContext = searchPanelVM;
             Search.OnSearch += searchPanelVM.PerformSearch;
         }
-
-
 
         private void InitializeChromium()
         {
@@ -129,6 +128,7 @@ namespace NowMine
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+            //Shutdown?.Invoke();
             Cef.Shutdown();
         }
 
@@ -139,11 +139,13 @@ namespace NowMine
                 case (Key.F5):
                     webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"window.location.reload();");
                     break;
-                //case (Key.Pause):
-                //    //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
-                //    //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function onPlayerStateChange(event){if(event==0){app.getNextVideo();}});");
-                //    this.webPlayer.Load(@"http://www.google.pl");
-                //    break;
+                case (Key.Pause):
+                    //    //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
+                    //    //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function onPlayerStateChange(event){if(event==0){app.getNextVideo();}});");
+                    //this.webPlayer.Load(@"https://www.youtube.com/tv#/watch/video/control?v=QBZfeWjy8ck&resume");
+                    this.webPlayer.Load(@"https://www.youtube.com/watch?v=RlJ9zB74G_U&autoplay=1");
+                    //this.webPlayer.Load(@"http://www.google.pl");
+                    break;
             }
         }
     }

@@ -11,9 +11,6 @@ namespace NowMine.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private DateTime? CreatedDate { get; set; }
-        private DateTime? m_PlayedDate { get; set; }
-
         public ClipInfo ClipInfo;
         public User User;
         public uint QueueID { get; set; }
@@ -72,7 +69,7 @@ namespace NowMine.ViewModel
         public ClipData(ClipInfo ytInfo, User user = null)
         {
             this.ClipInfo = ytInfo;
-            this.CreatedDate = DateTime.Now;
+            //this.CreatedDate = DateTime.Now;
             //todo
             if (user == null)
             {
@@ -90,10 +87,5 @@ namespace NowMine.ViewModel
 
             return md;
         }
-
-        //public void SetPlayedDate()
-        //{
-        //    this.m_PlayedDate = DateTime.Now;
-        //}
     }
 }

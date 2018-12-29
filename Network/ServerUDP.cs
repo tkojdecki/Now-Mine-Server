@@ -67,49 +67,27 @@ namespace NowMine
         }
 
 
-        public void SendQueuedPiece(object o, GenericEventArgs<ClipQueued> e)
+        public void SendQueuedPiece(ClipQueued clip, uint eventID)
         {
-            MemoryStream ms = new MemoryStream();
-            using (BsonDataWriter writer = new BsonDataWriter(ms))
-            {
-                JsonSerializer serializer = new JsonSerializer();
-                serializer.Serialize(writer, e.EventData);
-
-                var data = ms.ToArray();
-                byte[] queueString = Encoding.UTF8.GetBytes("Queue: ");
-                byte[] message = BytesMessegeBuilder.MergeBytesArray(queueString, data);
-                Console.WriteLine("UPD/ Sending to Broadcast: {0}", Convert.ToBase64String(message));
-                UDPSend(message);
-            }
-        }
-
-        public void sendData(object o, GenericEventArgs<byte[]> e)
-        {
-            UDPSend(e.EventData);
-        }
-
-        internal void playedNow(object s, GenericEventArgs<int> e)
-        {
-            byte[] playedNowBytes = Encoding.UTF8.GetBytes("PlayedNow: ");
-            byte[] qPosBytes = BitConverter.GetBytes(e.EventData);
-            byte[] message = BytesMessegeBuilder.MergeBytesArray(playedNowBytes, qPosBytes);
+            var message = BytesMessegeBuilder.GetQueuePieceBytes(clip, eventID);
             UDPSend(message);
         }
 
-        internal void playedNext(object o, EventArgs eventArgs)
+        public void sendData(byte[] message)
         {
-            byte[] message = Encoding.UTF8.GetBytes("Delete: 0");
             UDPSend(message);
         }
 
-        internal void DeletedPiece(object source, GenericEventArgs<int> e)
+        internal void playedNow(int qPos, uint eventID)
         {
-            UDPSend(String.Format("Delete: {0}", e.EventData));
+            var message = BytesMessegeBuilder.GetPlayedNowBytes(qPos, eventID);
+            UDPSend(message);
         }
 
         internal void SendShutdown()
         {
-            //todo
+            //var message = BytesMessegeBuilder.GetShutdownBytes();
+            //UDPSend(message);
         }
     }
 }
