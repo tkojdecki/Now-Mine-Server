@@ -55,7 +55,13 @@
                 <RowDefinition Height="*" />
                 <RowDefinition Height="120" x:Name="RowDefinitionQueue"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="RowPlayer" Grid.Row="0" />
+            <Grid x:Name="RowPlayer" Grid.Row="0" >
+                <!--<Image x:Name="imgLogo" Stretch="Uniform">
+                    <Image.Source>
+                        <BitmapImage UriSource="pack://application:,,,/Resources/Logo.png"/>
+                    </Image.Source>
+                </Image>-->
+            </Grid>
 
             <Grid x:Name="RowQueue" Grid.Row="1">
                 <view:QueuePanel x:Name="QueueControl" VerticalAlignment="Stretch" />

@@ -30,7 +30,6 @@ namespace NowMine.Queue
                 var list = queueDic[q.User];
                 list.Enqueue(q);
             }
-            var userList = queueDic.Keys.ToList();
             var sortedQueue = new ObservableCollection<ClipData>();
             while (queueDic.Values.Any(i => i.Count > 0))
             {

@@ -6,9 +6,9 @@ using CefSharp.Wpf;
 using CefSharp;
 using CefSharp.SchemeHandler;
 using NowMine.ViewModel;
-using NowMine.Queue;
-using System.Timers;
-using System.IO;
+using System.Windows.Controls;
+using System.Windows.Media.Imaging;
+using System.Globalization;
 
 namespace NowMine
 {
@@ -18,10 +18,10 @@ namespace NowMine
     public partial class MainWindow : Window
     {
         WebPanelViewModel webPanel;
+        Image imgLogo;
         private bool isMaximized = false;
         public ChromiumWebBrowser webPlayer;
         private const string LOCALSITEADDRESS= @"local://index.html";
-        //public event EventArgs Shutdown;
 
         public MainWindow()
         {            
@@ -31,8 +31,14 @@ namespace NowMine
 
             webPanel = new WebPanelViewModel(ref webPlayer);
             webPlayer.Initialized += AddJSActivateUI;
+            webPanel.IsPlayingEvent += IsPlaying_WebPanelVisibility;
             RowPlayer.Children.Add(webPlayer);
             RowPlayer.DataContext = webPlayer;
+            webPlayer.Visibility = Visibility.Hidden;
+
+            imgLogo = new Image();
+            imgLogo.Source = new BitmapImage(new Uri("pack://application:,,,/NowMine;component/Resources/Logo.png"));
+            RowPlayer.Children.Add(imgLogo);
 
             //var queuePanelVM = new QueuePanelViewModel();
             var searchPanelVM = new SearchPanelViewModel();
@@ -41,12 +47,31 @@ namespace NowMine
             //columnQueue.DataContext = queuePanelVM;
             columnSearch.DataContext = searchPanelVM;
             Search.OnSearch += searchPanelVM.PerformSearch;
+
+            Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
+            Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+        }
+
+        private void IsPlaying_WebPanelVisibility(bool isPlaying)
+        {
+            if(isPlaying)
+            {
+                this.Dispatcher.Invoke(() => webPlayer.Visibility = Visibility.Visible);
+
+                this.Dispatcher.Invoke(() => imgLogo.Visibility = Visibility.Collapsed);
+            }
+            else
+            {
+                this.Dispatcher.Invoke(() => webPlayer.Visibility = Visibility.Hidden);
+                this.Dispatcher.Invoke(() => imgLogo.Visibility = Visibility.Visible);
+            }
         }
 
         private void InitializeChromium()
         {
             var settings = new CefSettings();
             settings.CefCommandLineArgs.Add("disable-gpu", "1");
+            settings.CefCommandLineArgs.Add("autoplay-policy", "no-user-gesture-required");
             //settings.LogSeverity = LogSeverity.Verbose;
             settings.RemoteDebuggingPort = 8088;
             settings.RegisterScheme(new CefCustomScheme
@@ -128,7 +153,6 @@ namespace NowMine
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            //Shutdown?.Invoke();
             Cef.Shutdown();
         }
 

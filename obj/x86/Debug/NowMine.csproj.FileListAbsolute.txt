@@ -1092,6 +1092,7 @@ C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.Wpf.dll
 C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.Wpf.pdb
 C:\NowMineProjects\now-mine\bin\x86\Debug\CefSharp.Wpf.XML
 C:\NowMineProjects\now-mine\bin\x86\Debug\Resources\home.html
+C:\NowMineProjects\now-mine\bin\x86\Debug\Resources\iframe.html
 C:\NowMineProjects\now-mine\bin\x86\Debug\NowMine.exe.config
 C:\NowMineProjects\now-mine\bin\x86\Debug\NowMine.exe
 C:\NowMineProjects\now-mine\bin\x86\Debug\NowMine.pdb

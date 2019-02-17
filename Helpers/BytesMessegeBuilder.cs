@@ -3,11 +3,8 @@ using Newtonsoft.Json.Bson;
 using NowMine.Models;
 using NowMineCommon.Models;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using NowMineCommon.Enums;
 
 namespace NowMine.Helpers
@@ -47,14 +44,22 @@ namespace NowMine.Helpers
             return MergeBytesArray(BitConverter.GetBytes((int)CommandType.ChangeColor), userData);
         }
 
-        public static byte[] GetPlayedNextBytes(uint queueID, uint eventID)
+        //public static byte[] GetPlayedNextBytes(uint queueID, uint eventID)
+        //{
+        //    var commandBytes = BitConverter.GetBytes((int)CommandType.PlayNext);
+        //    var queueIDBytes = BitConverter.GetBytes(queueID);
+        //    var message = MergeBytesArray(commandBytes, queueIDBytes);
+        //    var eventIDBytes = BitConverter.GetBytes(eventID);
+        //    return MergeBytesArray(message, eventIDBytes);
+        //}
+
+        public static byte[] GetPlayedNextBytes(uint eventID)
         {
             var commandBytes = BitConverter.GetBytes((int)CommandType.PlayNext);
-            var queueIDBytes = BitConverter.GetBytes(queueID);
-            var message = MergeBytesArray(commandBytes, queueIDBytes);
             var eventIDBytes = BitConverter.GetBytes(eventID);
-            return MergeBytesArray(message, eventIDBytes);
+            return MergeBytesArray(commandBytes, eventIDBytes);
         }
+
 
         public static byte[] GetQueuePieceBytes(ClipQueued clip, uint eventID)
         {

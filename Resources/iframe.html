@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Embeded</title>
+</head>
+<body>
+	CHUJ
+	<script type="text/javascript">
+		(async function () {
+			await CefSharp.BindObjectAsync("app", "bound");
+		})();
+	</script>
+<iframe width="640" height="360" src="http://www.youtube.com/embed/59JGY-K0BeQ?feature=player_embedded" frameborder="0" allowfullscreen></iframe>
+</body>
+</html>

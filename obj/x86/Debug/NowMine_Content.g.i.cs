@@ -9,6 +9,7 @@
 //------------------------------------------------------------------------------
 
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/home.html")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/iframe.html")]
 [assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("resources/index.html")]
 
 

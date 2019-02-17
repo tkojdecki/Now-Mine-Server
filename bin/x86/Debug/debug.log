@@ -125,3 +125,405 @@
 [1229/204534.415:WARNING:quota_manager.cc(1625)] No storage quota provided in QuotaSettings.
 [1229/204536.125:INFO:CONSOLE(0)] "The resource https://r6---sn-f5f7lne7.googlevideo.com/generate_204?conn2 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source:  (0)
 [1229/204536.125:INFO:CONSOLE(0)] "The resource https://r6---sn-f5f7lne7.googlevideo.com/generate_204 was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally.", source:  (0)
+[1230/010725.263:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0202/170655.274:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0202/170659.183:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/170659.270:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/170814.011:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0202/170816.693:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/170816.699:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/230851.027:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0202/230854.683:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/230854.783:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/231627.450:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231632.138:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231633.621:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231635.962:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231639.358:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231640.066:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231640.632:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231641.198:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231641.764:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231642.278:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231642.804:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231643.602:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231645.134:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0202/231717.397:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0202/231721.182:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/231721.188:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/232929.150:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0202/232932.693:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/232932.699:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/235612.171:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0202/235615.975:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/235616.058:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0202/235706.504:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/000205.560:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/003052.900:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/003433.393:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/003437.458:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/003437.478:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/003516.394:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/003520.118:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/003520.128:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020020.804:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/020032.789:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0203/020103.712:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/020111.630:INFO:CONSOLE(2068)] "The Web Audio autoplay policy will be re-enabled in Chrome 70 (October 2018). Please check that your website is compatible with it. https://goo.gl/7K7WLu", source: https://www.youtube.com/s/tv/html5/d8161646/app-prod.js (2068)
+[0203/020135.764:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/020139.306:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020139.310:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020147.266:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0203/020233.514:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/020241.013:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0203/020259.607:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/020302.968:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020303.067:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020337.745:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/020517.995:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/020520.922:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020521.048:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020534.662:INFO:CONSOLE(34)] "<link rel=preload> must have a valid `as` value", source: https://www.youtube.com/watch?v=6_oPjyy6pMg&feature=player_embedded_uturn (34)
+[0203/020534.884:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020534.908:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020535.016:INFO:CONSOLE(0)] "Styling master document from stylesheets defined in HTML Imports is deprecated. Please refer to https://goo.gl/EGXzpw for possible migration paths.", source:  (0)
+[0203/020537.065:ERROR:quota_settings.cc(111)] Unable to compute QuotaSettings.
+[0203/020537.065:WARNING:quota_manager.cc(1625)] No storage quota provided in QuotaSettings.
+[0203/020537.229:INFO:CONSOLE(15)] "chrome.loadTimes() is deprecated, instead use standardized API: nextHopProtocol in Navigation Timing 2. https://www.chromestatus.com/features/5637885046816768.", source: https://www.youtube.com/yts/jsbin/network-vflNZTggj/network.js (15)
+[0203/020538.280:WARNING:spdy_session.cc(3097)] Received HEADERS for invalid stream 83
+[0203/020549.438:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0203/020553.082:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0203/020553.263:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/011108.305:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0204/011110.832:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/011110.936:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/013339.025:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0204/013341.941:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/013341.948:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/013512.149:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0204/013515.044:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/013515.047:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/014332.990:ERROR:broker_win.cc(55)] Error reading broker pipe: Potok zosta³ zakoñczony. (0x6D)
+[0204/014334.888:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0204/014337.888:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/014337.959:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/015004.661:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0204/015007.421:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0204/015007.492:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/214549.713:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/214557.160:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/214557.173:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/215343.223:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/215402.173:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/215402.463:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/215609.387:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/215609.521:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/220036.997:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/220037.010:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/221011.790:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/221015.168:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/221015.177:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/221100.556:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/221104.163:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/221104.170:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/223904.120:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/223907.068:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/223907.074:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/223924.437:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/223927.521:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/223927.603:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/225558.858:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/225602.802:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/225602.926:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/225659.362:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/225703.510:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/225703.526:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/231140.364:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/231143.680:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/231143.753:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/231225.954:WARNING:spdy_session.cc(3097)] Received HEADERS for invalid stream 5
+[0210/231259.475:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/231305.706:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/231453.836:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/231456.958:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/231457.022:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/232251.469:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/232254.798:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/232254.807:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/232344.551:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0210/232348.346:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0210/232348.456:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/000954.722:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/000958.662:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/000958.727:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001029.494:WARNING:spdy_session.cc(3097)] Received HEADERS for invalid stream 5
+[0211/001029.550:WARNING:spdy_session.cc(3097)] Received HEADERS for invalid stream 25
+[0211/001052.534:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001053.962:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001312.914:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/001316.561:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001318.408:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001543.040:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/001546.292:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001552.171:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001711.303:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/001714.746:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001716.424:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001733.848:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/001737.704:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/001738.864:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/003208.596:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/003211.843:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/003211.915:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/003232.069:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/003235.260:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/003235.278:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/012344.163:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/012347.484:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/012347.550:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/012420.536:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/012424.251:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/012424.348:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/145831.459:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/145837.064:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/145837.206:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/164038.057:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/164041.761:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/164041.845:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/170301.335:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/171858.353:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/171916.671:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0211/184921.283:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/190506.565:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0211/190544.460:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/193159.436:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/193209.290:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0211/193239.114:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/193309.760:INFO:CONSOLE(1)] "Uncaught ReferenceError: changeVideo is not defined", source: about:blank (1)
+[0211/213526.211:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/213534.944:INFO:CONSOLE(142)] "Uncaught TypeError: Cannot read property 'loadVideoById' of undefined", source: http://fritzthescientis.byethost18.com/testy/index.html?i=1 (142)
+[0211/213611.456:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/213616.398:INFO:CONSOLE(142)] "Uncaught TypeError: Cannot read property 'loadVideoById' of undefined", source: http://fritzthescientis.byethost18.com/testy/index.html?i=1 (142)
+[0211/213704.665:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/213708.088:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/213708.155:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/213915.361:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/213919.895:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/213919.927:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/214654.928:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/214722.398:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/214725.843:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/214726.142:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/214803.057:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/214806.716:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/214806.822:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/215540.078:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/215544.465:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/215544.576:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/220549.920:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/220553.688:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/220553.695:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/220919.438:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/220923.283:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/220923.401:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/222044.301:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/222047.516:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/222047.521:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/223935.219:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/223939.709:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/223939.741:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/225231.123:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/225235.129:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/225235.218:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/230543.767:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/230547.455:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/230547.460:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/230820.016:ERROR:broker_win.cc(55)] Error reading broker pipe: Potok zosta³ zakoñczony. (0x6D)
+[0211/230835.088:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/230838.749:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/230838.754:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/231031.304:ERROR:broker_win.cc(55)] Error reading broker pipe: Potok zosta³ zakoñczony. (0x6D)
+[0211/231223.603:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/231227.449:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/231227.452:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/231322.546:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/231326.224:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/231326.304:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/232114.842:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/232118.392:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/232118.396:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/232734.226:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/232828.524:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/232832.732:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/232832.847:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/234937.519:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/234950.164:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/234950.183:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/235229.287:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/235229.291:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/235245.043:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0211/235252.994:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0211/235253.020:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/004236.259:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0212/004240.750:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/004240.826:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/152039.050:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0212/152045.262:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/152045.277:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/152529.078:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0212/152535.668:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/152535.680:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/174639.630:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0212/174644.906:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/174645.144:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/214446.713:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0212/214450.683:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/214450.838:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/215149.568:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/215149.571:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/215438.649:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 102 is too big.
+[0212/215440.184:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 102 is too big.
+[0212/215445.115:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 101 is too big.
+[0212/215449.218:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 101 is too big.
+[0212/215451.786:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 101 is too big.
+[0212/215453.418:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 102 is too big.
+[0212/215455.481:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 101 is too big.
+[0212/215502.182:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0212/215505.073:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/215505.077:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/235031.589:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0212/235036.006:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0212/235036.115:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0213/214037.210:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0213/214044.796:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0213/214044.855:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0213/214510.080:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0213/214515.217:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0213/214515.240:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0213/221216.737:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0213/221220.250:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0213/221220.261:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0213/221443.224:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0213/221449.333:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0213/221449.358:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/103031.360:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/103035.554:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/103035.602:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/105315.205:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/105318.757:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/105318.852:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/112057.510:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/112101.657:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/112101.743:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/124900.731:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/124903.857:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/124903.862:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/145245.215:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/145249.139:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/145249.224:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/201225.974:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/201230.580:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/201230.688:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/202946.202:WARNING:audio_sync_reader.cc(187)] ASR: No room in socket buffer.: Trwa zamykanie potoku. (0xE8)
+[0214/205906.764:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/205910.152:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/205910.227:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/220128.103:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/220131.347:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/220131.356:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/221348.232:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/221348.234:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/221944.953:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 102 is too big.
+[0214/221946.650:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 102 is too big.
+[0214/221950.282:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 101 is too big.
+[0214/221952.616:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 102 is too big.
+[0214/221954.384:ERROR:latency_info.cc(144)] Surface::TakeLatencyInfoFromFrame, LatencyInfo vector size 102 is too big.
+[0214/221957.564:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/221957.593:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/223449.115:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/223449.135:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/223506.450:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/223506.457:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/223527.212:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/223530.324:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/223530.386:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/223931.230:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/223931.233:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/224048.862:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/224052.107:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/224052.179:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/230606.388:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/230609.643:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/230609.721:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/233348.473:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0214/233353.873:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0214/233353.992:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/002608.301:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/002612.665:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/002612.841:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/003010.013:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/003013.676:INFO:CONSOLE(1)] "'webkitURL' is deprecated. Please use 'URL' instead.", source:  (1)
+[0215/003013.690:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/003013.701:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/112724.146:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/112727.927:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/112728.024:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/114224.582:WARNING:audio_sync_reader.cc(187)] ASR: No room in socket buffer.: Trwa zamykanie potoku. (0xE8)
+[0215/123936.318:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/123939.822:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/123939.894:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/165232.479:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/165237.234:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/165237.307:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/172246.029:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/172250.509:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/172250.624:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/192716.868:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/192721.045:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/192721.153:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/193209.245:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/193214.292:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/193214.334:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/224705.905:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/224709.369:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/224709.441:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/225227.517:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/225231.063:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/225231.142:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/225443.021:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/225448.098:INFO:CONSOLE(1)] "'webkitURL' is deprecated. Please use 'URL' instead.", source:  (1)
+[0215/225448.210:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/225448.268:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/230844.835:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/230848.760:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/230848.871:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/231733.669:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0215/231739.631:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0215/231739.662:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/182834.174:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0216/182837.944:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/182837.958:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/184514.336:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0216/184519.048:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/184519.068:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/193348.795:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0216/193353.364:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/193353.505:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/193754.781:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0216/193801.284:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/193801.486:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/194833.862:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0216/194844.861:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/194844.877:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/195943.157:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0216/195947.659:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/195947.893:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/224518.834:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0216/224524.435:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/224524.452:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/225121.016:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0216/225126.942:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/225126.972:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/230042.614:ERROR:gpu_process_transport_factory.cc(1017)] Lost UI shared context.
+[0216/230047.185:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/
+[0216/230047.323:WARNING:url_request_job_manager.cc(90)] Failed to map: chrome-extension://invalid/

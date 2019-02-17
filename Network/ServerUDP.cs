@@ -1,17 +1,10 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Bson;
-using NowMine.Helpers;
-using NowMine.Models;
+﻿using NowMine.Helpers;
 using NowMineCommon.Models;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace NowMine
 {
@@ -84,10 +77,16 @@ namespace NowMine
             UDPSend(message);
         }
 
-        internal void SendShutdown()
+        internal void playedNext(string nextVideoID, uint eventID)
         {
-            //var message = BytesMessegeBuilder.GetShutdownBytes();
-            //UDPSend(message);
+            var bytes = BytesMessegeBuilder.GetPlayedNextBytes(eventID);
+            sendData(bytes);
+        }
+
+        internal void SendShutdown(uint eventID)
+        {
+            var message = BytesMessegeBuilder.GetShutdownBytes(eventID);
+            UDPSend(message);
         }
     }
 }

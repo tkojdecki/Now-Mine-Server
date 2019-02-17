@@ -20,7 +20,8 @@ namespace NowMine.WebHandlers
 
         public string GetVideoURL(string id)
         {
-            return LOCALSITEADDRESS;
+            //return LOCALSITEADDRESS;
+            return @"http://fritzthescientis.byethost18.com/testy/index.html";
         }
 
         public IWebHandler GetErrorHandler()
@@ -30,8 +31,9 @@ namespace NowMine.WebHandlers
 
         public string GetHomePage()
         {
-            return LOCALSITEADDRESS;
+            //return LOCALSITEADDRESS;
             //return "home.html";
+            return @"http://fritzthescientis.byethost18.com/testy/index.html";
         }
 
         public NextVideoType NextVideoType()

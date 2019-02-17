@@ -7,7 +7,6 @@ using System.Windows;
 using NowMine.WebHandlers;
 using System.Timers;
 using System.IO;
-using NowMine.Models;
 using NowMineCommon.Models;
 
 namespace NowMine.ViewModel
@@ -15,7 +14,20 @@ namespace NowMine.ViewModel
     class WebPanelViewModel
     {
         ChromiumWebBrowser WebControl;
-        public bool isPlaying = false;
+        public bool _isPlaying = false;
+        public bool isPlaying
+        {
+            get
+            {
+                return _isPlaying;
+            }
+            set
+            {
+                _isPlaying = value;
+                IsPlayingEvent?.Invoke(value);
+            }
+        }
+        public event Action<bool> IsPlayingEvent;
         public IWebHandler WebHandler;
         private Timer aTimer;
 
@@ -23,11 +35,13 @@ namespace NowMine.ViewModel
         {
             this.WebControl = webControl;
             //this.WebHandler = new YTVanilla();
-            this.WebHandler = new YTTV();
-            //this.WebHandler = new YTNowMine();
+            //this.WebHandler = new YTTV();
+            this.WebHandler = new YTNowMine();
+            //this.WebHandler = new YTIFrame();
             WebControl.IsBrowserInitializedChanged += WebPlayer_IsBrowserInitializedChanged;
             QueueManager.PlayedNow += PlayNow;
             QueueManager.VideoQueued += VideoQueuedHandler;
+            QueueManager.PlayedNext += PlayNow;
         }
 
         private void WebPlayer_IsBrowserInitializedChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -40,16 +54,18 @@ namespace NowMine.ViewModel
 
         public void LoadHomePage()
         {
-            string html = File.ReadAllText(Directory.GetCurrentDirectory() + @"\Resources\" + WebHandler.GetHomePage());
-            WebControl.LoadHtml(html, @"local://home.html");
+            string homeAddress = WebHandler.GetHomePage();
+            if (homeAddress.StartsWith("http"))
+                WebControl.Load(homeAddress);
+            else
+            {
+                var html = File.ReadAllText(Directory.GetCurrentDirectory() + @"\Resources\" + homeAddress);
+                WebControl.LoadHtml(html, @"local://home.html");
+            }
         }
 
         private void PlayNow(string id)
         {
-            if (!isPlaying)
-            {
-                isPlaying = true;
-            }
             switch(WebHandler.NextVideoType())
             {
                 case Enumerates.NextVideoType.ChangeSite:
@@ -63,6 +79,11 @@ namespace NowMine.ViewModel
                     WebControl.GetMainFrame().ExecuteJavaScriptAsync("changeVideo('" + id + "')");
                     break;
             }
+            if (!isPlaying)
+            {
+                isPlaying = true;
+            }
+            //todo sprawdzenie czy przełączyło się
         }
 
         internal void PlayNow(int qPos, uint eventID)
@@ -70,6 +91,16 @@ namespace NowMine.ViewModel
             if (QueueManager.Queue.Count > qPos)
             {
                 PlayNow(QueueManager.Queue[qPos].ClipInfo.ID);
+            }
+        }
+
+        internal void PlayNow(string videoID, uint eventID)
+        {
+            if(!string.IsNullOrEmpty(videoID))
+                PlayNow(videoID);
+            else
+            {
+                isPlaying = false;
             }
         }
 
@@ -92,7 +123,7 @@ namespace NowMine.ViewModel
 
         public void ErrorHandle()
         {
-            Console.WriteLine("ONERROR");
+            Console.WriteLine("WebPanelViewModel ONERROR");
             var nowPlaying = QueueManager.nowPlaying();
             WebHandler = WebHandler.GetErrorHandler();  //no
             isPlaying = true;

@@ -200,6 +200,7 @@
     <Compile Include="EventManager.cs" />
     <Compile Include="Helpers\JsonMessegeBuilder.cs" />
     <Compile Include="WebHandlers\IWebHandler.cs" />
+    <Compile Include="WebHandlers\YTIFrame.cs" />
     <Compile Include="WebHandlers\YTNowMine.cs" />
     <Compile Include="WebHandlers\YTTV.cs" />
     <Compile Include="WebHandlers\YTVanilla.cs" />
@@ -280,7 +281,11 @@
     <Content Include="Resources\home.html">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\iframe.html">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\index.html" />
+    <Resource Include="Resources\Logo.png" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
