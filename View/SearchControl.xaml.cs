@@ -1,4 +1,5 @@
-﻿using System;
+﻿using NowMine.ViewModel;
+using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -8,12 +9,13 @@ namespace NowMine.View
     public partial class SearchControl : UserControl
     {
         private static bool m_SearchedOnce = false;
-        public EventHandler<string> OnSearch;
+        //public EventHandler<string> OnSearch;
 
         public SearchControl()
         {
             InitializeComponent();
             ToogleSearchEnabled(false);
+            DataContext = new SearchPanelViewModel();
             //ClearSearchText();
         }
 
@@ -26,11 +28,11 @@ namespace NowMine.View
         {
             if (e.Key == Key.Enter)
             {
-                e.Handled = Search();
+                e.Handled = ResetSearchScroll();
             }
         }
 
-        private void GotFocus(object sender, RoutedEventArgs e)
+        private void ClearSearch(object sender, RoutedEventArgs e)
         {
             CheckSearchedOnce(); //todo clear text twice; is this even a problem?
             ClearSearchText();
@@ -39,15 +41,14 @@ namespace NowMine.View
         private void SearchButtonClick(object sender, RoutedEventArgs e)
         {
             CheckSearchedOnce();
-            e.Handled = Search();
+            e.Handled = ResetSearchScroll();
         }
 
-        private bool Search()
+        private bool ResetSearchScroll()
         {
-            if (SearchButton.IsEnabled)
+            if (SearchButton.IsEnabled && !string.IsNullOrEmpty(SearchBox.Text))
             {
-                OnSearch.Invoke(this, SearchBox.Text);
-                //ClearSearchText();
+                SearchScroll.ScrollToTop();
             }
             return SearchButton.IsEnabled;
         }
@@ -64,7 +65,8 @@ namespace NowMine.View
 
         private void ClearSearchText()
         {
-            SearchBox.Text = "";
+            SearchBox.Text = string.Empty;
         }
+
     }
 }

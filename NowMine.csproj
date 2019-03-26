@@ -195,7 +195,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="APIProviders\IAPIProvider.cs" />
     <Compile Include="Enumerates\NextVideoType.cs" />
     <Compile Include="EventManager.cs" />
     <Compile Include="Helpers\JsonMessegeBuilder.cs" />
@@ -225,7 +224,6 @@
       <DependentUpon>SearchControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\WebPanelViewModel.cs" />
-    <Compile Include="APIProviders\YouTubeProvider.cs" />
     <Page Include="View\ClipControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

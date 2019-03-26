@@ -34,14 +34,14 @@ namespace NowMine
             udpThread.IsBackground = true;
             udpThread.Start();
 
-            serverTCP.UserNameChanged += serverUDP.sendData;
-            serverTCP.UserColorChanged += serverUDP.sendData;
+            serverTCP.UserNameChanged += serverUDP.SendData;
+            serverTCP.UserColorChanged += serverUDP.SendData;
             serverUDP.NewUser += serverTCP.TCPConnectToNewUser;
             
-            QueueManager.PlayedNow += serverUDP.playedNow;
-            QueueManager.PlayedNext += serverUDP.playedNext;
+            QueueManager.PlayedNow += serverUDP.PlayedNow;
+            QueueManager.PlayedNext += serverUDP.PlayedNext;
             QueueManager.VideoQueued += serverUDP.SendQueuedPiece;
-            QueueManager.RemovedPiece += serverUDP.sendData;
+            QueueManager.RemovedPiece += serverUDP.SendData;
         }
 
         private void Application_Exit(object sender, ExitEventArgs e)

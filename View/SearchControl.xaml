@@ -2,19 +2,67 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:view="clr-namespace:NowMine.View"
+             xmlns:viewModel="clr-namespace:NowMine.ViewModel"
              mc:Ignorable="d" 
              d:DesignHeight="30">
+
+    <UserControl.Resources>
+        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:ClipData}">
+            <StackPanel>
+                <view:ClipControl Width="350" UsernameVisible="False"/>
+            </StackPanel>
+        </DataTemplate>
+        <ItemsPanelTemplate x:Key="SearchPanelTemplate">
+            <StackPanel Orientation="Vertical" Margin="0,0,0,0"/>
+        </ItemsPanelTemplate>
+    </UserControl.Resources>
+
     <Grid Margin="6, 2, 6, 2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="75"/>
         </Grid.ColumnDefinitions>
-        <Grid Column="0">
-            <TextBox x:Name="SearchBox" Text="Type anything to search!" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" KeyDown="OnKeyDown" GotFocus="GotFocus"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Column="0" Grid.Row="0">
+            <TextBox Name="SearchBox"
+                     Text="Search video"
+                     VerticalAlignment="Stretch"
+                     HorizontalAlignment="Stretch"
+                     KeyDown="OnKeyDown"
+                     GotFocus="ClearSearch">
+                <TextBox.InputBindings>
+                    <KeyBinding Command="{Binding SearchCommand}" 
+                    CommandParameter="{Binding ElementName=SearchBox, Path=Text}" 
+                    Key="Return"/>
+                </TextBox.InputBindings>
+            </TextBox>
         </Grid>
-        <Grid Column="1">
-            <Button x:Name="SearchButton" Content="Search!" FontSize="15" HorizontalAlignment="Center" IsEnabled="False" Click="SearchButtonClick"/>
+        <Grid Column="1" Grid.Row="0">
+            <Button x:Name="SearchButton"
+                    Content="Search!"
+                    FontSize="15"
+                    HorizontalAlignment="Center"
+                    IsEnabled="False"
+                    Command="{Binding SearchCommand}"
+                    CommandParameter="{Binding ElementName=SearchBox, Path=Text}"/>
+        </Grid>
+
+        <Grid Row="1" Grid.ColumnSpan="2">
+            <ScrollViewer x:Name="SearchScroll" Margin="0,0,0,0" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled">
+                <StackPanel>
+                    <ItemsControl HorizontalAlignment="Stretch"
+                                  VerticalAlignment="Top"
+                                  Margin="0,4,0,0"
+                                  ItemsSource="{Binding Path=SearchList}"
+                                  ItemTemplate="{StaticResource MusicDataTemplate}"
+                                  ItemsPanel="{StaticResource SearchPanelTemplate}" />
+                </StackPanel>
+            </ScrollViewer>
         </Grid>
     </Grid>
 </UserControl>

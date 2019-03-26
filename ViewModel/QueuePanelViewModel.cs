@@ -85,9 +85,9 @@ namespace NowMine.ViewModel
         {
             get
             {
-                if (QueueManager.nowPlaying() != null)
+                if (QueueManager.NowPlaying != null)
                 {
-                    ClipData md = QueueManager.nowPlaying().Copy();
+                    ClipData md = QueueManager.NowPlaying.Copy();
                     //md.Color = Color.FromRgb(255, 0, 0);
                     md.OnClick += ToggleNowPlayingVisibility;
                     NowPlayingVisibility = true;

@@ -7,20 +7,8 @@
         Height="650"
         Width="1235"
         Closing="Window_Closing" KeyUp="Window_KeyUp">
-
     <Window.Resources>
-        <DataTemplate x:Key="MusicDataTemplate" DataType="{x:Type viewModel:ClipData}">
-            <StackPanel>
-                <view:ClipControl Width="350" UsernameVisible="False"/>
-            </StackPanel>
-        </DataTemplate>
-
-        <ItemsPanelTemplate x:Key="SearchPanelTemplate">
-            <StackPanel Orientation="Vertical" Margin="0,0,0,0"/>
-        </ItemsPanelTemplate>
-
     </Window.Resources>
-
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="375" x:Name="columnDefinitionSearch"/>
@@ -29,24 +17,11 @@
 
         <Grid x:Name="columnSearch" Grid.Column="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
+                <!--<RowDefinition Height="*"/>-->
             </Grid.RowDefinitions>
             <Grid Row="0">
                 <view:SearchControl x:Name="Search" HorizontalAlignment="Stretch" />
-            </Grid>
-
-            <Grid Row="1">
-                <ScrollViewer x:Name="SearchScroll" Margin="0,0,0, 0" >
-                    <StackPanel>
-                        <ItemsControl HorizontalAlignment="Stretch"
-                                  VerticalAlignment="Top"
-                                  Margin="0,4,0,0"
-                                  ItemsSource="{Binding Path=SearchList}"
-                                  ItemTemplate="{StaticResource MusicDataTemplate}"
-                                  ItemsPanel="{StaticResource SearchPanelTemplate}" />
-                    </StackPanel>
-                </ScrollViewer>
             </Grid>
         </Grid>
 

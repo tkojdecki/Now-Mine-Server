@@ -186,8 +186,8 @@ namespace NowMine
                         try
                         {
                             var changedColors = JsonMessegeBuilder.GetRequestString(request, command);
-                            var NewUserColor = System.Convert.FromBase64String(changedColors);
-                            user.UserColor = NewUserColor;
+                            var NewUserColor = Convert.FromBase64String(changedColors);
+                            user.ColorBytes = NewUserColor;
                             QueueManager.OnGlobalPropertyChanged();
                             eventID = EventManager.GetIDForEvent(command, NewUserColor);
                             OnUserColorChange(NewUserColor, user.Id, eventID);
@@ -202,7 +202,7 @@ namespace NowMine
 
                     case CommandType.PlayNext:
                         Console.WriteLine("TCP/ PlayNext from {0}", tcpClient.RemoteEndPoint);
-                        if (QueueManager.nowPlaying().User.Id == user.Id)
+                        if (QueueManager.NowPlaying.User.Id == user.Id)
                         {
                             Application.Current.Dispatcher.Invoke(new Action(() => { QueueManager.PlayNext(); }));
                             eventID = EventManager.GetIDForEvent(command, new object());
@@ -236,7 +236,7 @@ namespace NowMine
                         try
                         {
                             var queueIDToDelete = JsonMessegeBuilder.GetRequestData<uint>(request, command);
-                            var isDeleted = QueueManager.DeleteFromQueue(queueIDToDelete, user.Id);
+                            var isDeleted = QueueManager.UserDeleteClip(queueIDToDelete, user.Id);
                             if (isDeleted)
                             {
                                 eventID = EventManager.GetIDForEvent(command, queueIDToDelete);

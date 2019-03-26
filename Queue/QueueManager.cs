@@ -120,7 +120,7 @@ namespace NowMine.Queue
             uint eventID = EventManager.GetIDForEvent(CommandType.PlayNow, clip);
             OnPlayedNow(qPos, eventID);
 
-            ToHistory(nowPlaying());
+            ToHistory(NowPlaying);
             DeleteFromQueue(data, false);
             Queue.Insert(0, data);
 
@@ -132,23 +132,27 @@ namespace NowMine.Queue
             if (Queue.Contains(queuePiece))
             {
                 Queue.Remove(queuePiece);
-                uint queueID = queuePiece.QueueID;
-                uint eventID = EventManager.GetIDForEvent(CommandType.PlayNext, queueID);
                 if(sendUDPMessage)
-                    OnRemovedPiece(queueID, eventID);
-                QueueCalculator.SortQueue(ref _queue);
+                {
+                    uint eventID = EventManager.GetIDForEvent(CommandType.PlayNext, queuePiece.QueueID);
+                    OnRemovedPiece(queuePiece.QueueID, eventID);
+                }
+                //QueueCalculator.SortQueue(ref _queue);
                 OnGlobalPropertyChanged();
             }
 
         }
 
-        static public bool DeleteFromQueue(uint queueID, int userID)
+        static public bool UserDeleteClip(uint queueID, int userID)
         {
             foreach (var clip in Queue)
             {
                 if (clip.QueueID == queueID && clip.User.Id == userID)
                 {
-                    DeleteFromQueue(clip, true);
+                    if (NowPlaying == clip)
+                        PlayNext();
+                    else
+                        DeleteFromQueue(clip, true);
                     //uint eventID = EventManager.GetIDForEvent(CommandType.PlayNext, queueID);
                     //OnRemovedPiece(clip.QueueID, eventID);
                     //OnGlobalPropertyChanged();
@@ -178,32 +182,33 @@ namespace NowMine.Queue
 
         static public void PlayNext()
         {
-            var _nowPlaying = nowPlaying();
-            if (_nowPlaying != null)
+            uint eventID = 0;
+            if (NowPlaying != null)
             {
-                ToHistory(_nowPlaying);
-                DeleteFromQueue(_nowPlaying, false);
+                eventID = EventManager.GetIDForEvent(CommandType.PlayNext, NowPlaying.QueueID);
+                ToHistory(NowPlaying);
+                DeleteFromQueue(NowPlaying, false);
             }
             OnGlobalPropertyChanged();
-            uint eventID = EventManager.GetIDForEvent(CommandType.PlayNext, _nowPlaying.QueueID);
-            _nowPlaying = nowPlaying();
             string nowPlayingID = string.Empty;
-            if (_nowPlaying != null)
-                nowPlayingID = _nowPlaying.ClipInfo.ID;
+            if (NowPlaying != null)
+                nowPlayingID = NowPlaying.ClipInfo.ID;
             OnPlayedNext(nowPlayingID, eventID);
         }
 
-        static public ClipData nowPlaying()
+        static public ClipData NowPlaying
         {
-            if (Queue.Count >= 1)
+            get
             {
-                return Queue.First();
+                if (Queue.Count >= 1)
+                {
+                    return Queue.First();
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
-            {
-                return null;
-            }
-
         }
 
         public static void ClearHistory()

@@ -7,32 +7,17 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Linq;
 
 namespace NowMine.ViewModel
 {
     class SearchPanelViewModel : INotifyPropertyChanged
     {
-        public static Color SEARCH_COLOR = Color.FromRgb(0,0,0);
+        //public static Color SEARCH_COLOR = Color.FromRgb(0,0,0);
         IAPIProvider apiProvider = new YouTubeProvider();
-
-        private string _searchText;
-        public string SearchText
-        {
-            get
-            {
-                return _searchText;
-            }
-            set
-            {
-                if (value == _searchText)
-                    return;
-
-                _searchText = value;
-                OnPropertyChanged("SearchText");
-            }
-        }
 
         private ObservableCollection<ClipData> _searchList;
         public ObservableCollection<ClipData> SearchList
@@ -46,7 +31,7 @@ namespace NowMine.ViewModel
             set
             {
                 _searchList = value;
-                OnPropertyChanged("SearchList");
+                OnPropertyChanged(nameof(SearchList));
             }
         }
 
@@ -56,58 +41,6 @@ namespace NowMine.ViewModel
             QueueManager.AddToQueue(newData);
         }
 
-        public List<ClipData> GetSearchList(String searchWord)
-        {
-            List<ClipData> list;
-            List<ClipInfo> infoList = apiProvider.GetSearchClipInfos(searchWord);
-            list = InfoToResults(infoList);
-            return list;
-        }
-
-        private List<ClipData> InfoToResults(List<ClipInfo> infoList)
-        {
-            List<ClipData> list = new List<ClipData>();
-            foreach (ClipInfo info in infoList)
-            {
-                ClipData result = new ClipData(info);
-                list.Add(result);
-            }
-            return list;
-        }
-
-        //TODO refactor
-        private ICommand _searchClickCommand;
-        public ICommand SearchClickCommand
-        {
-            get
-            {
-                if (_searchClickCommand == null)
-                {
-                    _searchClickCommand = new RelayCommand(
-                        param => this.SearchClickObject(),
-                        param => this.CanSearchClick()
-                    );
-                }
-                return _searchClickCommand;
-            }
-        }
-
-        private bool CanSearchClick()
-        {
-            //if (string.IsNullOrEmpty(SearchText)) -- enable jak sie cos wpisze dopiero
-            //    return false;
-            return true;
-        }
-
-        private void SearchClickObject()
-        {
-            var searchList = this.GetSearchList(SearchText);
-            var observableList = new ObservableCollection<ClipData>();
-            searchList.ForEach(m => observableList.Add(m));
-            SearchList = observableList;
-        }
-
-        //TODO refactor
         private ICommand _searchCommand;
         public ICommand SearchCommand
         {
@@ -116,19 +49,12 @@ namespace NowMine.ViewModel
                 if (_searchCommand == null)
                 {
                     _searchCommand = new RelayCommand(
-                        param => this.SearchObject(),
+                        param => this.Search(param.ToString()),
                         param => this.CanSearch()
                     );
                 }
                 return _searchCommand;
             }
-        }
-
-        public void PerformSearch(object sender, string searchText)
-        {
-            SearchText = searchText;
-            //TODO refactor
-            SearchCommand.Execute(null);
         }
 
         private bool CanSearch()
@@ -138,19 +64,25 @@ namespace NowMine.ViewModel
             return true;
         }
 
-        private void SearchObject()
+        private async void Search(string searchText)
         {
-            var searchList = this.GetSearchList(SearchText);
+            var searchList = await GetSearchClipDataList(searchText);
             var observableList = new ObservableCollection<ClipData>();
             
             foreach (ClipData musicPiece in searchList)
             {
-                musicPiece.Color = SEARCH_COLOR;
+                //musicPiece.Color = SEARCH_COLOR;
                 musicPiece.OnClick += this.AddToQueue;
                 observableList.Add(musicPiece);
             }
-            
             SearchList = observableList;
+        }
+
+        private async Task<List<ClipData>> GetSearchClipDataList(string searchWord)
+        {
+            List<ClipInfo> infoList = await apiProvider.GetSearchClipInfos(searchWord);
+            List<ClipData> list = infoList.Select(i => new ClipData(i)).ToList();
+            return list;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

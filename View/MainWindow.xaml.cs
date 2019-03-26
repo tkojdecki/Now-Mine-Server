@@ -46,7 +46,6 @@ namespace NowMine
             DataContext = this;
             //columnQueue.DataContext = queuePanelVM;
             columnSearch.DataContext = searchPanelVM;
-            Search.OnSearch += searchPanelVM.PerformSearch;
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
@@ -141,14 +140,9 @@ namespace NowMine
 
             this.QueueControl.DataContext = new QueuePanelViewModel();
 
-            Search.OnSearch += ScrollSearchQueue;
+            //Search.OnSearch += ScrollSearchQueue;
             webPlayer.MouseDoubleClick += Player_MouseDoubleClick;
             Search.ToogleSearchEnabled(true);
-        }
-
-        private void ScrollSearchQueue(Object sender, string searchText)
-        {
-            SearchScroll.ScrollToTop();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

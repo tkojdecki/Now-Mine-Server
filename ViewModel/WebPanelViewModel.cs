@@ -124,7 +124,7 @@ namespace NowMine.ViewModel
         public void ErrorHandle()
         {
             Console.WriteLine("WebPanelViewModel ONERROR");
-            var nowPlaying = QueueManager.nowPlaying();
+            //var nowPlaying = QueueManager.NowPlaying;
             WebHandler = WebHandler.GetErrorHandler();  //no
             isPlaying = true;
         }

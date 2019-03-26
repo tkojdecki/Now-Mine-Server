@@ -27,12 +27,12 @@ namespace NowMine.Models
             Random rnd = new Random();
             Id = id;
             for (int i = 0; i < 3; i++)
-                UserColor[i] = (byte)rnd.Next(0, 255);
+                ColorBytes[i] = (byte)rnd.Next(0, 255);
         }
 
         internal Color GetColor()
         {
-            return Color.FromRgb(UserColor[0], UserColor[1], UserColor[2]);
+            return Color.FromRgb(ColorBytes[0], ColorBytes[1], ColorBytes[2]);
         }
     }
 }
