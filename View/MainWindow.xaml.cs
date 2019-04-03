@@ -9,25 +9,54 @@ using NowMine.ViewModel;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Globalization;
+using System.ComponentModel;
+using System.Windows.Media.Animation;
 
 namespace NowMine
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         WebPanelViewModel webPanel;
+        SearchPanelViewModel searchPanelVM;
+        QueuePanelViewModel queuePanelVM;
         Image imgLogo;
         private bool isMaximized = false;
         public ChromiumWebBrowser webPlayer;
-        private const string LOCALSITEADDRESS= @"local://index.html";
+        private const string LOCALSITEADDRESS = @"local://index.html";
+        public double WindowWidth { get; set; }
+        public double WindowSquizedWidth
+        {
+            get
+            {
+                return WindowWidth - searchPanelVM.SearchPanelWidth;
+            }
+        }
+        public const double WINDOW_STARTING_WIDTH = 1235.0D;
+        public double WindowExpandedWidth
+        {
+            get
+            {
+                return WindowWidth + searchPanelVM.SearchPanelWidth;
+            }
+        }
+        private bool isSearchPanelExpanded = true;
+
+        public string SearchPanelButtonText { get; set; }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        
 
         public MainWindow()
         {            
             InitializeComponent();
             InitializeChromium();
             webPlayer = new ChromiumWebBrowser();
+
+            WindowWidth = WINDOW_STARTING_WIDTH;
+            SearchPanelButtonText = "Hide";
 
             webPanel = new WebPanelViewModel(ref webPlayer);
             webPlayer.Initialized += AddJSActivateUI;
@@ -40,15 +69,24 @@ namespace NowMine
             imgLogo.Source = new BitmapImage(new Uri("pack://application:,,,/NowMine;component/Resources/Logo.png"));
             RowPlayer.Children.Add(imgLogo);
 
-            //var queuePanelVM = new QueuePanelViewModel();
-            var searchPanelVM = new SearchPanelViewModel();
+            searchPanelVM = new SearchPanelViewModel();
+            searchPanelVM.SearchPanelWidth = 375d;
+
+            queuePanelVM = new QueuePanelViewModel();
 
             DataContext = this;
-            //columnQueue.DataContext = queuePanelVM;
-            columnSearch.DataContext = searchPanelVM;
+            SearchPanel.DataContext = searchPanelVM;
+            QueuePanel.DataContext = queuePanelVM;
 
             Thread.CurrentThread.CurrentCulture = new CultureInfo("en-us");
             Thread.CurrentThread.CurrentUICulture = Thread.CurrentThread.CurrentCulture;
+        }
+
+        protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
+        {
+            base.OnRenderSizeChanged(sizeInfo);
+            //todo responsive searchpanel and controls
+            //searchPanelVM.SearchPanelWidth = WindowWidth / 3;
         }
 
         private void IsPlaying_WebPanelVisibility(bool isPlaying)
@@ -56,8 +94,8 @@ namespace NowMine
             if(isPlaying)
             {
                 this.Dispatcher.Invoke(() => webPlayer.Visibility = Visibility.Visible);
-
-                this.Dispatcher.Invoke(() => imgLogo.Visibility = Visibility.Collapsed);
+                this.Dispatcher.Invoke(() => imgLogo.Visibility = Visibility.Hidden);
+                this.Dispatcher.Invoke(() => webPlayer.UpdateLayout());
             }
             else
             {
@@ -88,14 +126,12 @@ namespace NowMine
             Cef.Initialize(settings);
         }
 
-
         private void AddJSActivateUI(object sender, EventArgs e)
         {
             webPlayer.JavascriptObjectRepository.Register("app", webPanel, true);
-            activateUI();
+            ActivateUI();
         }
-
-        //private   
+  
         private void Player_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (isMaximized)
@@ -109,7 +145,7 @@ namespace NowMine
         //todo
             isMaximized = true;
  
-            columnSearch.Visibility = Visibility.Collapsed;
+            //columnSearch.Visibility = Visibility.Collapsed;
             columnDefinitionSearch.Width = new GridLength(0);
 
             RowQueue.Visibility = Visibility.Collapsed;
@@ -126,23 +162,23 @@ namespace NowMine
             WindowState = WindowState.Normal;
             WindowStyle = WindowStyle.SingleBorderWindow;
 
-            columnSearch.Visibility = Visibility.Visible;
+            //columnSearch.Visibility = Visibility.Visible;
             columnDefinitionSearch.Width = new GridLength(375);
 
             RowQueue.Visibility = Visibility.Visible;
             RowDefinitionQueue.Height = new GridLength(120);
         }
 
-        private void activateUI()
+        private void ActivateUI()
         {
             webPlayer.HorizontalAlignment = HorizontalAlignment.Stretch;
             webPlayer.VerticalAlignment = VerticalAlignment.Stretch;
 
-            this.QueueControl.DataContext = new QueuePanelViewModel();
+            this.QueuePanel.DataContext = new QueuePanelViewModel();
 
             //Search.OnSearch += ScrollSearchQueue;
             webPlayer.MouseDoubleClick += Player_MouseDoubleClick;
-            Search.ToogleSearchEnabled(true);
+            SearchPanel.ToogleSearchEnabled(true);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -158,13 +194,39 @@ namespace NowMine
                     webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"window.location.reload();");
                     break;
                 case (Key.Pause):
-                    //    //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
-                    //    //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function onPlayerStateChange(event){if(event==0){app.getNextVideo();}});");
+                    // webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"var ytpl = document.getElementById('movie_player');");
+                    //webPlayer.GetMainFrame().ExecuteJavaScriptAsync(@"ytpl.addEventListener('onStateChange', function onPlayerStateChange(event){if(event==0){app.getNextVideo();}});");
                     //this.webPlayer.Load(@"https://www.youtube.com/tv#/watch/video/control?v=QBZfeWjy8ck&resume");
                     this.webPlayer.Load(@"https://www.youtube.com/watch?v=RlJ9zB74G_U&autoplay=1");
                     //this.webPlayer.Load(@"http://www.google.pl");
                     break;
             }
+        }
+
+        private void btnSearchHide_Click(object sender, RoutedEventArgs e)
+        {
+            if(isSearchPanelExpanded)
+            {
+                Storyboard sb = FindResource("SquizeWindow") as Storyboard;
+                sb?.Begin(this);
+                SearchPanel.AnimateSquizePanel();
+                SearchPanelButtonText = "Search";
+                OnPropertyChanged(nameof(SearchPanelButtonText));
+            }
+            else
+            {
+                Storyboard sb = FindResource("ExpandWindow") as Storyboard;
+                sb?.Begin(this);
+                SearchPanel.AnimateExpandPanel();
+                SearchPanelButtonText = "Hide";
+                OnPropertyChanged(nameof(SearchPanelButtonText));
+            }
+            isSearchPanelExpanded = !isSearchPanelExpanded;
+        }
+
+        private void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

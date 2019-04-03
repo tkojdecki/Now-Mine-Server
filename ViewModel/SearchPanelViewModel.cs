@@ -9,15 +9,19 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Linq;
+using System.Windows.Media.Animation;
 
 namespace NowMine.ViewModel
 {
     class SearchPanelViewModel : INotifyPropertyChanged
     {
+
+
         //public static Color SEARCH_COLOR = Color.FromRgb(0,0,0);
         IAPIProvider apiProvider = new YouTubeProvider();
+
+        public double SearchPanelWidth { get; set; }
 
         private ObservableCollection<ClipData> _searchList;
         public ObservableCollection<ClipData> SearchList

@@ -2,41 +2,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         x:Class="NowMine.MainWindow"
         xmlns:view="clr-namespace:NowMine.View"
-        xmlns:viewModel="clr-namespace:NowMine.ViewModel"
         Title="Now Mine!"
         Height="650"
-        Width="1235"
-        Closing="Window_Closing" KeyUp="Window_KeyUp">
-    <Window.Resources>
-    </Window.Resources>
+        Width="{Binding WindowWidth, Mode=TwoWay}"
+        Closing="Window_Closing"
+        KeyUp="Window_KeyUp"
+        Name="XmainWindow">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="375" x:Name="columnDefinitionSearch"/>
+            <ColumnDefinition Width="Auto" x:Name="columnDefinitionSearch"/>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
-        <Grid x:Name="columnSearch" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
-                <!--<RowDefinition Height="*"/>-->
-            </Grid.RowDefinitions>
-            <Grid Row="0">
-                <view:SearchControl x:Name="Search" HorizontalAlignment="Stretch" />
-            </Grid>
-        </Grid>
+        <view:SearchPanel x:Name="SearchPanel" HorizontalAlignment="Stretch" Grid.Column="0"/>
+        <Button Name="btnSearchHide"
+                Grid.Column="0"
+                Width="48"
+                Height="28"
+                Click="btnSearchHide_Click"
+                Content="{Binding SearchPanelButtonText}"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Center"
+                Background="#c2185b">
+            <Button.LayoutTransform>
+                <RotateTransform Angle="-90"/>
+            </Button.LayoutTransform>
+        </Button>
 
         <Grid x:Name="PlayerGrid" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="120" x:Name="RowDefinitionQueue"/>
             </Grid.RowDefinitions>
-            <Grid x:Name="RowPlayer" Grid.Row="0" >
-                <!--<Image x:Name="imgLogo" Stretch="Uniform">
-                    <Image.Source>
-                        <BitmapImage UriSource="pack://application:,,,/Resources/Logo.png"/>
-                    </Image.Source>
-                </Image>-->
-            </Grid>
+            <Grid x:Name="RowPlayer" Grid.Row="0" />
 
             <Grid x:Name="RowQueue" Grid.Row="1">
                 <view:QueuePanel x:Name="QueueControl" VerticalAlignment="Stretch" />

@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Storyboard x:Key="SquizeWindow">
+        <DoubleAnimation Storyboard.TargetProperty="Width"
+                             From="{Binding WindowWidth}"
+                             To="{Binding WindowSquizedWidth}"
+                             AccelerationRatio=".9"
+                             Duration="0:0:1" />
+    </Storyboard>
+
+    <Storyboard x:Key="ExpandWindow">
+        <DoubleAnimation Storyboard.TargetProperty="Width"
+                             From="{Binding WindowWidth}"
+                             To="{Binding WindowStartingWidth}"
+                             AccelerationRatio=".9"
+                             Duration="0:0:1"/>
+    </Storyboard>
+</ResourceDictionary>

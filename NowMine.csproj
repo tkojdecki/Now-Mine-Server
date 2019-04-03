@@ -220,10 +220,14 @@
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModel\QueuePanelViewModel.cs" />
     <Compile Include="ViewModel\SearchPanelViewModel.cs" />
-    <Compile Include="View\SearchControl.xaml.cs">
-      <DependentUpon>SearchControl.xaml</DependentUpon>
+    <Compile Include="View\SearchPanel.xaml.cs">
+      <DependentUpon>SearchPanel.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModel\WebPanelViewModel.cs" />
+    <Page Include="Resources\MainWindowAnimations.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ClipControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -244,7 +248,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\SearchControl.xaml">
+    <Page Include="View\SearchPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

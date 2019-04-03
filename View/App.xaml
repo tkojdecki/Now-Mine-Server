@@ -1,9 +1,13 @@
 ﻿<Application x:Class="NowMine.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             StartupUri="View/MainWindow.xaml"
+             StartupUri="MainWindow.xaml"
              Exit="Application_Exit">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/NowMine;component/Resources/MainWindowAnimations.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
