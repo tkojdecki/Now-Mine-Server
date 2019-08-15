@@ -285,12 +285,14 @@ namespace NowMine
                     userIdBytes = BitConverter.GetBytes(userId);
                     byte[] ipBytes = ServerIP.GetAddressBytes(); //4 bytes
                     byte[] message = BytesMessegeBuilder.MergeBytesArray(ipBytes, userIdBytes);
+                    byte[] eventIDBytes = BitConverter.GetBytes(EventManager.EventID);
+                    message = BytesMessegeBuilder.MergeBytesArray(message, eventIDBytes);
                     tcpclnt.Connect(ip, 4444);
                     Console.WriteLine("TCP/ Connected");
                     Stream stm = tcpclnt.GetStream();
                     //stm.ReadTimeout = 250;
                     //stm.WriteTimeout = 250;
-                    Console.WriteLine("TCP/ Transmitting: " + Convert.ToBase64String(message));
+                    Console.WriteLine("TCP/ Transmitting: " + Convert.ToString(message));
                     stm.Write(message, 0, message.Length);
                     stm.Flush();
                     byte[] msgLengthBytes = new byte[4];

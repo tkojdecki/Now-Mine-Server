@@ -11,21 +11,19 @@ using System.Windows.Media.Imaging;
 using System.Globalization;
 using System.ComponentModel;
 using System.Windows.Media.Animation;
+using System.Windows.Data;
 
 namespace NowMine
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
         WebPanelViewModel webPanel;
         SearchPanelViewModel searchPanelVM;
         QueuePanelViewModel queuePanelVM;
-        Image imgLogo;
+        readonly Image imgLogo;
         private bool isMaximized = false;
         public ChromiumWebBrowser webPlayer;
-        private const string LOCALSITEADDRESS = @"local://index.html";
+        //private const string LOCALSITEADDRESS = @"local://index.html";
         public double WindowWidth { get; set; }
         public double WindowSquizedWidth
         {
@@ -46,8 +44,6 @@ namespace NowMine
 
         public string SearchPanelButtonText { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
-
-        
 
         public MainWindow()
         {            
@@ -85,8 +81,8 @@ namespace NowMine
         protected override void OnRenderSizeChanged(SizeChangedInfo sizeInfo)
         {
             base.OnRenderSizeChanged(sizeInfo);
+            searchPanelVM.SearchPanelWidth = (double)(sizeInfo.NewSize.Width / 3);
             //todo responsive searchpanel and controls
-            //searchPanelVM.SearchPanelWidth = WindowWidth / 3;
         }
 
         private void IsPlaying_WebPanelVisibility(bool isPlaying)
@@ -95,7 +91,6 @@ namespace NowMine
             {
                 this.Dispatcher.Invoke(() => webPlayer.Visibility = Visibility.Visible);
                 this.Dispatcher.Invoke(() => imgLogo.Visibility = Visibility.Hidden);
-                this.Dispatcher.Invoke(() => webPlayer.UpdateLayout());
             }
             else
             {
@@ -142,7 +137,7 @@ namespace NowMine
 
         private void maximalizePlayer()
         {
-        //todo
+            //todo
             isMaximized = true;
  
             //columnSearch.Visibility = Visibility.Collapsed;
@@ -219,6 +214,12 @@ namespace NowMine
                 sb?.Begin(this);
                 SearchPanel.AnimateExpandPanel();
                 SearchPanelButtonText = "Hide";
+                Binding myBinding = new Binding();
+                myBinding.Path = new PropertyPath("SearchPanelWidth");
+                myBinding.Mode = BindingMode.TwoWay;
+                //myBinding.UpdateSourceTrigger = UpdateSourceTrigger.PropertyChanged;
+                BindingOperations.SetBinding(SearchPanel, Column.WidthProperty, myBinding);
+
                 OnPropertyChanged(nameof(SearchPanelButtonText));
             }
             isSearchPanelExpanded = !isSearchPanelExpanded;

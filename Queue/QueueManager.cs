@@ -224,6 +224,7 @@ namespace NowMine.Queue
             {
                 Queue.RemoveAt(Queue.Count - 1);
             }
+            //todo onclearedqueue or delete this feature
             OnGlobalPropertyChanged();
         }
 

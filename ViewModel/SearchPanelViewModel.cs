@@ -1,27 +1,32 @@
 ﻿using NowMine.APIProviders;
 using NowMine.Helpers;
-using NowMine.Models;
 using NowMine.Queue;
 using NowMineCommon.Models;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Linq;
-using System.Windows.Media.Animation;
 
 namespace NowMine.ViewModel
 {
     class SearchPanelViewModel : INotifyPropertyChanged
     {
-
-
-        //public static Color SEARCH_COLOR = Color.FromRgb(0,0,0);
         IAPIProvider apiProvider = new YouTubeProvider();
 
-        public double SearchPanelWidth { get; set; }
+        private double _searchPanelWidth;
+
+        public double SearchPanelWidth
+        {
+            get { return _searchPanelWidth; }
+            set
+            {
+                _searchPanelWidth = value;
+                OnPropertyChanged(nameof(SearchPanelWidth));
+            }
+        }
+
 
         private ObservableCollection<ClipData> _searchList;
         public ObservableCollection<ClipData> SearchList

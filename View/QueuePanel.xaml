@@ -21,7 +21,7 @@
         </DataTemplate>
 
         <ContextMenu x:Key="ContextMenu">
-        <!-- TODO -->
+            <!-- TODO -->
             <MenuItem Header="Now Playing" IsChecked ="{Binding Path=NowPlayingVisibility}" Command="{Binding Path=ToggleNowPlayingVisibilityCommand}" />
             <MenuItem Header="History" IsChecked ="{Binding Path=HistoryVisible}" Command="{Binding Path=ToggleHistoryVisibleCommand}" />
             <Separator />

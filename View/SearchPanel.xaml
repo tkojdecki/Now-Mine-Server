@@ -61,7 +61,7 @@
         <Grid Column="1" Grid.Row="0">
             <Button x:Name="SearchButton"
                     Content="Search!"
-                    FontSize="15"
+                    FontSize="14"
                     HorizontalAlignment="Center"
                     IsEnabled="False"
                     Command="{Binding SearchCommand}"
